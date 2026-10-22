@@ -32,7 +32,7 @@ A map of eras, a check in your own words, an exam that reads your files. Free, o
   <img src="docs/media/astrolabe-short-en.gif" alt="Era I lights itself, then the evolution of Era II with one gap named" width="100%">
 </p>
 
-<p align="center"><a href="docs/media/astrolabe-45s-en.mp4">Watch the 45-second film</a> · <a href="docs/media/astrolabe-45s-ru.mp4">по-русски</a></p>
+<p align="center"><a href="https://criocore.github.io/astrolab/media/astrolabe-45s-en.mp4">Watch the 45-second film</a> · <a href="https://criocore.github.io/astrolab/media/astrolabe-45s-ru.mp4">по-русски</a></p>
 
 ```
 git clone https://github.com/criocore/astrolab.git

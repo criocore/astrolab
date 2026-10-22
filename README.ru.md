@@ -32,7 +32,7 @@
   <img src="docs/media/astrolabe-short-ru.gif" alt="Эпоха I зажигается сама, затем эволюция эпохи II с одним названным пробелом" width="100%">
 </p>
 
-<p align="center"><a href="docs/media/astrolabe-45s-ru.mp4">Посмотреть 45-секундный ролик</a> · <a href="docs/media/astrolabe-45s-en.mp4">in English</a></p>
+<p align="center"><a href="https://criocore.github.io/astrolab/media/astrolabe-45s-ru.mp4">Посмотреть 45-секундный ролик</a> · <a href="https://criocore.github.io/astrolab/media/astrolabe-45s-en.mp4">in English</a></p>
 
 ```
 git clone https://github.com/criocore/astrolab.git
