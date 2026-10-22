@@ -9,11 +9,14 @@ body = subprocess.run(['gh', 'api', '/markdown', '-X', 'POST', '-f', f'text={tex
 if body.returncode != 0:
     print(body.stderr); sys.exit(1)
 rendered = body.stdout
+# links between the two READMEs point at the sibling preview pages, as github.com would render the other file as a page too
+rendered = rendered.replace('href="README.ru.md"', 'href="README.ru.preview.html"').replace('href="README.md"', 'href="README.preview.html"')
 name = repo.split('/')[1]
 page = f'''<!doctype html>
 <html lang="en" data-color-mode="dark" data-dark-theme="dark">
 <head>
 <meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-store" />
 <title>{name} · GitHub preview</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-dark.min.css" />
 <style>
