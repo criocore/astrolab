@@ -25,7 +25,7 @@ A map of eras, a check in your own words, an exam that reads your files. Free, o
   <img alt="Codex CLI from docs" src="https://img.shields.io/badge/Codex%20CLI-from%20docs-b08d57?style=flat-square">
   <img alt="Gemini CLI from docs" src="https://img.shields.io/badge/Gemini%20CLI-from%20docs-b08d57?style=flat-square">
   <img alt="Windows checked" src="https://img.shields.io/badge/Windows-checked-2fbf9a?style=flat-square">
-  <img alt="macOS and Linux not yet run" src="https://img.shields.io/badge/macOS%20%7C%20Linux-not%20yet%20run-e0674f?style=flat-square">
+  <img alt="macOS and Linux: CI green, start.sh untested" src="https://img.shields.io/badge/macOS%20%7C%20Linux-CI%20green%2C%20start.sh%20untested-b08d57?style=flat-square">
 </p>
 
 <p align="center">
@@ -113,7 +113,7 @@ The hub itself sends nothing anywhere; the only network traffic is what your CLI
 | Agents | Claude Code run live; Codex CLI and Gemini CLI set up from their docs | live runs of Codex and Gemini, an opencode adapter |
 | Pack "AI Engineer" | 8 eras, 13 adjacent areas, 172 topics, 660 open materials with checked dates | monthly link check in CI, YAML sources |
 | Chronicle and Rutter | notes, technology radar and ADRs beside the program | an automatic feed of events; decisions stored as files in your repository |
-| Platforms | Windows, checked end to end | macOS and Linux: `start.sh` is written but has not been run yet |
+| Platforms | Windows, checked end to end; tests, pack check and build pass in CI on Ubuntu and macOS | macOS and Linux: `start.sh` is written but has not been run by a person yet |
 
 Grade names in the pack (Junior, Middle, Senior, Lead) are rungs of this program, not a qualification. Hours are the pack author's estimate.
 

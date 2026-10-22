@@ -25,7 +25,7 @@
   <img alt="Codex CLI по документации" src="https://img.shields.io/badge/Codex%20CLI-%D0%BF%D0%BE%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8-b08d57?style=flat-square">
   <img alt="Gemini CLI по документации" src="https://img.shields.io/badge/Gemini%20CLI-%D0%BF%D0%BE%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8-b08d57?style=flat-square">
   <img alt="Windows проверено" src="https://img.shields.io/badge/Windows-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%BE-2fbf9a?style=flat-square">
-  <img alt="macOS и Linux ещё не запускалось" src="https://img.shields.io/badge/macOS%20%7C%20Linux-%D0%B5%D1%89%D1%91%20%D0%BD%D0%B5%20%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA%D0%B0%D0%BB%D0%BE%D1%81%D1%8C-e0674f?style=flat-square">
+  <img alt="macOS и Linux: CI зелёный, start.sh не проверен" src="https://img.shields.io/badge/macOS%20%7C%20Linux-CI%20%D0%B7%D0%B5%D0%BB%D1%91%D0%BD%D1%8B%D0%B9%2C%20start.sh%20%D0%BD%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD-b08d57?style=flat-square">
 </p>
 
 <p align="center">
@@ -113,7 +113,7 @@ Claude Code, Codex CLI и Gemini CLI стоят в терминалах у те�
 | Агенты | Claude Code прогнан вживую; Codex CLI и Gemini CLI настроены по документации | живые прогоны Codex и Gemini, адаптер opencode |
 | Пакет «ИИ-инженер» | 8 эпох, 13 смежных областей, 172 темы, 660 открытых материалов с датой проверки | ежемесячная проверка ссылок в CI, исходники в YAML |
 | Хроника и Лоция | заметки, радар технологий и ADR рядом с программой | автоматическая лента событий; решения файлами в вашем репозитории |
-| Платформы | Windows, проверено от начала до конца | macOS и Linux: `start.sh` написан, но ещё не запускался |
+| Платформы | Windows, проверено от начала до конца; тесты, проверка пакета и сборка проходят в CI на Ubuntu и macOS | macOS и Linux: `start.sh` написан, но человеком ещё не запускался |
 
 Названия грейдов в пакете (Junior, Middle, Senior, Lead) это ступени этой программы, не квалификация. Часы это оценка автора пакета.
 
