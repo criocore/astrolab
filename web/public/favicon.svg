@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="64" height="64">
+  <!-- Astrolabe emblem: mater, limb with ticks, rete with the ecliptic, alidade. Same geometry as the app header. -->
+  <circle cx="0" cy="0" r="48" fill="#0b1020"/>
+  <circle cx="0" cy="0" r="44" fill="none" stroke="#e2b955" stroke-width="3"/>
+  <circle cx="0" cy="0" r="36" fill="none" stroke="#b08d57" stroke-width="1.4"/>
+  <g stroke="#e2b955" stroke-width="2.6">
+    <line x1="0" y1="-44" x2="0" y2="-37"/><line x1="0" y1="44" x2="0" y2="37"/><line x1="-44" y1="0" x2="-37" y2="0"/><line x1="44" y1="0" x2="37" y2="0"/>
+  </g>
+  <g stroke="#b08d57" stroke-width="1.6">
+    <line x1="31" y1="-31" x2="27" y2="-27"/><line x1="-31" y1="-31" x2="-27" y2="-27"/><line x1="31" y1="31" x2="27" y2="27"/><line x1="-31" y1="31" x2="-27" y2="27"/>
+  </g>
+  <circle cx="7" cy="-5" r="20" fill="none" stroke="#b08d57" stroke-width="1.6"/>
+  <path d="M -29 0 A 29 29 0 0 1 0 -29" fill="none" stroke="#e2b955" stroke-width="2.2"/>
+  <line x1="-40" y1="0" x2="40" y2="0" stroke="#f3d27a" stroke-width="3"/>
+  <path d="M 40 0 l -7 -4 v 8 z M -40 0 l 7 -4 v 8 z" fill="#f3d27a"/>
+  <g fill="#f3d27a">
+    <circle cx="-22" cy="-7" r="2.6"/><circle cx="-8" cy="-26" r="2.6"/><circle cx="16" cy="-20" r="2.6"/><circle cx="25" cy="10" r="2.6"/><circle cx="6" cy="26" r="2.6"/>
+  </g>
+  <circle cx="0" cy="0" r="4" fill="#e2b955"/>
+</svg>
