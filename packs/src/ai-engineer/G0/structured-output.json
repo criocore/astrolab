@@ -1,0 +1,78 @@
+{
+  "id": "structured-output",
+  "grade": "G0",
+  "order": 4,
+  "title": {
+    "ru": "Структурированный вывод",
+    "en": "Structured output"
+  },
+  "goal": {
+    "ru": "Получить из API ответ строго по JSON-схеме и безопасно его обработать.",
+    "en": "Get an API reply that strictly follows a JSON schema and handle it safely."
+  },
+  "criteria": {
+    "ru": [
+      "Отправить запрос с JSON-схемой и получить ответ, соответствующий схеме (экзаменационная задача).",
+      "Провалидировать ответ на клиенте (например, Pydantic) и обработать отказ (refusal) и обрыв по max_tokens.",
+      "Реализовать повтор запроса при невалидном или обрезанном ответе.",
+      "Объяснить разницу между «просто JSON» (JSON mode) и ответом по схеме."
+    ],
+    "en": [
+      "Send a request with a JSON schema and get a reply that matches it (the exam task).",
+      "Validate the reply on the client (e.g. Pydantic) and handle a refusal and a max_tokens cutoff.",
+      "Implement a retry on an invalid or truncated reply.",
+      "Explain the difference between plain JSON (JSON mode) and schema-constrained output."
+    ]
+  },
+  "materials": [
+    {
+      "id": "so-claude-structured-outputs",
+      "title": "Structured outputs (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "output_config json_schema, client.messages.parse с Pydantic, refusal и max_tokens (критерии 1, 2, 3).",
+        "en": "output_config json_schema, client.messages.parse with Pydantic, refusal and max_tokens (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "so-openai-structured-outputs",
+      "title": "Structured Outputs (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "text.format json_schema со strict, поле refusal, сравнение с JSON mode (критерии 1, 2, 4).",
+        "en": "text.format json_schema with strict, the refusal field, comparison with JSON mode (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 55
+}

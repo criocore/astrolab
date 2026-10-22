@@ -1,0 +1,140 @@
+{
+ "id": "data-pipelines",
+ "area": "R4",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R4.B",
+ "order": 1,
+ "title": {
+  "ru": "Конвейеры данных и идемпотентная загрузка",
+  "en": "Data pipelines and idempotent load"
+ },
+ "goal": {
+  "ru": "Построить конвейер загрузки, который можно перезапускать без дублей.",
+  "en": "Build a load pipeline that can be rerun without duplicates."
+ },
+ "criteria": {
+  "ru": [
+   "Описать этапы жизненного цикла данных: источник, загрузка, преобразование, потребитель; различать ETL и ELT.",
+   "Объяснить идемпотентную загрузку и реализовать её через ключ и upsert.",
+   "Загрузить открытый датасет дважды и показать, что число строк не изменилось."
+  ],
+  "en": [
+   "Describe the data lifecycle stages: source, load, transform, consumer; distinguish ETL from ELT.",
+   "Explain idempotent load and implement it with a key and upsert.",
+   "Load an open dataset twice and show that the row count did not change."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dp-ms-etl",
+   "title": "Extract, transform, load (ETL) (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/etl",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-09",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Microsoft Learn, free to read",
+   "closes": {
+    "ru": "ETL, ELT, потоки данных, идемпотентные повторы (критерий 1).",
+    "en": "ETL, ELT, data flow, idempotent retries (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dp-pg-insert",
+   "title": "INSERT with ON CONFLICT (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/sql-insert.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "ON CONFLICT DO NOTHING и DO UPDATE для upsert (критерий 2).",
+    "en": "ON CONFLICT DO NOTHING and DO UPDATE for upserts (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "dp-dbt-incr",
+   "title": "Incremental models (dbt docs)",
+   "url": "https://docs.getdbt.com/docs/build/incremental-models",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "unique_key: повторный запуск обновляет строки, а не дублирует (критерий 2).",
+    "en": "unique_key: a rerun updates rows instead of duplicating them (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "dp-dbt-duckdb",
+   "title": "Quickstart for dbt Core with DuckDB",
+   "url": "https://docs.getdbt.com/guides/duckdb",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Запустить небольшой конвейер dbt локально (критерий 1).",
+    "en": "Run a small dbt pipeline locally (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "dp-open-dataset",
+   "title": {
+    "ru": "Мини-конвейер на открытом датасете",
+    "en": "Mini-pipeline on an open dataset"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите небольшой открытый CSV с уникальным идентификатором строки. Загрузите его в таблицу с первичным ключом через upsert. Запустите загрузку второй раз и сравните число строк. Затем измените одну строку в источнике и убедитесь, что перезагрузка обновила её, а не добавила копию.",
+    "en": "Take a small open CSV with a unique row id. Load it into a table with a primary key using upsert. Run the load a second time and compare row counts. Then change one source row and check that the reload updates it rather than adding a copy."
+   }
+  }
+ ],
+ "minutes_total": 160
+}

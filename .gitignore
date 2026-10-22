@@ -1,0 +1,18 @@
+node_modules/
+dist/
+data/
+packs-private/
+*.log
+packs-work/
+
+data-demo/
+data-smoke/
+
+# локальные планы, не для публичного репозитория
+docs/PLAN.md
+docs/NEXT_SESSION.md
+__pycache__/
+*.pyc
+brag-output*/
+README*.preview.html
+data-shots/

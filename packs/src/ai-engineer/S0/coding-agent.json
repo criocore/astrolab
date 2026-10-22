@@ -1,0 +1,64 @@
+{
+  "id": "coding-agent",
+  "grade": "S0",
+  "order": 3,
+  "probe": "agent",
+  "title": { "ru": "Coding-агент", "en": "The coding agent" },
+  "goal": {
+    "ru": "Выбрать один coding-агент (Claude Code, Codex CLI или Gemini CLI), установить его, войти в аккаунт и убедиться, что он отвечает.",
+    "en": "Pick one coding agent (Claude Code, Codex CLI or Gemini CLI), install it, sign in, and make sure it answers."
+  },
+  "criteria": {
+    "ru": [
+      "Установить один из трёх CLI так, чтобы `<cli> --version` печатал версию в новом терминале.",
+      "Войти в аккаунт и получить ответ на простой вопрос прямо в терминале.",
+      "Объяснить, за что списываются деньги или лимит при работе через хаб и почему хаб не хранит ключи."
+    ],
+    "en": [
+      "Install one of the three CLIs so that `<cli> --version` prints a version in a new terminal.",
+      "Sign in and get an answer to a simple question right in the terminal.",
+      "Explain what spends money or quota when working through the hub and why the hub keeps no keys."
+    ]
+  },
+  "materials": [
+    {
+      "id": "agent-claude-setup",
+      "title": "Claude Code: set up (official docs)",
+      "url": "https://code.claude.com/docs/en/setup",
+      "kind": "do", "type": "docs", "access": "freemium", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Anthropic docs, free to read; the tool needs a subscription or API key",
+      "closes": { "ru": "Установка Claude Code на Windows, macOS, Linux, вход и требования (критерии 1, 2).", "en": "Installing Claude Code on Windows, macOS, Linux, signing in, requirements (criteria 1, 2)." },
+      "criteria": [1, 2]
+    },
+    {
+      "id": "agent-codex-cli",
+      "title": "Codex CLI (official docs)",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "kind": "do", "type": "docs", "access": "freemium", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "OpenAI docs, free to read; the tool needs a ChatGPT plan or API key",
+      "closes": { "ru": "Установка Codex CLI, вход через ChatGPT или ключ (критерии 1, 2).", "en": "Installing Codex CLI, signing in with ChatGPT or a key (criteria 1, 2)." },
+      "criteria": [1, 2]
+    },
+    {
+      "id": "agent-gemini-install",
+      "title": "Gemini CLI: installation (official docs)",
+      "url": "https://geminicli.com/docs/get-started/installation/",
+      "kind": "do", "type": "docs", "access": "freemium", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Google docs, free to read; the tool needs a Google account or API key",
+      "closes": { "ru": "Установка Gemini CLI через npm или Homebrew, варианты входа (критерии 1, 2).", "en": "Installing Gemini CLI via npm or Homebrew, sign-in options (criteria 1, 2)." },
+      "criteria": [1, 2]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "agent-guide",
+      "title": { "ru": "Выбрать, поставить и проверить агента", "en": "Choose, install and verify the agent" },
+      "kind": "understand", "minutes": 15, "criteria": [1, 2, 3], "source": "own", "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Наставник и экзаменатор в Астролябии это coding-агент: программа в терминале, которая умеет читать файлы и отвечать по-человечески. Хаб не ходит к моделям сам, он запускает агента, который уже стоит у вас. Поэтому один агент обязателен, два не нужны.\n\n**Какой выбрать.** Любой из трёх, с которым у вас уже есть аккаунт или подписка:\n\n- **Claude Code** (Anthropic). Ставится через npm или установщик, вход по подписке Claude или ключу API. В хабе проверен живым прогоном.\n- **Codex CLI** (OpenAI). Ставится через npm, вход через аккаунт ChatGPT или ключ API.\n- **Gemini CLI** (Google). Ставится через npm или Homebrew, вход через аккаунт Google или ключ API.\n\nЕсли аккаунта нет нигде, посмотрите на странице установки каждого, что входит в бесплатный доступ сейчас: условия меняются, и здесь их нет нарочно.\n\n**Установка.** Команда установки есть на странице выбранного агента; для всех трёх это одна строка вида `npm install -g <пакет>`. После установки закройте терминал и откройте новый.\n\n**Проверка 1, установлен.** В новом терминале:\n\n```\nclaude --version\ncodex --version\ngemini --version\n```\n\nНужна только одна из трёх. Должна напечататься версия.\n\n**Проверка 2, вошли.** Запустите агента без параметров (`claude`, `codex` или `gemini`): при первом запуске он сам предложит войти через браузер. Когда вход прошёл, спросите что-нибудь простое, например «какая сегодня дата» или «что лежит в этой папке», и получите ответ. Выйдите из агента (обычно `/exit` или Ctrl+C).\n\n**Откуда расход.** Каждая проверка темы, экзамен и вопрос наставнику это обычный вызов вашего агента, он списывается с вашей подписки или ключа ровно так, как если бы вы спросили сами. Ключи и пароли хаб не видит и не хранит: он только запускает команду `claude` (или другую) на вашей машине.\n\n**Как хаб проверяет.** На экране первого запуска и в журнале эпохи I хаб запускает только `--version` и видит, какой агент установлен. Строка «агент отвечает» загорится после кнопки «Проверить вызов» в журнале гавани (один короткий вызов) или после первой настоящей проверки темы.",
+        "en": "The mentor and the examiner in Astrolabe is a coding agent: a terminal program that can read files and answer in plain language. The hub never calls a model itself, it runs the agent you already have. So one agent is required, two are not needed.\n\n**Which one.** Any of the three you already have an account or subscription with:\n\n- **Claude Code** (Anthropic). Installs via npm or an installer, signs in with a Claude subscription or an API key. Verified in the hub with a live run.\n- **Codex CLI** (OpenAI). Installs via npm, signs in with a ChatGPT account or an API key.\n- **Gemini CLI** (Google). Installs via npm or Homebrew, signs in with a Google account or an API key.\n\nIf you have no account anywhere, check each install page for what the free tier includes right now: the terms change, and they are left out here on purpose.\n\n**Install.** The install command is on the chosen agent's page; for all three it is one line like `npm install -g <package>`. After installing, close the terminal and open a new one.\n\n**Check 1, installed.** In a new terminal:\n\n```\nclaude --version\ncodex --version\ngemini --version\n```\n\nOnly one of the three is needed. It must print a version.\n\n**Check 2, signed in.** Run the agent with no arguments (`claude`, `codex` or `gemini`): on first launch it offers to sign in through the browser. Once signed in, ask something simple, such as \"what is today's date\" or \"what is in this folder\", and get an answer. Leave the agent (usually `/exit` or Ctrl+C).\n\n**Where the spend goes.** Every topic check, exam and mentor question is a normal call of your agent, charged to your subscription or key exactly as if you had asked yourself. The hub never sees or stores keys and passwords: it only runs the `claude` (or other) command on your machine.\n\n**How the hub checks.** On the first-run screen and in the Era I log the hub runs only `--version` and sees which agent is installed. The \"agent answers\" line lights up after the \"Check the call\" button in the harbour log (one short call) or after the first real topic check."
+      }
+    }
+  ],
+  "minutes_total": 45
+}

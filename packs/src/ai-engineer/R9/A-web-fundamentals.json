@@ -1,0 +1,121 @@
+{
+ "id": "web-fundamentals",
+ "area": "R9",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R9.A",
+ "order": 1,
+ "title": {
+  "ru": "Основы веба: HTML, CSS, JavaScript, DOM, fetch",
+  "en": "Web fundamentals: HTML, CSS, JavaScript, DOM, fetch"
+ },
+ "goal": {
+  "ru": "Собрать простую страницу, которая меняется скриптом и берёт данные с сервера.",
+  "en": "Build a simple page that a script changes and that loads data from a server."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить структуру HTML-документа, назначение элементов и атрибутов.",
+   "Подключить CSS и применить стили через селекторы элемента и класса.",
+   "Через DOM найти элемент (querySelector), изменить текст или класс, создать и добавить узел, повесить обработчик события.",
+   "Загрузить JSON через fetch, проверить response.ok и показать пользователю ошибку."
+  ],
+  "en": [
+   "Explain the structure of an HTML document and the role of elements and attributes.",
+   "Attach CSS and style elements through element and class selectors.",
+   "Use the DOM to find an element (querySelector), change its text or class, create and append a node, and attach an event handler.",
+   "Load JSON with fetch, check response.ok and show the user an error."
+  ]
+ },
+ "materials": [
+  {
+   "id": "wf-mdn-html-syntax",
+   "title": "Basic HTML syntax (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "Элементы, атрибуты, каркас документа (критерий 1).",
+    "en": "Elements, attributes, document skeleton (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "wf-mdn-css-start",
+   "title": "Getting started with CSS (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "Подключение стилей и базовые селекторы с упражнениями (критерий 2).",
+    "en": "Linking styles and basic selectors with exercises (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "wf-mdn-dom-scripting",
+   "title": "DOM scripting introduction (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "Выбор, создание и изменение узлов, обработчики; проект со списком покупок (критерий 3).",
+    "en": "Selecting, creating and changing nodes, handlers; shopping-list project (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "wf-mdn-network-requests",
+   "title": "Making network requests with JavaScript (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Network_requests",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "fetch, проверка response.ok, .json(), вывод ошибки; пошаговый проект (критерий 4).",
+    "en": "fetch, response.ok check, .json(), error handling; guided project (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

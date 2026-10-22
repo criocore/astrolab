@@ -1,0 +1,146 @@
+{
+  "id": "multi-agent-systems",
+  "grade": "G5",
+  "order": 5,
+  "title": {
+    "ru": "Мультиагентные системы",
+    "en": "Multi-agent systems"
+  },
+  "goal": {
+    "ru": "Решать, нужна ли схема из нескольких агентов, и если да, ограничить права, цену и конфликты на этапе проекта.",
+    "en": "Decide whether several agents are needed and, if so, bound their rights, cost and conflicts at design time."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю схему «оркестратор и рабочие» и привожу задачу, где она оправдана, и задачу, где лучше один агент.",
+      "Оцениваю множитель стоимости мультиагентной схемы против одного агента (порядок величины и откуда он берётся).",
+      "Описываю, как конфликты решений возникают из-за неразделённого контекста и как ловить их до слияния (изоляция по ветке или worktree, ревью, тесты).",
+      "Строю модель угроз STRIDE для конвейера из 3 агентов: границы доверия и по одной угрозе на категорию с мерой защиты.",
+      "Задаю каждому из трёх агентов минимальный набор инструментов и подходящую модель."
+    ],
+    "en": [
+      "I explain the orchestrator-workers pattern and give a task where it fits and one where a single agent is better.",
+      "I estimate the cost multiplier of a multi-agent setup versus a single agent (order of magnitude and its source).",
+      "I describe how decision conflicts arise from unshared context and how to catch them before merge (branch or worktree isolation, review, tests).",
+      "I build a STRIDE threat model for a 3-agent pipeline: trust boundaries and one threat per category with a mitigation.",
+      "I assign each of the three agents a minimal tool set and a suitable model."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ma-anthropic-research",
+      "title": "How we built our multi-agent research system (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-06",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Оркестратор и параллельные рабочие, множители токенов (около 4x и 15x) и когда схема не подходит (критерии 1, 2).",
+        "en": "Lead agent and parallel workers, token multipliers (about 4x and 15x) and when the pattern does not fit (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ma-cognition-dont-build",
+      "title": "Don't Build Multi-Agents (Cognition)",
+      "url": "https://cognition.com/blog/dont-build-multi-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-06",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Почему параллельные агенты без общего контекста принимают конфликтующие решения (критерии 1, 3).",
+        "en": "Why parallel agents without shared context make conflicting decisions (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "ma-cc-subagents",
+      "title": "Create custom subagents (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 35,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Свои субагенты: список инструментов, модель на агента, изоляция в git worktree; собрать трёх агентов руками (критерии 3, 5).",
+        "en": "Custom subagents: tool list, model per agent, git worktree isolation; build three agents by hand (criteria 3, 5)."
+      },
+      "criteria": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "ma-owasp-agentic",
+      "title": "OWASP Top 10 for Agentic Applications",
+      "url": "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": "2025-12",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4591",
+      "terms": "CC BY-SA 4.0 (OWASP)",
+      "closes": {
+        "ru": "Каталог угроз агентов (ASI01-ASI10), по которому заполняется модель угроз STRIDE для трёх агентов (критерий 4).",
+        "en": "The catalog of agent threats (ASI01-ASI10) used to fill in a STRIDE model for three agents (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "ma-openai-handoffs",
+      "title": "Handoffs (OpenAI Agents SDK)",
+      "url": "https://openai.github.io/openai-agents-python/handoffs/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Три агента через handoffs с записанным списком инструментов у каждого; сравнение расхода токенов с одним агентом (критерии 2 и 5).",
+        "en": "Three agents via handoffs, each with a written tool list; compare token totals against a single agent (criteria 2 and 5)."
+      },
+      "criteria": [
+        2,
+        5
+      ]
+    }
+  ],
+  "minutes_total": 155
+}

@@ -1,0 +1,95 @@
+{
+ "id": "code-review-basics",
+ "area": "R7",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R7.A",
+ "order": 2,
+ "title": {
+  "ru": "Ревью кода: что смотреть и как писать замечания",
+  "en": "Code review: what to check and how to comment"
+ },
+ "goal": {
+  "ru": "Проводить ревью по чек-листу и писать замечания, которые автор поймёт и сможет принять.",
+  "en": "Review against a checklist and write comments the author can understand and act on."
+ },
+ "criteria": {
+  "ru": [
+   "Перечисляю, что смотрит ревьюер: дизайн, функциональность, сложность, тесты, имена, комментарии, стиль.",
+   "Пишу замечание с причиной и пометкой важности (обязательно, nit, на заметку), без оценки человека.",
+   "Прохожу чужой diff по чек-листу и оформляю 3–5 замечаний."
+  ],
+  "en": [
+   "I list what a reviewer checks: design, functionality, complexity, tests, naming, comments, style.",
+   "I write a comment with a reason and a severity label (required, nit, FYI), without judging the person.",
+   "I go through someone else's diff with the checklist and write 3–5 comments."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cr-google-looking-for",
+   "title": "What to look for in a code review (Google eng-practices)",
+   "url": "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read; license to confirm (Google eng-practices)",
+   "closes": {
+    "ru": "Полный список аспектов ревью: Design, Functionality, Complexity, Tests, Naming, Comments, Style (критерий 1).",
+    "en": "The full list of review aspects: Design, Functionality, Complexity, Tests, Naming, Comments, Style (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "cr-google-comments",
+   "title": "How to write code review comments (Google eng-practices)",
+   "url": "https://google.github.io/eng-practices/review/reviewer/comments.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read; license to confirm (Google eng-practices)",
+   "closes": {
+    "ru": "Тон, объяснение причины, пометки Nit/Optional/FYI (критерий 2).",
+    "en": "Tone, explaining the reason, Nit/Optional/FYI labels (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "cr-practice",
+   "title": {
+    "ru": "Практика: ревью чужого diff",
+    "en": "Practice: review a real diff"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите небольшой pull request в открытом репозитории или свой старый коммит. Пройдите его по списку аспектов из первого материала, сначала читая тесты, потом код. Запишите 3–5 замечаний: у каждого указана причина и пометка важности.",
+    "en": "Take a small pull request in an open repository or one of your old commits. Walk through it using the list of aspects from the first material, reading tests first, then code. Write 3–5 comments, each with a reason and a severity label."
+   }
+  }
+ ],
+ "minutes_total": 85
+}

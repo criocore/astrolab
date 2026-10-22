@@ -1,0 +1,79 @@
+{
+  "id": "tool-descriptions",
+  "grade": "G2",
+  "order": 2,
+  "title": {
+    "ru": "Описание инструментов для агента",
+    "en": "Describing tools for an agent"
+  },
+  "goal": {
+    "ru": "Писать имена, описания, параметры и ошибки инструментов так, чтобы агент выбирал нужный инструмент и сам исправлял неверный вызов.",
+    "en": "Write tool names, descriptions, parameters and errors so an agent picks the right tool and fixes a bad call on its own."
+  },
+  "criteria": {
+    "ru": [
+      "Пишу описание инструмента из 3-4 предложений: что делает, когда использовать и когда нет, что значит каждый параметр, чего не возвращает.",
+      "Называю инструменты с префиксом сервиса или ресурса и параметры без двусмысленности (user_id, а не user).",
+      "Пишу сообщение об ошибке, по которому агент понимает, как исправить вход; не отдаю голые коды и трейсбеки.",
+      "Объясняю, почему перекрывающиеся инструменты путают агента, и объединяю их в несколько с разными задачами."
+    ],
+    "en": [
+      "I write a 3-4 sentence tool description: what it does, when to use it and when not, what each parameter means, what it does not return.",
+      "I name tools with a service or resource prefix and give parameters unambiguous names (user_id, not user).",
+      "I write an error message that tells the agent how to fix the input; I do not return bare codes or tracebacks.",
+      "I explain why overlapping tools confuse an agent and merge them into a few tools with distinct purposes."
+    ]
+  },
+  "materials": [
+    {
+      "id": "td-writing-tools",
+      "title": "Writing effective tools for agents, with agents (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-09",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Имена с префиксом, однозначные параметры, полезные ошибки, пересечение инструментов и оценка на реальных задачах (критерии 1-4).",
+        "en": "Namespacing, unambiguous parameters, actionable errors, overlapping tools and evaluation on realistic tasks (criteria 1-4)."
+      },
+      "criteria": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "td-define-tools",
+      "title": "Define tools (Claude Platform Docs)",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Хорошее и плохое описание рядом, name/description/input_schema, input_examples: берёшь свой инструмент и переписываешь описание по списку (критерии 1, 2, 4).",
+        "en": "Good and poor description side by side, name/description/input_schema, input_examples: take your own tool and rewrite its description against the checklist (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 60
+}

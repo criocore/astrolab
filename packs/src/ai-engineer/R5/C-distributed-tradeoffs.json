@@ -1,0 +1,93 @@
+{
+ "id": "distributed-tradeoffs",
+ "area": "R5",
+ "level": "C",
+ "to_grade": "G6",
+ "grade": "R5.C",
+ "order": 1,
+ "title": {
+  "ru": "Консенсус в общих чертах и event-driven: виды, выгода, цена",
+  "en": "Consensus in outline and event-driven design: kinds, benefit, cost"
+ },
+ "goal": {
+  "ru": "Понимать, что решает консенсус и чем различаются виды event-driven, чтобы брать их осознанно и не писать самому.",
+  "en": "Understand what consensus solves and how the kinds of event-driven design differ, so you adopt them deliberately and never write them yourself."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить в общих чертах, что решает консенсус (выбор лидера, согласованный журнал, кворум) и почему его берут готовым, а не пишут сами.",
+   "Различать виды event-driven (уведомление о событии, перенос состояния событием, event sourcing, CQRS) и для каждого назвать выгоду и цену."
+  ],
+  "en": [
+   "Explain in outline what consensus solves (leader election, a consistent log, quorum) and why it is taken off the shelf rather than written.",
+   "Distinguish the kinds of event-driven design (event notification, event-carried state transfer, event sourcing, CQRS) and name the benefit and cost of each."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dt-raft",
+   "title": "The Raft Consensus Algorithm",
+   "url": "https://raft.github.io/",
+   "kind": "understand",
+   "type": "paper",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 3.0 (site content)",
+   "closes": {
+    "ru": "Статья о Raft и интерактивная визуализация RaftScope: лидер, кворум, журнал (критерий 1).",
+    "en": "The Raft paper and the interactive RaftScope: leader, quorum, log (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dt-fowler-ed",
+   "title": "What do you mean by 'Event-Driven'? (Martin Fowler)",
+   "url": "https://martinfowler.com/articles/201701-event-driven.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2017-02",
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Четыре значения event-driven и их различия (критерий 2).",
+    "en": "The four meanings of event-driven and how they differ (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "dt-lab",
+   "title": {
+    "ru": "Упражнение: разыграть отказ лидера в RaftScope",
+    "en": "Exercise: play out a leader failure in RaftScope"
+   },
+   "kind": "do",
+   "minutes": 15,
+   "criteria": [
+    1
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Откройте визуализацию RaftScope со страницы Raft. Остановите лидера, затем разорвите связь между узлами так, чтобы кворум остался только у меньшинства. Запишите, что происходит с выбором лидера и с записью в журнал, и почему.",
+    "en": "Open the RaftScope visualization from the Raft page. Stop the leader, then cut the links between nodes so that only a minority keeps quorum. Write down what happens to leader election and to log writes, and why."
+   }
+  }
+ ],
+ "minutes_total": 75
+}

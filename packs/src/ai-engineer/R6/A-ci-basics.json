@@ -1,0 +1,77 @@
+{
+ "id": "ci-basics",
+ "area": "R6",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R6.A",
+ "order": 3,
+ "title": {
+  "ru": "Первый пайплайн в GitHub Actions: тесты на каждый push",
+  "en": "First GitHub Actions pipeline: tests on every push"
+ },
+ "goal": {
+  "ru": "Настроить workflow, который запускает тесты на каждый push и показывает результат в репозитории.",
+  "en": "Set up a workflow that runs tests on every push and shows the result in the repository."
+ },
+ "criteria": {
+  "ru": [
+   "Я пишу workflow-файл с триггером on: push и объясняю jobs, steps и runner.",
+   "Я запускаю тесты в workflow и показываю, что упавший тест роняет прогон.",
+   "Я кэширую зависимости и нахожу логи прогона на вкладке Actions."
+  ],
+  "en": [
+   "I write a workflow file triggered on push and explain jobs, steps and runners.",
+   "I run tests in a workflow and show that a failing test fails the run.",
+   "I cache dependencies and find the run logs in the Actions tab."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ci-quickstart",
+   "title": "Quickstart for GitHub Actions (GitHub Docs)",
+   "url": "https://docs.github.com/en/actions/get-started/quickstart",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Структура workflow и вкладка Actions (критерии 1, 3).",
+    "en": "Workflow structure and the Actions tab (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "ci-python",
+   "title": "Building and testing Python (GitHub Docs)",
+   "url": "https://docs.github.com/en/actions/tutorials/build-and-test-code/python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Тесты в CI, кэш зависимостей (критерии 2, 3). Для Node есть аналогичная страница рядом.",
+    "en": "Tests in CI, dependency caching (criteria 2, 3). A matching Node page sits next to it."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 55
+}

@@ -1,0 +1,97 @@
+{
+ "id": "docs-style-markdown",
+ "area": "R10",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R10.A",
+ "order": 2,
+ "title": {
+  "ru": "Стиль, Markdown, документация рядом с кодом",
+  "en": "Style, Markdown, docs next to code"
+ },
+ "goal": {
+  "ru": "Оформлять документацию по style guide в Markdown и держать её в git.",
+  "en": "Format documentation to a style guide in Markdown and keep it in git."
+ },
+ "criteria": {
+  "ru": [
+   "Я применяю правила style guide: залог, заголовки, единые термины.",
+   "Я пишу документ в Markdown: заголовки, списки, блоки кода, ссылки.",
+   "Я объясняю, что такое docs as code: текст в git, правки через pull request."
+  ],
+  "en": [
+   "I apply style guide rules: voice, headings, consistent terms.",
+   "I write a document in Markdown: headings, lists, code blocks, links.",
+   "I explain docs as code: text in git, changes through pull requests."
+  ]
+ },
+ "materials": [
+  {
+   "id": "gdd-style",
+   "title": "Google developer documentation style guide",
+   "url": "https://developers.google.com/style",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-10",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google, free to read",
+   "closes": {
+    "ru": "Правила стиля для технических текстов (критерий 1).",
+    "en": "Style rules for technical text (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "md-basic",
+   "title": "Basic Syntax (Markdown Guide)",
+   "url": "https://www.markdownguide.org/basic-syntax/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0",
+   "closes": {
+    "ru": "Синтаксис Markdown; оформить по нему README (критерий 2).",
+    "en": "Markdown syntax; format a README with it (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "wtd-docs-as-code",
+   "title": "Docs as code (Write the Docs)",
+   "url": "https://www.writethedocs.org/guide/docs-as-code/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Write the Docs, free to read",
+   "closes": {
+    "ru": "Что такое docs as code и зачем (критерий 3).",
+    "en": "What docs as code is and why (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 70
+}

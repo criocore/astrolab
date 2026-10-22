@@ -1,0 +1,62 @@
+{
+  "id": "terminal",
+  "grade": "S0",
+  "order": 1,
+  "probe": "hub",
+  "title": { "ru": "Терминал", "en": "The terminal" },
+  "goal": {
+    "ru": "Открыть терминал на своей машине, выполнить в нём команду и понять, что такое PATH и почему команда бывает «не найдена».",
+    "en": "Open a terminal on your machine, run a command in it, and understand what PATH is and why a command can be \"not found\"."
+  },
+  "criteria": {
+    "ru": [
+      "Открыть терминал на своей системе и выполнить команду, которая печатает текущую папку.",
+      "Объяснить, что такое PATH и почему после установки программы её команду иногда не находит старое окно терминала."
+    ],
+    "en": [
+      "Open a terminal on your system and run a command that prints the current folder.",
+      "Explain what PATH is and why an old terminal window sometimes cannot find a freshly installed program."
+    ]
+  },
+  "materials": [
+    {
+      "id": "term-windows",
+      "title": "Windows Terminal documentation (Microsoft Learn)",
+      "url": "https://learn.microsoft.com/en-us/windows/terminal/",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Microsoft Learn, free to read",
+      "closes": { "ru": "Что такое Windows Terminal, как его открыть и настроить (критерий 1, Windows).", "en": "What Windows Terminal is, how to open and set it up (criterion 1, Windows)." },
+      "criteria": [1]
+    },
+    {
+      "id": "term-macos",
+      "title": "Terminal User Guide (Apple Support)",
+      "url": "https://support.apple.com/guide/terminal/welcome/mac",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Apple Support, free to read",
+      "closes": { "ru": "Как открыть Терминал на Mac и выполнить первые команды (критерий 1, macOS).", "en": "How to open Terminal on a Mac and run first commands (criterion 1, macOS)." },
+      "criteria": [1]
+    },
+    {
+      "id": "term-linux",
+      "title": "The Linux command line for beginners (Ubuntu tutorials)",
+      "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 15, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Ubuntu tutorial, free to read",
+      "closes": { "ru": "Терминал, папки, команды и переменные окружения в Linux (критерии 1, 2).", "en": "Terminal, folders, commands and environment variables on Linux (criteria 1, 2)." },
+      "criteria": [1, 2]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "term-guide",
+      "title": { "ru": "Открыть терминал и выполнить первую команду", "en": "Open a terminal and run the first command" },
+      "kind": "do", "minutes": 10, "criteria": [1, 2], "source": "own", "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Терминал это окно, в которое вы печатаете команды, а программы отвечают текстом. Всё, что делает хаб и coding-агент, происходит здесь.\n\n**Windows.** Нажмите клавишу Win, наберите `terminal` и откройте «Терминал» (Windows Terminal). Если его нет, подойдёт «PowerShell». Напечатайте `pwd` и нажмите Enter: напечатается папка, в которой вы находитесь.\n\n**macOS.** Нажмите Cmd+Пробел, наберите `terminal`, откройте «Терминал». Напечатайте `pwd` и нажмите Enter.\n\n**Linux.** Ctrl+Alt+T в большинстве дистрибутивов, или найдите «Terminal» в меню. Напечатайте `pwd` и нажмите Enter.\n\n**PATH.** Когда вы печатаете `node`, терминал ищет программу с таким именем по списку папок. Этот список называется PATH. Установщики (Node, git, агент) добавляют свои папки в PATH, но уже открытые окна терминала старый список не перечитывают. Отсюда главное правило эпохи: **после каждой установки закройте терминал и откройте новый.** Если команда всё равно «не найдена», перезагрузите компьютер: на Windows это чинит PATH чаще всего.\n\n**Проверка.** Если вы читаете этот текст в Астролябии, терминал у вас уже есть: хаб запущен из него. Звезда темы горит.",
+        "en": "A terminal is a window where you type commands and programs answer with text. Everything the hub and the coding agent do happens here.\n\n**Windows.** Press the Win key, type `terminal` and open \"Terminal\" (Windows Terminal). If it is missing, \"PowerShell\" will do. Type `pwd` and press Enter: it prints the folder you are in.\n\n**macOS.** Press Cmd+Space, type `terminal`, open \"Terminal\". Type `pwd` and press Enter.\n\n**Linux.** Ctrl+Alt+T in most distributions, or find \"Terminal\" in the menu. Type `pwd` and press Enter.\n\n**PATH.** When you type `node`, the terminal looks for a program with that name in a list of folders. That list is called PATH. Installers (Node, git, the agent) add their folders to PATH, but terminal windows that are already open do not re-read the list. Hence the main rule of this era: **after every install, close the terminal and open a new one.** If the command is still \"not found\", reboot: on Windows that fixes PATH most of the time.\n\n**Check.** If you are reading this inside Astrolabe, you already have a terminal: the hub was started from it. The star of this topic is lit."
+      }
+    }
+  ],
+  "minutes_total": 45
+}

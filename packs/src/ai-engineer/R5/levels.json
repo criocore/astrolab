@@ -1,0 +1,36 @@
+{
+ "area": "R5",
+ "title": {
+  "ru": "System design и архитектура",
+  "en": "System design and architecture"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 12,
+   "to_grade": "G3",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 20,
+   "to_grade": "G4",
+   "check": {
+    "ru": "Разбор типовой задачи «ассистент с RAG на 1 млн пользователей»: расчёт нагрузки, схема, ADR.",
+    "en": "A walkthrough of a typical task, an assistant with RAG for 1M users: load estimate, diagram, ADR."
+   }
+  },
+  {
+   "level": "C",
+   "hours": 16,
+   "to_grade": "G6",
+   "check": {
+    "ru": "Архитектурное решение для команды: варианты, риски, план эволюции, документ, который защищается перед людьми.",
+    "en": "An architecture decision for a team: options, risks, evolution plan, a document defended in front of people."
+   }
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "git-with-agent",
+  "grade": "G1",
+  "order": 8,
+  "title": {
+    "ru": "Git с агентом",
+    "en": "Git with an agent"
+  },
+  "goal": {
+    "ru": "Работать с git вместе с агентом: мелкие коммиты, ветки, worktree для параллельных агентов и надёжный откат.",
+    "en": "Work with git alongside an agent: small commits, branches, worktrees for parallel agents and reliable rollback."
+  },
+  "criteria": {
+    "ru": [
+      "Прошу агента коммитить небольшими логическими шагами с описательными сообщениями, держу отдельную ветку на задачу и читаю diff перед коммитом.",
+      "Запускаю параллельные сессии в изолированных worktree (claude --worktree или git worktree add) и убираю их после работы.",
+      "Откатываю: различаю /rewind (чекпоинты только правки инструментов, не Bash) и git (revert, reset, bisect).",
+      "Объясняю, почему чекпоинты Claude Code не заменяют систему контроля версий."
+    ],
+    "en": [
+      "I ask the agent to commit in small logical steps with descriptive messages, keep a branch per task and read the diff before committing.",
+      "I run parallel sessions in isolated worktrees (claude --worktree or git worktree add) and clean them up afterwards.",
+      "I roll back by telling /rewind (checkpoints cover only tool edits, not Bash) from git (revert, reset, bisect).",
+      "I explain why Claude Code checkpoints do not replace version control."
+    ]
+  },
+  "materials": [
+    {
+      "id": "git-willison",
+      "title": "Using Git with coding agents (Agentic Engineering Patterns, Simon Willison)",
+      "url": "https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog by Simon Willison, free to read",
+      "closes": {
+        "ru": "Базовые понятия git и промпты для агента: ревью, откат, bisect, переписывание истории (критерии 1, 3).",
+        "en": "Git essentials and prompts for an agent: review, recovery, bisect, rewriting history (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "git-worktrees",
+      "title": "Run parallel sessions with worktrees (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Запуск claude --worktree, ручной git worktree add, очистка (критерий 2).",
+        "en": "Running claude --worktree, manual git worktree add, cleanup (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "git-checkpointing",
+      "title": "Checkpointing (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/checkpointing",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "/rewind, что чекпоинты не отслеживают, почему это не замена git (критерии 3, 4).",
+        "en": "/rewind, what checkpoints do not track, why it is not a git replacement (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "git-worktree-man",
+      "title": "git-worktree manual (git-scm.com)",
+      "url": "https://git-scm.com/docs/git-worktree",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Git documentation, GPL-2.0",
+      "closes": {
+        "ru": "Команды add, list, remove и типовой сценарий срочной правки (критерий 2).",
+        "en": "Commands add, list, remove and the typical emergency-fix flow (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "git-gemini-worktree",
+      "title": "Gemini CLI cheatsheet: --worktree flag",
+      "url": "https://geminicli.com/docs/cli/cli-reference/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Флаг --worktree (нужен experimental.worktrees): запустить задачу в отдельном worktree и сравнить git revert, чекпоинт CLI и worktree (критерии 2, 4).",
+        "en": "The --worktree flag (needs experimental.worktrees): run a task in its own worktree and compare git revert, a CLI checkpoint and a worktree (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 80
+}

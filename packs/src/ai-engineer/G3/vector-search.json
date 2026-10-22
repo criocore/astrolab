@@ -1,0 +1,120 @@
+{
+  "id": "vector-search",
+  "grade": "G3",
+  "order": 8,
+  "title": {
+    "ru": "Векторные БД и поиск",
+    "en": "Vector databases and search"
+  },
+  "goal": {
+    "ru": "Понимать устройство векторного поиска и собрать гибридный поиск на Postgres.",
+    "en": "Understand how vector search works and build hybrid search on Postgres."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить различия индексов flat, IVF и HNSW по скорости, памяти и точности.",
+      "Перечислить метрики расстояния в pgvector (L2, скалярное произведение, косинус) и выбрать подходящую под свои эмбеддинги.",
+      "Собрать гибридный поиск (полнотекстовый или BM25 плюс вектор) и слить результаты через RRF.",
+      "Объяснить ограничение pgvector: приближённые индексы фильтруют после скана, поэтому результатов может стать меньше, и назвать способы обойти."
+    ],
+    "en": [
+      "Explain how flat, IVF and HNSW indexes differ in speed, memory and accuracy.",
+      "List pgvector's distance metrics (L2, inner product, cosine) and choose one for your embeddings.",
+      "Build hybrid search (full-text or BM25 plus vector) and merge results with RRF.",
+      "Explain the pgvector limitation: approximate indexes filter after the scan so fewer results may return, and name ways around it."
+    ]
+  },
+  "materials": [
+    {
+      "id": "vs-pinecone-indexes",
+      "title": "Nearest Neighbor Indexes for Similarity Search (Pinecone Learning Center)",
+      "url": "https://www.pinecone.io/learn/series/faiss/vector-indexes/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor learning center, free to read",
+      "closes": {
+        "ru": "Flat, LSH, HNSW, IVF: как устроены и чем платят за скорость (критерий 1).",
+        "en": "Flat, LSH, HNSW, IVF: how they work and what speed costs (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "vs-pgvector-readme",
+      "title": "pgvector (GitHub README)",
+      "url": "https://github.com/pgvector/pgvector",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open-source repo; license in LICENSE file, verify before reuse",
+      "closes": {
+        "ru": "HNSW и IVFFlat, метрики, гибридный поиск, фильтрация и её ограничения; запускается на своей Postgres (критерии 1, 2, 4).",
+        "en": "HNSW and IVFFlat, metrics, hybrid search, filtering and its limits; runs on your own Postgres (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "vs-weaviate-hybrid",
+      "title": "Hybrid Search Explained (Weaviate blog)",
+      "url": "https://weaviate.io/blog/hybrid-search-explained",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-01",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "BM25 и плотные векторы, слияние RRF и по нормированным оценкам (критерий 3).",
+        "en": "BM25 and dense vectors, RRF and score-normalised fusion (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "vs-supabase-hybrid",
+      "title": "Hybrid search in Postgres (Supabase docs)",
+      "url": "https://supabase.com/docs/guides/ai/hybrid-search",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "SQL-функция: tsvector + pgvector + RRF, индексы GIN и HNSW (критерий 3).",
+        "en": "SQL function: tsvector + pgvector + RRF, GIN and HNSW indexes (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 125
+}

@@ -1,0 +1,144 @@
+{
+  "id": "tool-calling",
+  "grade": "G4",
+  "order": 3,
+  "title": {
+    "ru": "Вызов инструментов (function calling)",
+    "en": "Tool calling (function calling)"
+  },
+  "goal": {
+    "ru": "Понимать, что модель только просит вызвать функцию, а выполняет её код, и уметь описать инструмент схемой и вернуть результат.",
+    "en": "Understand that the model only asks for a function call while your code runs it, and be able to describe a tool with a schema and return the result."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, кто выполняет функцию (ваше приложение или сервер вендора) и что приходит модели обратно.",
+      "Описать инструмент: имя, описание, JSON-схема входа; объяснить, почему описание влияет на выбор.",
+      "Вернуть результат с идентификатором вызова и пометкой ошибки и обработать несколько вызовов за один ход."
+    ],
+    "en": [
+      "Explain who runs the function (your app or the vendor server) and what comes back to the model.",
+      "Describe a tool: name, description, JSON input schema; explain why the description affects tool choice.",
+      "Return a result with the call id and an error flag and handle several calls in one turn."
+    ]
+  },
+  "materials": [
+    {
+      "id": "tc-claude-overview",
+      "title": "Tool use with Claude (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Клиентские и серверные инструменты, tool_use и tool_result, схема input_schema (критерии 1, 2).",
+        "en": "Client versus server tools, tool_use and tool_result, input_schema (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "tc-hf-tools",
+      "title": "What are Tools? (Hugging Face Agents Course)",
+      "url": "https://huggingface.co/learn/agents-course/unit1/tools",
+      "kind": "understand",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free",
+      "closes": {
+        "ru": "Модель не выполняет инструмент, только выдаёт текст вызова; описание попадает в промпт (критерии 1, 2).",
+        "en": "The model never runs a tool, it only emits call text; the description goes into the prompt (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "tc-openai-fc",
+      "title": "Function calling (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/function-calling",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Выполняет ваше приложение; определение функции (name, description, JSON-схема); call_id и function_call_output; несколько вызовов за ход; советы по описаниям (критерии 1, 2, 3).",
+        "en": "Your app runs the function; function definition (name, description, JSON schema); call_id and function_call_output; several calls per turn; description best practices (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "tc-tutorial",
+      "title": "Tutorial: Build a tool-using agent (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Пять шагов: один вызов, цикл, второй инструмент и параллельные вызовы, is_error (критерии 1, 2, 3).",
+        "en": "Five steps: one call, a loop, a second tool with parallel calls, is_error (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "tc-oai-running",
+      "title": "Running agents (OpenAI Agents SDK docs)",
+      "url": "https://openai.github.io/openai-agents-python/running_agents/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Реализовать инструмент, чья ошибка возвращается модели как function_call_output с id вызова (критерий 3).",
+        "en": "Implement a tool whose error goes back to the model as a function_call_output with the call id (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 160
+}

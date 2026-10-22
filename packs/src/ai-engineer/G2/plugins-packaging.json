@@ -1,0 +1,143 @@
+{
+  "id": "plugins-packaging",
+  "grade": "G2",
+  "order": 5,
+  "title": {
+    "ru": "Плагины: упаковка и распространение",
+    "en": "Plugins: packaging and distribution"
+  },
+  "goal": {
+    "ru": "Упаковать скиллы, хуки, агентов и MCP-сервер в плагин и раздать его команде.",
+    "en": "Package skills, hooks, agents and an MCP server into a plugin and share it with a team."
+  },
+  "criteria": {
+    "ru": [
+      "Называю, что может лежать в плагине (skills, agents, hooks, MCP-серверы) и где (plugin.json в .claude-plugin/, остальное в корне плагина).",
+      "Собираю плагин, проверяю командой claude plugin validate и запускаю его через --plugin-dir.",
+      "Переношу хуки из settings в hooks/hooks.json и объясняю, почему копия в обоих местах сработает дважды.",
+      "Раздаю плагин через marketplace.json и объясняю, как версия в plugin.json влияет на обновления."
+    ],
+    "en": [
+      "I name what a plugin can hold (skills, agents, hooks, MCP servers) and where (plugin.json in .claude-plugin/, the rest at the plugin root).",
+      "I build a plugin, check it with claude plugin validate and run it with --plugin-dir.",
+      "I move hooks from settings into hooks/hooks.json and explain why a copy in both places runs twice.",
+      "I distribute a plugin through marketplace.json and explain how the version in plugin.json affects updates."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pp-overview",
+      "title": "Plugins overview (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/plugins",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Состав плагина, когда плагин нужен, маркетплейсы, области установки, цена в контексте (критерий 1).",
+        "en": "What a plugin holds, when you need one, marketplaces, install scopes, context cost (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "pp-create",
+      "title": "Create a Claude Code plugin (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/plugins/create",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Первый плагин с нуля, validate, --plugin-dir, перенос .claude/ и хуков в плагин (критерии 1-3).",
+        "en": "A first plugin from scratch, validate, --plugin-dir, converting .claude/ and hooks into a plugin (criteria 1-3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pp-publish",
+      "title": "Publish and distribute a plugin (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/plugins/publish",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Три способа раздачи, marketplace.json, версия против SHA коммита, чек-лист перед релизом (критерий 4).",
+        "en": "Three ways to distribute, marketplace.json, version versus commit SHA, the pre-release checklist (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "pp-gemini-writing-extensions",
+      "title": "Build Gemini CLI extensions",
+      "url": "https://geminicli.com/docs/extensions/writing-extensions/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Расширение Gemini: gemini-extension.json, gemini extensions link для локальной проверки (критерий 2).",
+        "en": "A Gemini extension: gemini-extension.json, gemini extensions link for local testing (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "pp-gemini-extension-reference",
+      "title": "Extension reference (Gemini CLI)",
+      "url": "https://geminicli.com/docs/extensions/reference/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Манифест расширения и правило: хуки лежат в hooks/hooks.json, а не в манифесте (критерии 1, 3).",
+        "en": "The extension manifest and the rule that hooks live in hooks/hooks.json, not in the manifest (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 130
+}

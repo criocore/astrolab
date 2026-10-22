@@ -1,0 +1,100 @@
+{
+ "id": "caching-basics",
+ "area": "R5",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R5.A",
+ "order": 3,
+ "title": {
+  "ru": "Кэширование: где, что, инвалидация",
+  "en": "Caching: where, what, invalidation"
+ },
+ "goal": {
+  "ru": "Понимать, где ставить кэш, что в него класть и как не получить устаревшие или лавинные данные.",
+  "en": "Know where to put a cache, what to put in it and how to avoid stale data and stampedes."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать уровни кэша (клиент, CDN, приложение, БД) и случаи, когда кэш вредит или не нужен.",
+   "Объяснить cache-aside, write-through, write-behind, refresh-ahead и почему при записи сначала обновляют хранилище, а затем инвалидируют кэш.",
+   "Назвать риски кэша (устаревание, холодный старт, thundering herd, зависимость от кэша) и приёмы против них: TTL, объединение запросов, ограничение нагрузки."
+  ],
+  "en": [
+   "Name the cache levels (client, CDN, application, database) and the cases where a cache hurts or is not needed.",
+   "Explain cache-aside, write-through, write-behind and refresh-ahead, and why a write updates the store first and then invalidates the cache.",
+   "Name cache risks (staleness, cold start, thundering herd, dependence on the cache) and countermeasures: TTL, request coalescing, load shedding."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cb-azure",
+   "title": "Cache-Aside pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-09",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Cache-aside, порядок «запись в хранилище, затем инвалидация», срок жизни и вытеснение, когда не использовать (критерии 1, 2).",
+    "en": "Cache-aside, the order write-then-invalidate, lifetime and eviction, when not to use (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "cb-aws",
+   "title": "Caching challenges and strategies (AWS Builders' Library)",
+   "url": "https://builder.aws.com/content/3K9TeXp6strMiJ4vhakpRD7BQWO/caching-challenges-and-strategies",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2019-12",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Локальный и внешний кэш, TTL, сбои из-за зависимости от кэша, объединение запросов (критерии 1, 3).",
+    "en": "Local vs external cache, TTL, cache-dependency outages, request coalescing (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "cb-primer-query",
+   "title": "Design a query cache: worked solution (System Design Primer)",
+   "url": "https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/query_cache/README.md",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Самим набросать кэш запросов с TTL и LRU, затем сверить с разбором (критерии 2, 3).",
+    "en": "Sketch a query cache with TTL and LRU yourself, then compare with the solution (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 80
+}

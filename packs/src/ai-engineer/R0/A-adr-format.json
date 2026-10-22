@@ -1,0 +1,102 @@
+{
+ "id": "adr-format",
+ "area": "R0",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R0.A",
+ "order": 1,
+ "title": {
+  "ru": "ADR: формат и хранение",
+  "en": "ADR: format and storage"
+ },
+ "goal": {
+  "ru": "Уметь записать техническое решение как ADR минимум с тремя вариантами и положить его туда, где агент его увидит.",
+  "en": "Be able to record a technical decision as an ADR with at least three options and put it where an agent will see it."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, зачем нужен ADR и чем он отличается от обычной документации.",
+   "Назвать поля формата Найгарда (название, контекст, решение, статус, последствия) и расширение MADR (варианты, плюсы и минусы).",
+   "Назвать статусы ADR и правило: принятый ADR не правят, а заменяют новым.",
+   "Написать ADR минимум с тремя вариантами для типовой задачи, положить в репозиторий и сослаться на него из CLAUDE.md, чтобы агент следовал ему."
+  ],
+  "en": [
+   "Explain why an ADR exists and how it differs from ordinary documentation.",
+   "Name the fields of Nygard's format (title, context, decision, status, consequences) and the MADR extension (options, pros and cons).",
+   "Name the ADR statuses and the rule that an accepted ADR is superseded, not edited.",
+   "Write an ADR with at least three options for a typical task, store it in the repo and reference it from CLAUDE.md so the agent follows it."
+  ]
+ },
+ "materials": [
+  {
+   "id": "adr-nygard",
+   "title": "Documenting Architecture Decisions (Michael Nygard)",
+   "url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2011-11",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog post, free to read",
+   "closes": {
+    "ru": "Зачем нужны записи решений и исходный формат (критерии 1, 2).",
+    "en": "Why decision records exist and the original format (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "adr-fowler",
+   "title": "Architecture Decision Record (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/ArchitectureDecisionRecord.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2026-03",
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog post, free to read",
+   "closes": {
+    "ru": "Где хранить ADR, статусы и правило «заменять, не править» (критерии 1, 3).",
+    "en": "Where to store ADRs, statuses, and the supersede-not-edit rule (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "adr-madr",
+   "title": "MADR: Markdown Architectural Decision Records",
+   "url": "https://adr.github.io/madr/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT OR CC0-1.0",
+   "closes": {
+    "ru": "Шаблон с вариантами и плюсами/минусами: по нему пишется свой ADR и подключается к CLAUDE.md (критерии 2, 4). Нужен только шаблон, остальное по желанию.",
+    "en": "Template with options and pros/cons: use it to write your own ADR and wire it into CLAUDE.md (criteria 2, 4). Only the template is needed."
+   },
+   "criteria": [
+    2,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 65
+}

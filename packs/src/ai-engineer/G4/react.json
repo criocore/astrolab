@@ -1,0 +1,118 @@
+{
+  "id": "react",
+  "grade": "G4",
+  "order": 4,
+  "title": {
+    "ru": "ReAct: рассуждение и действие",
+    "en": "ReAct: reasoning and acting"
+  },
+  "goal": {
+    "ru": "Понимать формат ReAct (мысль, действие, наблюдение), уметь разобрать вывод модели и знать ограничения подхода.",
+    "en": "Understand the ReAct format (thought, action, observation), be able to parse model output and know the limits of the approach."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить формат Thought/Action/Observation и почему чередование снижает выдумывание фактов.",
+      "Реализовать разбор действия из текста и стоп-последовательность, чтобы модель не придумывала наблюдение.",
+      "Назвать ограничения ReAct: зависимость от качества поиска, рост числа шагов и стоимости, сбой при плохих наблюдениях."
+    ],
+    "en": [
+      "Explain the Thought/Action/Observation format and why interleaving reduces made-up facts.",
+      "Implement action parsing from text and a stop sequence so the model cannot invent the observation.",
+      "Name ReAct limits: dependence on retrieval quality, growth in steps and cost, derailment on bad observations."
+    ]
+  },
+  "materials": [
+    {
+      "id": "re-paper",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2022-10",
+      "classic": true,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint",
+      "closes": {
+        "ru": "Исходная статья: чередование рассуждения и действий, результаты на HotpotQA, ALFWorld (критерии 1, 3).",
+        "en": "The original paper: interleaving reasoning and actions, results on HotpotQA, ALFWorld (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "re-guide",
+      "title": "ReAct Prompting (Prompt Engineering Guide)",
+      "url": "https://www.promptingguide.ai/techniques/react",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open guide, free to read",
+      "closes": {
+        "ru": "Пример формата и список ограничений (критерии 1, 3).",
+        "en": "A format example and a list of limitations (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "re-hf-dummy",
+      "title": "Dummy Agent Library (Hugging Face Agents Course)",
+      "url": "https://huggingface.co/learn/agents-course/unit1/dummy-agent-library",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free",
+      "closes": {
+        "ru": "Агент в формате Thought/Action/Observation, стоп на «Observation:», разбор JSON-действия (критерий 2).",
+        "en": "An agent in Thought/Action/Observation format, stop at \"Observation:\", parsing a JSON action (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "re-hf-thoughts",
+      "title": "Thought: Internal Reasoning and the ReAct Approach (HF Agents Course)",
+      "url": "https://huggingface.co/learn/agents-course/unit1/thoughts",
+      "kind": "understand",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free",
+      "closes": {
+        "ru": "CoT и ReAct рядом, чем различаются (критерий 1).",
+        "en": "CoT and ReAct side by side, how they differ (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

@@ -1,0 +1,126 @@
+{
+ "hash": "3062164c2330eb515e9fe8ef98160746a333eb2e1d14932a928b39926cff7e96",
+ "mode": "check",
+ "step": "questions",
+ "prompt_version": "mentor-questions@1",
+ "request": {
+  "mode": "check",
+  "step": "questions",
+  "system": "prompt_version: mentor-questions@1\n\nYou are a mentor. A learner says they finished one study topic. You write the exam questions for that topic.\n\nReply language: ru. Write every question in this language (ru = Russian, en = English). Keep JSON keys in English.\n\nInput: the user message holds one topic in this form:\n<topic id=\"...\"><title>...</title><goal>...</goal><criteria>1. ... 2. ... 3. ...</criteria></topic>\nThe criteria are the numbered \"done\" criteria of the topic. Use only this text as your source.\n\nTask: write 2 or 3 questions. Together they must cover every criterion.\n\nRules:\n1. Write 2 or 3 questions. Not 1. Not 4 or more.\n2. Every criterion must be covered by at least one question. A question may cover more than one criterion.\n3. For each question, put the numbers of the criteria it covers in \"covers\", as strings: \"1\", \"2\", \"3\".\n4. Each question stands alone. The learner can answer it without answering the other questions. Do not refer to another question. Do not build a question on the answer to another question.\n5. A question must not contain its own answer. Do not name the fact the learner must say. Do not write a yes/no question that states the claim. Do not write \"is it true that ...\".\n   Bad: \"The model returns JSON with a tool name. Is this true?\" (the answer is in the question.)\n   Good: \"What does the model send back when it wants to use a tool, and who runs the tool?\"\n6. Ask the learner to explain in own words. Ask for a reason or a mechanism. Do not ask for a definition from memory.\n7. Do not copy a criterion word for word into a question.\n8. Use short, plain sentences. One question asks for one idea.\n9. Ids are \"q1\", \"q2\", \"q3\" in order.\n\nOutput: JSON only, no other text, in this form:\n{\"questions\":[{\"id\":\"q1\",\"text\":\"...\",\"covers\":[\"1\"]}]}\n",
+  "schema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "mentor-questions",
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "questions"
+   ],
+   "properties": {
+    "questions": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "text",
+       "covers"
+      ],
+      "properties": {
+       "id": {
+        "type": "string",
+        "minLength": 1
+       },
+       "text": {
+        "type": "string",
+        "minLength": 1
+       },
+       "covers": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "string",
+         "pattern": "^[0-9]+$"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "prompt_version": "mentor-questions@1",
+  "user": "<topic id=\"G0/how-llm-works\">\n<title>Как работает LLM</title>\n<goal>Понять, что LLM на каждом шаге оценивает следующий токен, и как это связано с обучением и трансформером.</goal>\n<criteria>\n1. Объяснить, что модель на каждом шаге выдаёт вероятности следующего токена, а текст получается циклом «выбрали токен, добавили к входу».\n2. Различить обучение (веса меняются, дорого) и инференс (веса фиксированы, генерация по токену).\n3. Описать на уровне схемы, что токены превращаются в векторы, а слои внимания (attention) связывают токены друг с другом.\n</criteria>\n</topic>"
+ },
+ "response": {
+  "ok": true,
+  "json": {
+   "questions": [
+    {
+     "id": "q1",
+     "text": "Представь, что ты попросил модель написать абзац текста. Опиши своими словами, что происходит внутри от первого слова до последнего: что модель выдаёт за один шаг и как из этого получается целый текст?",
+     "covers": [
+      "1"
+     ]
+    },
+    {
+     "id": "q2",
+     "text": "Почему компании тратят месяцы и огромные деньги на создание модели, но потом отвечать на твой вопрос она может за секунды? Что именно происходит с внутренними параметрами модели в этих двух режимах?",
+     "covers": [
+      "2"
+     ]
+    },
+    {
+     "id": "q3",
+     "text": "Модель получает на вход слова, но внутри работает с числами. Расскажи, как слова превращаются в то, с чем работает модель, и каким образом она понимает, что слово «он» в конце предложения относится к имени в начале.",
+     "covers": [
+      "3"
+     ]
+    }
+   ]
+  },
+  "text": "{\"questions\":[{\"id\":\"q1\",\"text\":\"Представь, что ты попросил модель написать абзац текста. Опиши своими словами, что происходит внутри от первого слова до последнего: что модель выдаёт за один шаг и как из этого получается целый текст?\",\"covers\":[\"1\"]},{\"id\":\"q2\",\"text\":\"Почему компании тратят месяцы и огромные деньги на создание модели, но потом отвечать на твой вопрос она может за секунды? Что именно происходит с внутренними параметрами модели в этих двух режимах?\",\"covers\":[\"2\"]},{\"id\":\"q3\",\"text\":\"Модель получает на вход слова, но внутри работает с числами. Расскажи, как слова превращаются в то, с чем работает модель, и каким образом она понимает, что слово «он» в конце предложения относится к имени в начале.\",\"covers\":[\"3\"]}]}",
+  "agent": "claude",
+  "ms": 10693,
+  "session_id": "4c8ea777-9e03-4c80-b51a-a1bebe87aeeb",
+  "tools": [],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2127,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 333,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2127,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 333,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2127,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2127
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "total_cost_usd": 0.05921
+ },
+ "recorded_at": "2026-10-21T15:03:30.417Z",
+ "duration_ms": 10695
+}

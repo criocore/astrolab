@@ -1,0 +1,123 @@
+{
+  "id": "context-management",
+  "grade": "G1",
+  "order": 4,
+  "title": {
+    "ru": "Управление контекстом",
+    "en": "Context management"
+  },
+  "goal": {
+    "ru": "Держать контекст чистым: понимать деградацию при заполнении окна и вовремя чистить, сжимать или начинать новую сессию.",
+    "en": "Keep context clean: understand degradation as the window fills and clear, compact or start a new session in time."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, почему качество падает по мере заполнения окна (деградация контекста, «глупая зона») и что лежит в окне (/context).",
+      "Делаю /clear между несвязанными задачами и после двух неудачных поправок начинаю заново с лучшим промптом.",
+      "Использую /compact с указанием фокуса и знаю, что переживает компактацию (CLAUDE.md, план), а что теряется.",
+      "Выношу объёмное чтение в сабагента и держу спеку и заметки в файле, чтобы новая сессия продолжила работу."
+    ],
+    "en": [
+      "I explain why quality drops as the window fills (context rot, the 'dumb zone') and what sits in the window (/context).",
+      "I /clear between unrelated tasks and restart with a better prompt after two failed corrections.",
+      "I use /compact with a focus and know what survives compaction (CLAUDE.md, plan) and what is lost.",
+      "I move bulky reading into a subagent and keep the spec and notes in a file so a new session can continue."
+    ]
+  },
+  "materials": [
+    {
+      "id": "cx-context-window",
+      "title": "Explore the context window (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/context-window",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Интерактивная симуляция заполнения окна, таблица «что переживает компактацию», /context в своей сессии (критерии 1, 3).",
+        "en": "Interactive simulation of the window filling, the 'what survives compaction' table, /context in your own session (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "cx-eng-context",
+      "title": "Effective context engineering for AI agents (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-09",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Anthropic blog, free to read",
+      "closes": {
+        "ru": "Деградация контекста, компактация, заметки вне окна, сабагенты (критерии 1, 3, 4).",
+        "en": "Context rot, compaction, notes outside the window, sub-agents (criteria 1, 3, 4)."
+      },
+      "criteria": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "cc-best-practices-ctx",
+      "title": "Best practices for Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Раздел Manage your session: /clear, правило двух поправок, /compact, rewind, сабагенты для исследований (критерии 2, 3, 4).",
+        "en": "The Manage your session section: /clear, the two-corrections rule, /compact, rewind, sub-agents for investigation (criteria 2, 3, 4)."
+      },
+      "criteria": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "cx-gemini-memory",
+      "title": "Manage context and memory (Gemini CLI)",
+      "url": "https://geminicli.com/docs/cli/tutorials/memory-management",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Сохранить факт в память, перезагрузить контекст через /memory reload и проверить, что знает новая сессия (критерий 4).",
+        "en": "Save a fact to memory, reload context with /memory reload and check what a new session still knows (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 80
+}

@@ -1,0 +1,27 @@
+{
+ "area": "R11",
+ "title": {
+  "ru": "Аналитика и метрики",
+  "en": "Analytics and metrics"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 8,
+   "to_grade": "G3",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 8,
+   "to_grade": "G6",
+   "check": {
+    "ru": "Сравнение двух моделей на eval-наборе с проверкой значимости.",
+    "en": "A comparison of two models on an eval set with a significance test."
+   }
+  }
+ ]
+}

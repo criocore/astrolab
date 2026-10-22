@@ -1,0 +1,27 @@
+{
+ "area": "R7",
+ "title": {
+  "ru": "Качество и тесты",
+  "en": "Quality and testing"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 8,
+   "to_grade": "G1",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 12,
+   "to_grade": "G2",
+   "check": {
+    "ru": "Автотесты API и UI (Playwright), нагрузочный тест, всё запускается в CI.",
+    "en": "API and UI autotests (Playwright), a load test, all running in CI."
+   }
+  }
+ ]
+}

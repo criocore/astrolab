@@ -1,0 +1,122 @@
+{
+ "id": "ab-tests-basics",
+ "area": "R11",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R11.B",
+ "order": 2,
+ "title": {
+  "ru": "Основы A/B-тестов",
+  "en": "A/B test basics"
+ },
+ "goal": {
+  "ru": "Спланировать A/B-тест, не испортить его подглядыванием и честно прочитать результат.",
+  "en": "Plan an A/B test, not spoil it by peeking, and read the result honestly."
+ },
+ "criteria": {
+  "ru": [
+   "Описать дизайн теста: единица рандомизации, главная метрика, минимальный интересный эффект и длительность по нужному размеру выборки.",
+   "Объяснить, почему нельзя остановить тест, как только p опустится ниже 0,05, и что такое подглядывание.",
+   "Проверить разницу долей по счётчикам успехов и испытаний и прочитать доверительные интервалы.",
+   "Отличать статистическую значимость от практической и не заявлять эффект сверх данных."
+  ],
+  "en": [
+   "Describe a test design: randomization unit, primary metric, minimum interesting effect and duration from the required sample size.",
+   "Explain why a test must not be stopped as soon as p drops below 0.05 and what peeking is.",
+   "Test a difference in rates from counts of successes and trials and read the confidence intervals.",
+   "Tell statistical significance from practical significance and do not claim an effect beyond the data."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ab-miller-how-not",
+   "title": "How Not To Run an A/B Test (Evan Miller)",
+   "url": "https://www.evanmiller.org/how-not-to-run-an-ab-test.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2010-04",
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free blog post, link only",
+   "closes": {
+    "ru": "Почему повторные проверки раздувают долю ложных срабатываний и зачем фиксировать выборку заранее (критерий 2).",
+    "en": "Why repeated checks inflate false positives and why the sample size is fixed in advance (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ab-miller-chi-squared",
+   "title": "Chi-Squared Test (Evan Miller)",
+   "url": "https://www.evanmiller.org/ab-testing/chi-squared.html",
+   "kind": "do",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free web tool, link only",
+   "closes": {
+    "ru": "Ввод успехов и испытаний двух групп, p-value и доверительные интервалы (критерий 3).",
+    "en": "Entering successes and trials for two groups, p-value and confidence intervals (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ab-miller-sample-size",
+   "title": "Sample Size Calculator (Evan Miller)",
+   "url": "https://www.evanmiller.org/ab-testing/sample-size.html",
+   "kind": "do",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free web tool, link only",
+   "closes": {
+    "ru": "Нужен расчёт выборки под минимальный эффект (критерий 1). Повтор из темы hypothesis-testing.",
+    "en": "The sample-size calculation for a minimum effect is what is needed here (criterion 1). A repeat from hypothesis-testing."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ab-trustworthy-experiments",
+   "title": "Trustworthy Online Controlled Experiments (Kohavi, Tang, Xu)",
+   "url": "https://experimentguide.com/",
+   "kind": "understand",
+   "type": "book",
+   "access": "paid",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "paid book, link to the book's site only",
+   "closes": {
+    "ru": "Сайт книги, на нём бесплатная первая глава. Рамка онлайн-экспериментов и различие значимого и полезного (критерии 1, 4).",
+    "en": "The book's site, which hosts a free Chapter 1. The framing of online experiments and significant versus useful (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 90
+}

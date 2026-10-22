@@ -1,0 +1,98 @@
+{
+ "id": "logs-metrics-observability",
+ "area": "R6",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R6.B",
+ "order": 3,
+ "title": {
+  "ru": "Логи, метрики, трассы: OpenTelemetry, Prometheus, Grafana",
+  "en": "Logs, metrics, traces: OpenTelemetry, Prometheus, Grafana"
+ },
+ "goal": {
+  "ru": "Видеть, что происходит с приложением: структурные логи, метрики в Prometheus и панель в Grafana.",
+  "en": "See what the app is doing: structured logs, metrics in Prometheus and a Grafana panel."
+ },
+ "criteria": {
+  "ru": [
+   "Я объясняю, чем логи, метрики и трассы отличаются и на какой вопрос отвечает каждый сигнал.",
+   "Я публикую метрики приложения и настраиваю Prometheus их собирать.",
+   "Я строю в Grafana панель по запросу к метрике и нахожу по ней всплеск ошибок или задержки."
+  ],
+  "en": [
+   "I explain how logs, metrics and traces differ and which question each signal answers.",
+   "I expose app metrics and configure Prometheus to scrape them.",
+   "I build a Grafana panel from a metric query and use it to spot an error or latency spike."
+  ]
+ },
+ "materials": [
+  {
+   "id": "lm-otel-primer",
+   "title": "Observability primer (OpenTelemetry docs)",
+   "url": "https://opentelemetry.io/docs/concepts/observability-primer/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Три сигнала и зачем они (критерий 1).",
+    "en": "The three signals and what they are for (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "lm-prom-overview",
+   "title": "Overview (Prometheus docs)",
+   "url": "https://prometheus.io/docs/introduction/overview/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Модель метрик и сбор (критерий 2).",
+    "en": "Metrics model and scraping (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "lm-grafana-prom",
+   "title": "Get started with Grafana and Prometheus (Grafana docs)",
+   "url": "https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: Prometheus как источник, панель (критерии 2, 3).",
+    "en": "Hands-on: Prometheus as a data source, a panel (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 75
+}

@@ -1,0 +1,121 @@
+{
+  "id": "multimodality",
+  "grade": "G5",
+  "order": 9,
+  "title": {
+    "ru": "Мультимодальность",
+    "en": "Multimodality"
+  },
+  "goal": {
+    "ru": "Работать с изображениями, документами и аудио на входе и выходе и знать цену и ограничения.",
+    "en": "Work with images, documents and audio as input and output, and know the price and limits."
+  },
+  "criteria": {
+    "ru": [
+      "Отправляю изображение и PDF в модель и получаю структурированный ответ.",
+      "Считаю стоимость изображения в токенах (формула по блокам, потолок разрешения) и снижаю её уменьшением картинки.",
+      "Описываю варианты для аудио: конвейер распознавание, текстовый агент, синтез против realtime-модели, и когда что выбрать.",
+      "Называю ограничения (точность, подсчёт, медицинские снимки, определение людей) и когда нужна проверка человеком."
+    ],
+    "en": [
+      "I send an image and a PDF to a model and get a structured answer.",
+      "I compute an image's token cost (patch formula, resolution cap) and cut it by downscaling.",
+      "I describe audio options: speech-to-text, text agent, text-to-speech pipeline versus a realtime model, and when to pick which.",
+      "I name limitations (accuracy, counting, medical scans, identifying people) and when human review is needed."
+    ]
+  },
+  "materials": [
+    {
+      "id": "mm-vision",
+      "title": "Vision (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Источники изображений, формула токенов по блокам 28x28, потолки разрешения, список ограничений (критерии 1, 2, 4).",
+        "en": "Image sources, the 28x28 patch token formula, resolution caps, the limitations list (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "mm-cookbook-vision",
+      "title": "Getting started with vision (Claude Cookbook)",
+      "url": "https://platform.claude.com/cookbook/multimodal-getting-started-with-vision",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": "2024-03",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "MIT",
+      "closes": {
+        "ru": "Запускаемый ноутбук: отправка изображения base64 и по URL (критерий 1). Ноутбук 2024 года, ID модели нужно заменить на актуальный.",
+        "en": "Runnable notebook: sending an image as base64 and by URL (criterion 1). A 2024 notebook, the model ID must be replaced with a current one."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "mm-openai-audio",
+      "title": "Audio and speech (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/audio",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Цепочка STT, текстовый агент, TTS против Realtime API и способы подключения (критерий 3).",
+        "en": "STT, text agent, TTS chain versus the Realtime API and connection options (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "mm-gemini-image",
+      "title": "Image understanding (Gemini API docs)",
+      "url": "https://ai.google.dev/gemini-api/docs/image-understanding",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-09",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Отправка изображений, JSON-схема в ответе, подсчёт токенов по тайлам 768x768 и параметр media_resolution (критерии 1, 2). Ограничения (критерий 4) здесь не описаны.",
+        "en": "Sending images, JSON schema in the response, token count by 768x768 tiles and the media_resolution cap (criteria 1, 2). Limitations (criterion 4) are not covered here."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

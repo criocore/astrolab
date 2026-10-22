@@ -1,0 +1,18 @@
+{
+ "area": "R9",
+ "title": {
+  "ru": "Фронтенд",
+  "en": "Frontend"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 14,
+   "to_grade": "G3",
+   "check": {
+    "ru": "Веб-интерфейс к RAG из G3 с потоковым ответом.",
+    "en": "A web UI for the G3 RAG with a streamed answer."
+   }
+  }
+ ]
+}

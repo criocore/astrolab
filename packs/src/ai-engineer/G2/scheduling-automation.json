@@ -1,0 +1,120 @@
+{
+  "id": "scheduling-automation",
+  "grade": "G2",
+  "order": 8,
+  "title": {
+    "ru": "Планировщик и автоматизация",
+    "en": "Scheduling and automation"
+  },
+  "goal": {
+    "ru": "Запускать агента без человека: из скрипта, по расписанию и из CI, с ограниченными правами и бюджетом.",
+    "en": "Run the agent without a human: from a script, on a schedule and from CI, with limited rights and budget."
+  },
+  "criteria": {
+    "ru": [
+      "Запускаю claude -p с --allowedTools или режимом разрешений и --bare и объясняю, почему в CI нужен --bare.",
+      "Получаю машиночитаемый результат (--output-format json, --json-schema) и использую код возврата в скрипте.",
+      "Сравниваю способы расписания (облачные задачи, desktop, GitHub Actions, /loop) и называю ограничения /loop: только в открытой сессии, срок 7 дней.",
+      "Пишу workflow GitHub Actions с cron-триггером для claude-code-action: ключ в GitHub Secrets, минимальные permissions, --max-turns и таймаут."
+    ],
+    "en": [
+      "I run claude -p with --allowedTools or a permission mode and --bare, and explain why CI needs --bare.",
+      "I get machine-readable output (--output-format json, --json-schema) and use the exit code in a script.",
+      "I compare scheduling options (cloud tasks, desktop, GitHub Actions, /loop) and name the /loop limits: open session only, 7-day expiry.",
+      "I write a GitHub Actions workflow with a cron trigger for claude-code-action: key in GitHub Secrets, minimal permissions, --max-turns and a timeout."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sa-headless",
+      "title": "Run Claude Code programmatically (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/headless",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "claude -p, --bare для CI, auto-approve инструментов, json и json-schema, коды возврата, --permission-prompts none (критерии 1, 2).",
+        "en": "claude -p, --bare for CI, tool auto-approval, json and json-schema, exit codes, --permission-prompts none (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "sa-github-actions",
+      "title": "Claude Code GitHub Actions (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/github-actions",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Готовый workflow «Daily Report» с cron, секреты, права, --max-turns и управление стоимостью (критерии 3, 4).",
+        "en": "A ready 'Daily Report' cron workflow, secrets, permissions, --max-turns and cost control (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "sa-scheduled-tasks",
+      "title": "Run prompts on a schedule (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/scheduled-tasks",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Таблица сравнения облако/desktop//loop, cron-синтаксис, ограничения и 7 дней (критерий 3).",
+        "en": "The cloud/desktop//loop comparison table, cron syntax, limitations and 7-day expiry (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "sa-gemini-headless",
+      "title": "Headless mode reference (Gemini CLI)",
+      "url": "https://geminicli.com/docs/cli/headless",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Безголовый запуск gemini -p, вывод JSON и коды выхода 0, 1, 42, 53: свести с критерием про коды выхода Claude (критерий 2).",
+        "en": "Headless gemini -p, JSON output and exit codes 0, 1, 42, 53: map them to the Claude exit-code criterion (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 125
+}

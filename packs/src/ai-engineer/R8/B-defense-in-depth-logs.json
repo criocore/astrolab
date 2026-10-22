@@ -1,0 +1,98 @@
+{
+ "id": "defense-in-depth-logs",
+ "area": "R8",
+ "level": "B",
+ "to_grade": "G5",
+ "grade": "R8.B",
+ "order": 2,
+ "title": {
+  "ru": "Defense in depth и анализ логов",
+  "en": "Defense in depth and log analysis"
+ },
+ "goal": {
+  "ru": "Строить защиту слоями и находить следы атаки в логах.",
+  "en": "Build layered defenses and find attack traces in logs."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю defense in depth и ограничение радиуса поражения (compartmentalization).",
+   "Называю, что логировать, и как защитить сами логи.",
+   "Называю, как заметить, что логирование остановили или логи подменили.",
+   "Нахожу подозрительный паттерн в учебном логе (перебор паролей, необычные пути)."
+  ],
+  "en": [
+   "I explain defense in depth and blast radius control (compartmentalization).",
+   "I name what to log and how to protect the logs themselves.",
+   "I name how to notice that logging was stopped or logs were tampered with.",
+   "I find a suspicious pattern in a practice log (password guessing, unusual paths)."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dd-sre-resilience",
+   "title": "Design for Resilience (Building Secure and Reliable Systems, Google)",
+   "url": "https://google.github.io/building-secure-and-reliable-systems/raw/ch08.html",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "book chapter, free to read online, check license",
+   "closes": {
+    "ru": "Глава о защите в глубину, отсеках и радиусе поражения; читать первую часть (критерий 1).",
+    "en": "Chapter on defense in depth, compartments and blast radius; read the first part (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dd-owasp-logging",
+   "title": "Logging Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "События и атрибуты, защита логов, мониторинг (критерии 2, 3).",
+    "en": "Events and attributes, log protection, monitoring (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "dd-log-practice",
+   "title": {
+    "ru": "Практика: разбор лога",
+    "en": "Practice: reading a log"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите access-лог своего сервиса (или сгенерируйте его локально). Командами grep и sort найдите: клиентов с множеством ответов 401, запросы к несуществующим путям, всплески по времени. Запишите, какое правило оповещения поймало бы это раньше вас.",
+    "en": "Take your service's access log (or generate one locally). With grep and sort find: clients with many 401 responses, requests to nonexistent paths, spikes in time. Write down which alert rule would have caught this before you did."
+   }
+  }
+ ],
+ "minutes_total": 100
+}

@@ -1,0 +1,103 @@
+{
+ "id": "component-framework",
+ "area": "R9",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R9.A",
+ "order": 3,
+ "title": {
+  "ru": "Компонентный фреймворк: компоненты, состояние, формы",
+  "en": "Component framework: components, state, forms"
+ },
+ "goal": {
+  "ru": "Собрать интерфейс из компонентов с состоянием и формой на React; Svelte или Vue подойдут как замена.",
+  "en": "Build a UI from components with state and a form in React; Svelte or Vue are acceptable alternatives."
+ },
+ "criteria": {
+  "ru": [
+   "Написать компонент-функцию, вложить компоненты и передать данные через props.",
+   "Хранить состояние через useState и объяснить, почему вызов setter перерисовывает компонент.",
+   "Построить форму с состоянием (ввод, отправка, ошибка, успех), не плодя лишних флагов.",
+   "Вывести список через map с key и поднять общее состояние к родительскому компоненту."
+  ],
+  "en": [
+   "Write a function component, nest components and pass data through props.",
+   "Keep state with useState and explain why calling the setter re-renders the component.",
+   "Build a form with state (typing, submitting, error, success) without piling up extra flags.",
+   "Render a list with map and key and lift shared state to a parent component."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cf-react-quickstart",
+   "title": "Quick Start (React docs)",
+   "url": "https://react.dev/learn",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "React docs, free to read",
+   "closes": {
+    "ru": "Компоненты, JSX, useState, события, props, поднятие состояния (критерии 1, 2, 4).",
+    "en": "Components, JSX, useState, events, props, lifting state (criteria 1, 2, 4)."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "cf-react-tictactoe",
+   "title": "Tutorial: Tic-Tac-Toe (React docs)",
+   "url": "https://react.dev/learn/tutorial-tic-tac-toe",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 60,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "React docs, free to read",
+   "closes": {
+    "ru": "Пошаговая игра: props, состояние, поднятие состояния, key в списке (критерии 1, 2, 4).",
+    "en": "A step-by-step game: props, state, lifting state, keys in lists (criteria 1, 2, 4)."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "cf-react-input-state",
+   "title": "Reacting to Input with State (React docs)",
+   "url": "https://react.dev/learn/reacting-to-input-with-state",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "React docs, free to read",
+   "closes": {
+    "ru": "Форма «викторина» с состояниями typing, submitting, success и сведением флагов к минимуму (критерий 3).",
+    "en": "A quiz form with typing, submitting and success states and reducing flags to the essential ones (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

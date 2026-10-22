@@ -1,0 +1,143 @@
+{
+ "id": "design-principles",
+ "area": "R5",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R5.A",
+ "order": 4,
+ "title": {
+  "ru": "KISS, YAGNI, DRY, связность и сцепление, границы модулей",
+  "en": "KISS, YAGNI, DRY, cohesion and coupling, module boundaries"
+ },
+ "goal": {
+  "ru": "Применять базовые принципы проектирования осознанно: знать, что каждый даёт и когда его применение вредит.",
+  "en": "Apply basic design principles deliberately: know what each gives and when applying it backfires."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить KISS, YAGNI и DRY и привести случай, когда слепое следование принципу ухудшает код (лишняя абстракция, преждевременная общность).",
+   "Различать связность (cohesion) и сцепление (coupling) и показать оба свойства на примере модуля.",
+   "Провести границу модуля: что скрыть внутри и какой минимальный интерфейс отдать, и закрепить правило проверкой зависимостей."
+  ],
+  "en": [
+   "Explain KISS, YAGNI and DRY and give a case where following a principle blindly makes code worse (needless abstraction, premature generality).",
+   "Distinguish cohesion from coupling and show both properties on a module example.",
+   "Draw a module boundary: what to hide and what minimal interface to expose, and enforce the rule with a dependency check."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dp-yagni",
+   "title": "Yagni (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/Yagni.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-05",
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Что стоит предвосхищающая функциональность и когда YAGNI не работает (критерий 1).",
+    "en": "The cost of presumptive features and when YAGNI does not hold (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dp-beck",
+   "title": "Beck Design Rules (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/BeckDesignRules.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-03",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Четыре правила простого дизайна, включая отсутствие дублирования и минимум элементов (критерий 1).",
+    "en": "Four simple-design rules, including no duplication and fewest elements (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dp-sre-simplicity",
+   "title": "Simplicity (Google SRE book)",
+   "url": "https://sre.google/sre-book/simplicity/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-ND 4.0 (link only)",
+   "closes": {
+    "ru": "Случайная и существенная сложность, минимальные API, модульность (критерии 1, 3).",
+    "en": "Accidental vs essential complexity, minimal APIs, modularity (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "dp-azure-domain",
+   "title": "Use domain analysis to model microservices: introduction (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-02",
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Определения loose coupling и high cohesion и как они задают границы (критерии 2, 3). В теме B «Слои, DDD» читается дальше.",
+    "en": "Definitions of loose coupling and high cohesion and how they set boundaries (criteria 2, 3). Read further in level B 'Layers, DDD'."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "dp-import-linter",
+   "title": "Import Linter (repo)",
+   "url": "https://github.com/seddonym/import-linter",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "BSD-2-Clause",
+   "closes": {
+    "ru": "Описать запрещённые импорты между пакетами своего проекта как проверяемое правило (критерий 3).",
+    "en": "Express forbidden imports between packages of your own project as a checkable rule (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

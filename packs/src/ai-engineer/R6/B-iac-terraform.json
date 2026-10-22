@@ -1,0 +1,97 @@
+{
+ "id": "iac-terraform",
+ "area": "R6",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R6.B",
+ "order": 5,
+ "title": {
+  "ru": "Инфраструктура как код: Terraform, state, план и применение",
+  "en": "Infrastructure as code: Terraform, state, plan and apply"
+ },
+ "goal": {
+  "ru": "Описать инфраструктуру кодом и применять её через init, plan и apply, понимая роль state.",
+  "en": "Describe infrastructure as code and apply it with init, plan and apply, understanding the role of state."
+ },
+ "criteria": {
+  "ru": [
+   "Я объясняю, чем декларативное описание инфраструктуры лучше ручных действий.",
+   "Я описываю ресурс в Terraform и прохожу init, plan, apply и destroy.",
+   "Я объясняю, что хранит state, почему его нельзя терять и класть в git вместе с секретами."
+  ],
+  "en": [
+   "I explain why declarative infrastructure beats manual steps.",
+   "I define a resource in Terraform and run init, plan, apply and destroy.",
+   "I explain what state holds, why it must not be lost, and why it should not go into git with secrets."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tf-iac",
+   "title": "What is Infrastructure as Code with Terraform? (HashiCorp Developer)",
+   "url": "https://developer.hashicorp.com/terraform/tutorials/docker-get-started/infrastructure-as-code",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Идея IaC и рабочий процесс (критерий 1).",
+    "en": "The IaC idea and the workflow (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tf-build",
+   "title": "Build infrastructure (HashiCorp Developer)",
+   "url": "https://developer.hashicorp.com/terraform/tutorials/docker-get-started/docker-build",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: init, plan, apply на Docker-провайдере, без облака (критерий 2).",
+    "en": "Hands-on: init, plan, apply with the Docker provider, no cloud needed (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "tf-state",
+   "title": "State (Terraform docs)",
+   "url": "https://developer.hashicorp.com/terraform/language/state",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Что такое state (критерий 3).",
+    "en": "What state is (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 80
+}

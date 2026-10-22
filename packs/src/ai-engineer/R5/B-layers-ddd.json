@@ -1,0 +1,162 @@
+{
+ "id": "layers-ddd",
+ "area": "R5",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R5.B",
+ "order": 4,
+ "title": {
+  "ru": "Слои, DDD и язык домена, границы контекстов",
+  "en": "Layers, DDD and the domain language, bounded contexts"
+ },
+ "goal": {
+  "ru": "Делить систему на слои и контексты по предметной области, а не по технологиям.",
+  "en": "Split a system into layers and contexts by business domain rather than by technology."
+ },
+ "criteria": {
+  "ru": [
+   "Описать слои (представление, логика домена, данные), направление зависимостей и зачем разделение: меньше внимания, швы для тестов.",
+   "Объяснить единый язык (ubiquitous language) и ограниченный контекст (bounded context) и почему одно слово может значить разное в разных контекстах.",
+   "Наметить контексты для небольшой системы и их связи (карта контекстов): что core, что supporting, что generic."
+  ],
+  "en": [
+   "Describe the layers (presentation, domain logic, data), the direction of dependencies and why to separate them: narrower attention, test seams.",
+   "Explain the ubiquitous language and the bounded context and why one word may mean different things in different contexts.",
+   "Sketch the contexts of a small system and their relations (context map): what is core, supporting, generic."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ld-layers",
+   "title": "Presentation Domain Data Layering (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/PresentationDomainDataLayering.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-08",
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Три слоя, зависимости вниз, модули по предметной области внутри слоёв (критерий 1).",
+    "en": "Three layers, downward dependencies, domain-oriented modules inside layers (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ld-ddd",
+   "title": "Domain Driven Design (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/DomainDrivenDesign.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2020-04",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Что такое DDD и где оно уместно (критерий 2).",
+    "en": "What DDD is and where it fits (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ld-ul",
+   "title": "Ubiquitous Language (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/UbiquitousLanguage.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2006-10",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Единый язык разработчиков и экспертов (критерий 2).",
+    "en": "The shared language of developers and domain experts (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ld-bc",
+   "title": "Bounded Context (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/BoundedContext.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2014-01",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Почему единая модель на всю систему неосуществима и как границы следуют языку (критерий 2).",
+    "en": "Why one model for a whole system is infeasible and how boundaries follow language (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ld-azure",
+   "title": "Use domain analysis to model microservices (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-02",
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Анализ домена, core/supporting/generic, ограниченные контексты и карта контекстов, закон Конвея (критерий 3). Повтор из уровня A: теперь читать целиком, с акцентом на контексты.",
+    "en": "Domain analysis, core/supporting/generic, bounded contexts and context maps, Conway's law (criterion 3). Repeat from level A: now read it fully, focusing on contexts."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ld-lab",
+   "title": {
+    "ru": "Упражнение: контексты для ассистента с RAG",
+    "en": "Exercise: contexts for a RAG assistant"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите «ассистента с RAG для пользователей компании»: чат, загрузка и разбор документов, поиск по индексу, учётные записи, учёт расходов на модель. Выпишите слова, которые в разных частях значат разное (например, «документ», «пользователь»).\n\nРазбейте систему на 3-5 контекстов, отметьте core, supporting и generic и нарисуйте связи между ними. Для каждой связи укажите, кто кому поставщик и нужен ли слой-переводчик.\n\nГотово, если для каждого контекста есть название, свой словарь и обоснование границы.",
+    "en": "Take 'an assistant with RAG for company users': chat, document upload and parsing, search over an index, accounts, model cost accounting. List the words that mean different things in different parts (for example 'document', 'user').\n\nSplit the system into 3-5 contexts, mark core, supporting and generic, and draw the relations. For each relation say who is the supplier and whether a translation layer is needed.\n\nYou are done when each context has a name, its own vocabulary and a justified boundary."
+   }
+  }
+ ],
+ "minutes_total": 110
+}

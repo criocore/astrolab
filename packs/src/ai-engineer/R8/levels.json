@@ -1,0 +1,27 @@
+{
+ "area": "R8",
+ "title": {
+  "ru": "Безопасность, защита",
+  "en": "Defensive security"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 8,
+   "to_grade": "G2",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 10,
+   "to_grade": "G5",
+   "check": {
+    "ru": "Модель угроз STRIDE для типовой системы и план реагирования на инцидент.",
+    "en": "A STRIDE threat model for a typical system and an incident response plan."
+   }
+  }
+ ]
+}

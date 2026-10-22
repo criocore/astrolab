@@ -1,0 +1,121 @@
+{
+  "id": "parallel-agents",
+  "grade": "G2",
+  "order": 9,
+  "title": {
+    "ru": "Масштабирование: несколько агентов параллельно",
+    "en": "Scaling: several agents in parallel"
+  },
+  "goal": {
+    "ru": "Разделить работу между агентами так, чтобы правки не конфликтовали.",
+    "en": "Split work between agents so their edits do not collide."
+  },
+  "criteria": {
+    "ru": [
+      "Запускаю параллельные сессии командой claude --worktree и объясняю, что даёт отдельный worktree (свои файлы и ветка при общем .git).",
+      "Объясняю разницу между worktree (изоляция правок) и субагентами (разделение работы в одной сессии) и ставлю isolation: worktree субагенту.",
+      "Делю задачу на независимые части, знаю лимиты субагентов (20 параллельно, 3 уровня вложенности) и прошу короткие отчёты.",
+      "Переношу .env в новый worktree через .worktreeinclude и убираю ненужные worktree после работы."
+    ],
+    "en": [
+      "I start parallel sessions with claude --worktree and explain what a separate worktree gives (own files and branch, shared .git).",
+      "I explain the difference between worktrees (edit isolation) and subagents (splitting work inside one session) and set isolation: worktree on a subagent.",
+      "I split a task into independent parts, know the subagent limits (20 concurrent, 3 levels of nesting) and ask for short reports.",
+      "I carry .env into a new worktree with .worktreeinclude and clean up worktrees after the work."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pa-worktrees",
+      "title": "Run parallel sessions with worktrees (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 35,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "claude --worktree, изоляция для субагентов, .worktreeinclude, очистка и что делят worktree (критерии 1, 2, 4).",
+        "en": "claude --worktree, subagent isolation, .worktreeinclude, cleanup and what worktrees share (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "pa-subagents",
+      "title": "Custom subagents (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Определение субагента, раздел «Split tasks», лимиты параллелизма, isolation: worktree (критерии 2, 3). Прочитано около 100 тыс. знаков из 109 тыс.",
+        "en": "Defining a subagent, the 'Split tasks' section, concurrency limits, isolation: worktree (criteria 2, 3). About 100k of 109k characters were read."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pa-gemini-worktree",
+      "title": "Gemini CLI cheatsheet: --worktree flag",
+      "url": "https://geminicli.com/docs/cli/cli-reference/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Параллельные сессии через gemini --worktree: что изолировано (файлы, ветка) (критерий 1).",
+        "en": "Parallel sessions with gemini --worktree: what is isolated (files, branch) (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "pa-codex-subagents",
+      "title": "Codex CLI: subagents (OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "Apache-2.0 (openai/codex repo); docs free to read",
+      "closes": {
+        "ru": "Субагенты Codex как изоляция контекста, в отличие от worktree, который изолирует правки (критерий 2).",
+        "en": "Codex subagents as context isolation, unlike a worktree which isolates edits (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

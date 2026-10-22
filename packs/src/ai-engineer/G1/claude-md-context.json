@@ -1,0 +1,146 @@
+{
+  "id": "claude-md-context",
+  "grade": "G1",
+  "order": 3,
+  "title": {
+    "ru": "CLAUDE.md и контекст проекта",
+    "en": "CLAUDE.md and project context"
+  },
+  "goal": {
+    "ru": "Уметь написать короткий CLAUDE.md, знать иерархию файлов инструкций и отличать их от скиллов и хуков.",
+    "en": "Write a short CLAUDE.md, know the instruction file hierarchy and tell it apart from skills and hooks."
+  },
+  "criteria": {
+    "ru": [
+      "Пишу CLAUDE.md проекта: команды сборки и тестов, правила стиля, особенности окружения; не включаю то, что агент и так видит из кода.",
+      "Называю иерархию файлов (managed, пользовательский, проектный, вложенные, .claude/rules, импорты @) и как они загружаются.",
+      "Проверяю, что файл загружен (/context, /memory), и режу раздутый файл вопросом «сломается ли агент без этой строки».",
+      "Различаю: CLAUDE.md даёт совет, хук даёт гарантию, скилл грузится по требованию."
+    ],
+    "en": [
+      "I write a project CLAUDE.md: build and test commands, style rules, environment quirks; I leave out what the agent sees from code.",
+      "I name the file hierarchy (managed, user, project, nested, .claude/rules, @ imports) and how they load.",
+      "I check the file loaded (/context, /memory) and prune a bloated file with the question 'would the agent err without this line'.",
+      "I tell apart: CLAUDE.md is advice, a hook is a guarantee, a skill loads on demand."
+    ]
+  },
+  "materials": [
+    {
+      "id": "cmd-memory",
+      "title": "How Claude remembers your project (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/memory",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Где лежат CLAUDE.md, как грузятся, как писать, импорты, rules, диагностика (критерии 1, 2, 3).",
+        "en": "Where CLAUDE.md files live, how they load, how to write them, imports, rules, troubleshooting (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "cmd-features-overview",
+      "title": "Extend Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/features-overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Сравнение CLAUDE.md, скиллов, rules, хуков и стоимость контекста (критерии 3, 4).",
+        "en": "Comparison of CLAUDE.md, skills, rules, hooks and context cost (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "course-claude-code-in-action",
+      "title": "Claude Code in Action (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/claude-code-in-action",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free Anthropic Academy course, account required",
+      "closes": {
+        "ru": "Урок «A CLAUDE.md That Follows»: написать и проверить файл на своём проекте (критерии 1, 3).",
+        "en": "The 'A CLAUDE.md That Follows' lesson: write and test a file on your project (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "cmd-codex-agents-md",
+      "title": "AGENTS.md (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Написать короткий AGENTS.md и разобрать, как Codex собирает цепочку файлов: глобальный и проектный уровень, вложенные каталоги (критерии 1, 2).",
+        "en": "Write a short AGENTS.md and see how Codex builds the file chain: global and project scope, nested directories (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "cmd-gemini-md",
+      "title": "Provide context with GEMINI.md files (Gemini CLI)",
+      "url": "https://geminicli.com/docs/cli/gemini-md",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Иерархия GEMINI.md (глобальный, рабочая область, по требованию), импорт через @file, /memory show и /memory reload (критерии 2, 3).",
+        "en": "GEMINI.md hierarchy (global, workspace, just-in-time), @file imports, /memory show and /memory reload (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 140
+}

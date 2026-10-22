@@ -1,0 +1,125 @@
+{
+  "id": "prompt-engineering-advanced",
+  "grade": "G3",
+  "order": 1,
+  "title": {
+    "ru": "Продвинутый промпт-инжиниринг",
+    "en": "Advanced prompt engineering"
+  },
+  "goal": {
+    "ru": "Уметь строить сложные промпты как систему: цепочки шагов, самопроверка, шаблоны с разделами.",
+    "en": "Be able to build complex prompts as a system: step chains, self-checks, structured templates."
+  },
+  "criteria": {
+    "ru": [
+      "Разбить сложную задачу на цепочку вызовов (черновик, проверка по критериям, правка) и объяснить, когда цепочка лучше одного промпта.",
+      "Добавить в промпт шаг самопроверки по заданным критериям и показать на примере, что он ловит ошибку.",
+      "Оформить промпт как шаблон с переменными и разделами (теги XML или заголовки), отделив данные от инструкций.",
+      "Объяснить, почему перед правкой промпта нужны критерии успеха и способ их проверить."
+    ],
+    "en": [
+      "Split a complex task into a chain of calls (draft, review against criteria, refine) and explain when a chain beats a single prompt.",
+      "Add a self-check step with explicit criteria to a prompt and show on an example that it catches an error.",
+      "Write a prompt as a template with variables and sections (XML tags or headings), keeping data apart from instructions.",
+      "Explain why success criteria and a way to test them must exist before you edit a prompt."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pe-claude-best-practices",
+      "title": "Prompting best practices (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "XML-структура и разделы, самопроверка перед ответом, цепочки промптов и паттерн «черновик, ревью, правка» (критерии 1, 2, 3).",
+        "en": "XML structure and sections, self-check before answering, prompt chaining and the draft-review-refine pattern (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pe-anthropic-tutorial",
+      "title": "Prompt Engineering Interactive Tutorial (anthropics/prompt-eng-interactive-tutorial)",
+      "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "GitHub repo, license not stated on the page",
+      "closes": {
+        "ru": "Упражнения по разделению данных и инструкций, сложным промптам и приложению про цепочки (критерии 1, 3).",
+        "en": "Exercises on separating data from instructions, building complex prompts, and an appendix on chaining (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "pe-openai-prompt-engineering",
+      "title": "Prompt engineering (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-engineering",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "XML-теги и заголовки Markdown для отделения данных от инструкций, промпт-билдеры в коде, тесты и оценки перед правкой боевых промптов, самопроверка по рубрике (критерии 2, 3, 4). Цепочки вызовов не разбираются.",
+        "en": "XML tags and Markdown headers to separate data from instructions, prompt builders in code, fixtures and evals before changing production prompts, rubric self-check (criteria 2, 3, 4). Prompt chaining is not covered."
+      },
+      "criteria": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "pe-gemini-prompting-strategies",
+      "title": "Prompt design strategies (Gemini API docs)",
+      "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Разбивка сложного промпта на цепочку, где выход одного шага идёт входом следующего; разделители и теги для данных; шаг Validate в шаблоне (критерии 1, 2, 3).",
+        "en": "Breaking a complex prompt into a chain where one output feeds the next; delimiters and tags for data; a Validate step in the template (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 125
+}

@@ -1,0 +1,98 @@
+{
+  "id": "huggingface-ecosystem",
+  "grade": "G3",
+  "order": 6,
+  "title": {
+    "ru": "Hugging Face как экосистема",
+    "en": "Hugging Face as an ecosystem"
+  },
+  "goal": {
+    "ru": "Ориентироваться в Hub и запускать открытые модели через transformers.",
+    "en": "Navigate the Hub and run open models through transformers."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, что лежит на Hub (модели, датасеты, Spaces) и что содержит карточка модели.",
+      "Загрузить модель с Hub и получить текст через transformers (pipeline или from_pretrained).",
+      "Найти модель и датасет под задачу на Hub и прочитать их лицензию в карточке.",
+      "Объяснить, что такое Space и какие SDK для него доступны (Gradio, Streamlit, Docker, статический HTML)."
+    ],
+    "en": [
+      "Explain what lives on the Hub (models, datasets, Spaces) and what a model card contains.",
+      "Download a model from the Hub and generate text with transformers (pipeline or from_pretrained).",
+      "Find a model and a dataset for a task on the Hub and read their license in the card.",
+      "Explain what a Space is and which SDKs it supports (Gradio, Streamlit, Docker, static HTML)."
+    ]
+  },
+  "materials": [
+    {
+      "id": "hf-hub-docs",
+      "title": "Hugging Face Hub documentation",
+      "url": "https://huggingface.co/docs/hub/index",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Модели, датасеты, Spaces, карточки, лицензии (критерии 1, 3, 4).",
+        "en": "Models, datasets, Spaces, cards, licenses (criteria 1, 3, 4)."
+      },
+      "criteria": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "hf-transformers-quickstart",
+      "title": "Transformers Quickstart",
+      "url": "https://huggingface.co/docs/transformers/quicktour",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "from_pretrained, generate, Pipeline, запуск на коде (критерий 2).",
+        "en": "from_pretrained, generate, Pipeline, runnable code (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "hf-llm-course-ch2",
+      "title": "LLM Course, chapter 2: Using Transformers",
+      "url": "https://huggingface.co/learn/llm-course/chapter2/1",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free to read",
+      "closes": {
+        "ru": "Pipeline, модели, токенизаторы и работа с Hub шаг за шагом (критерий 2).",
+        "en": "Pipelines, models, tokenizers and Hub usage step by step (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

@@ -1,0 +1,163 @@
+{
+ "id": "architecture-docs",
+ "area": "R5",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R5.B",
+ "order": 5,
+ "title": {
+  "ru": "C4, ADR в архитектуре, документ решения",
+  "en": "C4, ADRs in architecture, the decision document"
+ },
+ "goal": {
+  "ru": "Уметь зафиксировать архитектуру схемой и решения записью, которую понимают другие, и собрать из этого пакет по типовой задаче.",
+  "en": "Be able to capture architecture in a diagram and decisions in a record others can follow, and assemble this into a package for a typical task."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить уровни C4 (контекст, контейнеры, компоненты, код) и какой вопрос отвечает каждая схема.",
+   "Написать ADR по шаблону (контекст, варианты, решение, последствия, статус) и объяснить, почему принятые записи не правят, а заменяют новыми.",
+   "Разобрать типовую задачу «ассистент с RAG на 1 млн пользователей»: расчёт нагрузки, схема C4 с потоком запроса и конвейером данных, ADR по одному спорному выбору."
+  ],
+  "en": [
+   "Explain the C4 levels (context, containers, components, code) and which question each diagram answers.",
+   "Write an ADR from a template (context, options, decision, consequences, status) and explain why accepted records are superseded rather than edited.",
+   "Work through the typical task 'an assistant with RAG for 1M users': load estimate, C4 diagram with the request flow and data pipeline, an ADR for one contested choice."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ad-c4",
+   "title": "The C4 model for visualising software architecture",
+   "url": "https://c4model.com/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Иерархия абстракций и четыре уровня схем (критерий 1).",
+    "en": "The hierarchy of abstractions and the four diagram levels (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ad-msadr",
+   "title": "Maintain an architecture decision record (Azure Well-Architected Framework)",
+   "url": "https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-04",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Структура записи, статусы, append-only журнал, уровень уверенности (критерий 2).",
+    "en": "Record structure, statuses, an append-only log, confidence level (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ad-madr",
+   "title": "MADR: Markdown Any Decision Records",
+   "url": "https://adr.github.io/madr/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2024-09",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT OR CC0-1.0",
+   "closes": {
+    "ru": "Готовый шаблон ADR с обязательными и необязательными разделами (критерий 2).",
+    "en": "A ready ADR template with required and optional sections (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ad-rag",
+   "title": "Design and develop a RAG solution (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-12",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Типовая схема RAG: поток запроса и конвейер данных (чанки, эмбеддинги, индекс), на чём строить схему и ADR (критерий 3).",
+    "en": "The standard RAG architecture: request flow and data pipeline (chunking, embeddings, index), the basis for the diagram and ADR (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ad-mermaid",
+   "title": "C4 diagrams in Mermaid",
+   "url": "https://mermaid.js.org/syntax/c4.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "open source (check repo licence)",
+   "closes": {
+    "ru": "Нарисовать схему контекста и контейнеров текстом (критерии 1, 3). Диаграмма в Mermaid помечена как экспериментальная.",
+    "en": "Draw the context and container diagrams as text (criteria 1, 3). The Mermaid C4 diagram is marked experimental."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ad-check",
+   "title": {
+    "ru": "Упражнение: пакет по задаче «ассистент с RAG на 1 млн пользователей»",
+    "en": "Exercise: the package for 'an assistant with RAG for 1M users'"
+   },
+   "kind": "do",
+   "minutes": 20,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Соберите три артефакта. Первый: расчёт нагрузки, где вы сами задаёте допущения (доля активных пользователей, запросов на человека в день, размер ответа) и выводите запросы в секунду на пике, объём индекса и поток к модели; допущения подписаны как ваши, а не как факты.\n\nВторой: схема C4 уровней контекста и контейнеров с потоком запроса и конвейером данных. Третий: ADR по одному спорному выбору (например, где держать индекс или как кэшировать ответы) с вариантами, последствиями и статусом.",
+    "en": "Produce three artifacts. First: a load estimate where you set the assumptions yourself (share of active users, requests per person per day, response size) and derive peak requests per second, index size and the flow to the model; label the assumptions as yours, not as facts.\n\nSecond: a C4 context and container diagram with the request flow and the data pipeline. Third: an ADR for one contested choice (for example where to hold the index or how to cache answers) with options, consequences and status."
+   }
+  }
+ ],
+ "minutes_total": 125
+}

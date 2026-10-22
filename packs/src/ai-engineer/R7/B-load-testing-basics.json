@@ -1,0 +1,122 @@
+{
+ "id": "load-testing-basics",
+ "area": "R7",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R7.B",
+ "order": 3,
+ "title": {
+  "ru": "Нагрузочный тест: k6 или Locust",
+  "en": "Load test: k6 or Locust"
+ },
+ "goal": {
+  "ru": "Запустить нагрузочный тест на своём сервисе и правильно прочитать результат.",
+  "en": "Run a load test against your own service and read the result correctly."
+ },
+ "criteria": {
+  "ru": [
+   "Пишу сценарий с виртуальными пользователями, длительностью или ступенями нагрузки.",
+   "Называю, что мерить: перцентили задержки, число запросов в секунду, долю ошибок.",
+   "Задаю пороги pass/fail (например, p95 и доля ошибок), чтобы тест падал сам.",
+   "Читаю результат: признак насыщения — задержка растёт, а пропускная способность нет."
+  ],
+  "en": [
+   "I write a script with virtual users and a duration or load stages.",
+   "I name what to measure: latency percentiles, requests per second, error rate.",
+   "I set pass/fail thresholds (for example p95 and error rate) so the test fails by itself.",
+   "I read the result: a saturation sign is rising latency with flat throughput."
+  ]
+ },
+ "materials": [
+  {
+   "id": "lt-k6-run",
+   "title": "Running k6 (Grafana k6 docs)",
+   "url": "https://grafana.com/docs/k6/latest/get-started/running-k6/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "AGPL-3.0 (k6), vendor docs, free to read",
+   "closes": {
+    "ru": "k6 new, k6 run, --vus, --duration, stages (критерий 1). Вариант k6.",
+    "en": "k6 new, k6 run, --vus, --duration, stages (criterion 1). k6 variant."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "lt-k6-metrics",
+   "title": "Metrics (Grafana k6 docs)",
+   "url": "https://grafana.com/docs/k6/latest/using-k6/metrics/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "AGPL-3.0 (k6), vendor docs, free to read",
+   "closes": {
+    "ru": "Типы метрик, http_req_duration с перцентилями, http_reqs, http_req_failed (критерий 2). Подходит и для Locust.",
+    "en": "Metric types, http_req_duration with percentiles, http_reqs, http_req_failed (criterion 2). Also useful for Locust."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "lt-k6-thresholds",
+   "title": "Thresholds (Grafana k6 docs)",
+   "url": "https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "AGPL-3.0 (k6), vendor docs, free to read",
+   "closes": {
+    "ru": "Пороги p(95)<200 и rate<0.01, abortOnFail (критерий 3).",
+    "en": "Thresholds such as p(95)<200 and rate<0.01, abortOnFail (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "lt-locust-quick",
+   "title": "Your first test (Locust docs)",
+   "url": "https://docs.locust.io/en/stable/quickstart.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (Locust), vendor docs, free to read",
+   "closes": {
+    "ru": "Вариант Python: locustfile, веб-интерфейс, headless, как по графикам увидеть насыщение (критерии 1, 4).",
+    "en": "Python variant: locustfile, web UI, headless mode, how to see saturation on the charts (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 95
+}

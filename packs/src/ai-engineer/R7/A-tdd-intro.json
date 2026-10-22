@@ -1,0 +1,96 @@
+{
+ "id": "tdd-intro",
+ "area": "R7",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R7.A",
+ "order": 3,
+ "title": {
+  "ru": "TDD: красный, зелёный, рефакторинг",
+  "en": "TDD: red, green, refactor"
+ },
+ "goal": {
+  "ru": "Пройти цикл TDD руками и понимать, когда он помогает.",
+  "en": "Run a TDD cycle by hand and know when it helps."
+ },
+ "criteria": {
+  "ru": [
+   "Описываю цикл: красный тест, минимальный код до зелёного, рефакторинг.",
+   "Добавляю функцию в чужой код, начиная с падающего теста, и показываю историю циклов.",
+   "Называю случаи, где TDD помогает (ясная логика, баги), и где неудобен (разведка, UI)."
+  ],
+  "en": [
+   "I describe the cycle: a red test, minimal code to green, refactor.",
+   "I add a feature to existing code starting from a failing test and show the history of cycles.",
+   "I name cases where TDD helps (clear logic, bugs) and where it is awkward (exploration, UI)."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tdd-fowler",
+   "title": "Test Driven Development (martinfowler.com)",
+   "url": "https://martinfowler.com/bliki/TestDrivenDevelopment.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2023-12",
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "article, free to read",
+   "closes": {
+    "ru": "Три шага цикла и составление списка тестов перед стартом (критерий 1).",
+    "en": "The three steps of the cycle and listing test cases before starting (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tdd-gilded-rose",
+   "title": "GildedRose Refactoring Kata (Emily Bache)",
+   "url": "https://github.com/emilybache/GildedRose-Refactoring-Kata",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 60,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Ката с папками Python и TypeScript: добавьте требование «Conjured» сначала тестом, затем кодом (критерии 1, 2).",
+    "en": "Kata with Python and TypeScript folders: add the «Conjured» requirement test-first (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "tdd-when",
+   "title": {
+    "ru": "Когда TDD помогает",
+    "en": "When TDD helps"
+   },
+   "kind": "understand",
+   "minutes": 10,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "TDD удобен, когда ожидаемый результат известен заранее: расчёты, парсеры, правила, исправление бага (сначала тест, воспроизводящий баг). Он неудобен, когда вы ещё не знаете, что строите, или когда результат — внешний вид; там сначала набросок, потом тесты на то, что оставили.",
+    "en": "TDD works when the expected result is known in advance: calculations, parsers, rules, bug fixes (first a test that reproduces the bug). It is awkward when you do not yet know what you are building, or when the result is visual; there you sketch first and then test what you keep."
+   }
+  }
+ ],
+ "minutes_total": 80
+}

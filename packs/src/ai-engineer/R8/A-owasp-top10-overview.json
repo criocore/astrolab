@@ -1,0 +1,96 @@
+{
+ "id": "owasp-top10-overview",
+ "area": "R8",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R8.A",
+ "order": 4,
+ "title": {
+  "ru": "OWASP Top 10 как карта дыр",
+  "en": "OWASP Top 10 as a map of weaknesses"
+ },
+ "goal": {
+  "ru": "Держать в голове карту типовых дыр и уметь привязать её к своему приложению.",
+  "en": "Hold a map of typical weaknesses and relate it to your own application."
+ },
+ "criteria": {
+  "ru": [
+   "Называю категории OWASP Top 10:2025 и группирую их по смыслу.",
+   "Для трёх категорий привожу пример дыры и способ защиты.",
+   "Для своего приложения называю две наиболее вероятные категории и почему."
+  ],
+  "en": [
+   "I name the OWASP Top 10:2025 categories and group them by meaning.",
+   "For three categories I give an example weakness and a defense.",
+   "For my own application I name the two most likely categories and why."
+  ]
+ },
+ "materials": [
+  {
+   "id": "t10-owasp",
+   "title": "OWASP Top 10:2025",
+   "url": "https://top10.owasp.org/2025",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Список A01-A10 (Broken Access Control, Security Misconfiguration, Software Supply Chain Failures и др.), описания и защиты (критерии 1, 2).",
+    "en": "The list A01-A10 (Broken Access Control, Security Misconfiguration, Software Supply Chain Failures, etc.), descriptions and defenses (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "t10-juice",
+   "title": "OWASP Juice Shop (повтор / reuse)",
+   "url": "https://github.com/juice-shop/juice-shop",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Здесь нужно только по одной задаче из двух разных категорий Top 10 на локальном стенде (критерий 2).",
+    "en": "Here do just one challenge from each of two different Top 10 categories on the local instance (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "t10-map",
+   "title": {
+    "ru": "Практика: карта своего приложения",
+    "en": "Practice: map your application"
+   },
+   "kind": "do",
+   "minutes": 20,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Нарисуйте схему своего проекта (вход, база, секреты, зависимости, логи) и отметьте у каждого узла категорию Top 10, которая к нему применима. Выберите две самые вероятные и запишите по одной защите, которой ещё нет.",
+    "en": "Draw a diagram of your project (entry, database, secrets, dependencies, logs) and mark at each node the Top 10 category that applies. Pick the two most likely and write one defense for each that you do not have yet."
+   }
+  }
+ ],
+ "minutes_total": 105
+}

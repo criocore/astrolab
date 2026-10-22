@@ -1,0 +1,98 @@
+{
+ "id": "sql-basics",
+ "area": "R4",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R4.A",
+ "order": 1,
+ "title": {
+  "ru": "SQL: запросы, схема, ключи",
+  "en": "SQL: queries, schema, keys"
+ },
+ "goal": {
+  "ru": "Писать запросы SELECT с JOIN и GROUP BY и описывать схему с ключами и ограничениями.",
+  "en": "Write SELECT queries with JOIN and GROUP BY and describe a schema with keys and constraints."
+ },
+ "criteria": {
+  "ru": [
+   "Написать запрос с фильтром, сортировкой и агрегатом с GROUP BY.",
+   "Объяснить разницу между INNER и LEFT JOIN на примере двух таблиц.",
+   "Описать таблицу с первичным ключом, внешним ключом, NOT NULL и UNIQUE и сказать, что каждое ограничение защищает."
+  ],
+  "en": [
+   "Write a query with a filter, sorting and a GROUP BY aggregate.",
+   "Explain the difference between INNER and LEFT JOIN on two tables.",
+   "Define a table with a primary key, foreign key, NOT NULL and UNIQUE and say what each constraint protects."
+  ]
+ },
+ "materials": [
+  {
+   "id": "sql-sqlbolt",
+   "title": "SQLBolt: interactive SQL lessons",
+   "url": "https://sqlbolt.com/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 90,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free interactive lessons",
+   "closes": {
+    "ru": "Уроки с упражнениями в браузере: SELECT, JOIN, агрегаты, создание таблиц (критерии 1, 2).",
+    "en": "Interactive in-browser lessons: SELECT, JOIN, aggregates, creating tables (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "sql-pg-join",
+   "title": "Joins Between Tables (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/tutorial-join.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Внутренние и левые соединения на двух таблицах (критерий 2).",
+    "en": "Inner and left joins on two tables (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sql-pg-constraints",
+   "title": "Constraints (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "CHECK, NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY (критерий 3).",
+    "en": "CHECK, NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 130
+}

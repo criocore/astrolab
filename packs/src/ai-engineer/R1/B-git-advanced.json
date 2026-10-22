@@ -1,0 +1,147 @@
+{
+ "id": "git-advanced",
+ "area": "R1",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R1.B",
+ "order": 3,
+ "title": {
+  "ru": "rebase, squash, cherry-pick, bisect, reflog, revert, конфликты",
+  "en": "rebase, squash, cherry-pick, bisect, reflog, revert, conflicts"
+ },
+ "goal": {
+  "ru": "Приводить историю в порядок и безопасно откатывать ошибки, не теряя работу.",
+  "en": "Tidy up history and undo mistakes safely without losing work."
+ },
+ "criteria": {
+  "ru": [
+   "Могу сделать rebase ветки и собрать коммиты в один через git rebase -i (squash); объясняю, почему нельзя переписывать уже опубликованные коммиты.",
+   "Могу перенести один коммит через cherry-pick и отменить коммит через revert, включая слияние (-m 1); отличаю revert от reset.",
+   "Могу найти коммит, внёсший ошибку, через git bisect, в том числе с автоматическим тестом (bisect run).",
+   "Могу вернуть потерянный коммит после reset --hard через git reflog.",
+   "Могу разобрать конфликт слияния по маркерам, завершить слияние или прервать его (--abort)."
+  ],
+  "en": [
+   "I can rebase a branch and squash commits with git rebase -i; I can explain why already published commits must not be rewritten.",
+   "I can move one commit with cherry-pick and undo a commit with revert, including a merge (-m 1); I can tell revert from reset.",
+   "I can find the commit that introduced a bug with git bisect, including with an automatic test (bisect run).",
+   "I can get back a lost commit after reset --hard with git reflog.",
+   "I can resolve a merge conflict from its markers and finish the merge or abort it (--abort)."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ga-rewriting",
+   "title": "Pro Git 7.6: Rewriting History",
+   "url": "https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "amend, rebase -i, squash и перестановка коммитов (критерий 1).",
+    "en": "amend, rebase -i, squash and reordering commits (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ga-debugging",
+   "title": "Pro Git 7.10: Debugging with Git",
+   "url": "https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "git bisect и bisect run, а также blame (критерий 3).",
+    "en": "git bisect and bisect run, plus blame (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ga-adv-merging",
+   "title": "Pro Git 7.8: Advanced Merging",
+   "url": "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "Разбор конфликтов, merge --abort, revert слияния через -m 1 (критерии 2, 5).",
+    "en": "Inspecting conflicts, merge --abort, reverting a merge with -m 1 (criteria 2, 5)."
+   },
+   "criteria": [
+    2,
+    5
+   ]
+  },
+  {
+   "id": "ga-learngitbranching",
+   "title": "Learn Git Branching (Rebase, Cherry-pick levels)",
+   "url": "https://learngitbranching.js.org/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 60,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Уровни по rebase, interactive rebase и cherry-pick на визуализации графа; повтор из темы git-basics (критерии 1, 2).",
+    "en": "Levels on rebase, interactive rebase and cherry-pick on a graph visualisation; a repeat from git-basics (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ga-own-lab",
+   "title": {
+    "ru": "Практика: сломать и починить",
+    "en": "Practice: break it and fix it"
+   },
+   "kind": "do",
+   "minutes": 25,
+   "criteria": [
+    3,
+    4,
+    5
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "В тестовом репозитории сделайте несколько коммитов, выполните git reset --hard на два коммита назад и верните их, найдя хеш в git reflog. Затем создайте две ветки, меняющие одну и ту же строку, вызовите конфликт, один раз прервите слияние, другой раз разрешите и завершите. Наконец добавьте в историю коммит с ошибкой в тесте и найдите его через git bisect run.",
+    "en": "In a scratch repository make several commits, run git reset --hard two commits back and restore them by finding the hash in git reflog. Then create two branches that change the same line, trigger a conflict, abort the merge once and resolve and finish it another time. Finally plant a commit that breaks a test in the history and find it with git bisect run."
+   }
+  }
+ ],
+ "minutes_total": 165
+}

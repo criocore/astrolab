@@ -1,0 +1,164 @@
+{
+ "id": "pii-protection",
+ "area": "R4",
+ "level": "PII",
+ "to_grade": "G5",
+ "grade": "R4.PII",
+ "order": 1,
+ "title": {
+  "ru": "Защита PII",
+  "en": "PII protection"
+ },
+ "goal": {
+  "ru": "Находить персональные данные в системе и закрывать пути их утечки: доступ, шифрование, маскирование, промпты и логи.",
+  "en": "Find personal data in a system and close its leak paths: access, encryption, masking, prompts and logs."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, что считается PII, и перечислить меры: ограничение доступа, шифрование, токенизация, маскирование.",
+   "Назвать, какие данные нельзя писать в логи, и показать маскирование в своём коде.",
+   "Объяснить, как PII попадает в промпты и ответы LLM и как это снижают (удаление, замена на токены).",
+   "Обнаружить PII в тексте инструментом и заменить её."
+  ],
+  "en": [
+   "Explain what counts as PII and list measures: access limits, encryption, tokenization, masking.",
+   "Name data that must not go to logs and show masking in your code.",
+   "Explain how PII reaches LLM prompts and outputs and how to reduce it (removal, replacement with tokens).",
+   "Detect PII in text with a tool and replace it."
+  ]
+ },
+ "materials": [
+  {
+   "id": "pii-nist",
+   "title": "NIST SP 800-122: Protecting the Confidentiality of PII",
+   "url": "https://csrc.nist.gov/pubs/sp/800/122/final",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2010-04",
+   "classic": true,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "US government publication, free to read",
+   "closes": {
+    "ru": "Что такое PII и меры защиты по уровням воздействия (критерий 1).",
+    "en": "What PII is and protection measures by impact level (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "pii-owasp-log",
+   "title": "Logging Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP), free to read",
+   "closes": {
+    "ru": "Раздел «Data to exclude»: что убрать, замаскировать или хэшировать (критерий 2).",
+    "en": "The Data to exclude section: what to remove, mask or hash (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "pii-owasp-crypto",
+   "title": "Cryptographic Storage Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP), free to read",
+   "closes": {
+    "ru": "Шифрование данных в хранилище и управление ключами (критерий 1).",
+    "en": "Encryption of stored data and key management (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "pii-owasp-llm",
+   "title": "LLM02:2025 Sensitive Information Disclosure (OWASP GenAI)",
+   "url": "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP), free to read",
+   "closes": {
+    "ru": "PII в промптах и выводе модели, меры: очистка данных, наименьшие права (критерий 3).",
+    "en": "PII in prompts and model output, mitigations: sanitization, least privilege (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "pii-presidio",
+   "title": "Presidio: PII detection and anonymization (GitHub)",
+   "url": "https://github.com/microsoft/presidio",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Найти PII в тексте и заменить или замаскировать (критерий 4).",
+    "en": "Detect PII in text and replace or mask it (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "pii-audit",
+   "title": {
+    "ru": "Аудит своего проекта на PII",
+    "en": "Audit your own project for PII"
+   },
+   "kind": "do",
+   "minutes": 40,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Пройдите по проекту и найдите три места: куда пишутся логи, что уходит в промпты к модели, что сохраняется в трассировках и дампах. Для каждого места ответьте, попадают ли туда имя, почта, телефон, токены. Закройте найденное: уберите поле, замаскируйте или замените токеном. Повторите запуск и убедитесь, что в логах и промптах остались только замены.",
+    "en": "Walk through your project and find three places: where logs are written, what goes into prompts to the model, what is stored in traces and dumps. For each, answer whether names, emails, phones or tokens get there. Close what you find: drop the field, mask it, or replace it with a token. Run again and check that logs and prompts contain only the replacements."
+   }
+  }
+ ],
+ "minutes_total": 195
+}

@@ -1,0 +1,126 @@
+{
+ "id": "api-design-naming",
+ "area": "R3",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R3.A",
+ "order": 2,
+ "title": {
+  "ru": "Моделирование ресурсов и имена",
+  "en": "Resource modelling and naming"
+ },
+ "goal": {
+  "ru": "Проектировать структуру API так, чтобы имена и версии были предсказуемыми и единообразными.",
+  "en": "Design an API surface whose names and versions are predictable and consistent."
+ },
+ "criteria": {
+  "ru": [
+   "Моделирую предметную область как ресурсы: существительные во множественном числе, вложенность, без глаголов в путях.",
+   "Выдерживаю единые правила имён: регистр полей, формат дат, имена параметров, одинаковые слова для одинаковых понятий.",
+   "Различаю совместимые и ломающие изменения и выбираю способ версионирования (в пути или заголовке).",
+   "Проверяю набор эндпоинтов на единообразие: коллекция и элемент ведут себя и называются одинаково."
+  ],
+  "en": [
+   "I model a domain as resources: plural nouns, nesting, no verbs in paths.",
+   "I keep consistent naming rules: field casing, date format, parameter names, the same word for the same concept.",
+   "I tell compatible changes from breaking ones and choose a versioning approach (path or header).",
+   "I review a set of endpoints for consistency: collection and item behave and are named the same way."
+  ]
+ },
+ "materials": [
+  {
+   "id": "adn-azure-api-design",
+   "title": "Web API design best practices (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-03",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Microsoft Learn, free to read",
+   "closes": {
+    "ru": "Организация API вокруг ресурсов, URI, версии, единообразие (критерии 1-4).",
+    "en": "Organizing an API around resources, URIs, versioning, consistency (criteria 1-4)."
+   },
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "adn-aip122",
+   "title": "AIP-122: Resource names",
+   "url": "https://google.aip.dev/122",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0, Google AIP",
+   "closes": {
+    "ru": "Правила имён ресурсов у Google: иерархия, уникальность (критерии 1, 2).",
+    "en": "Google's resource naming rules: hierarchy, uniqueness (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "adn-aip185",
+   "title": "AIP-185: API versioning",
+   "url": "https://google.aip.dev/185",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0, Google AIP",
+   "closes": {
+    "ru": "Мажорная версия в пути и стратегии для alpha и beta (критерий 3).",
+    "en": "Major version in the path and strategies for alpha and beta (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "adn-own-review",
+   "title": {
+    "ru": "Упражнение: ревизия имён",
+    "en": "Exercise: naming review"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите API из любого сервиса, которым пользуетесь (или свой черновик из 6-8 эндпоинтов). Выпишите все пути и методы в таблицу. Найдите глаголы в путях, смешанные регистры, разные слова для одного понятия, места, где коллекция и элемент ведут себя по-разному.\n\nПерепишите набор по правилам из материалов: существительные, единые имена, версия в пути. Для каждой правки отметьте, ломает она клиентов или нет.",
+    "en": "Take the API of any service you use (or your own draft of 6-8 endpoints). Put all paths and methods into a table. Find verbs in paths, mixed casing, different words for one concept, places where a collection and an item behave differently.\n\nRewrite the set following the rules from the materials: nouns, consistent names, version in the path. For each change, note whether it breaks existing clients."
+   }
+  }
+ ],
+ "minutes_total": 100
+}

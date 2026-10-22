@@ -1,0 +1,283 @@
+{
+ "id": "ai-engineer",
+ "version": "2026.10.21",
+ "title": {
+  "ru": "ИИ-инженер: от пользователя LLM до лида",
+  "en": "AI Engineer: from LLM user to lead"
+ },
+ "description": {
+  "ru": "Лестница из восьми эпох: настройка рабочего места и семь грейдов G0–G6 с привязанными уровнями смежных областей Р0–Р12. Каждая тема даёт цель, проверяемые критерии и 2–4 открытых материала; грейд закрывается экзаменом по артефакту.",
+  "en": "A ladder of eight eras: workstation setup and seven grades G0–G6 with attached levels of adjacent areas R0–R12. Each topic gives a goal, checkable criteria and 2–4 open materials; a grade is closed by an exam on an artifact."
+ },
+ "license": "CC BY-SA 4.0",
+ "language": {
+  "interface": [
+   "ru",
+   "en"
+  ],
+  "materials": "mostly en"
+ },
+ "grades": [
+  {
+   "id": "S0",
+   "order": 0,
+   "gate": "none",
+   "title": {
+    "ru": "Пользователь CLI",
+    "en": "CLI user"
+   },
+   "hours_core": 2,
+   "exam": {
+    "ru": "Эволюции нет: звёзды этой эпохи зажигает сам хаб, когда видит терминал, Node, git и установленного агента.",
+    "en": "No gate: the hub itself lights the stars of this era when it sees a terminal, Node, git and an installed agent."
+   }
+  },
+  {
+   "id": "G0",
+   "order": 1,
+   "title": {
+    "ru": "Пользователь LLM",
+    "en": "LLM user"
+   },
+   "hours_core": 8,
+   "exam": {
+    "ru": "Запрос через API со структурированным выводом по JSON-схеме; объяснить, откуда берётся цена запроса.",
+    "en": "An API request with structured output against a JSON schema; explain where the request cost comes from."
+   },
+   "checks": {
+    "ru": [
+     "В коде есть вызов API с JSON-схемой ответа (structured output)",
+     "Ответ API проверяется на клиенте по схеме (валидатор или модель данных)",
+     "В коде есть повтор запроса при невалидном или обрезанном ответе",
+     "В README или заметках расчёт цены запроса: токены входа и выхода, умноженные на тариф",
+     "Числа токенов в расчёте взяты из поля usage реального ответа",
+     "Заданы max tokens или stop-последовательность, и в коде обработан stop_reason"
+    ],
+    "en": [
+     "The code makes an API call with a JSON schema for the response (structured output)",
+     "The API response is validated on the client against the schema (validator or data model)",
+     "The code retries the request when the response is invalid or truncated",
+     "The README or notes contain a request cost calculation: input and output tokens multiplied by the rate",
+     "The token counts in the calculation come from the usage field of a real response",
+     "Max tokens or a stop sequence is set, and the code handles stop_reason"
+    ]
+   }
+  },
+  {
+   "id": "G1",
+   "order": 2,
+   "title": {
+    "ru": "Практик агента, вайбкодинг",
+    "en": "Agent practitioner, vibe coding"
+   },
+   "hours_core": 20,
+   "exam": {
+    "ru": "Сервис собран агентом по циклу план → код → проверка, тесты зелёные, у стека ADR с тремя вариантами, по журналу видно, где агент ошибался.",
+    "en": "A service built by the agent through the plan → code → check loop, tests green, an ADR with three options for the stack, the journal shows where the agent went wrong."
+   },
+   "checks": {
+    "ru": [
+     "В репозитории есть CLAUDE.md с командами сборки и тестов и правилами проекта",
+     "Есть файл плана или спеки, написанный до кода",
+     "Есть тесты, и в логе или README виден их зелёный прогон",
+     "Есть ADR на выбор стека с тремя рассмотренными вариантами",
+     "Есть журнал работы с агентом, где записана конкретная ошибка агента и как её исправили",
+     "В README или журнале перечислены шаги работы: что сделано на каждом шаге и каким коммитом"
+    ],
+    "en": [
+     "The repository has a CLAUDE.md with build and test commands and project rules",
+     "There is a plan or spec file written before the code",
+     "There are tests, and a green run is visible in a log or the README",
+     "There is an ADR on the stack choice with three options considered",
+     "There is a log of work with the agent that records a specific agent mistake and how it was fixed",
+     "The README or journal lists the work steps: what each step delivered and in which commit"
+    ]
+   }
+  },
+  {
+   "id": "G2",
+   "order": 3,
+   "title": {
+    "ru": "Настройщик агента",
+    "en": "Agent configurator"
+   },
+   "hours_core": 20,
+   "exam": {
+    "ru": "Свой MCP-сервер с ошибками, правами и контрактными тестами; хук-страж не даёт агенту переписать тесты.",
+    "en": "Your own MCP server with errors, permissions and contract tests; a guard hook stops the agent from rewriting tests."
+   },
+   "checks": {
+    "ru": [
+     "В коде MCP-сервера описаны минимум два инструмента с описаниями и схемой входа",
+     "Инструменты возвращают понятные сообщения об ошибках, по которым агент может исправить вызов",
+     "Сервер пишет логи только в stderr, в stdout идёт только протокол",
+     "Есть контрактные тесты, которые проверяют набор инструментов и ответы через клиента",
+     "Есть хук PreToolUse, который отказывает в правке файлов тестов (код выхода 2)",
+     "Хук подключён в settings.json, и в README или логе показана заблокированная попытка",
+     "Права доступа заданы правилами allow или deny, например запрет чтения .env"
+    ],
+    "en": [
+     "The MCP server code defines at least two tools with descriptions and an input schema",
+     "The tools return clear error messages the agent can use to fix the call",
+     "The server writes logs to stderr only; stdout carries the protocol only",
+     "There are contract tests that check the tool list and responses through a client",
+     "There is a PreToolUse hook that denies edits to test files (exit code 2)",
+     "The hook is registered in settings.json, and the README or a log shows a blocked attempt",
+     "Permissions are set by allow or deny rules, for example denying reads of .env"
+    ]
+   }
+  },
+  {
+   "id": "G3",
+   "order": 4,
+   "title": {
+    "ru": "Junior AI Engineer, LLM-приложения",
+    "en": "Junior AI Engineer, LLM applications"
+   },
+   "hours_core": 35,
+   "exam": {
+    "ru": "RAG по открытым документам: 30 вопросов с эталонами, качество поиска и ответов измерено, стоимость ответа посчитана.",
+    "en": "RAG over open documents: 30 questions with reference answers, retrieval and answer quality measured, cost per answer computed."
+   },
+   "checks": {
+    "ru": [
+     "В репозитории есть не менее 30 вопросов с эталонными ответами",
+     "В коде есть разбиение документов на чанки и индекс с эмбеддингами",
+     "Ответы выдаются со ссылками на источники-фрагменты",
+     "Качество поиска измерено числом (например, recall@k или доля найденных эталонов)",
+     "Качество ответов измерено на тех же вопросах, результат записан в файле",
+     "Стоимость одного ответа посчитана из токенов контекста, вопроса и ответа и тарифов",
+     "Описаны типовые ошибки RAG, найденные на своих вопросах, с примерами"
+    ],
+    "en": [
+     "The repository has at least 30 questions with reference answers",
+     "The code splits documents into chunks and builds an index with embeddings",
+     "Answers are returned with links to the source passages",
+     "Retrieval quality is measured with a number (for example recall@k or the share of reference passages found)",
+     "Answer quality is measured on the same questions, and the result is recorded in a file",
+     "The cost of one answer is calculated from context, question and answer tokens and the rates",
+     "Typical RAG failures found on your own questions are described with examples"
+    ]
+   }
+  },
+  {
+   "id": "G4",
+   "order": 5,
+   "title": {
+    "ru": "Middle AI Engineer, агенты",
+    "en": "Middle AI Engineer, agents"
+   },
+   "hours_core": 50,
+   "exam": {
+    "ru": "Агент с нуля проходит eval-набор из 50 кейсов выше порога, у каждого шага трасса, решения в ADR.",
+    "en": "An agent built from scratch passes a 50-case eval set above the threshold, every step has a trace, decisions are in ADRs."
+   },
+   "checks": {
+    "ru": [
+     "Цикл агента написан без фреймворка, с диспетчеризацией инструментов",
+     "В цикле есть лимит числа шагов и условие остановки",
+     "Есть eval-набор не менее чем из 50 кейсов с проверяемым ожидаемым результатом",
+     "В файле результатов указан порог прохождения и фактическая доля пройденных кейсов",
+     "Для шагов агента сохраняются трассы со спанами вызовов модели и инструментов",
+     "В трассе или логе посчитана стоимость шага или всего запуска",
+     "Есть ADR с контекстом, решением и рассмотренными вариантами (например, выбор SDK)"
+    ],
+    "en": [
+     "The agent loop is written without a framework, with tool dispatch",
+     "The loop has a step limit and a stop condition",
+     "There is an eval set of at least 50 cases with a checkable expected result",
+     "A results file states the pass threshold and the actual share of passed cases",
+     "Traces with spans for model and tool calls are stored for the agent steps",
+     "A trace or log has the cost of a step or of the whole run",
+     "There is an ADR with context, decision and options considered (for example the SDK choice)"
+    ]
+   }
+  },
+  {
+   "id": "G5",
+   "order": 6,
+   "title": {
+    "ru": "Senior AI Engineer",
+    "en": "Senior AI Engineer"
+   },
+   "hours_core": 35,
+   "exam": {
+    "ru": "Конвейер из 3 агентов с минимальными правами, бюджетом и моделью угроз STRIDE; цена одной задачи посчитана.",
+    "en": "A pipeline of 3 agents with least privilege, a budget and a STRIDE threat model; the cost of one task is computed."
+   },
+   "checks": {
+    "ru": [
+     "Описаны три агента конвейера, у каждого свой список инструментов",
+     "Права каждого агента ограничены минимально нужным (allow/deny или песочница)",
+     "Есть модель угроз STRIDE с границами доверия для конвейера",
+     "В модели угроз названа инъекция промпта через недоверенный контент и защита от неё",
+     "Задан бюджет в числах: лимит на задачу и способ его проверки в коде",
+     "Цена одной задачи посчитана по токенам входа, выхода и кэша и тарифам",
+     "Есть проверка входа или выхода (guardrail) и тест, где она сработала"
+    ],
+    "en": [
+     "Three pipeline agents are defined, each with its own tool list",
+     "Each agent has minimum permissions (allow/deny rules or a sandbox)",
+     "There is a STRIDE threat model with trust boundaries for the pipeline",
+     "The threat model names prompt injection via untrusted content and a defense against it",
+     "A budget is set in numbers: a per-task limit and how the code enforces it",
+     "The cost of one task is calculated from input, output and cache tokens and the rates",
+     "There is an input or output check (guardrail) and a test where it triggered"
+    ]
+   }
+  },
+  {
+   "id": "G6",
+   "order": 7,
+   "title": {
+    "ru": "Lead / архитектор ИИ в команде",
+    "en": "Lead / AI architect in a team"
+   },
+   "hours_core": 20,
+   "exam": {
+    "ru": "Стратегия внедрения ИИ для команды из 8 человек, защищённая цифрами: что меряем, порог успеха, когда останавливаемся.",
+    "en": "An AI adoption strategy for a team of 8, defended with numbers: what is measured, the success threshold, when to stop."
+   },
+   "checks": {
+    "ru": [
+     "Стратегия состоит из диагноза, принципов и конкретных шагов",
+     "Указана численность команды из 8 человек и план обучения и правил использования",
+     "Для каждой метрики указана базовая линия в числах",
+     "Задан порог успеха в числах и срок, когда его проверяют",
+     "Названо условие остановки внедрения в числах",
+     "Описаны риски: вендор-лок, данные и ревью сгенерированного кода",
+     "Есть командный стандарт: файл CLAUDE.md или AGENTS.md, права, порядок ревью"
+    ],
+    "en": [
+     "The strategy consists of a diagnosis, principles and concrete steps",
+     "The 8-person team size is stated, with a training and usage rules plan",
+     "Every metric has a baseline in numbers",
+     "A success threshold in numbers and the date it is checked are set",
+     "A stop condition for the rollout is stated in numbers",
+     "Risks are described: vendor lock-in, data and review of generated code",
+     "There is a team standard: a CLAUDE.md or AGENTS.md file, permissions, review procedure"
+    ]
+   }
+  }
+ ],
+ "credits": [
+  {
+   "channel": "book_cube",
+   "url": "https://t.me/book_cube",
+   "attribution": "required",
+   "note": {
+    "ru": "Автор канала разрешил использовать ссылки на посты при указании авторства.",
+    "en": "The channel author allows linking to posts with attribution."
+   }
+  },
+  {
+   "channel": "vibecoding_tg",
+   "url": "https://t.me/vibecoding_tg",
+   "attribution": "required",
+   "note": {
+    "ru": "Автор канала разрешил использовать ссылки на посты при указании авторства.",
+    "en": "The channel author allows linking to posts with attribution."
+   }
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "agent-loop",
+  "grade": "G4",
+  "order": 1,
+  "title": {
+    "ru": "Цикл агента",
+    "en": "The agent loop"
+  },
+  "goal": {
+    "ru": "Понимать агента как цикл «модель выбирает действие, код выполняет, результат возвращается модели» и знать, чем он заканчивается.",
+    "en": "Understand an agent as a loop where the model picks an action, code runs it and the result goes back to the model, and know how the loop ends."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить шаги цикла: запрос к модели, выбор действия, выполнение, наблюдение, следующий шаг.",
+      "Назвать условия остановки (ответ без вызова инструмента, лимит шагов, лимит бюджета) и объяснить, зачем нужны лимиты.",
+      "Отличить workflow с заранее заданным путём от агента, который сам выбирает шаги."
+    ],
+    "en": [
+      "Explain the steps of the loop: model call, action choice, execution, observation, next step.",
+      "Name the stop conditions (reply without a tool call, step limit, budget limit) and explain why limits are needed.",
+      "Tell a workflow with a predefined path from an agent that picks its own steps."
+    ]
+  },
+  "materials": [
+    {
+      "id": "al-bea",
+      "title": "Building effective agents (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2024-12",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Определение агента как цикла с обратной связью от среды, workflow против агента, рекомендация лимитов (критерии 1, 3).",
+        "en": "Agent as a loop with environment feedback, workflow versus agent, advice on stop limits (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "al-cc-loop",
+      "title": "How the agent loop works (Claude Agent SDK docs)",
+      "url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Пошаговый жизненный цикл цикла, max_turns, бюджет и подтипы результата (критерии 1, 2).",
+        "en": "Step-by-step lifecycle of the loop, max_turns, budget and result subtypes (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "al-openai-running",
+      "title": "Running agents (OpenAI Agents SDK docs)",
+      "url": "https://openai.github.io/openai-agents-python/running_agents/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Цикл раннера: вызов модели, финальный ответ без вызовов инструментов, выполнение инструментов, handoff; max_turns и MaxTurnsExceeded (критерии 1, 2).",
+        "en": "The runner loop: model call, final output with no tool calls, tool execution, handoff; max_turns and MaxTurnsExceeded (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "al-hf-unit1",
+      "title": "Introduction to Agents, Unit 1 (Hugging Face Agents Course)",
+      "url": "https://huggingface.co/learn/agents-course/unit1/introduction",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free",
+      "closes": {
+        "ru": "Цикл Think-Act-Observe и сборка первого агента на smolagents (критерий 1).",
+        "en": "Think-Act-Observe cycle and building a first agent with smolagents (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 105
+}

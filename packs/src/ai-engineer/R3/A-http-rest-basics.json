@@ -1,0 +1,125 @@
+{
+ "id": "http-rest-basics",
+ "area": "R3",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R3.A",
+ "order": 1,
+ "title": {
+  "ru": "HTTP и REST-ресурсы",
+  "en": "HTTP and REST resources"
+ },
+ "goal": {
+  "ru": "Понимать, как клиент и сервер обмениваются запросами: методы, статусы, заголовки, и как это ложится на ресурсы.",
+  "en": "Understand how a client and server exchange requests: methods, status codes, headers, and how that maps onto resources."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю, чем безопасные и идемпотентные методы (GET, PUT, DELETE, POST) отличаются, и выбираю метод под операцию.",
+   "Выбираю статус ответа из классов 2xx, 3xx, 4xx, 5xx под ситуацию (создано, не найдено, ошибка клиента, ошибка сервера).",
+   "Читаю и ставлю основные заголовки: Content-Type, Accept, Authorization, ETag, Cache-Control.",
+   "Описываю ресурс как URI плюс представление (JSON) и показываю на живом API запросы и ответы через curl."
+  ],
+  "en": [
+   "I explain how safe and idempotent methods (GET, PUT, DELETE, POST) differ and pick a method for an operation.",
+   "I choose a response status from the 2xx, 3xx, 4xx, 5xx classes for a situation (created, not found, client error, server error).",
+   "I read and set the main headers: Content-Type, Accept, Authorization, ETag, Cache-Control.",
+   "I describe a resource as a URI plus a representation (JSON) and show requests and responses against a live API with curl."
+  ]
+ },
+ "materials": [
+  {
+   "id": "hrb-mdn-overview",
+   "title": "Overview of HTTP (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 2.5, MDN",
+   "closes": {
+    "ru": "Модель клиент-сервер, структура запроса и ответа, основные заголовки (критерии 3, 4).",
+    "en": "Client-server model, request and response structure, the main headers (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "hrb-mdn-methods",
+   "title": "HTTP request methods (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 2.5, MDN",
+   "closes": {
+    "ru": "Методы и таблица безопасных, идемпотентных и кэшируемых (критерий 1).",
+    "en": "Methods and the table of safe, idempotent and cacheable ones (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "hrb-mdn-status",
+   "title": "HTTP response status codes (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 2.5, MDN",
+   "closes": {
+    "ru": "Справочник статусов по классам (критерий 2).",
+    "en": "Status code reference by class (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "hrb-github-quickstart",
+   "title": "Quickstart for GitHub REST API",
+   "url": "https://docs.github.com/en/rest/quickstart",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Первые запросы к реальному REST API через curl или gh: методы, статусы, заголовки, JSON-ресурсы (критерии 1-4).",
+    "en": "First requests to a real REST API with curl or gh: methods, statuses, headers, JSON resources (criteria 1-4)."
+   },
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 90
+}

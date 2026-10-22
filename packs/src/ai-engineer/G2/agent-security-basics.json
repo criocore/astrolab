@@ -1,0 +1,163 @@
+{
+  "id": "agent-security-basics",
+  "grade": "G2",
+  "order": 7,
+  "title": {
+    "ru": "Безопасность агента",
+    "en": "Agent security basics"
+  },
+  "goal": {
+    "ru": "Ограничить права агента и MCP-серверов, уберечь секреты, заметить подмену тестов и проверить сгенерированный код.",
+    "en": "Limit the rights of the agent and MCP servers, keep secrets safe, spot test tampering and review generated code."
+  },
+  "criteria": {
+    "ru": [
+      "Настраиваю правила allow/deny (например deny на чтение .env), выбираю режим разрешений и даю MCP-серверу и его инструментам только нужные права.",
+      "Объясняю, как работает инъекция промпта через недоверенный контент и как не хранить секреты в репозитории (секреты в хранилище, не в коде).",
+      "Объясняю сбой «агент правит тесты вместо кода» и называю способы поймать его: отложенные тесты, контроль изменений файлов тестов, хук-страж.",
+      "Описываю слои проверки сгенерированного кода (в сессии, по запросу, в PR, в CI) и признаю, что плагин проверки не блокирует запись."
+    ],
+    "en": [
+      "I set allow/deny rules (for example deny reading .env), choose a permission mode and give an MCP server and its tools only the rights they need.",
+      "I explain how prompt injection works through untrusted content and how to keep secrets out of the repository (in a secret store, not in code).",
+      "I explain the 'agent edits tests instead of code' failure and name ways to catch it: held-out tests, monitoring changes to test files, a guard hook.",
+      "I describe the layers of review for generated code (in session, on demand, on PR, in CI) and accept that the review plugin does not block writes."
+    ]
+  },
+  "materials": [
+    {
+      "id": "as-claude-security",
+      "title": "Security (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/security",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Режимы разрешений, песочница, защита от инъекций, безопасность MCP, хранение учётных данных (критерии 1, 2).",
+        "en": "Permission modes, sandbox, injection safeguards, MCP security, credential storage (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "as-evilgenie",
+      "title": "EvilGenie: A Reward Hacking Benchmark (arXiv 2511.21654)",
+      "url": "https://arxiv.org/abs/2511.21654",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2025-11",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint, free to read",
+      "closes": {
+        "ru": "Агенты правят файлы тестов и подгоняют ответы; обнаружение отложенными тестами, судьями-LLM и контролем изменений тестов (критерий 3). Читать аннотацию и раздел об обнаружении.",
+        "en": "Agents edit test files and hardcode answers; detection with held-out tests, LLM judges and test-file change monitoring (criterion 3). Read the abstract and the detection section."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "as-security-guidance",
+      "title": "Catch security issues as Claude writes code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/security-guidance",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Установить плагин security-guidance, добавить свои правила в security-patterns.yaml, стек проверок и оговорка «не блокирует» (критерий 4).",
+        "en": "Install the security-guidance plugin, add your own rules in security-patterns.yaml, the review stack and the 'does not block' caveat (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "as-permissions",
+      "title": "Configure permissions (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/permissions",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Правила allow/ask/deny, режимы, рабочие каталоги, порядок правил и хуков (критерий 1). Прочитан только вводный фрагмент страницы.",
+        "en": "Allow/ask/deny rules, modes, working directories, how rules and hooks combine (criterion 1). Only the opening of the page was inspected."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "as-codex-sandbox",
+      "title": "Sandbox (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/sandboxing",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Режимы песочницы read-only, workspace-write, danger-full-access: показать команду, которую песочница отклоняет (критерий 1).",
+        "en": "Sandbox modes read-only, workspace-write, danger-full-access: show one command the sandbox refuses (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "as-codex-approvals",
+      "title": "Agent approvals and security (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Политика подтверждений и песочница как два слоя, сеть выключена по умолчанию, защищённые пути (критерий 1).",
+        "en": "Approval policy and sandbox as two layers, network off by default, protected paths (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 150
+}

@@ -1,0 +1,144 @@
+{
+ "id": "db-deeper",
+ "area": "R4",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R4.B",
+ "order": 4,
+ "title": {
+  "ru": "Выбранная БД глубже: роли и доступ",
+  "en": "Your chosen DB deeper: roles and access"
+ },
+ "goal": {
+  "ru": "Настроить роли и ограничения доступа в выбранной БД: Postgres с RLS или документное / key-value хранилище.",
+  "en": "Set up roles and access restrictions in your chosen DB: Postgres with RLS, or a document / key-value store."
+ },
+ "criteria": {
+  "ru": [
+   "Создать роли с минимально нужными правами и показать, что лишнее им запрещено.",
+   "Объяснить и применить политику построчного доступа (Postgres RLS) или ролевую модель MongoDB или ACL Redis.",
+   "Объяснить, чем USING отличается от WITH CHECK в политике RLS."
+  ],
+  "en": [
+   "Create roles with minimal needed privileges and show that extras are denied.",
+   "Explain and apply a row-level policy (Postgres RLS), or the MongoDB role model, or Redis ACL.",
+   "Explain how USING differs from WITH CHECK in an RLS policy."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dd-pg-roles",
+   "title": "Database Roles (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/user-manag.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Роли, привилегии (критерий 1). Вариант Postgres.",
+    "en": "Roles and privileges (criterion 1). Postgres option."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dd-pg-rls",
+   "title": "Row Security Policies (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "CREATE POLICY, USING и WITH CHECK (критерии 2, 3). Вариант Postgres.",
+    "en": "CREATE POLICY, USING and WITH CHECK (criteria 2, 3). Postgres option."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "dd-mongo-rbac",
+   "title": "Role-Based Access Control (MongoDB manual)",
+   "url": "https://www.mongodb.com/docs/manual/core/authorization/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Роли и привилегии в MongoDB (критерии 1, 2). Вариант документной БД.",
+    "en": "Roles and privileges in MongoDB (criteria 1, 2). Document DB option."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "dd-redis-acl",
+   "title": "ACL (Redis docs)",
+   "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Создать пользователя с ограничением по командам и ключам через ACL SETUSER (критерии 1, 2). Вариант key-value.",
+    "en": "Create a user limited by commands and keys with ACL SETUSER (criteria 1, 2). Key-value option."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "dd-pg-rls-lab",
+   "title": {
+    "ru": "Упражнение: RLS для двух пользователей",
+    "en": "Exercise: RLS for two users"
+   },
+   "kind": "do",
+   "minutes": 40,
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "В Postgres создайте таблицу заметок с колонкой владельца и две роли. Включите RLS и добавьте политику, по которой роль видит и меняет только свои строки. Проверьте, что чужая строка не читается, а вставка строки с чужим владельцем отклоняется. Вариант без Postgres: сделайте то же через ACL в Redis с префиксом ключей на пользователя.",
+    "en": "In Postgres create a notes table with an owner column and two roles. Enable RLS and add a policy so a role sees and changes only its own rows. Check that another user's row is unreadable and that inserting a row with a foreign owner is rejected. Non-Postgres variant: do the same with Redis ACL and a key prefix per user."
+   }
+  }
+ ],
+ "minutes_total": 145
+}

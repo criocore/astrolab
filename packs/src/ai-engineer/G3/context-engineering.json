@@ -1,0 +1,144 @@
+{
+  "id": "context-engineering",
+  "grade": "G3",
+  "order": 2,
+  "title": {
+    "ru": "Контекст-инжиниринг",
+    "en": "Context engineering"
+  },
+  "goal": {
+    "ru": "Понимать, из чего состоит контекст запроса и как управлять им: состав, порядок, сжатие, ссылки вместо текста.",
+    "en": "Understand what a request context consists of and how to manage it: contents, order, compression, references instead of text."
+  },
+  "criteria": {
+    "ru": [
+      "Перечислить, что занимает окно контекста (системный промпт, история, результаты инструментов, определения инструментов, ответ) и измерить это на реальном запросе.",
+      "Объяснить, почему больше контекста не значит лучше (деградация качества при росте контекста) и как держать в нём минимум значимых токенов.",
+      "Расположить длинные документы и вопрос в правильном порядке и разметить документы тегами с источником.",
+      "Описать два приёма сжатия: суммаризацию истории (compaction) и очистку старых результатов инструментов; объяснить подход «ссылки вместо текста» (пути, идентификаторы, подгрузка по запросу)."
+    ],
+    "en": [
+      "List what fills the context window (system prompt, history, tool results, tool definitions, the reply) and measure it on a real request.",
+      "Explain why more context is not better (quality degrades as context grows) and how to keep only high-signal tokens in it.",
+      "Order long documents and the question correctly and mark documents with tags that carry the source.",
+      "Describe two compression techniques: summarizing history (compaction) and clearing old tool results; explain the 'references instead of text' approach (paths, IDs, loading on demand)."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ce-anthropic-effective",
+      "title": "Effective context engineering for AI agents (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-09",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Контекст-инжиниринг против промпт-инжиниринга, минимум значимых токенов, compaction и подгрузка по ссылкам (критерии 2, 4).",
+        "en": "Context vs prompt engineering, smallest high-signal token set, compaction and just-in-time loading by reference (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "ce-claude-context-windows",
+      "title": "Context windows (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Что считается в окне (запрос, инструменты, мышление, ответ), context rot, compaction и очистка результатов инструментов (критерии 1, 2, 4).",
+        "en": "What counts toward the window (request, tools, thinking, reply), context rot, compaction and tool-result clearing (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "ce-tiktoken-count",
+      "title": "How to count tokens with tiktoken (OpenAI Cookbook)",
+      "url": "https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "OpenAI Cookbook, repo content MIT (check page); recipe marked archived",
+      "closes": {
+        "ru": "Посчитать токены строки, чат-сообщений и описаний инструментов и сверить с usage API (критерий 1).",
+        "en": "Count tokens for strings, chat messages and tool definitions and check against API usage (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "ce-gemini-long-context",
+      "title": "Long context (Gemini API docs)",
+      "url": "https://ai.google.dev/gemini-api/docs/long-context",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Вопрос ставить в конец после всего контекста, не передавать лишние токены, кэш контекста для повторных вопросов, потеря точности при поиске нескольких фактов (критерии 2, 3). Тегов с источником на странице нет.",
+        "en": "Put the question at the end after all context, avoid passing unneeded tokens, context caching for repeated questions, accuracy loss when retrieving several facts (criteria 2, 3). The page has no source-tag guidance."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "ce-gemini-md",
+      "title": "Provide context with GEMINI.md files (Gemini CLI docs, Google)",
+      "url": "https://geminicli.com/docs/cli/gemini-md",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-06",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Контекстные файлы как «ссылка, а не весь текст»: инструмент подгружает файлы по пути и через @-импорты (критерий 4).",
+        "en": "Context files as \"reference, not the whole text\": the tool loads files by path and @-imports (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 85
+}

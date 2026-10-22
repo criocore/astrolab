@@ -1,0 +1,140 @@
+{
+  "id": "planner-executor",
+  "grade": "G4",
+  "order": 5,
+  "title": {
+    "ru": "Planner-executor и DAG",
+    "en": "Planner-executor and DAGs"
+  },
+  "goal": {
+    "ru": "Уметь разделить планирование и исполнение, описать план как граф зависимостей и выполнить независимые шаги параллельно.",
+    "en": "Be able to separate planning from execution, describe a plan as a dependency graph and run independent steps in parallel."
+  },
+  "criteria": {
+    "ru": [
+      "Отличить plan-and-execute от ReAct: план строится заранее, исполнитель не рассуждает заново на каждом шаге.",
+      "Записать план как DAG: шаги, зависимости, какие шаги можно выполнять параллельно.",
+      "Реализовать orchestrator-worker и назвать цену: рост расхода токенов и случаи, когда multi-agent не оправдан."
+    ],
+    "en": [
+      "Tell plan-and-execute from ReAct: the plan is made upfront and the executor does not re-reason at every step.",
+      "Write a plan as a DAG: steps, dependencies, which steps can run in parallel.",
+      "Implement orchestrator-worker and name the cost: higher token use and cases where multi-agent is not justified."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pe-llmcompiler",
+      "title": "An LLM Compiler for Parallel Function Calling",
+      "url": "https://arxiv.org/abs/2312.04511",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2023-12",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint",
+      "closes": {
+        "ru": "Planner, исполнитель и параллельный запуск вызовов против ReAct (критерии 1, 2).",
+        "en": "Planner, executor and parallel dispatch of calls versus ReAct (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "pe-multiagent",
+      "title": "How we built our multi-agent research system (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-06",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Orchestrator и параллельные subagents, расход токенов примерно в 15 раз больше чата (критерий 3).",
+        "en": "Orchestrator and parallel subagents, token use roughly 15x a chat (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "pe-langgraph-wf",
+      "title": "Workflows and agents (LangGraph docs)",
+      "url": "https://docs.langchain.com/oss/python/langgraph/workflows-agents",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Запускаемый код: parallelization, orchestrator-worker, evaluator-optimizer (критерии 2, 3).",
+        "en": "Runnable code: parallelization, orchestrator-worker, evaluator-optimizer (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pe-oai-agents",
+      "title": "Agents, multi-agent design patterns (OpenAI Agents SDK docs)",
+      "url": "https://openai.github.io/openai-agents-python/agents/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Паттерн manager (агенты как инструменты, управление остаётся у менеджера) против handoff (критерий 1).",
+        "en": "Manager pattern (agents as tools, control stays with the manager) versus handoff (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "pe-oai-handoffs",
+      "title": "Handoffs (OpenAI Agents SDK docs)",
+      "url": "https://openai.github.io/openai-agents-python/handoffs/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Handoff отдаёт разговор другому агенту вместе с историей, историю можно фильтровать (критерий 1).",
+        "en": "A handoff gives the conversation, with history, to another agent; history can be filtered (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 135
+}

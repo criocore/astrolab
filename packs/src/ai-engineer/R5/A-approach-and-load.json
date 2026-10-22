@@ -1,0 +1,100 @@
+{
+ "id": "approach-and-load",
+ "area": "R5",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R5.A",
+ "order": 1,
+ "title": {
+  "ru": "Подход к задаче: требования, оценка нагрузки, latency и throughput",
+  "en": "Approach to a design task: requirements, load estimation, latency and throughput"
+ },
+ "goal": {
+  "ru": "Уметь начать любую задачу по проектированию с требований и грубой оценки нагрузки, а не с выбора технологий.",
+  "en": "Start any design task from requirements and a rough load estimate rather than from technology choices."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать шаги подхода: уточнить сценарии и ограничения, оценить нагрузку, набросать схему верхнего уровня, углубить узкие места, обсудить компромиссы.",
+   "Оценить нагрузку «на салфетке»: от числа пользователей к запросам в секунду, объёму хранилища и трафику, отдельно для среднего и пика.",
+   "Объяснить разницу между latency и throughput и почему про задержку говорят перцентилями (p50, p99), а не средним."
+  ],
+  "en": [
+   "Name the steps of the approach: clarify use cases and constraints, estimate load, sketch a high-level design, dig into bottlenecks, discuss trade-offs.",
+   "Do a back-of-the-envelope estimate: from user count to requests per second, storage and traffic, separately for average and peak.",
+   "Explain the difference between latency and throughput and why latency is described with percentiles (p50, p99) rather than the mean."
+  ]
+ },
+ "materials": [
+  {
+   "id": "aal-primer",
+   "title": "System Design Primer (README)",
+   "url": "https://github.com/donnemartin/system-design-primer",
+   "kind": "understand",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Шаги подхода к задаче, раздел про оценки «на салфетке», latency против throughput (критерии 1, 2, 3).",
+    "en": "Step-by-step approach, back-of-the-envelope section, latency vs throughput (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "aal-sre-slo",
+   "title": "Service Level Objectives (Google SRE book)",
+   "url": "https://sre.google/sre-book/service-level-objectives/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-ND 4.0 (link only)",
+   "closes": {
+    "ru": "SLI/SLO, перцентили задержки, throughput, почему среднее скрывает хвост (критерий 3).",
+    "en": "SLIs/SLOs, latency percentiles, throughput, why the mean hides the tail (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "aal-pastebin",
+   "title": "Design Pastebin.com: worked solution (System Design Primer)",
+   "url": "https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/pastebin/README.md",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Сначала самим выписать сценарии и посчитать записи и чтения в секунду, затем сверить с разбором (критерии 1, 2).",
+    "en": "First write the use cases and compute writes and reads per second yourself, then compare with the solution (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "minutes_total": 100
+}

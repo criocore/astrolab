@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="{{lang}}" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{font_link}}&display=swap" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Astrolabe brag: the app's own palette (web/src/eras.css, styles.css) and display face. */
+      :root {
+        --ground: #090c17; --navy-2: #121a33; --navy-3: #1a2444; --line: #26304f;
+        --ink: #ece6d6; --muted: #a8adbd; --dim: #7f869a;
+        --gold: #e2b955; --gold-2: #f3d27a; --brass: #b08d57; --teal: #2fbf9a; --ember: #e0674f;
+        --serif: {{display}}; --sans: "Inter", system-ui, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); font-family: var(--sans); color: var(--ink); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+      #sky { position: absolute; inset: 0; }
+      #glow { position: absolute; inset: 0; opacity: .05; background: radial-gradient(ellipse 60% 45% at 50% 35%, rgba(226,185,85,.55), rgba(226,185,85,0) 70%); pointer-events: none; }
+      .scene { position: absolute; inset: 0; opacity: 0; }
+      .cap { position: absolute; left: 160px; right: 160px; top: 880px; text-align: center; font-family: var(--serif); font-weight: 600; font-size: {{cap_size}}; letter-spacing: .04em; color: var(--ink); text-shadow: 0 2px 24px rgba(0,0,0,.8), 0 0 2px rgba(0,0,0,.9); opacity: 0; }
+      .cap.center { top: 470px; font-size: {{cap_center_size}}; }
+      .card { position: absolute; background: linear-gradient(180deg, rgba(26,36,68,.96), rgba(18,26,51,.96)); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+      .kicker { font-family: var(--serif); font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); }
+      .ring { position: relative; width: 84px; height: 84px; border-radius: 50%; border: 2px solid var(--gold); display: grid; place-items: center; font-family: var(--serif); font-weight: 700; font-size: 28px; color: var(--gold); }
+      .ring::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; border: 1px solid var(--brass); opacity: .8; }
+      .dimcard .ring { border-color: var(--line); color: var(--dim); } .dimcard .ring::after { border-color: var(--line); }
+
+      /* scene 2: the map of eras */
+      #s2 .row { position: absolute; left: 112px; top: 190px; display: flex; gap: 20px; }
+      .era { width: 192px; }
+      .era .plate { height: 272px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(180deg, rgba(26,36,68,.96), rgba(18,26,51,.96)); display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 18px 10px 14px; text-align: center; }
+      .era.lit .plate { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(226,185,85,.25), 0 10px 30px rgba(0,0,0,.4); }
+      .era .ring { width: 96px; height: 96px; font-size: 32px; }
+      .era .kicker { font-size: 13px; }
+      .era .title { font-family: var(--serif); font-size: 17px; line-height: 1.25; color: var(--ink); min-height: 2.5em; }
+      .era.dimcard .title { color: var(--dim); } .era.dimcard .kicker { color: var(--dim); }
+      .era .meta { font-size: 13px; color: var(--muted); } .era.dimcard .meta { color: var(--dim); }
+      .era .bar { width: 120px; height: 5px; border-radius: 3px; background: var(--line); margin-top: auto; overflow: hidden; }
+      .era .bar i { display: block; height: 100%; background: var(--teal); }
+      .era .dots { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px; border: 1px solid var(--line); border-radius: 10px; background: rgba(18,26,51,.6); }
+      .era .dots b { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #3f4f86; background: var(--ground); }
+      .era .dots b.on { background: var(--teal); border-color: var(--teal); }
+      .era.dimcard .dots b { border-color: #2a3350; }
+
+      /* scene 3: the first step */
+      #s3 .card { left: 520px; top: 120px; width: 880px; padding: 32px 40px 28px; }
+      #s3 h2 { font-family: var(--serif); font-size: 36px; letter-spacing: .04em; margin: 8px 0 10px; color: var(--ink); }
+      #s3 p { font-size: 19px; line-height: 1.5; color: var(--muted); max-width: 760px; }
+      .log { list-style: none; margin: 22px 0 0; }
+      .log li { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px dashed var(--line); font-size: 21px; color: var(--ink); opacity: .62; }
+      .log li .ico { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--dim); position: relative; flex: none; }
+      .log li .ico .ck { position: absolute; inset: -2px; border-radius: 50%; border: 2px solid var(--teal); background: rgba(47,191,154,.15); opacity: 0; display: grid; place-items: center; color: var(--teal); font-size: 16px; font-weight: 700; }
+      .log li .st { margin-left: auto; font-size: 15px; color: var(--dim); }
+      .log li .st.ok { color: var(--teal); opacity: 0; }
+      .gate { position: relative; margin-top: 22px; border: 1px solid var(--brass); border-radius: 12px; padding: 14px 18px; background: linear-gradient(180deg, rgba(176,141,87,.18), rgba(176,141,87,.06)); }
+      .gate .ghead { font-family: var(--serif); font-size: 15px; letter-spacing: .1em; color: var(--gold); text-transform: uppercase; }
+      .gate .gtext { font-size: 17px; margin-top: 6px; color: var(--ink); }
+      .gate .teal { position: absolute; inset: -1px; border-radius: 12px; border: 1px solid var(--teal); background: linear-gradient(180deg, rgba(47,191,154,.22), rgba(47,191,154,.05)); opacity: 0; }
+      .gate .pulse { position: absolute; inset: -1px; border-radius: 12px; box-shadow: 0 0 0 4px rgba(47,191,154,.18), 0 0 36px rgba(47,191,154,.55); opacity: 0; }
+      .gate .ghead.t { position: absolute; left: 18px; top: 14px; color: var(--teal); opacity: 0; }
+
+      /* scene 4: topic check */
+      #s4 .card { left: 460px; top: 150px; width: 1000px; padding: 30px 40px 28px; }
+      .q { margin-top: 10px; font-size: 15px; color: var(--muted); }
+      .qt { font-size: 26px; line-height: 1.4; color: var(--ink); margin-top: 6px; }
+      .ans { margin-top: 22px; min-height: 120px; border: 1px solid var(--line); border-radius: 10px; background: rgba(9,12,23,.55); padding: 16px 18px; font-size: 24px; line-height: 1.5; color: var(--ink); }
+      .ans .hl { position: relative; }
+      .ans .hl i { position: absolute; inset: -2px -4px; border-radius: 6px; background: rgba(226,185,85,.28); box-shadow: 0 0 0 1px rgba(226,185,85,.5); opacity: 0; }
+      .ans .hl span { position: relative; }
+      .caret { display: inline-block; width: 2px; height: 1.1em; background: var(--gold); vertical-align: -3px; margin-left: 2px; }
+      .verdict { margin-top: 18px; display: flex; align-items: center; gap: 14px; opacity: 0; }
+      .chip { display: inline-block; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--teal); color: var(--teal); font-size: 17px; letter-spacing: .02em; }
+      .chip.no { border-color: var(--ember); color: var(--ember); }
+      .verdict .why { font-size: 17px; color: var(--muted); }
+
+      /* scene 5: the gate checklist */
+      #s5 .card { left: 390px; top: 90px; width: 1140px; padding: 28px 40px 26px; }
+      .folder { margin-top: 12px; display: flex; align-items: center; gap: 12px; }
+      .folder .in { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font-size: 19px; color: var(--ink); background: rgba(9,12,23,.55); font-family: ui-monospace, Consolas, monospace; }
+      .folder .btn { padding: 10px 16px; border-radius: 8px; background: var(--gold); color: #1a1408; font-weight: 600; font-size: 16px; }
+      .rows { margin-top: 18px; }
+      .rows li { list-style: none; display: grid; grid-template-columns: 64px 1fr; gap: 10px 16px; align-items: start; padding: 10px 0; border-top: 1px dashed var(--line); opacity: 0; }
+      .rows .what { font-size: 22px; color: var(--ink); }
+      .rows .ev { font-size: 16px; color: var(--muted); margin-top: 3px; font-family: ui-monospace, Consolas, monospace; }
+      .rows .ev q { color: var(--ink); quotes: "“" "”"; }
+      .rows .ev .vf { color: var(--teal); font-family: var(--sans); margin-left: 8px; }
+      .rows li.no .what { color: var(--ink); } .rows li.no .note { color: var(--ember); font-size: 15px; margin-top: 3px; }
+      .result { margin-top: 16px; display: flex; align-items: center; gap: 14px; opacity: 0; }
+      .result .chip.no { font-size: 20px; padding: 6px 14px; }
+      .result .m { font-size: 17px; color: var(--muted); }
+
+      /* scene 6: helpers */
+      #s6 .plates { position: absolute; left: 0; right: 0; top: 330px; display: flex; justify-content: center; gap: 40px; }
+      .plate6 { width: 400px; height: 150px; display: grid; place-items: center; font-family: var(--serif); font-size: {{plate_size}}; letter-spacing: .04em; color: var(--gold); opacity: 0; }
+      #s6 .small { position: absolute; left: 0; right: 0; top: 540px; text-align: center; font-size: 19px; color: var(--muted); opacity: 0; }
+
+      /* scene 7: yours */
+      #s7 .lines { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-family: var(--serif); font-weight: 700; font-size: {{line_size}}; letter-spacing: .08em; color: var(--gold); line-height: 1.5; }
+      #s7 .lines div { opacity: 0; }
+
+      /* scene 8: address */
+      #s8 .emb { position: absolute; left: 820px; top: 240px; width: 280px; height: 324px; opacity: 0; }
+      #s8 .name { position: absolute; left: 0; right: 0; top: 590px; text-align: center; font-family: var(--serif); font-weight: 700; font-size: {{name_size}}; letter-spacing: .18em; color: var(--gold); opacity: 0; }
+      #s8 .addr { position: absolute; left: 0; right: 0; top: 680px; text-align: center; font-size: 36px; letter-spacing: .02em; color: var(--ink); opacity: 0; }
+      .al-mater { fill: rgba(18,26,51,.9); stroke: none; }
+      .al-ring { fill: none; stroke: #e2b955; stroke-width: 1.6; } .al-ring.thin { stroke-width: .8; stroke: #b08d57; }
+      .al-tick { stroke: #b08d57; stroke-width: 1; } .al-tick.long { stroke: #e2b955; stroke-width: 1.6; }
+      .al-ecliptic { fill: none; stroke: #b08d57; stroke-width: .9; opacity: .8; }
+      .al-star { fill: #f3d27a; } .al-rete-arc { fill: none; stroke: #e2b955; stroke-width: 1.2; }
+      .al-rule { stroke: #f3d27a; stroke-width: 1.6; } .al-rule-tip { fill: #f3d27a; } .al-pin { fill: #e2b955; } .al-throne { fill: none; stroke: #e2b955; stroke-width: 1.6; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45" data-width="1920" data-height="1080" data-fps="30">
+      <canvas id="sky" class="clip" data-start="0" data-duration="45" data-track-index="0" data-layout-allow-overflow width="1920" height="1080"></canvas>
+      <div id="glow" class="clip" data-start="0" data-duration="45" data-track-index="1"></div>
+
+      <!-- Scene 1: alone -->
+      <section id="s1" class="scene clip" data-start="__S1_START__" data-duration="__S1_DUR__" data-track-index="2">
+        <div class="cap center">{{cap1}}</div>
+      </section>
+
+      <!-- Scene 2: the map of eras (web/src/eras.tsx spines) -->
+      <section id="s2" class="scene clip" data-start="__S2_START__" data-duration="__S2_DUR__" data-track-index="2">
+        <div class="row" id="eras"></div>
+        <div class="cap">{{cap2}}</div>
+      </section>
+
+      <!-- Scene 3: the first step (WorkstationLog + the free gate) -->
+      <section id="s3" class="scene clip" data-start="__S3_START__" data-duration="__S3_DUR__" data-track-index="2">
+        <div class="card">
+          <div class="kicker">{{s3_kicker}}</div>
+          <h2>{{s3_h}}</h2>
+          <p>{{s3_p}}</p>
+          <ul class="log">
+{{log_html}}
+          </ul>
+          <div class="gate">
+            <div class="teal"></div><div class="pulse"></div>
+            <div class="ghead">{{gate_open}}</div>
+            <div class="ghead t">✓ {{gate_open}}</div>
+            <div class="gtext">{{gate_text}}</div>
+          </div>
+        </div>
+        <div class="cap">{{cap3}}</div>
+      </section>
+
+      <!-- Scene 4: topic check (CheckFlow) -->
+      <section id="s4" class="scene clip" data-start="__S4_START__" data-duration="__S4_DUR__" data-track-index="2">
+        <div class="card">
+          <div class="kicker">{{s4_kicker}}</div>
+          <div class="q">{{s4_q}}</div>
+          <div class="qt">{{s4_qt}}</div>
+          <div class="ans"><span id="typed"></span><span class="caret" id="caret"></span></div>
+          <div class="verdict" id="verdict"><span class="chip">{{accepted}}</span><span class="why">{{why}}</span></div>
+        </div>
+        <div class="cap">{{cap4}}</div>
+      </section>
+
+      <!-- Scene 5: the era gate (ExamCard, fixtures/exam-g0-demo) -->
+      <section id="s5" class="scene clip" data-start="__S5_START__" data-duration="__S5_DUR__" data-track-index="2">
+        <div class="card">
+          <div class="kicker">{{s5_kicker}}</div>
+          <div class="folder"><div class="in">{{folder}}</div><div class="btn">{{submit}}</div></div>
+          <ul class="rows" id="rows">
+{{rows_html}}
+          </ul>
+          <div class="result" id="result"><span class="chip no">{{not_passed}}</span><span class="m">{{result_m}}</span></div>
+        </div>
+        <div class="cap">{{cap5}}</div>
+      </section>
+
+      <!-- Scene 6: the helper you already have (README, Agents) -->
+      <section id="s6" class="scene clip" data-start="__S6_START__" data-duration="__S6_DUR__" data-track-index="2">
+        <div class="plates">
+          <div class="card plate6" style="position:static">Claude Code</div>
+          <div class="card plate6" style="position:static">Codex CLI</div>
+          <div class="card plate6" style="position:static">Gemini CLI</div>
+        </div>
+        <div class="small">{{small}}</div>
+        <div class="cap">{{cap6}}</div>
+      </section>
+
+      <!-- Scene 7: yours -->
+      <section id="s7" class="scene clip" data-start="__S7_START__" data-duration="__S7_DUR__" data-track-index="2">
+        <div class="lines">{{lines_html}}</div>
+        <div class="cap">{{cap7}}</div>
+      </section>
+
+      <!-- Scene 8: the address (emblem from web/src/App.tsx) -->
+      <section id="s8" class="scene clip" data-start="__S8_START__" data-duration="__S8_DUR__" data-track-index="2">
+        <svg class="emb" viewBox="-50 -58 100 116" aria-hidden="true">
+          <circle cx="0" cy="-52" r="5" class="al-throne" /><line x1="0" y1="-47" x2="0" y2="-44" class="al-throne" />
+          <circle cx="0" cy="0" r="44" class="al-mater" /><circle cx="0" cy="0" r="44" class="al-ring" /><circle cx="0" cy="0" r="37" class="al-ring thin" />
+          <g id="ticks"></g>
+          <g class="al-rete"><circle cx="0" cy="0" r="30" class="al-ring thin" /><circle cx="8" cy="-6" r="21" class="al-ecliptic" /><g id="stars"></g><path d="M -30 0 A 30 30 0 0 1 0 -30" class="al-rete-arc" /></g>
+          <g class="al-alidade"><line x1="-41" y1="0" x2="41" y2="0" class="al-rule" /><path d="M 41 0 l -6 -3 v 6 z M -41 0 l 6 -3 v 6 z" class="al-rule-tip" /></g>
+          <circle cx="0" cy="0" r="3.2" class="al-pin" />
+        </svg>
+        <div class="name">{{name}}</div>
+        <div class="addr">github.com/criocore/astrolab</div>
+      </section>
+
+      <!-- Audio: bundled track (ende.app, license unverified) and sparse SFX (Kenney, CC0) -->
+      <audio id="bg-music" class="clip" data-start="0" data-duration="45" data-track-index="10" data-volume="0.32" data-fade-in="1" data-fade-out="2.5" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"></audio>
+{{audio_sfx}}
+    </div>
+
+    <script>
+{{timing_js}}
+      // ---------- static DOM built once (deterministic)
+      const erasEl = document.getElementById('eras');
+      if (erasEl) erasEl.innerHTML = ERAS.map(([n, t, h, dots, lit, on]) => `
+        <div class="era ${on ? 'lit' : 'dimcard'}">
+          <div class="plate"><div class="ring">${n}</div><div class="kicker">{{era_kicker}} ${n}</div><div class="title">${t}</div><div class="meta">${h} · ${lit}/${dots} {{topics}}</div><div class="bar"><i style="width:${Math.round(lit / dots * 100)}%"></i></div></div>
+          <div class="dots">${Array.from({ length: dots }, (_, i) => `<b class="${i < lit ? 'on' : ''}"></b>`).join('')}</div>
+        </div>`).join('');
+      // emblem ticks and stars (same geometry as the app header)
+      const ticksEl = document.getElementById('ticks'), starsEl = document.getElementById('stars');
+      if (ticksEl) ticksEl.innerHTML = Array.from({ length: 36 }, (_, i) => { const a = (i * 10) * Math.PI / 180; const long = i % 9 === 0; const r1 = long ? 38 : 40.5; return `<line x1="${Math.cos(a) * r1}" y1="${Math.sin(a) * r1}" x2="${Math.cos(a) * 43.5}" y2="${Math.sin(a) * 43.5}" class="al-tick ${long ? 'long' : ''}"/>`; }).join('');
+      if (starsEl) starsEl.innerHTML = [[-28, -6], [-10, -30], [18, -22], [30, 8], [6, 30], [-20, 22]].map(([x, y]) => `<path d="M ${x} ${y - 3.2} l 1.2 2 2 1.2 -2 1.2 -1.2 2 -1.2 -2 -2 -1.2 2 -1.2 z" class="al-star"/>`).join('');
+      // typed answer: plain text first, highlighted span wrapped after the verdict
+
+      // ---------- sky: a pure function of time (seek-safe). Mirrors web/src/sky.tsx: seeded stars on a tile, slow drift, faint constellation lines.
+      function mulberry32(a) { return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      const TW = 2400, TH = 1500;
+      const tile = document.createElement('canvas'); tile.width = TW; tile.height = TH;
+      (() => {
+        const c = tile.getContext('2d'); const rnd = mulberry32(20261022); const tints = ['#cfd8ff', '#e8edff', '#ffe9c4', '#ffffff', '#b9c6f2'];
+        for (let i = 0; i < 1900; i++) { const mag = Math.pow(rnd(), 3); const x = rnd() * TW, y = rnd() * TH; const r = 0.5 + mag * 2.0; c.globalAlpha = 0.08 + mag * 0.6; c.fillStyle = tints[Math.floor(rnd() * 5)]; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill(); }
+        // three constellations (figures from the app: Orion-like, Gemini-like, a small cup) on the tile
+        const figs = [
+          { cx: 520, cy: 420, s: 420, pts: [[.2, .1], [.8, .15], [.3, .5], [.5, .55], [.7, .5], [.15, .95], [.85, .9]], segs: [[0, 2], [1, 4], [2, 3], [3, 4], [2, 5], [4, 6]] },
+          { cx: 1700, cy: 900, s: 380, pts: [[.1, .1], [.35, .05], [.2, .45], [.45, .4], [.25, .9], [.5, .85], [.85, .3], [.9, .7]], segs: [[0, 2], [1, 3], [2, 4], [3, 5], [2, 3], [3, 6], [6, 7]] },
+          { cx: 1250, cy: 300, s: 260, pts: [[.1, .2], [.5, .05], [.9, .25], [.7, .7], [.3, .75]], segs: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0]] },
+        ];
+        c.globalAlpha = 1;
+        for (const f of figs) {
+          const P = f.pts.map(([x, y]) => [f.cx + (x - .5) * f.s, f.cy + (y - .5) * f.s]);
+          c.strokeStyle = 'rgba(170,190,255,0.16)'; c.lineWidth = 1;
+          for (const [a, b] of f.segs) { c.beginPath(); c.moveTo(P[a][0], P[a][1]); c.lineTo(P[b][0], P[b][1]); c.stroke(); }
+          for (const [x, y] of P) { c.fillStyle = '#e8edff'; c.globalAlpha = .85; c.beginPath(); c.arc(x, y, 2.4, 0, Math.PI * 2); c.fill(); c.globalAlpha = .25; c.beginPath(); c.arc(x, y, 6, 0, Math.PI * 2); c.fill(); }
+          c.globalAlpha = 1;
+        }
+      })();
+      const sky = document.getElementById('sky').getContext('2d');
+      const glowEl = document.getElementById('glow');
+      const skyState = { t: 0 };
+      function drawSky() {
+        const t = skyState.t; const ox = (t * 14) % TW, oy = (t * 9) % TH; // slow drift down-right, wraps
+        sky.clearRect(0, 0, 1920, 1080);
+        for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) sky.drawImage(tile, -ox + dx * TW, -oy + dy * TH);
+        // beat-driven glow: the only audio-coupled visual, subtle, never on text
+        let g = 0; for (const b of BEATS) { const d = (t - b) / 0.22; if (d > -4 && d < 4) g += Math.exp(-d * d); }
+        glowEl.style.opacity = (0.05 + Math.min(0.09, 0.08 * g)).toFixed(3);
+      }
+      drawSky();
+
+      // ---------- timeline (paused; the runtime seeks it)
+      gsap.config({ nullTargetWarn: false });
+      const tl = gsap.timeline({ paused: true });
+      tl.to(skyState, { t: 45, duration: 45, ease: 'none', onUpdate: drawSky }, 0);
+
+      const IN = 0.4, OUT = 0.4;
+      function scene(i, start, end, holdLast = false) {
+        const el = document.getElementById('s' + i);
+        if (!el) return;
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: IN, ease: 'power2.out' }, start);
+        if (!holdLast) tl.to(el, { opacity: 0, duration: OUT, ease: 'power2.in' }, end - OUT);
+        // caption: in shortly after the scene, out with the scene
+        const cap = el.querySelector('.cap');
+        if (cap) tl.fromTo(cap, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, start + (i === 1 ? 0.6 : 0.3));
+      }
+      for (let i = 1; i <= 8; i++) scene(i, B[i - 1], B[i], i === 8);
+
+      // Scene 2: cards one per beat (accents only, titles hold afterwards)
+      document.querySelectorAll('#s2 .era').forEach((el, i) => tl.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, M.s2_cards[i] - 0.05)); // beat-grid
+      // Scene 3: four check marks every other beat, then the gate turns teal and pulses
+      document.querySelectorAll('#s3 .log li').forEach((li, i) => {
+        const t = M.s3_checks[i]; // beat-grid
+        tl.fromTo(li.querySelector('.ck'), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(2)' }, t);
+        tl.to(li.querySelector('.st:not(.ok)'), { opacity: 0, duration: 0.2 }, t);
+        tl.to(li.querySelector('.st.ok'), { opacity: 1, duration: 0.3 }, t + 0.05);
+        tl.to(li, { opacity: 1, duration: 0.3 }, t);
+      });
+      tl.to('#s3 .gate .teal', { opacity: 1, duration: 0.5 }, M.s3_gate); // beat-locked
+      tl.to('#s3 .gate .ghead:not(.t)', { opacity: 0, duration: 0.3 }, M.s3_gate);
+      tl.to('#s3 .gate .ghead.t', { opacity: 1, duration: 0.3 }, M.s3_gate);
+      tl.fromTo('#s3 .gate .pulse', { opacity: 0 }, { opacity: 0.9, duration: 1.1, ease: 'sine.inOut', yoyo: true, repeat: 3 }, M.s3_gate);
+      // Scene 4: typed answer, then the verdict and the highlight
+      // Typed answer and highlight are both pure functions of two state values, so any seek renders the right frame.
+      const typed = document.getElementById('typed'); const caret = document.getElementById('caret');
+      const typeState = { n: 0 }; const hlState = { o: 0 };
+      function renderTyped() {
+        if (!typed) return;
+        const n = Math.max(0, Math.min(ANSWER.length, Math.round(typeState.n)));
+        if (n >= ANSWER.length) {
+          const i = ANSWER.indexOf(HL);
+          typed.innerHTML = ANSWER.slice(0, i) + '<span class="hl"><i id="hlbg" style="opacity:' + hlState.o.toFixed(3) + '"></i><span>' + HL + '</span></span>' + ANSWER.slice(i + HL.length);
+        } else typed.textContent = ANSWER.slice(0, n);
+      }
+      tl.set(typeState, { n: 0, onUpdate: renderTyped }, B[3]); // reset at scene start
+      tl.fromTo(typeState, { n: 0 }, { n: ANSWER.length, duration: M.s4_type_dur, ease: 'none', onUpdate: renderTyped }, M.s4_type_start);
+      if (caret) tl.to(caret, { opacity: 0, duration: 0.2 }, M.s4_type_start + M.s4_type_dur + 0.2);
+      tl.fromTo('#verdict', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, M.s4_accept); // beat-locked
+      tl.fromTo(hlState, { o: 0 }, { o: 1, duration: 0.5, ease: 'none', onUpdate: renderTyped }, M.s4_accept + 0.15);
+      // Scene 5: rows every other beat, red one last, then the result
+      document.querySelectorAll('#s5 .rows li').forEach((li, i) => tl.fromTo(li, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, M.s5_rows[i])); // beat-grid
+      tl.fromTo('#result', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, M.s5_verdict); // beat-locked
+      // Scene 6: plates on beats, then the small print
+      document.querySelectorAll('#s6 .plate6').forEach((el, i) => tl.fromTo(el, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, M.s6_plates[i])); // beat-grid
+      tl.fromTo('#s6 .small', { opacity: 0 }, { opacity: 1, duration: 0.5 }, M.s6_small);
+      // Scene 7: three lines on beats
+      document.querySelectorAll('#s7 .lines div').forEach((el, i) => tl.fromTo(el, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, M.s7_lines[i])); // beat-grid
+      // Scene 8: emblem lands, name, address
+      tl.fromTo('#s8 .emb', { opacity: 0, scale: 0.82 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out' }, M.s8_emblem); // beat-locked
+      tl.fromTo('#s8 .name', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, M.s8_name);
+      tl.fromTo('#s8 .addr', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, M.s8_addr);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

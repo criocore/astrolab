@@ -1,0 +1,122 @@
+{
+ "id": "diagnostic-analytics",
+ "area": "R11",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R11.B",
+ "order": 3,
+ "title": {
+  "ru": "Диагностическая аналитика: почему метрика изменилась",
+  "en": "Diagnostic analytics: why a metric changed"
+ },
+ "goal": {
+  "ru": "Раскладывать изменение общей метрики на причины и не попадаться на ловушки агрегатов.",
+  "en": "Break a change in an overall metric into causes and avoid aggregate traps."
+ },
+ "criteria": {
+  "ru": [
+   "Разложить изменение общей метрики на эффект состава (доли сегментов) и эффект ставок внутри сегментов.",
+   "Узнать парадокс Симпсона (сегменты растут, общее падает) и выбрать уровень, который отвечает на вопрос.",
+   "Посчитать метрику по сегментам в pandas через groupby и сравнить два периода.",
+   "Прежде чем искать причину, проверить, что изменение больше обычного шума."
+  ],
+  "en": [
+   "Split a change in an overall metric into a mix effect (segment shares) and a rate effect inside segments.",
+   "Recognise Simpson's paradox (segments improve, the total falls) and pick the level that answers the question.",
+   "Compute a metric by segment in pandas with groupby and compare two periods.",
+   "Before looking for a cause, check that the change exceeds ordinary noise."
+  ]
+ },
+ "materials": [
+  {
+   "id": "da-spotify-simpson",
+   "title": "Simpson's Paradox (Spotify Confidence glossary)",
+   "url": "https://confidence.spotify.com/glossary/simpsons-paradox",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor glossary, link only",
+   "closes": {
+    "ru": "Сегменты улучшились, а общая доля упала из-за сдвига состава; какой уровень выбрать (критерий 2). Итоговую цифру в примере пересчитайте сами.",
+    "en": "Segments improved while the overall rate fell because of a mix shift; which level to pick (criterion 2). Recompute the example's overall figure yourself."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "da-armstrong-mix-effects",
+   "title": "Visualizing Statistical Mix Effects and Simpson's Paradox (Armstrong, Wattenberg)",
+   "url": "https://research.google/pubs/visualizing-statistical-mix-effects-and-simpsons-paradox/",
+   "kind": "understand",
+   "type": "paper",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "research paper page, link only",
+   "closes": {
+    "ru": "Эффект состава в агрегатах и как его показывают на графике (критерии 1, 2).",
+    "en": "Mix effects in aggregates and how to show them in a chart (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "da-pandas-groupby",
+   "title": "10 minutes to pandas (Grouping)",
+   "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "Раздел Grouping: groupby и агрегаты по сегментам (критерий 3). Повтор из уровня A, нужен только этот раздел.",
+    "en": "The Grouping section: groupby and per-segment aggregates (criterion 3). A repeat from level A, only that section is needed."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "da-own-decomposition",
+   "title": {
+    "ru": "Разложение на состав и ставки",
+    "en": "Decomposing into mix and rate"
+   },
+   "kind": "do",
+   "minutes": 20,
+   "criteria": [
+    1,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите таблицу с двумя периодами и сегментом (канал, платформа, страна). Для каждого сегмента посчитайте долю в трафике и ставку метрики в обоих периодах. Общая метрика равна сумме «доля умножить на ставка». Изменение примерно складывается из вклада сдвига долей при прежних ставках и вклада изменения ставок при прежних долях; остаток мал, если разложение сделано аккуратно.\n\nДо этого разложения проверьте, что изменение вообще больше обычных колебаний: сравните его с разбросом той же метрики за предыдущие периоды или постройте доверительный интервал. Если интервал накрывает ноль, объяснять нечего.\n\nНапишите по итогам одну фразу: что изменилось в составе, что в ставках, и что вы решаете делать. То же упражнение пригодится при сравнении двух моделей по типам вопросов.",
+    "en": "Take a table with two periods and a segment (channel, platform, country). For each segment compute the share of traffic and the metric rate in both periods. The overall metric is the sum of share times rate. The change roughly splits into the contribution of the shift in shares at the old rates and the contribution of the change in rates at the old shares; the remainder is small if the decomposition is done carefully.\n\nBefore this decomposition, check that the change exceeds ordinary fluctuation: compare it with the spread of the same metric over earlier periods or build a confidence interval. If the interval covers zero, there is nothing to explain.\n\nWrite one sentence at the end: what changed in the mix, what in the rates, and what you decide to do. The same exercise helps when comparing two models by question type."
+   }
+  }
+ ],
+ "minutes_total": 85
+}

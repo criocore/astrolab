@@ -1,0 +1,94 @@
+{
+  "id": "model-types-weights",
+  "grade": "G3",
+  "order": 3,
+  "title": {
+    "ru": "Типы моделей: открытые и закрытые веса",
+    "en": "Model types: open and closed weights"
+  },
+  "goal": {
+    "ru": "Различать виды моделей и их условия использования, чтобы осознанно выбирать между ними.",
+    "en": "Tell model kinds and their usage terms apart so you can choose between them deliberately."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить разницу между закрытой моделью, моделью с открытыми весами и открытым исходным кодом по определению OSI; привести пример каждой категории.",
+      "Отличить базовую модель от инструктивной по имени и по наличию шаблона чата; сказать, когда нужна какая.",
+      "Найти лицензию модели в карточке на Hub и сказать, чем Apache-2.0 отличается от лицензий сообщества (Llama, Gemma) для коммерческого использования."
+    ],
+    "en": [
+      "Explain the difference between a closed model, an open-weights model and open source under the OSI definition; give an example of each.",
+      "Tell a base model from an instruct model by name and by the presence of a chat template; say when each is needed.",
+      "Find a model's license in its Hub card and say how Apache-2.0 differs from community licenses (Llama, Gemma) for commercial use."
+    ]
+  },
+  "materials": [
+    {
+      "id": "mt-osi-definition",
+      "title": "The Open Source AI Definition 1.0 (OSI)",
+      "url": "https://opensource.org/ai/open-source-ai-definition",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "OSI published text, free to read",
+      "closes": {
+        "ru": "Что должно быть открыто (веса, код, сведения о данных), чтобы ИИ считался open source; отсюда граница с open weights (критерий 1).",
+        "en": "What must be open (weights, code, data information) for AI to count as open source; hence the line to open weights (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "mt-smol-chat-templates",
+      "title": "Chat Templates: base vs instruct models (smol course, Hugging Face)",
+      "url": "https://huggingface.co/learn/smol-course/unit1/2",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free to read; check repo license before reuse",
+      "closes": {
+        "ru": "Базовая и инструктивная модель, шаблон чата, запуск кода с transformers (критерий 2).",
+        "en": "Base vs instruct model, the chat template, runnable transformers code (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "mt-hf-licenses",
+      "title": "Licenses (Hugging Face Hub docs)",
+      "url": "https://huggingface.co/docs/hub/repositories-licenses",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Как лицензия записана в карточке и какие бывают: Apache-2.0, MIT, Llama, Gemma, OpenRAIL (критерий 3).",
+        "en": "How a license is declared in the card and which exist: Apache-2.0, MIT, Llama, Gemma, OpenRAIL (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 65
+}

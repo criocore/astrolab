@@ -1,0 +1,120 @@
+{
+  "id": "tests-as-check",
+  "grade": "G1",
+  "order": 9,
+  "title": {
+    "ru": "Тесты как проверка агента",
+    "en": "Tests as the agent's check"
+  },
+  "goal": {
+    "ru": "Строить цикл «тест, агент, зелёный» и понимать, почему агент без проверки сообщает о готовности по виду.",
+    "en": "Build a test, agent, green loop and understand why an agent without a check reports 'done' by appearance."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, почему без проверки агент останавливается, когда работа «выглядит готовой», и даю ему проверку, которую он запускает сам (тесты, сборка, линтер).",
+      "Провожу цикл red/green: сначала падающий тест, затем агент до зелёного, и требую показать вывод тестов, а не заявление об успехе.",
+      "Начинаю сессию с запуска существующих тестов, чтобы агент знал базовую линию.",
+      "Проверяю функцию сквозным запуском, а не только юнит-тестами, и веду журнал ошибок агента: где соврал о готовности, что поймал тест."
+    ],
+    "en": [
+      "I explain why an agent without a check stops when the work 'looks done', and give it a check it runs itself (tests, build, linter).",
+      "I run the red/green loop: a failing test first, then the agent until green, and demand test output instead of a claim of success.",
+      "I start a session by running the existing tests so the agent knows the baseline.",
+      "I verify a feature with an end-to-end run, not only unit tests, and keep a log of agent mistakes: where it lied about being done, what the test caught."
+    ]
+  },
+  "materials": [
+    {
+      "id": "cc-best-practices-verify",
+      "title": "Best practices for Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Раздел Give Claude a way to verify its work: проверка, критерии, /goal и Stop-хук, доказательства вместо заявлений (критерии 1, 2).",
+        "en": "The Give Claude a way to verify its work section: the check, criteria, /goal and Stop hook, evidence over claims (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "tc-red-green",
+      "title": "Red/green TDD (Agentic Engineering Patterns, Simon Willison)",
+      "url": "https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/",
+      "kind": "do",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog by Simon Willison, free to read",
+      "closes": {
+        "ru": "Готовый шаблон промпта red/green TDD для агента, который можно прогнать на своём проекте (критерий 2).",
+        "en": "A ready red/green TDD prompt pattern you can run on your own project (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "tc-first-run",
+      "title": "First run the tests (Agentic Engineering Patterns, Simon Willison)",
+      "url": "https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog by Simon Willison, free to read",
+      "closes": {
+        "ru": "Старт сессии с запуска тестов как базовая линия и привычка к тестам у агента (критерий 3).",
+        "en": "Starting a session by running the tests as a baseline and a testing habit for the agent (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "tc-harnesses",
+      "title": "Effective harnesses for long-running agents (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-11",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Anthropic blog, free to read",
+      "closes": {
+        "ru": "Агенты объявляют фичи готовыми без сквозной проверки; список фич, журнал прогресса, git-история, e2e-тесты (критерии 1, 4).",
+        "en": "Agents mark features done without end-to-end checks; feature list, progress log, git history, e2e tests (criteria 1, 4)."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 60
+}

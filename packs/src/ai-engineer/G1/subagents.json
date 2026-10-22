@@ -1,0 +1,145 @@
+{
+  "id": "subagents",
+  "grade": "G1",
+  "order": 6,
+  "title": {
+    "ru": "Сабагенты",
+    "en": "Subagents"
+  },
+  "goal": {
+    "ru": "Понимать, зачем нужны сабагенты, уметь описать своего и делегировать ему работу, в том числе параллельно.",
+    "en": "Understand why subagents exist, define your own and delegate work to it, including in parallel."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, зачем сабагент (отдельное окно контекста, возвращается сводка) и когда лучше остаться в основной беседе.",
+      "Описываю сабагента в .claude/agents (name, description, tools, model) и вызываю явно.",
+      "Делегирую исследование или ревью сабагенту, запускаю несколько параллельно и учитываю лимиты и расход токенов.",
+      "Использую ревьюера в свежем контексте как независимую проверку работы агента."
+    ],
+    "en": [
+      "I explain why a subagent (separate context window, a summary comes back) and when to stay in the main conversation.",
+      "I define a subagent in .claude/agents (name, description, tools, model) and call it explicitly.",
+      "I delegate research or review to a subagent, run several in parallel and account for limits and token cost.",
+      "I use a reviewer in a fresh context as an independent check of the agent's work."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sa-docs",
+      "title": "Subagents in Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Зачем, как определять, делегирование, параллельность, изоляция контекста (критерии 1, 2, 3).",
+        "en": "Why, how to define, delegation, parallelism, context isolation (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "sa-willison",
+      "title": "Subagents (Agentic Engineering Patterns, Simon Willison)",
+      "url": "https://simonwillison.net/guides/agentic-engineering-patterns/subagents/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog by Simon Willison, free to read",
+      "closes": {
+        "ru": "Короткое объяснение: ограниченная рабочая память агента, Explore, параллельность, роли (критерии 1, 3).",
+        "en": "A short explanation: limited agent working memory, Explore, parallelism, roles (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "sa-course",
+      "title": "Introduction to subagents (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/introduction-to-subagents",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free Anthropic Academy course, account required",
+      "closes": {
+        "ru": "Создание сабагента через /agents и проектирование эффективных сабагентов (критерии 1, 2, 3).",
+        "en": "Creating a subagent with /agents and designing effective subagents (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "cc-best-practices-sub",
+      "title": "Best practices for Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Раздел Add an adversarial review step: ревьюер в свежем контексте проверяет diff по плану (критерий 4).",
+        "en": "The Add an adversarial review step section: a fresh-context reviewer checks the diff against the plan (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "sa-codex-subagents",
+      "title": "Codex CLI: subagents (OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "Apache-2.0 (openai/codex repo); docs free to read",
+      "closes": {
+        "ru": "Codex запускает субагентов только по просьбе, результат возвращается в основную сессию: отличие от Claude Code как урок (критерий 1).",
+        "en": "Codex starts subagents only when asked and findings return to the main session: the difference from Claude Code is the lesson (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 120
+}

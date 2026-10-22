@@ -1,0 +1,99 @@
+{
+ "id": "reverse-proxy-tls",
+ "area": "R6",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R6.B",
+ "order": 2,
+ "title": {
+  "ru": "Reverse proxy, TLS, домены, деплой на VPS",
+  "en": "Reverse proxy, TLS, domains, deploying to a VPS"
+ },
+ "goal": {
+  "ru": "Опубликовать контейнерное приложение на VPS за reverse proxy с автоматическим HTTPS на своём домене.",
+  "en": "Publish a containerized app on a VPS behind a reverse proxy with automatic HTTPS on your own domain."
+ },
+ "criteria": {
+  "ru": [
+   "Я настраиваю reverse proxy, который по домену отправляет запросы в контейнер приложения.",
+   "Я объясняю, как выдаётся и продлевается сертификат Let's Encrypt и зачем нужны порты 80 и 443.",
+   "Я показываю приложение, доступное по HTTPS на домене, с редиректом с HTTP."
+  ],
+  "en": [
+   "I configure a reverse proxy that routes a domain to the app container.",
+   "I explain how a Let's Encrypt certificate is issued and renewed and why ports 80 and 443 matter.",
+   "I show the app reachable over HTTPS on a domain with an HTTP redirect."
+  ]
+ },
+ "materials": [
+  {
+   "id": "rp-caddy-qs",
+   "title": "Reverse proxy quick-start (Caddy docs)",
+   "url": "https://caddyserver.com/docs/quick-starts/reverse-proxy",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: прокси к приложению (критерии 1, 3).",
+    "en": "Hands-on: proxy to an app (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "rp-caddy-https",
+   "title": "Automatic HTTPS (Caddy docs)",
+   "url": "https://caddyserver.com/docs/automatic-https",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Автосертификаты, ACME-проверки, порты (критерии 2, 3).",
+    "en": "Auto certificates, ACME challenges, ports (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "rp-le-how",
+   "title": "How It Works (Let's Encrypt)",
+   "url": "https://letsencrypt.org/how-it-works/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-08",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Проверка домена и выдача сертификата (критерий 2).",
+    "en": "Domain validation and issuance (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "minutes_total": 60
+}

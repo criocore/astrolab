@@ -1,0 +1,98 @@
+{
+  "id": "responsible-use",
+  "grade": "G5",
+  "order": 10,
+  "title": {
+    "ru": "Этика и ответственное использование",
+    "en": "Ethics and responsible use"
+  },
+  "goal": {
+    "ru": "Знать политики вендоров и рамки управления рисками и описывать границы применения своего продукта.",
+    "en": "Know vendor policies and risk-management frameworks, and state the boundaries of your own product."
+  },
+  "criteria": {
+    "ru": [
+      "Нахожу в политике вендора запрещённые применения и требования к высокорисковым областям.",
+      "Объясняю, когда нужно раскрывать участие ИИ и привлекать проверку человеком, и как указывать ИИ как источник.",
+      "Применяю функции NIST AI RMF (Govern, Map, Measure, Manage) к своему проекту: по одному действию на функцию.",
+      "Пишу абзац о границах применения своего продукта: что он делает, чего не делает и где нужен человек."
+    ],
+    "en": [
+      "I find prohibited uses and high-risk requirements in a vendor policy.",
+      "I explain when AI involvement must be disclosed and human review added, and how to credit AI as a source.",
+      "I apply the NIST AI RMF functions (Govern, Map, Measure, Manage) to my own project: one action per function.",
+      "I write a paragraph on the boundaries of my product: what it does, what it does not, and where a human is needed."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ru-anthropic-aup",
+      "title": "Usage Policy (Anthropic)",
+      "url": "https://www.anthropic.com/legal/aup",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor policy, free to read",
+      "closes": {
+        "ru": "Универсальные запреты, требования к высокорисковым областям (проверка человеком, уведомление об ИИ) (критерии 1, 2). Страница показывает дату вступления в силу 12.11.2026.",
+        "en": "Universal prohibitions, high-risk requirements (human review, AI disclosure) (criteria 1, 2). The page shows an effective date of 2026-11-12."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ru-nist-airmf",
+      "title": "AI Risk Management Framework (NIST)",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "US government publication, public",
+      "closes": {
+        "ru": "Обзор рамки и ссылки на Playbook и профиль для генеративного ИИ NIST-AI-600-1 (критерий 3).",
+        "en": "Overview of the framework with links to the Playbook and the Generative AI Profile NIST-AI-600-1 (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "ru-nist-playbook",
+      "title": "NIST AI RMF Playbook",
+      "url": "https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "US government publication, public",
+      "closes": {
+        "ru": "Предлагаемые действия по Govern, Map, Measure, Manage; взять по одному на свой проект и записать границы применения (критерии 3, 4).",
+        "en": "Suggested actions for Govern, Map, Measure, Manage; pick one each for your project and record its boundaries (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 80
+}

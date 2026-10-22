@@ -1,0 +1,145 @@
+{
+ "id": "scanning-sbom",
+ "area": "R8",
+ "level": "B",
+ "to_grade": "G5",
+ "grade": "R8.B",
+ "order": 3,
+ "title": {
+  "ru": "Сканирование образов, SBOM (Syft), автопатчи",
+  "en": "Image scanning, SBOM with Syft, automated patches"
+ },
+ "goal": {
+  "ru": "Видеть уязвимости в зависимостях и образах и закрывать их по процессу.",
+  "en": "See vulnerabilities in dependencies and images and close them through a process."
+ },
+ "criteria": {
+  "ru": [
+   "Сканирую образ или каталог Trivy или Grype и читаю серьёзность и версию с исправлением.",
+   "Создаю SBOM (Syft) и сканирую уже его (Grype или Trivy).",
+   "Объясняю, что такое SBOM и VEX и зачем они.",
+   "Включаю автоматические PR на обновления (Dependabot) и знаю разницу между version и security updates."
+  ],
+  "en": [
+   "I scan an image or directory with Trivy or Grype and read severity and the fixed version.",
+   "I generate an SBOM with Syft and scan the SBOM itself (Grype or Trivy).",
+   "I explain what SBOM and VEX are and why they matter.",
+   "I enable automated update PRs (Dependabot) and know version vs security updates."
+  ]
+ },
+ "materials": [
+  {
+   "id": "sb-trivy",
+   "title": "Trivy documentation",
+   "url": "https://trivy.dev/latest/docs/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Trivy), vendor docs, free to read",
+   "closes": {
+    "ru": "Цели сканирования (образы, ФС, репозитории, SBOM) и сканеры; пройти быстрый старт по образу (критерии 1, 2).",
+    "en": "Scan targets (images, filesystems, repositories, SBOM) and scanners; follow the quick start on an image (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "sb-syft",
+   "title": "Syft (Anchore)",
+   "url": "https://github.com/anchore/syft",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0",
+   "closes": {
+    "ru": "Сгенерировать SBOM из образа или каталога: syft <image> -o cyclonedx-json или spdx-json (критерий 2).",
+    "en": "Generate an SBOM from an image or directory: syft <image> -o cyclonedx-json or spdx-json (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sb-grype",
+   "title": "Grype (Anchore)",
+   "url": "https://github.com/anchore/grype",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0",
+   "closes": {
+    "ru": "grype sbom:./sbom.json: сканирование SBOM, сделанного Syft (критерии 1, 2).",
+    "en": "grype sbom:./sbom.json: scanning an SBOM produced by Syft (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "sb-cisa-sbom",
+   "title": "Software Bill of Materials (CISA)",
+   "url": "https://www.cisa.gov/sbom",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "public US government page",
+   "closes": {
+    "ru": "Что такое SBOM и VEX (критерий 3).",
+    "en": "What SBOM and VEX are (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "sb-dependabot",
+   "title": "About Dependabot version updates (GitHub docs)",
+   "url": "https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "dependabot.yml, version и security updates (критерий 4).",
+    "en": "dependabot.yml, version and security updates (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 125
+}

@@ -1,0 +1,117 @@
+{
+  "id": "local-models",
+  "grade": "G3",
+  "order": 5,
+  "title": {
+    "ru": "Локальные модели",
+    "en": "Local models"
+  },
+  "goal": {
+    "ru": "Запустить модель у себя и понимать, что даёт и чего стоит квантизация.",
+    "en": "Run a model locally and understand what quantization gives and costs."
+  },
+  "criteria": {
+    "ru": [
+      "Запустить модель в Ollama или LM Studio и вызвать её по локальному API из кода.",
+      "Объяснить квантизацию: что выигрываем (память), что теряем (точность), что значат 4 и 8 бит.",
+      "Прикинуть, поместится ли модель данного размера в память при выбранной точности с учётом KV-кэша."
+    ],
+    "en": [
+      "Run a model in Ollama or LM Studio and call it through the local API from code.",
+      "Explain quantization: what we gain (memory), what we lose (accuracy), what 4 and 8 bits mean.",
+      "Estimate whether a model of a given size fits in memory at a chosen precision, KV cache included."
+    ]
+  },
+  "materials": [
+    {
+      "id": "lm-ollama-quickstart",
+      "title": "Ollama Quickstart",
+      "url": "https://docs.ollama.com/quickstart",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Установка, ollama run, вызов POST /api/chat на localhost, OpenAI-совместимые эндпоинты (критерий 1).",
+        "en": "Install, ollama run, POST /api/chat on localhost, OpenAI-compatible endpoints (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "lm-lmstudio-docs",
+      "title": "LM Studio Docs",
+      "url": "https://lmstudio.ai/docs/app",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Альтернатива с интерфейсом: GGUF через llama.cpp, локальный сервер с OpenAI-совместимым API (критерий 1).",
+        "en": "GUI alternative: GGUF via llama.cpp, local server with an OpenAI-compatible API (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "lm-hf-quantization-overview",
+      "title": "Quantization overview (Transformers docs)",
+      "url": "https://huggingface.co/docs/transformers/main/en/quantization/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Что такое квантизация, форматы (fp16, int8, int4), таблица методов и picker, показывающий, влезает ли модель в память (критерии 2, 3).",
+        "en": "What quantization is, formats (fp16, int8, int4), the methods table and a picker showing whether a model fits in memory (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "lm-dlai-quantization",
+      "title": "Quantization Fundamentals with Hugging Face (DeepLearning.AI)",
+      "url": "https://www.deeplearning.ai/short-courses/quantization-fundamentals-with-hugging-face/",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 75,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free during platform beta; certificate needs PRO",
+      "closes": {
+        "ru": "Линейная квантизация и перевод в BFloat16 руками, 3 примера кода (критерий 2).",
+        "en": "Linear quantization and downcasting to BFloat16 by hand, 3 code examples (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 135
+}

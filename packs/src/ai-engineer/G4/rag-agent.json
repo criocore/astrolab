@@ -1,0 +1,97 @@
+{
+  "id": "rag-agent",
+  "grade": "G4",
+  "order": 7,
+  "title": {
+    "ru": "RAG-агент",
+    "en": "RAG agent"
+  },
+  "goal": {
+    "ru": "Уметь сделать поиск инструментом агента, чтобы агент сам решал, искать ли, переформулировал запрос и проверял найденное.",
+    "en": "Be able to make search a tool of the agent so it decides whether to search, reformulates the query and checks what it found."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить разницу между «всегда искать перед ответом» и «поиск как инструмент, который агент вызывает сам».",
+      "Назвать приёмы многошагового поиска: переформулировка, разбиение вопроса, повторный поиск.",
+      "Добавить проверку релевантности найденных фрагментов и ветку «переписать запрос» или «ответить без источника»."
+    ],
+    "en": [
+      "Explain the difference between always-retrieve-first and search as a tool the agent calls on its own.",
+      "Name multi-step retrieval techniques: reformulation, question decomposition, repeated search.",
+      "Add a relevance check of retrieved chunks and a branch to rewrite the query or answer without a source."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ra-langgraph",
+      "title": "Build a custom RAG agent with LangGraph (LangGraph docs)",
+      "url": "https://docs.langchain.com/oss/python/langgraph/agentic-rag",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Ретривер как инструмент, grade_documents, rewrite_question, генерация (критерии 1, 2, 3).",
+        "en": "Retriever as a tool, grade_documents, rewrite_question, generation (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "ra-hf-retrieval",
+      "title": "Building Agentic RAG Systems (Hugging Face Agents Course)",
+      "url": "https://huggingface.co/learn/agents-course/unit2/smolagents/retrieval_agents",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free",
+      "closes": {
+        "ru": "Агентный RAG на smolagents, переформулировка, декомпозиция, multi-step retrieval, ноутбук (критерии 1, 2).",
+        "en": "Agentic RAG with smolagents, reformulation, decomposition, multi-step retrieval, a notebook (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ra-jit",
+      "title": "Effective context engineering for AI agents (Anthropic), just-in-time retrieval",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-09",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Подгрузка данных по ссылкам во время работы вместо предзагрузки (критерий 1).",
+        "en": "Loading data via lightweight references at run time instead of preloading (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 95
+}

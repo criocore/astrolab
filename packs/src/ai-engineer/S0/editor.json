@@ -1,0 +1,53 @@
+{
+  "id": "editor",
+  "grade": "S0",
+  "order": 6,
+  "probe": "manual",
+  "title": { "ru": "Редактор (необязательно)", "en": "An editor (optional)" },
+  "goal": {
+    "ru": "Выбрать редактор кода, в котором вы будете смотреть файлы проектов, и при желании подключить к нему агента.",
+    "en": "Pick a code editor where you will look at project files, and optionally connect the agent to it."
+  },
+  "criteria": {
+    "ru": [
+      "Открыть папку проекта в редакторе и увидеть файлы, включая скрытые вроде `.gitignore`.",
+      "Знать, что у агента есть расширение для редактора, и что хабу оно не нужно."
+    ],
+    "en": [
+      "Open the project folder in an editor and see the files, including hidden ones like `.gitignore`.",
+      "Know that the agent has an editor extension and that the hub does not need it."
+    ]
+  },
+  "materials": [
+    {
+      "id": "editor-vscode-docs",
+      "title": "Visual Studio Code documentation",
+      "url": "https://code.visualstudio.com/docs",
+      "kind": "do", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Microsoft docs, free to read; VS Code is free software",
+      "closes": { "ru": "Установка VS Code, открытие папки, встроенный терминал (критерий 1).", "en": "Installing VS Code, opening a folder, the built-in terminal (criterion 1)." },
+      "criteria": [1]
+    },
+    {
+      "id": "editor-claude-vscode",
+      "title": "Claude Code in VS Code (official docs)",
+      "url": "https://code.claude.com/docs/en/vs-code",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 5, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Anthropic docs, free to read",
+      "closes": { "ru": "Расширение Claude Code для VS Code: что даёт и как ставится (критерий 2).", "en": "The Claude Code extension for VS Code: what it gives and how to install (criterion 2)." },
+      "criteria": [2]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "editor-guide",
+      "title": { "ru": "Зачем редактор, если есть агент", "en": "Why an editor when there is an agent" },
+      "kind": "understand", "minutes": 5, "criteria": [1, 2], "source": "own", "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Агент пишет и читает файлы сам, но смотреть, что он сделал, удобнее в редакторе: дерево файлов, подсветка, поиск, встроенный терминал. Подойдёт любой: VS Code, Cursor, Zed, JetBrains, даже Блокнот для первых шагов. Хабу редактор не нужен, он работает в браузере.\n\n**Что сделать.** Поставьте редактор, откройте в нём папку `astrolabe-projects` из темы про git. Проверьте, что видны скрытые файлы: `.gitignore` должен быть в дереве.\n\n**Расширение агента.** У Claude Code есть расширение для VS Code и JetBrains, у других агентов свои интеграции. Это удобство для работы над проектами, на проверки хаба оно не влияет: хаб всегда запускает агента в терминале.\n\n**Отметка.** Эту тему хаб проверить не может, поставьте галочку сами.",
+        "en": "The agent writes and reads files on its own, but looking at what it did is easier in an editor: a file tree, highlighting, search, a built-in terminal. Any will do: VS Code, Cursor, Zed, JetBrains, even Notepad for the first steps. The hub does not need an editor, it runs in the browser.\n\n**What to do.** Install an editor, open the `astrolabe-projects` folder from the git topic in it. Make sure hidden files are shown: `.gitignore` must appear in the tree.\n\n**The agent's extension.** Claude Code has an extension for VS Code and JetBrains, other agents have their own integrations. It is a convenience for project work and has no effect on the hub's checks: the hub always runs the agent in the terminal.\n\n**Mark.** The hub cannot verify this topic; tick it yourself."
+      }
+    }
+  ],
+  "minutes_total": 20
+}

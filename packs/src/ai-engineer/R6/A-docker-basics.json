@@ -1,0 +1,76 @@
+{
+ "id": "docker-basics",
+ "area": "R6",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R6.A",
+ "order": 1,
+ "title": {
+  "ru": "Docker: Dockerfile, образы, контейнеры, слои и кэш",
+  "en": "Docker basics: Dockerfile, images, containers, layers and cache"
+ },
+ "goal": {
+  "ru": "Собрать образ из Dockerfile, запустить контейнер и понимать, как слои и кэш влияют на скорость сборки.",
+  "en": "Build an image from a Dockerfile, run a container, and understand how layers and cache affect build speed."
+ },
+ "criteria": {
+  "ru": [
+   "Я различаю образ и контейнер и запускаю контейнер из своего образа с пробросом порта.",
+   "Я пишу Dockerfile для небольшого приложения и собираю его командой docker build.",
+   "Я объясняю, что каждая инструкция Dockerfile даёт слой и почему порядок инструкций влияет на кэш."
+  ],
+  "en": [
+   "I can tell an image from a container and run a container from my own image with a published port.",
+   "I can write a Dockerfile for a small app and build it with docker build.",
+   "I can explain that each Dockerfile instruction makes a layer and why instruction order affects the cache."
+  ]
+ },
+ "materials": [
+  {
+   "id": "db-workshop",
+   "title": "Build and share a containerized application (Docker docs workshop)",
+   "url": "https://docs.docker.com/get-started/workshop/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: образ, контейнер, Dockerfile (критерии 1, 2).",
+    "en": "Hands-on: image, container, Dockerfile (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "db-build-cache",
+   "title": "Docker build cache (Docker docs)",
+   "url": "https://docs.docker.com/build/cache/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Слои и инвалидация кэша (критерий 3).",
+    "en": "Layers and cache invalidation (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 55
+}

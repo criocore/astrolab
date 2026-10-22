@@ -1,0 +1,97 @@
+{
+  "id": "build-mcp-server",
+  "grade": "G2",
+  "order": 3,
+  "title": {
+    "ru": "Свой MCP-сервер: минимальный сервер и тесты",
+    "en": "Your own MCP server: minimal server and tests"
+  },
+  "goal": {
+    "ru": "Собрать минимальный MCP-сервер, подключить его к клиенту и покрыть контрактными тестами, включая ошибки.",
+    "en": "Build a minimal MCP server, connect it to a client and cover it with contract tests, including errors."
+  },
+  "criteria": {
+    "ru": [
+      "Собираю сервер с двумя инструментами и подключаю его к клиенту (например Claude Desktop или Claude Code) по stdio.",
+      "Не пишу в stdout ничего, кроме протокола (логи только в stderr), и объясняю почему.",
+      "Проверяю сервер вручную в MCP Inspector: список инструментов, вызов с верными и неверными аргументами.",
+      "Пишу контрактные тесты через клиента в памяти: набор инструментов и их схемы, результат на верном входе, описанная ошибка на неверном."
+    ],
+    "en": [
+      "I build a server with two tools and connect it to a client (for example Claude Desktop or Claude Code) over stdio.",
+      "I write nothing but protocol messages to stdout (logs go to stderr only) and can explain why.",
+      "I check the server by hand in MCP Inspector: tool list, calls with valid and invalid arguments.",
+      "I write contract tests through an in-memory client: the tool set and schemas, the result for valid input, a described error for invalid input."
+    ]
+  },
+  "materials": [
+    {
+      "id": "bs-build-server",
+      "title": "Build an MCP server (modelcontextprotocol.io)",
+      "url": "https://modelcontextprotocol.io/docs/develop/build-server",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "protocol docs, free to read",
+      "closes": {
+        "ru": "Пошаговый сервер get_alerts/get_forecast и подключение к хосту, раздел о логировании (критерии 1, 2).",
+        "en": "Step-by-step server with get_alerts/get_forecast and connecting it to a host, plus the logging warning (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "bs-inspector",
+      "title": "MCP Inspector (modelcontextprotocol.io)",
+      "url": "https://modelcontextprotocol.io/docs/tools/inspector",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "protocol docs, free to read",
+      "closes": {
+        "ru": "Три клиента Inspector (web, CLI, TUI), запуск через npx, вызов tools/list и tools/call; CLI годится для скриптов и CI (критерий 3).",
+        "en": "The three Inspector clients (web, CLI, TUI), running via npx, calling tools/list and tools/call; the CLI suits scripts and CI (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "bs-fastmcp-testing",
+      "title": "Testing a FastMCP Server (gofastmcp.com)",
+      "url": "https://gofastmcp.com/servers/testing",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "library docs, free to read",
+      "closes": {
+        "ru": "Фикстура pytest с Client(transport=mcp), тесты list_tools и call_tool, параметризация (критерий 4). Тест ошибок страница не показывает: добавить самому.",
+        "en": "A pytest fixture with Client(transport=mcp), list_tools and call_tool tests, parametrization (criterion 4). The page shows no error-case test: add one yourself."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

@@ -1,0 +1,122 @@
+{
+  "id": "hooks-intro",
+  "grade": "G1",
+  "order": 7,
+  "title": {
+    "ru": "Хуки: введение",
+    "en": "Hooks: introduction"
+  },
+  "goal": {
+    "ru": "Понять модель событий хуков, написать простой хук-страж и знать, где хуки настраиваются.",
+    "en": "Understand the hook event model, write a simple guard hook and know where hooks are configured."
+  },
+  "criteria": {
+    "ru": [
+      "Называю основные события (PreToolUse, PostToolUse, Stop, SessionStart, Notification) и когда они срабатывают.",
+      "Пишу хук-страж на PreToolUse, который блокирует действие (код выхода 2 и сообщение в stderr), и проверяю его на деле.",
+      "Указываю, где хуки живут (~/.claude/settings.json, .claude/settings.json, settings.local.json, плагины) и как смотреть их через /hooks.",
+      "Объясняю, почему запрет оформляют хуком, а не строкой в CLAUDE.md, и как Stop-хук не даёт закончить ход, пока проверка не пройдена."
+    ],
+    "en": [
+      "I name the main events (PreToolUse, PostToolUse, Stop, SessionStart, Notification) and when they fire.",
+      "I write a PreToolUse guard hook that blocks an action (exit code 2 plus a stderr message) and test it for real.",
+      "I say where hooks live (~/.claude/settings.json, .claude/settings.json, settings.local.json, plugins) and inspect them with /hooks.",
+      "I explain why a prohibition is a hook and not a CLAUDE.md line, and how a Stop hook keeps the turn open until a check passes."
+    ]
+  },
+  "materials": [
+    {
+      "id": "hk-guide",
+      "title": "Automate actions with hooks (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/hooks-guide",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Первый хук по шагам, блокировка правок защищённых файлов, матчеры, где настраивать (критерии 2, 3).",
+        "en": "First hook step by step, blocking edits to protected files, matchers, where to configure (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hk-ref",
+      "title": "Hooks reference (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Список событий, семантика кода выхода 2, расположение настроек (критерии 1, 2, 3).",
+        "en": "Event list, exit code 2 semantics, settings locations (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hk-features",
+      "title": "Extend Claude Code: Hook vs Skill (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/features-overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Сравнение хука и скилла: гарантия против совета; ограждения только хуками (критерий 4).",
+        "en": "Hook vs skill: guarantee vs advice; guardrails belong in hooks (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "hk-gemini-hooks",
+      "title": "Gemini CLI hooks (Gemini CLI docs)",
+      "url": "https://geminicli.com/docs/hooks/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Хук BeforeTool вместо PreToolUse: JSON в stdin, код выхода 2 блокирует вызов, stderr даёт причину; порядок настроек проект, пользователь, система, расширения (критерии 2, 3).",
+        "en": "BeforeTool instead of PreToolUse: JSON on stdin, exit code 2 blocks the call, stderr is the reason; settings order project, user, system, extensions (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

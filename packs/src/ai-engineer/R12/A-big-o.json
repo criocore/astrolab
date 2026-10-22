@@ -1,0 +1,100 @@
+{
+ "id": "big-o",
+ "area": "R12",
+ "level": "A",
+ "to_grade": "G4",
+ "grade": "R12.A",
+ "order": 1,
+ "title": {
+  "ru": "Сложность алгоритмов и Big-O",
+  "en": "Algorithm complexity and Big-O"
+ },
+ "goal": {
+  "ru": "Оценивать на глаз, как растёт время работы кода с размером входа, и замечать в чужом коде квадратичные и худшие места.",
+  "en": "Estimate by eye how running time grows with input size and spot quadratic and worse hot spots in someone else's code."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать типичные классы (O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)) и привести пример кода для каждого.",
+   "Оценить сложность функции с вложенными циклами, вызовами внутри цикла и операциями стандартных коллекций.",
+   "Отличать лучший, средний и худший случай и знать, что Big-O описывает рост, а не секунды.",
+   "Найти в фрагменте кода место, где сложность выше необходимой, и предложить замену структуры данных."
+  ],
+  "en": [
+   "Name the common classes (O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)) and give a code example of each.",
+   "Estimate the complexity of a function with nested loops, calls inside a loop, and standard collection operations.",
+   "Tell best, average and worst case apart and know that Big-O describes growth, not seconds.",
+   "Find a place in a code snippet where complexity is higher than needed and propose a data-structure swap."
+  ]
+ },
+ "materials": [
+  {
+   "id": "bigo-cheatsheet",
+   "title": "Big-O Algorithm Complexity Cheat Sheet",
+   "url": "https://www.bigocheatsheet.com/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "link only, no license stated",
+   "closes": {
+    "ru": "Классы роста и таблица сложности операций основных структур (критерии 1, 3).",
+    "en": "Growth classes and a table of operation costs for the main structures (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "bigo-thealgorithms",
+   "title": "TheAlgorithms/Python",
+   "url": "https://github.com/TheAlgorithms/Python",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Реализации сортировок и поисков для чтения: сравните две сортировки и найдите циклы, определяющие сложность (критерии 2, 4). Код учебный, не для продакшена.",
+    "en": "Readable sort and search implementations: compare two sorts and find the loops that set their complexity (criteria 2, 4). Teaching code, not for production."
+   },
+   "criteria": [
+    2,
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "bigo-review",
+   "title": {
+    "ru": "Приём: ревью сложности модуля",
+    "en": "Technique: complexity review of a module"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    2,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Для ревью модуля, написанного агентом, пройдите по каждой функции и ответьте: какой размер входа, есть ли цикл внутри цикла, есть ли внутри цикла вызов, который сам линейный (поиск в списке, in для list, склейка строк), что лежит в списке, хотя нужен словарь или множество. Для двух самых подозрительных мест замерьте время на входах в 10 и в 100 раз больше. Если время выросло примерно в 100 и в 10 000 раз, место квадратичное.",
+    "en": "To review a module written by an agent, go through each function and ask: what is the input size, is there a loop inside a loop, is there a call inside a loop that is itself linear (list search, in on a list, string concatenation), is something kept in a list where a dict or set is needed. For the two most suspicious spots, time the code on inputs 10 and 100 times larger. If time grows about 100 and 10,000 times, the spot is quadratic."
+   }
+  }
+ ],
+ "minutes_total": 110
+}

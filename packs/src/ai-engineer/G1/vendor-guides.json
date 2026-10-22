@@ -1,0 +1,146 @@
+{
+  "id": "vendor-guides",
+  "grade": "G1",
+  "order": 11,
+  "title": {
+    "ru": "Гайды вендоров при новой модели",
+    "en": "Vendor guides for a new model"
+  },
+  "goal": {
+    "ru": "Знать, где читать изменения при выходе новой модели и версии инструмента, и переносить их в свою работу.",
+    "en": "Know where to read changes when a new model or tool version ships, and carry them into your own work."
+  },
+  "criteria": {
+    "ru": [
+      "Называю источники: Prompting best practices, What's new и migration guide модели, changelog Claude Code.",
+      "Выписываю из гайда 2–3 изменения, влияющие на мою работу (параметры, поведение модели, формулировки промптов), и применяю их в промптах или CLAUDE.md.",
+      "Знаю, что миграцию кода под новую модель можно поручить скиллу /claude-api, и проверяю его список изменений вручную.",
+      "Сверяю версию (claude --version) с changelog, прежде чем полагаться на новую фичу."
+    ],
+    "en": [
+      "I name the sources: Prompting best practices, the model's What's new and migration guide, the Claude Code changelog.",
+      "I pull 2-3 changes from a guide that affect my work (parameters, model behavior, prompt wording) and apply them in prompts or CLAUDE.md.",
+      "I know code migration to a new model can be handed to the /claude-api skill, and I check its change list by hand.",
+      "I compare my version (claude --version) with the changelog before relying on a new feature."
+    ]
+  },
+  "materials": [
+    {
+      "id": "vg-prompting",
+      "title": "Prompting best practices (Claude API Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Что меняется по моделям, агентные системы, переусердствование, подгонка под тесты, миграция (критерии 1, 2).",
+        "en": "Model-specific differences, agentic systems, overeagerness, test-hardcoding, migration (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "vg-migration",
+      "title": "Claude Sonnet 5.5 migration guide (Claude API Docs)",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Чек-лист изменений по исходной модели и автомиграция командой /claude-api migrate на своём проекте (критерии 1, 2, 3).",
+        "en": "The change checklist by starting model and auto-migration with /claude-api migrate on your project (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "vg-changelog",
+      "title": "Changelog (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Журнал версий Claude Code по типам изменений; сверка с claude --version (критерии 1, 4).",
+        "en": "Claude Code release log by change type; checking against claude --version (criteria 1, 4)."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "vg-codex-changelog",
+      "title": "Changelog (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/changelog",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-10",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Прочитать список изменений другого вендора и выбрать две правки, влияющие на работу (критерии 1, 2).",
+        "en": "Read another vendor's changelog and pick two changes that affect your work (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "vg-gemini-releases",
+      "title": "Gemini CLI release notes",
+      "url": "https://geminicli.com/docs/changelogs/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-10",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Заметки о релизах Gemini CLI: сверить свою версию и выбрать изменения, которые влияют на работу (критерии 2, 4).",
+        "en": "Gemini CLI release notes: compare your version and pick changes that affect your work (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 95
+}

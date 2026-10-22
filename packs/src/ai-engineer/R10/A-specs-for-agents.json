@@ -1,0 +1,76 @@
+{
+ "id": "specs-for-agents",
+ "area": "R10",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R10.A",
+ "order": 3,
+ "title": {
+  "ru": "Спеки и инструкции для агентов",
+  "en": "Specs and instructions for agents"
+ },
+ "goal": {
+  "ru": "Писать задачу для ИИ-агента как технический текст: задача, ограничения, критерий готовности.",
+  "en": "Write a task for an AI agent as technical text: task, constraints, definition of done."
+ },
+ "criteria": {
+  "ru": [
+   "В задаче есть цель, контекст, ограничения и что вне объёма.",
+   "Критерий готовности проверяем командой, тестом или скриншотом.",
+   "Я превращаю расплывчатую просьбу в такую спеку."
+  ],
+  "en": [
+   "The task has a goal, context, constraints and what is out of scope.",
+   "The definition of done is checkable by a command, test or screenshot.",
+   "I turn a vague request into such a spec."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cc-best",
+   "title": "Best practices for Claude Code",
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Конкретный контекст, проверка результата, самодостаточная спека (критерии 1, 2).",
+    "en": "Specific context, verification, self-contained spec (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-spec-exercise",
+   "title": {
+    "ru": "Упражнение: расплывчатая просьба в спеку",
+    "en": "Exercise: vague request into a spec"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите свою просьбу вроде «улучши экспорт». Перепишите её на одной странице: цель, где в коде, что нельзя трогать, что вне объёма, команда, по которой видно, что готово. Отдайте агенту и посмотрите, сколько уточнений понадобилось. Если больше одного, допишите спеку.",
+    "en": "Take a request of your own such as \"improve the export\". Rewrite it on one page: goal, where in the code, what must not change, what is out of scope, and a command that shows it is done. Give it to an agent and count the clarifying questions. If more than one, extend the spec."
+   }
+  }
+ ],
+ "minutes_total": 60
+}

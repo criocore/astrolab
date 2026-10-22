@@ -1,0 +1,166 @@
+{
+ "id": "encodings-and-floats",
+ "area": "R12",
+ "level": "A",
+ "to_grade": "G4",
+ "grade": "R12.A",
+ "order": 3,
+ "title": {
+  "ru": "Кодировки и числа с плавающей точкой",
+  "en": "Encodings and floating-point numbers"
+ },
+ "goal": {
+  "ru": "Различать байты и символы, понимать, откуда берутся токены, и знать, почему числа с плавающей точкой неточны и как это связано с квантизацией.",
+  "en": "Tell bytes from characters, understand where tokens come from, and know why floats are inexact and how that relates to quantization."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить разницу между кодовой точкой Unicode, байтами в UTF-8 и символом, показать это на примере кириллицы и эмодзи.",
+   "Объяснить, как BPE строит токены из байтов или символов и почему один и тот же текст на разных языках даёт разное число токенов.",
+   "Объяснить, почему 0.1 + 0.2 != 0.3, и как сравнивать числа с плавающей точкой.",
+   "Объяснить, что квантизация модели заменяет float32 на меньшие типы (float16, int8) и что это стоит точности."
+  ],
+  "en": [
+   "Explain the difference between a Unicode code point, UTF-8 bytes and a character, showing it on Cyrillic and an emoji.",
+   "Explain how BPE builds tokens from bytes or characters and why the same text in different languages yields different token counts.",
+   "Explain why 0.1 + 0.2 != 0.3 and how to compare floats.",
+   "Explain that model quantization replaces float32 with smaller types (float16, int8) and that it costs precision."
+  ]
+ },
+ "materials": [
+  {
+   "id": "enc-joel",
+   "title": "The Absolute Minimum Every Software Developer Must Know About Unicode (Joel Spolsky)",
+   "url": "https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2003-10",
+   "classic": true,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog post, free to read",
+   "closes": {
+    "ru": "Кодовые точки и UTF-8 (критерий 1).",
+    "en": "Code points and UTF-8 (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "enc-python-unicode",
+   "title": "Unicode HOWTO (Python docs)",
+   "url": "https://docs.python.org/3/howto/unicode.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs, free to read",
+   "closes": {
+    "ru": "Руками: str против bytes, encode/decode, длина строки в символах и в байтах (критерий 1).",
+    "en": "Hands-on: str vs bytes, encode/decode, string length in characters and in bytes (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "enc-hf-bpe",
+   "title": "Byte-Pair Encoding tokenization (Hugging Face LLM Course)",
+   "url": "https://huggingface.co/learn/llm-course/chapter6/5",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Как BPE склеивает частые пары; байтовый BPE с 256 базовыми токенами (критерий 2).",
+    "en": "How BPE merges frequent pairs; byte-level BPE with 256 base tokens (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "enc-minbpe",
+   "title": "karpathy/minbpe",
+   "url": "https://github.com/karpathy/minbpe",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Руками: небольшая реализация байтового BPE; обучите на своём тексте и сравните число токенов (критерий 2).",
+    "en": "Hands-on: a small byte-level BPE; train it on your own text and compare token counts (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "enc-python-floats",
+   "title": "Floating-Point Arithmetic: Issues and Limitations (Python docs)",
+   "url": "https://docs.python.org/3/tutorial/floatingpoint.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs, free to read",
+   "closes": {
+    "ru": "Почему 0.1 неточно, math.isclose, decimal и fractions (критерий 3).",
+    "en": "Why 0.1 is inexact, math.isclose, decimal and fractions (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "enc-quant",
+   "title": "Quantization concept guide (Hugging Face Optimum)",
+   "url": "https://huggingface.co/docs/optimum/concept_guides/quantization",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "float32 в float16 и int8, масштаб и нулевая точка, формат float (знак, порядок, мантисса) (критерии 3, 4).",
+    "en": "float32 to float16 and int8, scale and zero point, the float layout (sign, exponent, mantissa) (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 180
+}

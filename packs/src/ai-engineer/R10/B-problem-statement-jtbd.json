@@ -1,0 +1,98 @@
+{
+ "id": "problem-statement-jtbd",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 1,
+ "title": {
+  "ru": "Проблема и JTBD",
+  "en": "Problem statement and JTBD"
+ },
+ "goal": {
+  "ru": "Сформулировать проблему пользователя до решения: кто, в какой ситуации, зачем.",
+  "en": "State the user problem before the solution: who, in what situation, why."
+ },
+ "criteria": {
+  "ru": [
+   "Формулировка проблемы называет пользователя, ситуацию, боль и доказательство.",
+   "Я пишу job statement: ситуация, мотив, ожидаемый результат.",
+   "Я отличаю проблему от решения и убираю решение из формулировки.",
+   "Я объясняю, где ИИ решает проблему лучше обычного кода, а где нет."
+  ],
+  "en": [
+   "The problem statement names the user, situation, pain and evidence.",
+   "I write a job statement: situation, motivation, expected outcome.",
+   "I tell a problem from a solution and remove the solution from the statement.",
+   "I explain where AI solves the problem better than ordinary code and where it does not."
+  ]
+ },
+ "materials": [
+  {
+   "id": "atl-problem-framing",
+   "title": "Problem Framing (Atlassian Team Playbook)",
+   "url": "https://www.atlassian.com/team-playbook/plays/problem-framing",
+   "kind": "do",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Atlassian, free to read",
+   "closes": {
+    "ru": "Пошаговое упражнение: кто, что, почему, одна формулировка проблемы (критерии 1, 3).",
+    "en": "Step-by-step exercise: who, what, why, one problem statement (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "pair-user-needs",
+   "title": "User Needs + Defining Success (Google PAIR Guidebook)",
+   "url": "https://pair.withgoogle.com/chapter/user-needs/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google PAIR, free to read",
+   "closes": {
+    "ru": "Какие проблемы ИИ решает уникально, автоматизировать или помогать (критерий 4).",
+    "en": "Which problems AI solves uniquely, automate or augment (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-jtbd",
+   "title": {
+    "ru": "Job statement за пять минут",
+    "en": "A job statement in five minutes"
+   },
+   "kind": "understand",
+   "minutes": 10,
+   "criteria": [
+    2
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Job to be done описывает прогресс, которого человек хочет добиться, а не продукт. Шаблон: «Когда [ситуация], я хочу [мотив], чтобы [результат]». Пример: «Когда я получаю длинное письмо на ходу, я хочу понять суть за минуту, чтобы решить, отвечать ли сейчас». В формулировке нет интерфейса и нет слова «ИИ».",
+    "en": "A job to be done describes the progress a person wants, not a product. Template: \"When [situation], I want to [motivation], so I can [outcome]\". Example: \"When I get a long email on the go, I want the gist quickly, so I can decide whether to reply now\". The statement has no interface and no word \"AI\"."
+   }
+  }
+ ],
+ "minutes_total": 70
+}

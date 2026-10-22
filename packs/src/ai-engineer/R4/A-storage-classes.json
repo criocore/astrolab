@@ -1,0 +1,120 @@
+{
+ "id": "storage-classes",
+ "area": "R4",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R4.A",
+ "order": 3,
+ "title": {
+  "ru": "Классы хранилищ",
+  "en": "Storage classes"
+ },
+ "goal": {
+  "ru": "Выбирать класс хранилища под задачу: реляционное, документное, колоночное, графовое, key-value.",
+  "en": "Choose a storage class for a task: relational, document, column, graph, key-value."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать пять классов хранилищ и для каждого один типичный сценарий.",
+   "По описанию задачи (транзакции, кэш, связи, документы) выбрать класс и обосновать выбор.",
+   "Выполнить базовые операции хотя бы в одном нереляционном хранилище."
+  ],
+  "en": [
+   "Name five storage classes and one typical use for each.",
+   "Given a task description (transactions, cache, relationships, documents) pick a class and justify it.",
+   "Run basic operations in at least one non-relational store."
+  ]
+ },
+ "materials": [
+  {
+   "id": "sc-ms-models",
+   "title": "Understand data models (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/understand-data-store-models",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-08",
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Microsoft Learn, free to read",
+   "closes": {
+    "ru": "Определения классов, сильные стороны, таблица «что выбрать» (критерии 1, 2).",
+    "en": "Class definitions, strengths, the choose-among-models table (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "sc-sqlite",
+   "title": "Appropriate Uses For SQLite",
+   "url": "https://www.sqlite.org/whentouse.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "public domain docs, free to read",
+   "closes": {
+    "ru": "Когда хватает встроенной БД, а когда нужен сервер (критерий 2).",
+    "en": "When an embedded DB is enough and when a server is needed (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sc-mongo",
+   "title": "Getting Started (MongoDB manual)",
+   "url": "https://www.mongodb.com/docs/manual/tutorial/getting-started/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Документное хранилище: вставка, запрос, удаление в браузерной среде (критерий 3).",
+    "en": "Document store: insert, query, delete in an in-browser environment (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "sc-redis",
+   "title": "Redis quick start: data store",
+   "url": "https://redis.io/docs/latest/develop/get-started/data-store/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Key-value: SET/GET, хэши, SCAN (критерий 3).",
+    "en": "Key-value: SET/GET, hashes, SCAN (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 100
+}

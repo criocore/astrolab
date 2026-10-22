@@ -1,0 +1,169 @@
+{
+ "id": "webhooks-async-jobs",
+ "area": "R3",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R3.B",
+ "order": 4,
+ "title": {
+  "ru": "Webhooks, очереди и ретраи",
+  "en": "Webhooks, queues and retries"
+ },
+ "goal": {
+  "ru": "Принимать и отправлять события надёжно: подпись, очередь, дубли и повторы с паузами.",
+  "en": "Receive and send events reliably: signatures, queues, duplicates and retries with backoff."
+ },
+ "criteria": {
+  "ru": [
+   "Принимаю webhook безопасно: проверяю подпись по сырому телу, быстро отвечаю 2xx и отдаю работу в очередь.",
+   "Обрабатываю дубли и произвольный порядок событий через запись id уже обработанных событий.",
+   "Настраиваю повторы с экспоненциальной паузой и случайным разбросом (jitter) и повторяю только временные ошибки идемпотентных операций.",
+   "Выбираю между фоновой задачей внутри сервиса и внешней очередью и объясняю, когда какая нужна."
+  ],
+  "en": [
+   "I receive a webhook safely: verify the signature on the raw body, reply 2xx fast and hand work to a queue.",
+   "I handle duplicates and arbitrary event order by recording ids of processed events.",
+   "I set up retries with exponential backoff and random jitter and retry only transient failures of idempotent operations.",
+   "I choose between an in-process background task and an external queue and explain when each is needed."
+  ]
+ },
+ "materials": [
+  {
+   "id": "wah-stripe-webhooks",
+   "title": "Receive Stripe events in your webhook endpoint (Stripe docs)",
+   "url": "https://docs.stripe.com/webhooks",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Подпись, быстрый 2xx, очередь, дубли, порядок, расписание повторов (критерии 1, 2, 3).",
+    "en": "Signature, fast 2xx, queue, duplicates, ordering, retry schedule (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "wah-github-webhooks",
+   "title": "Best practices for using webhooks (GitHub Docs)",
+   "url": "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Секрет, быстрый ответ, очередь и защита от повторов по заголовку доставки (критерии 1, 2).",
+    "en": "Secret, fast reply, queueing and replay guard via the delivery header (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "wah-aws-retries",
+   "title": "Timeouts, retries, and backoff with jitter (Amazon Builders Library)",
+   "url": "https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2019-12",
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor article, free to read",
+   "closes": {
+    "ru": "Таймауты, экспоненциальная пауза с jitter и идемпотентность как условие ретраев (критерий 3).",
+    "en": "Timeouts, exponential backoff with jitter and idempotency as a retry precondition (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "wah-azure-retry",
+   "title": "Retry pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/retry",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2024-07",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Microsoft Learn, free to read",
+   "closes": {
+    "ru": "Когда повторять, когда отменять, влияние на идемпотентность (критерий 3).",
+    "en": "When to retry, when to cancel, the impact on idempotency (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "wah-fastapi-bg",
+   "title": "Background Tasks (FastAPI docs)",
+   "url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/background-tasks.md",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, FastAPI repo",
+   "closes": {
+    "ru": "BackgroundTasks и граница, после которой нужна очередь вроде Celery (критерий 4).",
+    "en": "BackgroundTasks and the point where a queue such as Celery is needed (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "wah-own-receiver",
+   "title": {
+    "ru": "Практика: приёмник webhook",
+    "en": "Practice: a webhook receiver"
+   },
+   "kind": "do",
+   "minutes": 40,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Добавьте к своему сервису POST /webhooks. Проверяйте HMAC-подпись по сырому телу и отклоняйте запрос без неё. Сразу отвечайте 2xx, а событие кладите в очередь (хватит фоновой задачи или таблицы в базе).\n\nХраните id обработанных событий и пропускайте дубли. Отправьте себе одно и то же событие дважды и убедитесь, что эффект один. Напишите отправителя, который при 5xx повторяет доставку с растущей паузой и jitter.",
+    "en": "Add a POST /webhooks to your service. Verify an HMAC signature over the raw body and reject requests without it. Reply 2xx immediately and put the event on a queue (a background task or a database table is enough).\n\nStore ids of processed events and skip duplicates. Send yourself the same event twice and confirm the effect happens once. Write a sender that retries delivery on 5xx with growing delay and jitter."
+   }
+  }
+ ],
+ "minutes_total": 160
+}

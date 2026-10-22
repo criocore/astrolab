@@ -1,0 +1,173 @@
+{
+ "id": "syntax-types-collections",
+ "area": "R2",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R2.A",
+ "order": 1,
+ "title": {
+  "ru": "Синтаксис, базовые типы, коллекции, управление потоком",
+  "en": "Syntax, basic types, collections, control flow"
+ },
+ "goal": {
+  "ru": "Уверенно читать и писать короткие программы на выбранном языке: значения, коллекции, ветвления, циклы.",
+  "en": "Read and write short programs in your chosen language: values, collections, branches, loops."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю разницу между числами, строками, логическими значениями и None/null и форматирую строку со значением.",
+   "Выбираю подходящую коллекцию (list/dict/set/tuple или Array/Map/Set/object) и перебираю её в цикле.",
+   "Пишу if/else и for/while и объясняю, какие значения считаются ложными."
+  ],
+  "en": [
+   "I can explain numbers, strings, booleans and None/null and format a string with a value.",
+   "I can pick a suitable collection (list/dict/set/tuple or Array/Map/Set/object) and loop over it.",
+   "I can write if/else and for/while and explain which values count as falsy."
+  ]
+ },
+ "materials": [
+  {
+   "id": "stc-py-intro",
+   "title": "An Informal Introduction to Python (Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/introduction.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Числа, строки и списки как калькулятор (критерий 1).",
+    "en": "Numbers, text and lists used as a calculator (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "stc-py-controlflow",
+   "title": "More Control Flow Tools (Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "if, for, range, break/continue, match: набрать примеры руками (критерий 3).",
+    "en": "if, for, range, break/continue, match: type the examples by hand (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "stc-py-datastructures",
+   "title": "Data Structures (Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/datastructures.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Списки, кортежи, множества, словари и способы их обхода (критерий 2).",
+    "en": "Lists, tuples, sets, dicts and how to loop over them (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "stc-ts-everyday",
+   "title": "Everyday Types (TypeScript Handbook)",
+   "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "TypeScript docs, free to read",
+   "closes": {
+    "ru": "Примитивы, массивы, null/undefined, объектные типы (критерий 1).",
+    "en": "Primitives, arrays, null/undefined, object types (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "stc-ts-collections",
+   "title": "Indexed collections (JavaScript Guide, MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "Массивы, перебор, map/filter/reduce: повторить примеры в консоли (критерий 2).",
+    "en": "Arrays, iteration, map/filter/reduce: rerun the examples in a console (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "stc-ts-controlflow",
+   "title": "Control flow and error handling (JavaScript Guide, MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "if/else, switch, ложные значения: набрать примеры (критерий 3). Раздел про ошибки используется в теме errors-files-json.",
+    "en": "if/else, switch, falsy values: type the examples (criterion 3). The errors section is reused in errors-files-json."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 70,
+  "typescript": 70
+ },
+ "minutes_total": 70
+}

@@ -1,0 +1,145 @@
+{
+ "id": "git-hooks-actions",
+ "area": "R1",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R1.B",
+ "order": 4,
+ "title": {
+  "ru": "Git-хуки и первый GitHub Action",
+  "en": "Git hooks and a first GitHub Action"
+ },
+ "goal": {
+  "ru": "Автоматически проверять код: локально до коммита и на сервере после пуша.",
+  "en": "Check code automatically: locally before a commit and on the server after a push."
+ },
+ "criteria": {
+  "ru": [
+   "Могу написать хук pre-commit в .git/hooks, сделать его исполняемым и объяснить, что ненулевой код отменяет коммит.",
+   "Могу назвать клиентские и серверные хуки, объяснить --no-verify и способ делиться хуками через core.hooksPath.",
+   "Могу написать workflow в .github/workflows с on, jobs, steps и запускающий проверку при push и pull request.",
+   "Могу открыть лог запуска в GitHub, найти упавший шаг и исправить причину."
+  ],
+  "en": [
+   "I can write a pre-commit hook in .git/hooks, make it executable and explain that a non-zero exit cancels the commit.",
+   "I can name client-side and server-side hooks, explain --no-verify and a way to share hooks through core.hooksPath.",
+   "I can write a workflow in .github/workflows with on, jobs and steps that runs a check on push and pull request.",
+   "I can open the run log on GitHub, find the failed step and fix the cause."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ha-progit-hooks",
+   "title": "Pro Git 8.3: Git Hooks",
+   "url": "https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "Установка хука, клиентские и серверные хуки с назначением (критерии 1, 2).",
+    "en": "Installing a hook, client-side and server-side hooks and what each is for (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ha-githooks-ref",
+   "title": "githooks (Git documentation)",
+   "url": "https://git-scm.com/docs/githooks",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "GPL-2.0 (Git docs), free to read",
+   "closes": {
+    "ru": "Справка: каталог хуков, core.hooksPath, коды возврата и --no-verify (критерии 1, 2).",
+    "en": "Reference: the hooks directory, core.hooksPath, exit statuses and --no-verify (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ha-gh-quickstart",
+   "title": "Quickstart for GitHub Actions (GitHub Docs)",
+   "url": "https://docs.github.com/en/actions/get-started/quickstart",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Создание workflow YAML, его запуск пушем и чтение логов шагов (критерии 3, 4).",
+    "en": "Creating a workflow YAML, triggering it with a push and reading the step logs (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ha-skills-actions",
+   "title": "GitHub Skills: Hello GitHub Actions",
+   "url": "https://github.com/skills/hello-github-actions",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Практика: файл workflow, job, шаг run, просмотр запуска (критерии 3, 4).",
+    "en": "Hands-on: a workflow file, a job, a run step, viewing the run (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ha-own-hook",
+   "title": {
+    "ru": "Практика: хук pre-commit",
+    "en": "Practice: a pre-commit hook"
+   },
+   "kind": "do",
+   "minutes": 20,
+   "criteria": [
+    1
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "В тестовом репозитории создайте .git/hooks/pre-commit, который запускает shellcheck на изменённых .sh файлах и завершается ненулевым кодом при предупреждениях. Сделайте файл исполняемым, закоммитьте скрипт с ошибкой и убедитесь, что коммит отклонён. Исправьте скрипт, повторите коммит. Затем проверьте, что git commit --no-verify обходит хук.",
+    "en": "In a scratch repository create .git/hooks/pre-commit that runs shellcheck on changed .sh files and exits non-zero on warnings. Make it executable, commit a script with a mistake and confirm the commit is rejected. Fix the script and commit again. Then check that git commit --no-verify bypasses the hook."
+   }
+  }
+ ],
+ "minutes_total": 115
+}

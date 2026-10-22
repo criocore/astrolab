@@ -1,0 +1,122 @@
+{
+ "id": "queues-background-jobs",
+ "area": "R5",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R5.B",
+ "order": 1,
+ "title": {
+  "ru": "Очереди и фоновые задачи в архитектуре",
+  "en": "Queues and background jobs in architecture"
+ },
+ "goal": {
+  "ru": "Понимать, когда работу выносят в очередь или фоновую задачу, и какую цену за это платят.",
+  "en": "Understand when work goes into a queue or a background job and what that costs."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, когда нужна очередь (выравнивание пиков, развязка продюсера и потребителя), и цену: задержка, порядок, дубликаты, рост очереди.",
+   "Описать конкурирующих потребителей, доставку at-least-once, dead-letter очередь и poison-сообщения, и почему обработчик должен быть идемпотентным.",
+   "Выбрать триггер фоновой задачи и способ вернуть результат (статус-эндпоинт, ответная очередь, событие, webhook)."
+  ],
+  "en": [
+   "Explain when a queue is needed (peak smoothing, decoupling producer and consumer) and its cost: latency, ordering, duplicates, queue growth.",
+   "Describe competing consumers, at-least-once delivery, dead-letter queues and poison messages, and why the handler must be idempotent.",
+   "Choose a trigger for a background job and a way to return the result (status endpoint, reply queue, event, webhook)."
+  ]
+ },
+ "materials": [
+  {
+   "id": "qb-qlevel",
+   "title": "Queue-Based Load Leveling pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-06",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Очередь как буфер, когда не подходит, рост очереди, dead-letter, порядок (критерии 1, 2).",
+    "en": "A queue as buffer, when unsuitable, queue growth, dead-letter, ordering (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "qb-compete",
+   "title": "Competing Consumers pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-04",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Несколько потребителей одной очереди, poison-сообщения, идемпотентность, порядок (критерий 2).",
+    "en": "Several consumers on one queue, poison messages, idempotency, ordering (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "qb-bgjobs",
+   "title": "Best practices for background jobs (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/background-jobs",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-03",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Триггеры, способы вернуть результат, идемпотентность, масштабирование по глубине очереди (критерии 1, 2, 3). Читать разделы про триггеры, результат, надёжность.",
+    "en": "Triggers, ways to return results, idempotency, scaling on queue depth (criteria 1, 2, 3). Read the sections on triggers, results and reliability."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "qb-lab",
+   "title": {
+    "ru": "Упражнение: очередь, два потребителя, сбой и яд",
+    "en": "Exercise: a queue, two consumers, a crash and a poison message"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Соберите на любом брокере или даже на таблице в базе очередь задач: один продюсер, два потребителя. Добавьте задачу-«яд», на которой потребитель падает, и убейте потребителя посреди обработки.\n\nНаблюдайте и запишите: что произошло с сообщением после падения, обработалась ли задача дважды, куда делась «ядовитая» задача. Добавьте ключ идемпотентности и dead-letter очередь, повторите опыт. Опишите, как клиент узнаёт результат (статус-эндпоинт или событие).\n\nГотово, если повторный запуск задачи не даёт двойного эффекта, а яд попадает в dead-letter, а не блокирует очередь.",
+    "en": "Build a task queue on any broker, or even a database table: one producer, two consumers. Add a poison task on which a consumer crashes, and kill a consumer in the middle of processing.\n\nObserve and write down: what happened to the message after the crash, whether the task ran twice, where the poison task went. Add an idempotency key and a dead-letter queue and repeat. Describe how the client learns the result (status endpoint or event).\n\nYou are done when re-running a task has no double effect and the poison message lands in the dead-letter queue instead of blocking the queue."
+   }
+  }
+ ],
+ "minutes_total": 125
+}

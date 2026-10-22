@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+SC:wght@700&family=Inter:wght@400;500&display=swap" />
+<style>
+  html, body { margin: 0; width: 1280px; height: 360px; overflow: hidden; background: #090c17; font-family: Inter, sans-serif; }
+  body.light { background: #f4f1ea; }
+  #sky { position: absolute; inset: 0; }
+  .wrap { position: absolute; inset: 0; display: flex; align-items: center; gap: 44px; padding: 0 96px; }
+  .emb { width: 190px; height: 220px; flex: none; }
+  .text { color: #ece6d6; }
+  body.light .text { color: #1a1408; }
+  .name { font-family: var(--serif); font-weight: 700; font-size: 72px; letter-spacing: .18em; color: #e2b955; line-height: 1; }
+  body.light .name { color: #8a6a2a; }
+  .tag { margin-top: 18px; font-size: 26px; letter-spacing: .01em; color: #cfd3dd; }
+  body.light .tag { color: #3b3a36; }
+  .sub { margin-top: 10px; font-size: 17px; color: #a8adbd; }
+  body.light .sub { color: #6b6a65; }
+  .al-mater { fill: rgba(18,26,51,.9); } body.light .al-mater { fill: rgba(255,255,255,.9); }
+  .al-ring { fill: none; stroke: #e2b955; stroke-width: 1.6; } .al-ring.thin { stroke-width: .8; stroke: #b08d57; }
+  .al-tick { stroke: #b08d57; stroke-width: 1; } .al-tick.long { stroke: #e2b955; stroke-width: 1.6; }
+  .al-ecliptic { fill: none; stroke: #b08d57; stroke-width: .9; opacity: .8; }
+  .al-star { fill: #f3d27a; } .al-rete-arc { fill: none; stroke: #e2b955; stroke-width: 1.2; }
+  .al-rule { stroke: #f3d27a; stroke-width: 1.6; } .al-rule-tip { fill: #f3d27a; } .al-pin { fill: #e2b955; } .al-throne { fill: none; stroke: #e2b955; stroke-width: 1.6; }
+  body.light .al-ring { stroke: #8a6a2a; } body.light .al-star, body.light .al-rule, body.light .al-rule-tip, body.light .al-pin { fill: #8a6a2a; stroke: #8a6a2a; }
+  .vignette { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 90% at 25% 50%, rgba(226,185,85,.10), rgba(226,185,85,0) 70%); }
+</style>
+</head>
+<body>
+<canvas id="sky" width="1280" height="360"></canvas>
+<div class="vignette"></div>
+<div class="wrap">
+  <svg class="emb" viewBox="-50 -58 100 116" aria-hidden="true">
+    <circle cx="0" cy="-52" r="5" class="al-throne" /><line x1="0" y1="-47" x2="0" y2="-44" class="al-throne" />
+    <circle cx="0" cy="0" r="44" class="al-mater" /><circle cx="0" cy="0" r="44" class="al-ring" /><circle cx="0" cy="0" r="37" class="al-ring thin" />
+    <g id="ticks"></g>
+    <g><circle cx="0" cy="0" r="30" class="al-ring thin" /><circle cx="8" cy="-6" r="21" class="al-ecliptic" /><g id="stars"></g><path d="M -30 0 A 30 30 0 0 1 0 -30" class="al-rete-arc" /></g>
+    <g><line x1="-41" y1="0" x2="41" y2="0" class="al-rule" /><path d="M 41 0 l -6 -3 v 6 z M -41 0 l 6 -3 v 6 z" class="al-rule-tip" /></g>
+    <circle cx="0" cy="0" r="3.2" class="al-pin" />
+  </svg>
+  <div class="text">
+    <div class="name" id="name">ASTROLABE</div>
+    <div class="tag" id="tag">Your coding agent, now your mentor.</div>
+    <div class="sub" id="sub">A map of eras · a check in your own words · an exam that reads your files</div>
+  </div>
+</div>
+<script>
+  const q = new URLSearchParams(location.search); const lang = q.get('lang') || 'en'; const theme = q.get('theme') || 'dark';
+  if (theme === 'light') document.body.classList.add('light');
+  document.documentElement.style.setProperty('--serif', lang === 'ru' ? '"Cormorant SC", Georgia, serif' : '"Cinzel", Georgia, serif');
+  if (lang === 'ru') { name.textContent = 'АСТРОЛЯБИЯ'; name.style.fontSize = '78px'; tag.textContent = 'Ваш coding-агент, теперь ваш наставник.'; sub.textContent = 'карта эпох · проверка своими словами · экзамен, который читает ваши файлы'; }
+  document.getElementById('ticks').innerHTML = Array.from({ length: 36 }, (_, i) => { const a = (i * 10) * Math.PI / 180; const long = i % 9 === 0; const r1 = long ? 38 : 40.5; return `<line x1="${Math.cos(a) * r1}" y1="${Math.sin(a) * r1}" x2="${Math.cos(a) * 43.5}" y2="${Math.sin(a) * 43.5}" class="al-tick ${long ? 'long' : ''}"/>`; }).join('');
+  document.getElementById('stars').innerHTML = [[-28, -6], [-10, -30], [18, -22], [30, 8], [6, 30], [-20, 22]].map(([x, y]) => `<path d="M ${x} ${y - 3.2} l 1.2 2 2 1.2 -2 1.2 -1.2 2 -1.2 -2 -2 -1.2 2 -1.2 z" class="al-star"/>`).join('');
+  function mulberry32(a) { return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  const c = document.getElementById('sky').getContext('2d'); const rnd = mulberry32(20261022);
+  const tints = theme === 'light' ? ['#8a6a2a', '#5a4a2a', '#3b3a36'] : ['#cfd8ff', '#e8edff', '#ffe9c4', '#ffffff', '#b9c6f2'];
+  for (let i = 0; i < 700; i++) { const mag = Math.pow(rnd(), 3); const x = rnd() * 1280, y = rnd() * 360; const r = 0.5 + mag * 2.0; c.globalAlpha = (theme === 'light' ? 0.05 : 0.08) + mag * (theme === 'light' ? 0.35 : 0.6); c.fillStyle = tints[Math.floor(rnd() * tints.length)]; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill(); }
+  const P = [[760, 60], [900, 40], [980, 120], [1120, 95], [1180, 210], [1040, 290], [880, 250], [820, 160]]; const S = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 2]];
+  c.globalAlpha = 1; c.strokeStyle = theme === 'light' ? 'rgba(138,106,42,0.35)' : 'rgba(170,190,255,0.18)'; c.lineWidth = 1;
+  for (const [a, b] of S) { c.beginPath(); c.moveTo(...P[a]); c.lineTo(...P[b]); c.stroke(); }
+  for (const [i, [x, y]] of P.entries()) { c.fillStyle = i < 4 ? '#2fbf9a' : (theme === 'light' ? '#8a6a2a' : '#e8edff'); c.globalAlpha = .9; c.beginPath(); c.arc(x, y, i < 4 ? 3.2 : 2.4, 0, Math.PI * 2); c.fill(); c.globalAlpha = .25; c.beginPath(); c.arc(x, y, 7, 0, Math.PI * 2); c.fill(); }
+</script>
+</body>
+</html>

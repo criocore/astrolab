@@ -1,0 +1,99 @@
+{
+  "id": "finetune-vs-prompt",
+  "grade": "G3",
+  "order": 12,
+  "title": {
+    "ru": "Fine-tuning или промптинг",
+    "en": "Fine-tuning or prompting"
+  },
+  "goal": {
+    "ru": "Решать, нужно ли дообучение, на основании оценки, данных и цены.",
+    "en": "Decide whether fine-tuning is needed based on evals, data and cost."
+  },
+  "criteria": {
+    "ru": [
+      "Назвать, когда хватает промптинга и RAG, а когда fine-tuning оправдан (стабильный формат, стиль, короткие промпты, меньшая модель).",
+      "Описать цикл оптимизации: оценка, правка промпта, при необходимости дообучение, повторная оценка; без оценки решение не принимается.",
+      "Объяснить, что такое SFT и LoRA и какие данные для них нужны (пары «запрос-ответ» в шаблоне чата).",
+      "Назвать ресурсы для дообучения: размеченный набор и память GPU; объяснить, как LoRA снижает требования."
+    ],
+    "en": [
+      "Say when prompting and RAG are enough and when fine-tuning is justified (stable format, style, shorter prompts, a smaller model).",
+      "Describe the optimization loop: eval, prompt edit, fine-tune if needed, re-eval; no decision without an eval.",
+      "Explain SFT and LoRA and the data they need (prompt-response pairs in a chat template).",
+      "Name the resources fine-tuning needs: a labelled set and GPU memory; explain how LoRA lowers the requirement."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ft-openai-optimization",
+      "title": "Model optimization (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/model-optimization",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Когда промптинга достаточно, когда дообучать, цикл evals-промпт-fine-tune (критерии 1, 2). На странице указано, что платформа OpenAI для fine-tuning сворачивается.",
+        "en": "When prompting is enough, when to fine-tune, the evals-prompt-fine-tune loop (criteria 1, 2). The page states OpenAI's fine-tuning platform is being wound down."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ft-hf-sft",
+      "title": "LLM Course, chapter 11: Supervised Fine-Tuning (Hugging Face)",
+      "url": "https://huggingface.co/learn/llm-course/chapter11/1",
+      "kind": "understand",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face course, free to read",
+      "closes": {
+        "ru": "Шаблоны чата, SFT, LoRA и экономия памяти, оценка (критерии 3, 4).",
+        "en": "Chat templates, SFT, LoRA and memory savings, evaluation (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ft-handson-llms",
+      "title": "Hands-On Large Language Models (GitHub, chapters 11-12)",
+      "url": "https://github.com/HandsOnLLM/Hands-On-Large-Language-Models",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 90,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Apache-2.0 repo; the book itself is paid (O'Reilly)",
+      "closes": {
+        "ru": "Colab-ноутбуки по дообучению моделей (главы 11 и 12), бесплатный T4 (критерии 3, 4).",
+        "en": "Colab notebooks on fine-tuning (chapters 11 and 12) on a free T4 (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 135
+}

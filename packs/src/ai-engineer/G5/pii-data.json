@@ -1,0 +1,76 @@
+{
+  "id": "pii-data",
+  "grade": "G5",
+  "order": 3,
+  "title": {
+    "ru": "PII и данные в промптах и логах",
+    "en": "PII and data in prompts and logs"
+  },
+  "goal": {
+    "ru": "Не отправлять и не хранить лишнее: знать классы данных, маскировать их и держать политику хранения.",
+    "en": "Do not send or store more than needed: know the data classes, mask them, keep a retention policy."
+  },
+  "criteria": {
+    "ru": [
+      "Перечисляю классы данных, которые нельзя отправлять во внешнюю модель или писать в логи (персональные данные, секреты и ключи, коммерческая тайна), и условия, при которых можно.",
+      "Показываю маскирование: нахожу PII в тексте и заменяю плейсхолдерами до отправки в модель.",
+      "Описываю политику хранения промптов, ответов и трейсов: срок, место, доступ, удаление.",
+      "Объясняю, что автоматическое обнаружение пропускает часть данных, и чем это компенсировать."
+    ],
+    "en": [
+      "I list data classes that must not go to an external model or into logs (personal data, secrets and keys, trade secrets) and the conditions when they may.",
+      "I demonstrate masking: detect PII in text and replace it with placeholders before sending to a model.",
+      "I describe a retention policy for prompts, responses and traces: period, location, access, deletion.",
+      "I explain that automatic detection misses some data and how to compensate."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pii-owasp-llm02",
+      "title": "LLM02:2025 Sensitive Information Disclosure (OWASP GenAI)",
+      "url": "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "CC BY-SA 4.0 (OWASP)",
+      "closes": {
+        "ru": "Классы чувствительных данных, санитизация и политика хранения и удаления (критерии 1, 3).",
+        "en": "Sensitive-data classes, sanitization, retention and deletion policy (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "pii-presidio",
+      "title": "microsoft/presidio (PII detection and anonymization)",
+      "url": "https://github.com/microsoft/presidio",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "MIT",
+      "closes": {
+        "ru": "Установить и замаскировать PII в тексте; на странице прямо сказано, что автоматика ловит не всё (критерии 2, 4).",
+        "en": "Install it and mask PII in text; the page states that automation does not catch everything (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 55
+}

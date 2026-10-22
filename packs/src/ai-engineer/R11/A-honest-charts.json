@@ -1,0 +1,100 @@
+{
+ "id": "honest-charts",
+ "area": "R11",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R11.A",
+ "order": 3,
+ "title": {
+  "ru": "Честные графики",
+  "en": "Honest charts"
+ },
+ "goal": {
+  "ru": "Читать чужие графики с недоверием и строить свои так, чтобы они не врали.",
+  "en": "Read other people's charts with suspicion and build your own so they do not lie."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, когда ось можно обрезать, а когда нет (столбцы начинаются с нуля), и как обрезка меняет восприятие разницы.",
+   "Отличать абсолютные числа от долей или значений на душу населения и выбирать нужное для вопроса.",
+   "Заметить подбор удобного периода или выборки; показывать период, объём выборки и источник.",
+   "Построить график в pandas с подписанными осями, единицами и источником."
+  ],
+  "en": [
+   "Explain when an axis may be truncated and when not (bars start at zero) and how truncation changes the perceived difference.",
+   "Tell absolute numbers from rates or per-capita values and choose the right one for the question.",
+   "Spot a convenient time window or sample; show the period, sample size and source.",
+   "Build a pandas chart with labelled axes, units and a source."
+  ]
+ },
+ "materials": [
+  {
+   "id": "hc-cornell-great-viz",
+   "title": "Qualities of great visualizations (Cornell INFO 3312)",
+   "url": "https://info3312.infosci.cornell.edu/notes/great-viz.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2026-09",
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "course notes, CC BY-NC 4.0, link only",
+   "closes": {
+    "ru": "Усечённая ось, счёт против доли, подбор окна времени, примеры плохих графиков (критерии 1, 2, 3).",
+    "en": "Truncated axes, counts versus rates, cherry-picked windows, examples of bad charts (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "hc-pandas-viz",
+   "title": "Chart visualization (pandas docs)",
+   "url": "https://pandas.pydata.org/docs/user_guide/visualization.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "Виды графиков, подписи осей, логарифмическая шкала (критерий 4).",
+    "en": "Plot kinds, axis labels, log scale (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "hc-own-checklist",
+   "title": {
+    "ru": "Проверка своего графика перед показом",
+    "en": "Checklist before showing your chart"
+   },
+   "kind": "do",
+   "minutes": 10,
+   "criteria": [
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите график из своей работы и ответьте письменно: что на оси, в каких единицах, с какого значения начинается ось, за какой период и сколько наблюдений. Если столбцы начинаются не с нуля, поправьте или объясните прямо на графике.\n\nПодпишите источник и дату выгрузки. Покажите, что вы исключили из данных, если исключали. Затем попросите коллегу сказать, какой вывод он делает за пять секунд, и сравните с тем, что хотели сказать вы.",
+    "en": "Take a chart from your own work and answer in writing: what is on the axis, in what units, where the axis starts, for what period and how many observations. If bars do not start at zero, fix that or say so on the chart itself.\n\nLabel the source and the export date. Show what you excluded from the data, if anything. Then ask a colleague what conclusion they draw in five seconds and compare it with what you meant to say."
+   }
+  }
+ ],
+ "minutes_total": 65
+}

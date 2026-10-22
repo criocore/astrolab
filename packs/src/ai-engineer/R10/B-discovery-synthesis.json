@@ -1,0 +1,123 @@
+{
+ "id": "discovery-synthesis",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 2,
+ "title": {
+  "ru": "Интервью, синтез, дерево возможностей",
+  "en": "Interviews, synthesis, opportunity tree"
+ },
+ "goal": {
+  "ru": "Провести интервью, свести их в дерево возможностей и проверить допущения.",
+  "en": "Run interviews, merge them into an opportunity tree and test assumptions."
+ },
+ "criteria": {
+  "ru": [
+   "Я задаю вопросы о конкретном прошлом поведении, а не о мнениях.",
+   "После каждого интервью пишу одностраничный снэпшот.",
+   "Я строю OST: желаемый результат, возможности, решения.",
+   "Для выбранного решения я перечисляю допущения и придумываю дешёвый тест."
+  ],
+  "en": [
+   "I ask about specific past behavior, not opinions.",
+   "After each interview I write a one-page snapshot.",
+   "I build an OST: desired outcome, opportunities, solutions.",
+   "For a chosen solution I list assumptions and design a cheap test."
+  ]
+ },
+ "materials": [
+  {
+   "id": "pt-interviews",
+   "title": "Customer interviews (Product Talk)",
+   "url": "https://www.producttalk.org/customer-interviews/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2026-09",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog, free to read",
+   "closes": {
+    "ru": "Вопросы о прошлом, снэпшот интервью (критерии 1, 2).",
+    "en": "Past-behavior questions, interview snapshot (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "pt-ost",
+   "title": "Opportunity solution trees (Product Talk)",
+   "url": "https://www.producttalk.org/opportunity-solution-tree/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog, free to read",
+   "closes": {
+    "ru": "Структура OST (критерий 3).",
+    "en": "OST structure (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "pt-assumptions",
+   "title": "Assumption testing (Product Talk)",
+   "url": "https://www.producttalk.org/2023/10/assumption-testing/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog, free to read",
+   "closes": {
+    "ru": "Как проверять допущения за дни (критерий 4).",
+    "en": "Testing assumptions in days (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-ost-practice",
+   "title": {
+    "ru": "Упражнение: мини-дерево",
+    "en": "Exercise: a mini tree"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Проведите хотя бы два коротких разговора с людьми, которые решают вашу задачу сейчас. Спросите про последний раз. Запишите снэпшот каждого. Нарисуйте дерево: результат сверху, три возможности, по решению под каждой. Для одного решения запишите самое рискованное допущение и тест на один-два дня.",
+    "en": "Hold at least two short conversations with people who solve your problem today. Ask about the last time. Write a snapshot of each. Draw a tree: outcome on top, three opportunities, a solution under each. For one solution write the riskiest assumption and a test of a day or two."
+   }
+  }
+ ],
+ "minutes_total": 100
+}

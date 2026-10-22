@@ -1,0 +1,151 @@
+{
+ "id": "errors-files-json",
+ "area": "R2",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R2.A",
+ "order": 3,
+ "title": {
+  "ru": "Исключения, файлы, JSON",
+  "en": "Exceptions, files, JSON"
+ },
+ "goal": {
+  "ru": "Безопасно читать и писать файлы и JSON и не падать от ожидаемых ошибок.",
+  "en": "Read and write files and JSON safely and not crash on expected errors."
+ },
+ "criteria": {
+  "ru": [
+   "Ловлю конкретное исключение (try/except или try/catch), использую finally или with и умею бросить своё.",
+   "Читаю и записываю текстовый файл и обрабатываю случай, когда файла нет.",
+   "Превращаю JSON-файл в структуру данных и обратно и обрабатываю битый JSON."
+  ],
+  "en": [
+   "I catch a specific exception (try/except or try/catch), use finally or with, and can raise my own.",
+   "I read and write a text file and handle the missing-file case.",
+   "I turn a JSON file into a data structure and back and handle malformed JSON."
+  ]
+ },
+ "materials": [
+  {
+   "id": "efj-py-errors",
+   "title": "Errors and Exceptions (Python Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/errors.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "try/except/finally, raise, свои исключения, with (критерий 1).",
+    "en": "try/except/finally, raise, custom exceptions, with (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "efj-py-io",
+   "title": "Input and Output (Python Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/inputoutput.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Файлы, with open, модуль json: повторить примеры, затем сломать файл и поймать ошибку (критерии 2, 3).",
+    "en": "Files, with open, the json module: rerun the examples, then break the file and catch the error (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "efj-ts-errors",
+   "title": "Control flow and error handling (JavaScript Guide, MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "Повтор из темы синтаксиса: читать раздел про исключения: throw, try/catch/finally, Error (критерий 1).",
+    "en": "Repeat from the syntax topic: read the exceptions section: throw, try/catch/finally, Error (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "efj-ts-fs",
+   "title": "Reading files with Node.js",
+   "url": "https://nodejs.org/en/learn/manipulating-files/reading-files-with-nodejs",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Node.js docs, free to read",
+   "closes": {
+    "ru": "fs/promises readFile; проверить отсутствующий файл (критерий 2).",
+    "en": "fs/promises readFile; check the missing file case (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "efj-ts-json",
+   "title": "Working with JSON (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "JSON.parse и JSON.stringify (критерий 3); битый JSON проверить самому в try/catch.",
+    "en": "JSON.parse and JSON.stringify (criterion 3); try malformed JSON yourself inside try/catch."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 50,
+  "typescript": 55
+ },
+ "minutes_total": 55
+}

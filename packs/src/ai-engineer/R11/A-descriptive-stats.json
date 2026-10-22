@@ -1,0 +1,124 @@
+{
+ "id": "descriptive-stats",
+ "area": "R11",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R11.A",
+ "order": 1,
+ "title": {
+  "ru": "Описательная статистика",
+  "en": "Descriptive statistics"
+ },
+ "goal": {
+  "ru": "Описывать набор чисел несколькими цифрами и графиком, не вводя себя в заблуждение.",
+  "en": "Describe a set of numbers with a few figures and a plot without misleading yourself."
+ },
+ "criteria": {
+  "ru": [
+   "Посчитать и сравнить среднее и медиану, объяснить, почему выброс сдвигает среднее сильнее.",
+   "Описать разброс: стандартное отклонение и межквартильный размах, и когда нужен какой.",
+   "Найти персентиль (например p95) и объяснить, почему для задержек смотрят персентили, а не среднее.",
+   "Прочитать гистограмму: форма распределения, скошенность, выбросы."
+  ],
+  "en": [
+   "Compute and compare the mean and the median and explain why an outlier moves the mean more.",
+   "Describe spread: standard deviation and interquartile range, and when to use which.",
+   "Find a percentile (for example p95) and explain why latency is judged by percentiles and not the mean.",
+   "Read a histogram: shape of the distribution, skew, outliers."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ds-openintro",
+   "title": "OpenIntro Statistics, chapter 2 Summarizing Data",
+   "url": "https://www.openintro.org/book/os/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "OpenIntro Statistics, free PDF (license on openintro.org/license)",
+   "closes": {
+    "ru": "Глава «Summarizing Data»: меры центра и разброса, гистограммы, форма и выбросы (критерии 1, 2, 4). Главу выбрали по оглавлению на странице, текст главы не открывали.",
+    "en": "The Summarizing Data chapter: centre and spread, histograms, shape and outliers (criteria 1, 2, 4). Chosen from the table of contents on the page; the chapter text itself was not opened."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "ds-seeing-theory",
+   "title": "Seeing Theory: Basic Probability",
+   "url": "https://seeing-theory.brown.edu/basic-probability/index.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Seeing Theory (Brown University), site archived, free to read",
+   "closes": {
+    "ru": "Интерактивно: ожидание и дисперсия как мера разброса (критерий 2).",
+    "en": "Interactive: expectation and variance as a measure of spread (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ds-pandas-10min",
+   "title": "10 minutes to pandas",
+   "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "df.describe(): count, mean, std, min, квартили, max на своих данных (критерии 1, 2).",
+    "en": "df.describe(): count, mean, std, min, quartiles, max on your own data (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ds-pandas-quantile",
+   "title": "pandas.DataFrame.quantile",
+   "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.quantile.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "Любой персентиль через q и способы интерполяции (критерий 3).",
+    "en": "Any percentile through q and the interpolation options (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 105
+}

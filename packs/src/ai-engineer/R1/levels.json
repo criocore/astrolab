@@ -1,0 +1,27 @@
+{
+ "area": "R1",
+ "title": {
+  "ru": "Терминал, Linux, Git",
+  "en": "Terminal, Linux, Git"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 10,
+   "to_grade": "G0",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 14,
+   "to_grade": "G2",
+   "check": {
+    "ru": "В учебном репозитории: bash-скрипт с обработкой ошибок, git-хук и GitHub Action.",
+    "en": "In a study repo: a bash script with error handling, a git hook and a GitHub Action."
+   }
+  }
+ ]
+}

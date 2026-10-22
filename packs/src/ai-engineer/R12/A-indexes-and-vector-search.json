@@ -1,0 +1,146 @@
+{
+ "id": "indexes-and-vector-search",
+ "area": "R12",
+ "level": "A",
+ "to_grade": "G4",
+ "grade": "R12.A",
+ "order": 4,
+ "title": {
+  "ru": "Индексы и векторный поиск",
+  "en": "Indexes and vector search"
+ },
+ "goal": {
+  "ru": "Понимать, как индекс ускоряет поиск, от B-дерева в базе данных до приближённого поиска ближайших соседей, и выбирать между ними.",
+  "en": "Understand how an index speeds up search, from a database B-tree to approximate nearest-neighbor search, and choose between them."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, что делает B-tree индекс (равенство, диапазоны, порядок) и когда хеш-индекс или GIN подходят лучше.",
+   "Объяснить, почему точный поиск ближайших соседей в многомерном пространстве линеен и зачем нужен приближённый.",
+   "Объяснить идею HNSW (слои графа близости) и компромисс скорость против полноты (recall).",
+   "Построить индекс (Faiss или pgvector), сравнить точный и приближённый поиск по времени и полноте."
+  ],
+  "en": [
+   "Explain what a B-tree index does (equality, ranges, ordering) and when a hash index or GIN fits better.",
+   "Explain why exact nearest-neighbor search in high dimensions is linear and why approximate search is needed.",
+   "Explain the idea of HNSW (layered proximity graphs) and the speed versus recall trade-off.",
+   "Build an index (Faiss or pgvector) and compare exact and approximate search on time and recall."
+  ]
+ },
+ "materials": [
+  {
+   "id": "idx-pg-types",
+   "title": "Index Types (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/indexes-types.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "PostgreSQL License, docs free to read",
+   "closes": {
+    "ru": "B-tree, hash, GIN и другие типы: что умеет каждый (критерий 1).",
+    "en": "B-tree, hash, GIN and other types: what each one does (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "idx-hnsw-pinecone",
+   "title": "Hierarchical Navigable Small Worlds (Pinecone Faiss series)",
+   "url": "https://www.pinecone.io/learn/series/faiss/hnsw/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor article, free to read",
+   "closes": {
+    "ru": "Идея HNSW, параметры M, efConstruction, efSearch и компромисс (критерии 2, 3).",
+    "en": "The HNSW idea, parameters M, efConstruction, efSearch and the trade-off (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "idx-faiss",
+   "title": "Getting started (Faiss wiki)",
+   "url": "https://github.com/facebookresearch/faiss/wiki/Getting-started",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (Faiss repo)",
+   "closes": {
+    "ru": "Руками: точный IndexFlatL2 и поиск k ближайших; затем замените на HNSW и сравните (критерии 2, 4).",
+    "en": "Hands-on: exact IndexFlatL2 and k-nearest search; then swap in HNSW and compare (criteria 2, 4)."
+   },
+   "criteria": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "idx-pgvector",
+   "title": "pgvector",
+   "url": "https://github.com/pgvector/pgvector",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "open source, see repo LICENSE",
+   "closes": {
+    "ru": "Руками: векторный индекс в Postgres, HNSW против IVFFlat (критерии 3, 4).",
+    "en": "Hands-on: a vector index in Postgres, HNSW vs IVFFlat (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "idx-hnsw-paper",
+   "title": "Efficient and robust ANN search using HNSW graphs (Malkov, Yashunin)",
+   "url": "https://arxiv.org/abs/1603.09320",
+   "kind": "understand",
+   "type": "paper",
+   "access": "free",
+   "date": "2016-03",
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "arXiv, link only",
+   "closes": {
+    "ru": "Первоисточник HNSW; на выбор, для желающих глубже (критерий 3).",
+    "en": "The HNSW primary source; optional, for going deeper (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 180
+}

@@ -1,0 +1,122 @@
+{
+  "id": "plan-before-code",
+  "grade": "G1",
+  "order": 2,
+  "title": {
+    "ru": "План до кода",
+    "en": "Plan before code"
+  },
+  "goal": {
+    "ru": "Работать циклом research, plan, implement: сначала исследование и спека, и только потом код.",
+    "en": "Work in a research, plan, implement loop: exploration and a spec first, code second."
+  },
+  "criteria": {
+    "ru": [
+      "Описываю цикл explore, plan, implement, commit и правило, когда план нужен, а когда его пропускают (если diff описывается одним предложением).",
+      "Включаю plan mode и правлю план до одобрения.",
+      "Пишу спеку или задачу до первой строки кода: файлы и интерфейсы, что вне объёма, сквозная проверка в конце; для крупного делаю это через интервью с агентом.",
+      "Реализую в свежей сессии по спеке и сверяю результат с планом отдельным ревью."
+    ],
+    "en": [
+      "I describe the explore, plan, implement, commit loop and when to skip the plan (if the diff fits one sentence).",
+      "I turn on plan mode and edit the plan before approving it.",
+      "I write a spec or task before the first line of code: files and interfaces, out-of-scope, an end-to-end check at the end; for big work I do it via an agent interview.",
+      "I implement in a fresh session from the spec and check the result against the plan with a separate review."
+    ]
+  },
+  "materials": [
+    {
+      "id": "cc-best-practices-plan",
+      "title": "Best practices for Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Разделы про explore, plan, code, commit; интервью для спеки; ревью по PLAN.md (критерии 1, 3, 4).",
+        "en": "The explore, plan, code, commit section; the spec interview; review against PLAN.md (criteria 1, 3, 4)."
+      },
+      "criteria": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "pbc-plan-mode",
+      "title": "Permission modes: plan mode section (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Раздел Analyze before you edit: как войти в plan mode, одобрить и править план (критерий 2).",
+        "en": "The Analyze before you edit section: entering plan mode, approving and editing the plan (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "course-claude-code-101",
+      "title": "Claude Code 101 (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/claude-code-101",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free Anthropic Academy course, account required",
+      "closes": {
+        "ru": "Урок про workflow explore, plan, code, commit в практике (критерии 1, 2).",
+        "en": "The explore, plan, code, commit workflow lesson in practice (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "pbc-codex-best-practices",
+      "title": "Best practices (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/guides/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Цель, контекст, ограничения и «готово когда»; режим плана и интервью перед кодом; AGENTS.md (критерии 1, 3).",
+        "en": "Goal, context, constraints and done-when; plan mode and interview before coding; AGENTS.md (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 115
+}

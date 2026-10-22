@@ -1,0 +1,146 @@
+{
+ "id": "ui-e2e-playwright",
+ "area": "R7",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R7.B",
+ "order": 2,
+ "title": {
+  "ru": "E2E в Playwright: селекторы, ожидания, стабильность",
+  "en": "Playwright E2E: locators, waiting, stability"
+ },
+ "goal": {
+  "ru": "Писать стабильные UI-тесты, которые не ломаются от вёрстки и не ждут вслепую.",
+  "en": "Write stable UI tests that do not break on markup changes and never wait blindly."
+ },
+ "criteria": {
+  "ru": [
+   "Нахожу элементы по роли и тексту, а не по длинным CSS или XPath.",
+   "Использую web-first проверки с автоожиданием вместо sleep и разовых проверок.",
+   "Тесты изолированы; вход в систему делаю один раз через setup.",
+   "Разбираю упавший тест по HTML-отчёту и trace."
+  ],
+  "en": [
+   "I find elements by role and text rather than long CSS or XPath.",
+   "I use web-first assertions with auto-waiting instead of sleep and one-shot checks.",
+   "Tests are isolated; I sign in once through a setup project.",
+   "I diagnose a failed test with the HTML report and trace."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ui-pw-intro",
+   "title": "Installation (Playwright docs)",
+   "url": "https://playwright.dev/docs/intro",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Установка, запуск, HTML-отчёт, UI-режим (критерий 4).",
+    "en": "Install, run, HTML report, UI mode (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  },
+  {
+   "id": "ui-pw-best",
+   "title": "Best Practices (Playwright docs)",
+   "url": "https://playwright.dev/docs/best-practices",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Локаторы, web-first проверки, изоляция, trace на CI (критерии 1-4).",
+    "en": "Locators, web-first assertions, isolation, traces on CI (criteria 1-4)."
+   },
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ui-pw-locators",
+   "title": "Locators (Playwright docs)",
+   "url": "https://playwright.dev/docs/locators",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Повторить примеры getByRole, фильтрация, строгий режим на тестовой странице (критерий 1).",
+    "en": "Reproduce getByRole, filtering and strictness examples on a test page (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ui-pw-actionability",
+   "title": "Auto-waiting (Playwright docs)",
+   "url": "https://playwright.dev/docs/actionability",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Какие проверки Playwright делает перед кликом: visible, stable, receives events, enabled (критерий 2).",
+    "en": "Which checks Playwright runs before a click: visible, stable, receives events, enabled (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ui-pw-trace",
+   "title": "Trace viewer (Playwright docs)",
+   "url": "https://playwright.dev/docs/trace-viewer-intro",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Запись trace на первом повторе в CI, открытие через show-report, разбор действий, лога, сети и DOM-снимка упавшего теста (критерий 4).",
+    "en": "Record a trace on first retry in CI, open it via show-report, inspect actions, log, network and the DOM snapshot of a failed test (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 120
+}

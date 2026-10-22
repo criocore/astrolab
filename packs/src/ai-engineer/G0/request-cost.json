@@ -1,0 +1,145 @@
+{
+  "id": "request-cost",
+  "grade": "G0",
+  "order": 6,
+  "title": {
+    "ru": "Цена запроса",
+    "en": "Cost of a request"
+  },
+  "goal": {
+    "ru": "Уметь посчитать стоимость запроса и объяснить, из чего она складывается.",
+    "en": "Be able to compute a request's cost and explain what it consists of."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, что цена = входные токены × тариф входа + выходные × тариф выхода и что выход обычно дороже.",
+      "Взять числа токенов из поля usage ответа и оценить входные токены заранее через подсчёт токенов.",
+      "Объяснить промпт-кэширование: запись и чтение кэша стоят по-разному, есть минимальная длина и TTL.",
+      "Посчитать стоимость конкретного запроса по таблице тарифов, в том числе с кэшем."
+    ],
+    "en": [
+      "Explain that price = input tokens x input rate + output tokens x output rate, and that output usually costs more.",
+      "Read token counts from the response usage field and estimate input tokens in advance with token counting.",
+      "Explain prompt caching: cache writes and reads are priced differently, with a minimum length and a TTL.",
+      "Compute the cost of a concrete request from the rate table, including a cached case."
+    ]
+  },
+  "materials": [
+    {
+      "id": "rc-gemini-pricing",
+      "title": "Gemini Developer API pricing (Google AI for Developers)",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Таблица тарифов вход/выход/кэш за 1M токенов и плата за хранение кэша; по ней считают стоимость запроса (критерии 1, 3, 4).",
+        "en": "Rate table for input/output/cache per 1M tokens and cache storage fee; use it to compute a request's cost (criteria 1, 3, 4)."
+      },
+      "criteria": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "rc-claude-prompt-caching",
+      "title": "Prompt caching (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "cache_control, множители 1.25x/2x/0.1x, минимальная длина, TTL, поля usage (критерии 2, 3).",
+        "en": "cache_control, 1.25x/2x/0.1x multipliers, minimum length, TTL, usage fields (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rc-openai-prompt-caching",
+      "title": "Prompt caching (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Скидка на чтение кэша, цена записи, минимум 1024 токена, TTL и поля cached_tokens в usage (критерий 3, частично 2).",
+        "en": "Cached-read discount, write pricing, 1,024-token minimum, TTL and cached_tokens in usage (criterion 3, partly 2)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rc-claude-count-then-price",
+      "title": "Token counting (Claude Docs): estimate before you pay",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Вызвать count_tokens, умножить на тариф и сравнить с usage реального ответа (критерии 2, 4).",
+        "en": "Call count_tokens, multiply by the rate and compare with the real response usage (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "rc-gemini-caching",
+      "title": "Context caching (Gemini API docs, Google)",
+      "url": "https://ai.google.dev/gemini-api/docs/caching",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Неявный и явный кеш Gemini: пороги по токенам, поле cached tokens в usage, как снижается счёт; второй вендор рядом с Claude и OpenAI (критерий 3).",
+        "en": "Gemini implicit vs explicit caching: token thresholds, the cached-tokens usage field, when the bill drops; a second vendor next to Claude and OpenAI (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 85
+}

@@ -1,0 +1,169 @@
+{
+  "id": "evals-regression",
+  "grade": "G4",
+  "order": 11,
+  "title": {
+    "ru": "Evals и регрессионное тестирование",
+    "en": "Evals and regression testing"
+  },
+  "goal": {
+    "ru": "Уметь собрать набор кейсов, выбрать оценщиков (код, LLM-судья), задать порог и запускать проверку в CI.",
+    "en": "Be able to build a case set, pick graders (code, LLM judge), set a threshold and run the check in CI."
+  },
+  "criteria": {
+    "ru": [
+      "Собрать набор из не менее 50 кейсов с входом и проверяемым ожидаемым результатом, включая краевые случаи.",
+      "Выбрать оценщиков: проверка кодом и LLM-судья, откалиброванный по ручной разметке; повторять запуски из-за недетерминизма.",
+      "Различать capability- и regression-наборы, задать порог прохождения и запускать набор в CI при каждом изменении агента.",
+      "Прогнать своего агента с нуля по набору из 50 кейсов и показать результат выше порога."
+    ],
+    "en": [
+      "Build a set of at least 50 cases with an input and a checkable expected result, including edge cases.",
+      "Pick graders: code checks and an LLM judge calibrated against human labels; repeat runs because of nondeterminism.",
+      "Tell capability sets from regression sets, set a pass threshold and run the set in CI on every agent change.",
+      "Run your from-scratch agent over the 50-case set and show a result above the threshold."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ev-demystifying",
+      "title": "Demystifying evals for AI agents (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-01",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Tasks и trials, граферы, судья, regression против capability, CI, pass@k (критерии 2, 3, 4).",
+        "en": "Tasks and trials, graders, judge, regression versus capability, CI, pass@k (criteria 2, 3, 4)."
+      },
+      "criteria": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ev-hamel",
+      "title": "Your AI Product Needs Evals (Hamel Husain)",
+      "url": "https://hamel.dev/blog/posts/evals/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2024-03",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "author blog, free to read",
+      "closes": {
+        "ru": "Unit-тесты на утверждениях, LLM-судья со сверкой с человеком, разбор трасс (критерии 1, 2).",
+        "en": "Assertion-based unit tests, LLM judge checked against humans, trace review (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ev-claude-tests",
+      "title": "Create strong empirical evaluations (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Принципы набора, оценка кодом, LLM и человеком, примеры кода для автоматизации (критерии 1, 2, 4).",
+        "en": "Eval design principles, code, LLM and human grading, automation code examples (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "ev-hf-guidebook",
+      "title": "LLM Evaluation Guidebook (Hugging Face)",
+      "url": "https://github.com/huggingface/evaluation-guidebook",
+      "kind": "understand",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "CC BY-NC-SA 4.0 (link only)",
+      "closes": {
+        "ru": "Раздел про LLM-as-a-judge: промпт судьи, оценка самого судьи (критерий 2).",
+        "en": "The LLM-as-a-judge section: judge prompt design, evaluating the judge (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ev-inspect",
+      "title": "Inspect: a framework for LLM evaluations (UK AI Security Institute)",
+      "url": "https://inspect.aisi.org.uk/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "MIT (inspect_ai)",
+      "closes": {
+        "ru": "Одна задача, один скорер, разбор лога в inspect view (критерии 2, 3).",
+        "en": "One task, one scorer, inspect the log in inspect view (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "ev-promptfoo",
+      "title": "promptfoo: evaluate prompts, agents and RAGs (CLI, GitHub)",
+      "url": "https://github.com/promptfoo/promptfoo",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "MIT",
+      "closes": {
+        "ru": "Необязательный CI-прогон promptfoo eval на фиксированном наборе (критерии 3, 4); без red-team части.",
+        "en": "Optional CI run of promptfoo eval over a fixed set (criteria 3, 4); skip the red-team part."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 200
+}

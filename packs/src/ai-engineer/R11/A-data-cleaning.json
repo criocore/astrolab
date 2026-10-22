@@ -1,0 +1,120 @@
+{
+ "id": "data-cleaning",
+ "area": "R11",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R11.A",
+ "order": 2,
+ "title": {
+  "ru": "Очистка данных",
+  "en": "Data cleaning"
+ },
+ "goal": {
+  "ru": "Чистить данные так, чтобы выводы не поплыли из-за самой чистки.",
+  "en": "Clean data so that conclusions do not drift because of the cleaning itself."
+ },
+ "criteria": {
+  "ru": [
+   "Найти пропуски и объяснить, чем удаление строк отличается от заполнения значением и чем каждое грозит смещением.",
+   "Найти и убрать дубли строк с выбором subset и keep и проверить, не повторное ли это законное событие.",
+   "Разобраться с выбросом: сначала выяснить причину (ошибка ввода или реальное значение), а не удалять молча.",
+   "Вести чистку воспроизводимо: сырые данные не трогать, шаги держать в коде, число убранных строк записывать."
+  ],
+  "en": [
+   "Find missing values and explain how dropping rows differs from filling them and how each can bias results.",
+   "Find and remove duplicate rows choosing subset and keep, and check whether it is a legitimate repeated event.",
+   "Handle an outlier: find the cause first (entry error or a real value) and do not delete it silently.",
+   "Keep cleaning reproducible: leave raw data untouched, keep steps in code, record how many rows were removed."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dc-pandas-missing",
+   "title": "Working with missing data (pandas docs)",
+   "url": "https://pandas.pydata.org/docs/user_guide/missing_data.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "isna, dropna, fillna и как NaN ведёт себя в сравнениях (критерий 1).",
+    "en": "isna, dropna, fillna and how NaN behaves in comparisons (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "dc-pandas-drop-duplicates",
+   "title": "pandas.DataFrame.drop_duplicates",
+   "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pandas docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "Параметры subset и keep на примере (критерий 2).",
+    "en": "The subset and keep parameters with an example (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "dc-openintro-outliers",
+   "title": "OpenIntro Statistics, chapter 2 (outliers, robust statistics)",
+   "url": "https://www.openintro.org/book/os/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "OpenIntro Statistics, free PDF (license on openintro.org/license)",
+   "closes": {
+    "ru": "Как выбросы влияют на статистики (поддержка критерия 3; нужен только этот фрагмент главы). Повтор из темы descriptive-stats.",
+    "en": "How outliers affect statistics (supports criterion 3; only this part of the chapter is needed). A repeat from descriptive-stats."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "dc-own-rules",
+   "title": {
+    "ru": "Правила чистки, которые не портят данные",
+    "en": "Cleaning rules that do not damage data"
+   },
+   "kind": "understand",
+   "minutes": 15,
+   "criteria": [
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выброс сам по себе не ошибка. Перед удалением найдите причину: опечатка, сбой датчика, смешение единиц или редкое, но настоящее событие. Первые три случая исправляют или помечают, четвёртый оставляют и описывают. Если сомневаетесь, посчитайте итог с выбросом и без него и покажите оба результата.\n\nСырой файл не меняйте. Все шаги (удаление дублей, заполнение пропусков, фильтры) пишите кодом, который можно запустить с нуля, и после каждого шага печатайте число строк. Так видно, где данные убыли и не ушла ли вместе с мусором нужная группа.\n\nПропуск тоже несёт информацию: если он не случаен (например, поле не заполняют недовольные клиенты), заполнение средним скроет это. Запишите, как вы решили с пропусками и почему.",
+    "en": "An outlier is not an error by itself. Before removing it, find the cause: a typo, a sensor fault, mixed units or a rare but genuine event. The first three get fixed or flagged, the fourth stays and is described. If in doubt, compute the result with and without the outlier and show both.\n\nDo not edit the raw file. Write every step (dropping duplicates, filling gaps, filters) as code that runs from scratch, and print the row count after each step. That shows where data was lost and whether a needed group left along with the junk.\n\nA gap also carries information: if it is not random (for example, unhappy customers skip the field), filling with the mean hides that. Write down how you decided to treat missing values and why."
+   }
+  }
+ ],
+ "minutes_total": 75
+}

@@ -1,0 +1,143 @@
+{
+  "id": "guardrails",
+  "grade": "G5",
+  "order": 4,
+  "title": {
+    "ru": "Guardrails",
+    "en": "Guardrails"
+  },
+  "goal": {
+    "ru": "Ставить проверки на входе и выходе, фиксировать схему ответа и знать пределы таких проверок.",
+    "en": "Place checks on input and output, pin the response schema, and know the limits of such checks."
+  },
+  "criteria": {
+    "ru": [
+      "Различаю проверки входа и выхода и привожу пример каждой.",
+      "Задаю схему выхода (JSON Schema) и обрабатываю отказ модели и обрезку по длине.",
+      "Подключаю готовый фреймворк guardrails к вызову модели и показываю сработавшую проверку.",
+      "Называю случаи, когда guardrails недостаточно (обход, ложные срабатывания, ложные факты в валидном JSON), и чем их дополнить."
+    ],
+    "en": [
+      "I distinguish input and output checks and give an example of each.",
+      "I define an output schema (JSON Schema) and handle refusals and length truncation.",
+      "I attach a ready-made guardrails framework to a model call and show a check firing.",
+      "I name cases where guardrails are not enough (bypass, false positives, false facts in valid JSON) and what to add."
+    ]
+  },
+  "materials": [
+    {
+      "id": "gr-structured-outputs",
+      "title": "Structured outputs (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Схема выхода, ограничения схем, случаи refusal и max_tokens, когда вывод не по схеме (критерии 2, 4).",
+        "en": "Output schema, schema limits, and refusal and max_tokens cases where output breaks the schema (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "gr-reduce-hallucinations",
+      "title": "Reduce hallucinations (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Чем дополнять схему: цитаты, право сказать «не знаю», проверка утверждений; прямо сказано, что ошибки полностью не снимаются (критерий 4).",
+        "en": "What to add on top of a schema: quotes, permission to say I don't know, claim verification; states these do not eliminate errors (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "gr-openai-guardrails",
+      "title": "OpenAI Guardrails (Python)",
+      "url": "https://openai.github.io/openai-guardrails-python/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Встроенные проверки входа, выхода и PII; замена клиента на обёртку и просмотр результатов проверок (критерии 1, 3).",
+        "en": "Built-in input, output and PII checks; swap the client for the wrapper and inspect check results (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "gr-openai-structured-outputs",
+      "title": "Structured model outputs (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Выход по JSON Schema (strict), обработка refusal и обрыва по max_output_tokens на другом вендоре (критерий 2).",
+        "en": "JSON Schema output (strict), handling a refusal item and truncation at max_output_tokens, from another vendor (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "gr-inspect-scorer",
+      "title": "Inspect AI: tasks and scorers (UK AI Security Institute)",
+      "url": "https://inspect.aisi.org.uk/",
+      "kind": "do",
+      "type": "tool",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "open-source framework, docs free to read",
+      "closes": {
+        "ru": "Проверка JSON Schema в собственном коде и scorer в Inspect, который проваливается при отсутствии обязательного ключа (критерии 2 и 4).",
+        "en": "A JSON Schema check in your own code plus an Inspect scorer that fails when a required key is missing (criteria 2 and 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 165
+}

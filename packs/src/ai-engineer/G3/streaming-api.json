@@ -1,0 +1,144 @@
+{
+  "id": "streaming-api",
+  "grade": "G3",
+  "order": 10,
+  "title": {
+    "ru": "Стриминг и REST к LLM",
+    "en": "Streaming and REST for LLMs"
+  },
+  "goal": {
+    "ru": "Подключить LLM по REST со стримингом и надёжно обрабатывать сбои.",
+    "en": "Call an LLM over REST with streaming and handle failures reliably."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить формат SSE (Content-Type text/event-stream, поля event и data, пустая строка как разделитель) и как токены приходят частями.",
+      "Реализовать потоковый вывод через SDK и собрать итоговое сообщение из событий.",
+      "Различать ошибки по кодам (429, 5xx, 529, 400) и объяснить, что ошибка может прийти уже после ответа 200 в середине потока.",
+      "Настроить ретраи с экспоненциальной паузой и учётом retry-after, повторяя только временные ошибки."
+    ],
+    "en": [
+      "Explain the SSE format (Content-Type text/event-stream, event and data fields, blank line as separator) and how tokens arrive in pieces.",
+      "Implement streaming output through an SDK and assemble the final message from events.",
+      "Tell errors apart by status code (429, 5xx, 529, 400) and explain that an error can arrive after a 200 response mid-stream.",
+      "Set up retries with exponential backoff honoring retry-after, repeating only transient errors."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sa-mdn-sse",
+      "title": "Using server-sent events (MDN)",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "MDN, CC BY-SA 2.5",
+      "closes": {
+        "ru": "Формат потока, поля event/data/id/retry, переподключение (критерий 1).",
+        "en": "Stream format, event/data/id/retry fields, reconnection (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "sa-claude-streaming",
+      "title": "Streaming messages (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Стриминг в SDK, события, сбор итогового сообщения, ошибки в потоке (критерии 1, 2, 3).",
+        "en": "Streaming in the SDK, events, assembling the final message, mid-stream errors (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "sa-claude-errors",
+      "title": "Claude API errors",
+      "url": "https://platform.claude.com/docs/en/api/errors",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Коды ошибок, автоматические ретраи SDK с экспоненциальной паузой и retry-after, request-id, ошибки после 200 (критерии 3, 4).",
+        "en": "Status codes, SDK automatic retries with exponential backoff and retry-after, request IDs, errors after a 200 (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "sa-openai-rate-limits",
+      "title": "How to handle rate limits (OpenAI Cookbook)",
+      "url": "https://developers.openai.com/cookbook/examples/how_to_handle_rate_limits",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "OpenAI Cookbook, repo content MIT (check page); recipe marked archived",
+      "closes": {
+        "ru": "Ретраи с экспоненциальной паузой и джиттером на tenacity, backoff и вручную, повтор только RateLimitError; про retry-after и 5xx на странице нет (критерий 4).",
+        "en": "Retries with exponential backoff and jitter via tenacity, backoff and by hand, retrying only RateLimitError; the page does not cover retry-after or 5xx (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "sa-gemini-headless",
+      "title": "Headless mode reference, streaming JSON output (Gemini CLI docs, Google)",
+      "url": "https://geminicli.com/docs/cli/headless",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Клиент читает поток JSONL-событий (init, message, tool_use, tool_result, error, result) и чисто останавливается на событии error (критерии 2, 3).",
+        "en": "Write a client that reads the JSONL event stream (init, message, tool_use, tool_result, error, result) and stops cleanly on the error event (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 125
+}

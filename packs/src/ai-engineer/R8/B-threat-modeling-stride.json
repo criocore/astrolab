@@ -1,0 +1,124 @@
+{
+ "id": "threat-modeling-stride",
+ "area": "R8",
+ "level": "B",
+ "to_grade": "G5",
+ "grade": "R8.B",
+ "order": 1,
+ "title": {
+  "ru": "STRIDE: модель угроз",
+  "en": "STRIDE threat model"
+ },
+ "goal": {
+  "ru": "Построить модель угроз для типовой системы и составить список мер.",
+  "en": "Build a threat model for a typical system and list mitigations."
+ },
+ "criteria": {
+  "ru": [
+   "Отвечаю на четыре вопроса: что строим, что может пойти не так, что делаем, достаточно ли хорошо.",
+   "Рисую диаграмму потоков данных с границами доверия.",
+   "К каждому элементу применяю STRIDE и называю нарушаемое свойство (аутентичность, целостность, неотрекаемость, конфиденциальность, доступность, авторизация).",
+   "Для главных угроз предлагаю меры и расставляю приоритеты."
+  ],
+  "en": [
+   "I answer the four questions: what we build, what can go wrong, what we do, did we do well enough.",
+   "I draw a data flow diagram with trust boundaries.",
+   "I apply STRIDE to each element and name the violated property (authenticity, integrity, non-repudiation, confidentiality, availability, authorization).",
+   "For the top threats I propose mitigations and priorities."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tm-owasp-cheat",
+   "title": "Threat Modeling Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Четыре вопроса, DFD, STRIDE и меры (критерии 1-4).",
+    "en": "Four questions, DFD, STRIDE and mitigations (criteria 1-4)."
+   },
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "tm-ms-stride",
+   "title": "Threats - Microsoft Threat Modeling Tool (Microsoft Learn)",
+   "url": "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2017-08",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Шесть категорий STRIDE с определениями и примерами (критерий 3).",
+    "en": "The six STRIDE categories with definitions and examples (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "tm-threat-dragon",
+   "title": "OWASP Threat Dragon",
+   "url": "https://owasp.org/www-project-threat-dragon/",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0",
+   "closes": {
+    "ru": "Нарисовать DFD и перечислить угрозы STRIDE в бесплатном инструменте (критерии 2, 3). Подойдёт и бумага или draw.io.",
+    "en": "Draw a DFD and list STRIDE threats in a free tool (criteria 2, 3). Paper or draw.io works too."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "tm-exercise",
+   "title": {
+    "ru": "Упражнение: типовая система",
+    "en": "Exercise: a typical system"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите систему «веб-клиент, API, база, очередь, внешний платёжный сервис». Нарисуйте DFD, пометьте границы доверия и пройдите STRIDE по каждому потоку. Для пяти самых серьёзных угроз запишите меру и владельца. Это и есть артефакт проверки уровня.",
+    "en": "Take a system «web client, API, database, queue, external payment service». Draw the DFD, mark trust boundaries and go through STRIDE for each flow. For the five most serious threats write a mitigation and an owner. This is the artifact for the level check."
+   }
+  }
+ ],
+ "minutes_total": 125
+}

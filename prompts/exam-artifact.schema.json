@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "exam-artifact@2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verdict", "checks", "feedback", "next_steps"],
+  "properties": {
+    "verdict": { "type": "string", "enum": ["pass", "gap"] },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "verdict", "evidence", "note"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "verdict": { "type": "string", "enum": ["pass", "gap", "unclear"] },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "quote"],
+            "properties": { "path": { "type": "string" }, "quote": { "type": "string", "maxLength": 400 } }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "feedback": { "type": "string", "minLength": 1 },
+    "next_steps": { "type": "array", "maxItems": 5, "items": { "type": "string", "minLength": 1 } }
+  }
+}

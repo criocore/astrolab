@@ -1,0 +1,18 @@
+{
+ "area": "R12",
+ "title": {
+  "ru": "Фундамент CS",
+  "en": "CS foundations"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 10,
+   "to_grade": "G4",
+   "check": {
+    "ru": "Ревью сложности одного модуля, написанного агентом.",
+    "en": "A complexity review of one module written by an agent."
+   }
+  }
+ ]
+}

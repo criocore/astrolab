@@ -1,0 +1,175 @@
+{
+ "id": "functions-modules-packages",
+ "area": "R2",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R2.A",
+ "order": 2,
+ "title": {
+  "ru": "Функции, модули, пакеты и менеджер зависимостей",
+  "en": "Functions, modules, packages and a dependency manager"
+ },
+ "goal": {
+  "ru": "Раскладывать код по функциям и файлам и подключать сторонние пакеты через менеджер зависимостей.",
+  "en": "Split code into functions and files and bring in third-party packages through a dependency manager."
+ },
+ "criteria": {
+  "ru": [
+   "Пишу функцию с параметрами, значением по умолчанию и возвращаемым значением и вызываю её из другого файла через import.",
+   "Объясняю разницу между модулем и пакетом.",
+   "Создаю проект менеджером (uv или npm), добавляю зависимость, объясняю роль lock-файла и запускаю скрипт."
+  ],
+  "en": [
+   "I can write a function with parameters, a default value and a return value and call it from another file via import.",
+   "I can explain the difference between a module and a package.",
+   "I can create a project with a manager (uv or npm), add a dependency, explain the lock file and run a script."
+  ]
+ },
+ "materials": [
+  {
+   "id": "fmp-py-controlflow",
+   "title": "More Control Flow Tools: defining functions (Python Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/controlflow.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Повтор: читать только раздел про определение функций, параметры по умолчанию и return (критерий 1).",
+    "en": "Repeat: read only the function-definition sections, default parameters and return (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "fmp-py-modules",
+   "title": "Modules (Python Tutorial)",
+   "url": "https://docs.python.org/3/tutorial/modules.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Импорт своих модулей, пути поиска, пакеты (критерии 1, 2).",
+    "en": "Importing your own modules, the search path, packages (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fmp-py-uv",
+   "title": "Working on projects (uv docs)",
+   "url": "https://docs.astral.sh/uv/guides/projects/",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "uv docs (MIT/Apache-2.0 project), free to read",
+   "closes": {
+    "ru": "Создать проект, uv add, uv.lock, uv run (критерий 3).",
+    "en": "Create a project, uv add, uv.lock, uv run (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "fmp-ts-functions",
+   "title": "More on Functions (TypeScript Handbook)",
+   "url": "https://www.typescriptlang.org/docs/handbook/2/functions.html",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "TypeScript docs, free to read",
+   "closes": {
+    "ru": "Типы функций, необязательные параметры (критерий 1).",
+    "en": "Function types, optional parameters (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "fmp-ts-modules",
+   "title": "JavaScript modules (JavaScript Guide, MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "import/export между файлами (критерии 1, 2). Страница длинная: раздел про браузер можно пропустить.",
+    "en": "import/export across files (criteria 1, 2). The page is long: the browser sections can be skipped."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "fmp-ts-npm",
+   "title": "An introduction to the npm package manager (Node.js)",
+   "url": "https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Node.js docs, free to read",
+   "closes": {
+    "ru": "npm install, dependencies и devDependencies, npm run: выполнить на пустом проекте (критерий 3).",
+    "en": "npm install, dependencies vs devDependencies, npm run: run it on an empty project (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 70,
+  "typescript": 70
+ },
+ "minutes_total": 70
+}

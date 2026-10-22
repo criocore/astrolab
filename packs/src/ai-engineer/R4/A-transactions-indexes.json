@@ -1,0 +1,98 @@
+{
+ "id": "transactions-indexes",
+ "area": "R4",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R4.A",
+ "order": 2,
+ "title": {
+  "ru": "Транзакции, индексы, EXPLAIN",
+  "en": "Transactions, indexes, EXPLAIN"
+ },
+ "goal": {
+  "ru": "Понимать, что гарантирует транзакция, зачем нужен индекс и как прочитать план запроса.",
+  "en": "Understand what a transaction guarantees, why an index helps and how to read a query plan."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, чем отличаются уровни изоляции Read Committed, Repeatable Read и Serializable, на примере аномалии.",
+   "Объяснить, как устроен B-tree индекс и почему он ускоряет поиск, но замедляет запись.",
+   "Запустить EXPLAIN ANALYZE и по плану сказать, был ли использован индекс."
+  ],
+  "en": [
+   "Explain how Read Committed, Repeatable Read and Serializable differ using an anomaly example.",
+   "Explain how a B-tree index works and why it speeds up lookups but slows down writes.",
+   "Run EXPLAIN ANALYZE and tell from the plan whether an index was used."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ti-pg-iso",
+   "title": "Transaction Isolation (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Уровни изоляции и аномалии (критерий 1).",
+    "en": "Isolation levels and anomalies (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ti-util-anatomy",
+   "title": "Anatomy of an SQL Index (Use The Index, Luke)",
+   "url": "https://use-the-index-luke.com/sql/anatomy",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read online, author's site",
+   "closes": {
+    "ru": "Структура индекса: список и сбалансированное дерево (критерий 2).",
+    "en": "Index structure: linked list and balanced tree (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ti-pg-explain",
+   "title": "Using EXPLAIN (PostgreSQL docs)",
+   "url": "https://www.postgresql.org/docs/current/using-explain.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Повторить примеры EXPLAIN и EXPLAIN ANALYZE на своей таблице (критерии 2, 3).",
+    "en": "Repeat the EXPLAIN and EXPLAIN ANALYZE examples on your own table (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 100
+}

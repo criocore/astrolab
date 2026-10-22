@@ -1,0 +1,96 @@
+{
+  "id": "reasoning-models",
+  "grade": "G3",
+  "order": 11,
+  "title": {
+    "ru": "Рассуждающие модели",
+    "en": "Reasoning models"
+  },
+  "goal": {
+    "ru": "Понимать, как рассуждающие модели меняют промпты, цену и задержку.",
+    "en": "Understand how reasoning models change prompts, price and latency."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, что такое рассуждающие токены: они не показываются целиком, тарифицируются как выходные и входят в окно контекста.",
+      "Показать, как уровень усилия или бюджет мышления меняет число токенов, цену и время ответа на одной задаче.",
+      "Объяснить, как меняется промптинг: цель, ограничения и формат вывода вместо пошаговых инструкций."
+    ],
+    "en": [
+      "Explain reasoning tokens: they are not shown in full, billed as output and count toward the context window.",
+      "Show how effort level or thinking budget changes token count, price and response time on one task.",
+      "Explain how prompting changes: goal, constraints and output format instead of step-by-step instructions."
+    ]
+  },
+  "materials": [
+    {
+      "id": "rm-openai-reasoning",
+      "title": "Reasoning models (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Reasoning tokens, параметр effort, влияние на цену и задержку, советы по промптам (критерии 1, 2, 3).",
+        "en": "Reasoning tokens, the effort parameter, impact on cost and latency, prompting advice (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rm-claude-extended-thinking",
+      "title": "Extended thinking (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Запуск примера с budget_tokens, подбор бюджета и поле thinking_tokens в usage; страница описывает устаревающий режим, переход на adaptive + effort описан там же (критерий 2).",
+        "en": "Run the example with budget_tokens, tune the budget and read thinking_tokens in usage; the page covers the older mode and the migration to adaptive + effort (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "rm-openai-effort-lab",
+      "title": "Reasoning models (OpenAI API guide), effort lab",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Один вопрос на двух уровнях reasoning effort на не-Claude API: токены, задержка, изменился ли ответ (критерий 2).",
+        "en": "Run one question at two reasoning efforts on a non-Claude API: tokens, latency, whether the answer changed (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 95
+}

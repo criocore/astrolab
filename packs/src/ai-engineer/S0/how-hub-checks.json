@@ -1,0 +1,92 @@
+{
+  "id": "how-hub-checks",
+  "grade": "S0",
+  "order": 5,
+  "probe": "manual",
+  "title": {
+    "ru": "Как хаб проверяет",
+    "en": "How the hub checks"
+  },
+  "goal": {
+    "ru": "Понять три проверки Астролябии: проверка темы вопросами, эволюция по папке с цитатами и проверка уровня смежной области, а также где хранится прогресс.",
+    "en": "Understand Astrolabe's three checks: a topic check by questions, an era gate on a folder with quotes, and an adjacent-area level check, plus where progress is stored."
+  },
+  "criteria": {
+    "ru": [
+      "Описать проверку темы: кто задаёт вопросы, что считается «принято» и почему вердикт содержит цитату из вашего ответа.",
+      "Описать эволюцию эпохи: что вы отдаёте, что агент может и не может делать с папкой, и почему цитата, не найденная в файле, означает «не сдано».",
+      "Назвать, где лежит прогресс и как его сохранить и перенести."
+    ],
+    "en": [
+      "Describe a topic check: who asks the questions, what counts as \"accepted\", and why the verdict contains a quote from your answer.",
+      "Describe an era gate: what you hand in, what the agent can and cannot do with the folder, and why a quote not found in a file means \"not passed\".",
+      "Name where progress lives and how to save and move it."
+    ]
+  },
+  "materials": [
+    {
+      "id": "hub-claude-cli-ref",
+      "title": "Claude Code CLI reference (official docs)",
+      "url": "https://code.claude.com/docs/en/cli-reference",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 5,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "Anthropic docs, free to read",
+      "closes": {
+        "ru": "Что значат флаги `-p`, `--tools`, `--restricted`, `--resume`, которыми хаб запускает Claude Code (критерий 2).",
+        "en": "What the `-p`, `--tools`, `--restricted`, `--resume` flags the hub starts Claude Code with mean (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "hub-guide",
+      "title": {
+        "ru": "Три проверки и где живёт прогресс",
+        "en": "Three checks and where progress lives"
+      },
+      "kind": "understand",
+      "minutes": 10,
+      "criteria": [
+        1,
+        2,
+        3
+      ],
+      "source": "own",
+      "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "**Проверка темы.** У каждой темы 2–5 критериев. Нажимаете «Проверить», агент пишет 2–3 вопроса по критериям, вы отвечаете своими словами. На каждый ответ приходит вердикт «принято» или «пробел» с цитатой из вашего же ответа: это защита от общих фраз, наставник обязан показать, за какие именно слова он засчитал. Если пробел, он называет материал, который его закрывает. Все вопросы приняты, тема изучена, звезда горит. В этой проверке агент не читает файлов и не ходит в интернет.\n\n**Эволюция эпохи.** Это экзамен по папке с артефактом: репозиторием, отчётом. Вы указываете путь, агент читает папку и только читает: ничего не пишет, ничего не запускает, за пределы папки не выходит. Рубрика эволюции это 5–8 пунктов из пакета, каждый он обязан подтвердить файлом и точной цитатой. Дальше хаб сам открывает названный файл и ищет цитату. Нет цитаты в файле, нет вердикта по пункту или путь вне папки, значит не сдано, что бы агент ни написал. Эволюция пройдена, открыта следующая эпоха. У эпохи I эволюции нет: её звёзды зажигает сам хаб.\n\n**Проверка уровня.** У смежных областей (Р1 инструменты, Р8 безопасность и так далее) есть уровни A, B, C. Уровень проверяется так же по папке, но не запирает ничего: это отметка «умею», а не замок.\n\n**Прогресс.** Всё лежит в одном файле `data/hub.db` рядом с хабом: темы, проверки, экзамены, Хроника и Лоция. В меню настроек есть «Экспорт» (один JSON) и «Импорт». Переезд на другую машину это экспорт, копия файла, импорт. Журнал вызовов агента в `data/logs/mentor.jsonl` без текста ваших ответов.\n\n**Демо.** `start.cmd --demo` или `./start.sh --demo` запускает хаб без агента: ответы наставника берутся из записей, прогресс идёт в отдельную папку `data-demo`. Удобно посмотреть механику до того, как тратить лимит.\n\n**Отметка.** Эту тему хаб проверить не может, поставьте галочку «прочитал» сами.",
+        "en": "**Topic check.** Every topic has 2–5 criteria. You press \"Check\", the agent writes 2–3 questions on the criteria, you answer in your own words. Each answer gets a verdict, \"accepted\" or \"gap\", with a quote from your own answer: that is the guard against vague phrases, the mentor must show which exact words it counted. On a gap it names the material that closes it. All questions accepted, topic learned, star lit. In this check the agent reads no files and uses no internet.\n\n**Era gate.** An exam on a folder with an artifact: a repository, a report. You give a path, the agent reads the folder and only reads: writes nothing, runs nothing, stays inside the folder. The gate rubric is 5–8 items from the pack, each must be backed with a file and an exact quote. Then the hub itself opens the named file and looks for the quote. No quote in the file, no verdict on an item, or a path outside the folder means not passed, whatever the agent wrote. Gate passed, next era open. Era I has no gate: its stars are lit by the hub itself.\n\n**Level check.** Adjacent areas (R1 tools, R8 security and so on) have levels A, B, C. A level is checked the same way on a folder, but locks nothing: it is a \"can do\" mark, not a lock.\n\n**Progress.** Everything lives in one file, `data/hub.db`, next to the hub: topics, checks, exams, Chronicle and Rutter. The settings menu has \"Export\" (one JSON) and \"Import\". Moving to another machine is export, copy, import. The agent call log is in `data/logs/mentor.jsonl`, without the text of your answers.\n\n**Demo.** `start.cmd --demo` or `./start.sh --demo` runs the hub without an agent: the mentor's answers come from recordings, progress goes to a separate `data-demo` folder. Handy for seeing the mechanics before spending quota.\n\n**Mark.** The hub cannot verify this topic; tick \"read it\" yourself."
+      }
+    },
+    {
+      "id": "hub-demo-do",
+      "title": {
+        "ru": "Посмотреть эволюцию в демо-режиме",
+        "en": "Watch a gate in demo mode"
+      },
+      "kind": "do",
+      "minutes": 10,
+      "criteria": [
+        2,
+        3
+      ],
+      "source": "own",
+      "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Остановите хаб (Ctrl+C в его терминале) и запустите демо:\n\n```\nstart.cmd --demo\n```\n\nили `./start.sh --demo` на macOS и Linux. Откроется тот же интерфейс, но ответы наставника берутся из записей, а прогресс пишется в папку `data-demo`, ваш настоящий прогресс не трогается.\n\nОткройте эволюцию эпохи II и укажите папку `fixtures/exam-g0-demo` внутри папки хаба (полный путь). Это нарочно неполный артефакт: код есть, расчёта цены нет. Посмотрите, как по каждому пункту рубрики эволюция показывает файл и цитату, где стоит «подтверждено», а где «пробел». Затем остановите демо и запустите хаб обычным способом: `data-demo` можно удалить.",
+        "en": "Stop the hub (Ctrl+C in its terminal) and start the demo:\n\n```\nstart.cmd --demo\n```\n\nor `./start.sh --demo` on macOS and Linux. The same interface opens, but the mentor's answers come from recordings and progress goes to the `data-demo` folder; your real progress is untouched.\n\nOpen the gate of era II and point it at the `fixtures/exam-g0-demo` folder inside the hub folder (full path). It is a deliberately incomplete artifact: the code is there, the cost calculation is not. See how the gate shows a file and a quote for every rubric item, where it says \"verified\" and where it marks a gap. Then stop the demo and start the hub the usual way: `data-demo` can be deleted."
+      }
+    }
+  ],
+  "minutes_total": 25
+}

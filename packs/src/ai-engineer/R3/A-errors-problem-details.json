@@ -1,0 +1,126 @@
+{
+ "id": "errors-problem-details",
+ "area": "R3",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R3.A",
+ "order": 3,
+ "title": {
+  "ru": "Ошибки API: RFC 9457",
+  "en": "API errors: RFC 9457"
+ },
+ "goal": {
+  "ru": "Возвращать ошибки в одном формате, понятном и человеку, и программе.",
+  "en": "Return errors in a single format that both a human and a program can use."
+ },
+ "criteria": {
+  "ru": [
+   "Называю поля Problem Details (type, title, status, detail, instance) и тип содержимого application/problem+json.",
+   "Выбираю между 4xx и 5xx и конкретным кодом под причину ошибки.",
+   "Разделяю сообщение для человека (detail) и стабильный признак для машины (type), не раскрывая внутренности сервера.",
+   "Добавляю к ошибке валидации расширяющие поля со списком проблемных полей и настраиваю глобальный обработчик ошибок."
+  ],
+  "en": [
+   "I name the Problem Details members (type, title, status, detail, instance) and the application/problem+json media type.",
+   "I choose between 4xx and 5xx and a specific code for the cause.",
+   "I separate a human message (detail) from a stable machine identifier (type) without leaking server internals.",
+   "I add extension members to a validation error listing the offending fields and set up a global error handler."
+  ]
+ },
+ "materials": [
+  {
+   "id": "rfc9457",
+   "title": "RFC 9457: Problem Details for HTTP APIs",
+   "url": "https://www.rfc-editor.org/rfc/rfc9457.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2023-07",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "IETF RFC, free to read",
+   "closes": {
+    "ru": "Поля, тип содержимого, расширения и правила безопасности (критерии 1, 3, 4).",
+    "en": "Members, media type, extensions and security notes (criteria 1, 3, 4)."
+   },
+   "criteria": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "epd-mdn-status-reuse",
+   "title": "HTTP response status codes (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 2.5, MDN",
+   "closes": {
+    "ru": "Из справочника нужны только коды 4xx и 5xx для выбора (критерий 2).",
+    "en": "Only the 4xx and 5xx codes are needed here, to choose the right one (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "epd-fastapi-errors",
+   "title": "Handling Errors (FastAPI docs)",
+   "url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/handling-errors.md",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, FastAPI repo",
+   "closes": {
+    "ru": "HTTPException и свои обработчики: можно отдавать ответ в формате problem+json (критерии 2, 4).",
+    "en": "HTTPException and custom handlers: you can emit problem+json (criteria 2, 4)."
+   },
+   "criteria": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "epd-hono-exception",
+   "title": "HTTPException (Hono docs)",
+   "url": "https://hono.dev/docs/api/exception",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, Hono docs",
+   "closes": {
+    "ru": "HTTPException и app.onError в Hono (критерии 2, 3, 4).",
+    "en": "HTTPException and app.onError in Hono (criteria 2, 3, 4)."
+   },
+   "criteria": [
+    2,
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 85
+}

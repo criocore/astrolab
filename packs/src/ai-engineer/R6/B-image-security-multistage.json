@@ -1,0 +1,117 @@
+{
+ "id": "image-security-multistage",
+ "area": "R6",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R6.B",
+ "order": 1,
+ "title": {
+  "ru": "Multi-stage сборка, безопасность образа и рантайма, сканирование",
+  "en": "Multi-stage builds, image and runtime security, scanning"
+ },
+ "goal": {
+  "ru": "Собрать компактный образ без лишнего, запускать его с минимальными правами, сканировать и подключить проверки к CI.",
+  "en": "Build a lean image, run it with minimal privileges, scan it, and wire the checks into CI."
+ },
+ "criteria": {
+  "ru": [
+   "Я делаю multi-stage Dockerfile, где в финальный образ попадает только результат сборки.",
+   "Я запускаю контейнер не от root, со сброшенными capabilities, и не кладу секреты в образ.",
+   "Я сканирую образ и объясняю, что делать с найденной уязвимостью.",
+   "Я настраиваю CI так, чтобы он собирал образ, гонял тесты и eval-набор и падал при просадке качества ниже порога."
+  ],
+  "en": [
+   "I write a multi-stage Dockerfile where only build output reaches the final image.",
+   "I run a container as non-root with dropped capabilities and keep secrets out of the image.",
+   "I scan an image and explain what to do with a found vulnerability.",
+   "I set up CI that builds the image, runs tests and an eval suite, and fails when quality drops below a threshold."
+  ]
+ },
+ "materials": [
+  {
+   "id": "is-multistage",
+   "title": "Multi-stage builds (Docker docs)",
+   "url": "https://docs.docker.com/build/building/multi-stage/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Стадии и копирование артефактов (критерий 1).",
+    "en": "Stages and copying artifacts (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "is-owasp-docker",
+   "title": "Docker Security Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0",
+   "closes": {
+    "ru": "Не root, capabilities, сканирование в CI (критерии 2, 3, 4).",
+    "en": "Non-root, capabilities, scanning in CI (criteria 2, 3, 4)."
+   },
+   "criteria": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "is-scout",
+   "title": "Docker Scout quickstart (Docker docs)",
+   "url": "https://docs.docker.com/scout/quickstart/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: сканировать образ и читать результат (критерий 3).",
+    "en": "Hands-on: scan an image and read the results (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 75,
+ "refs": [
+  {
+   "id": "is-eval-gate-ref",
+   "topic": "G4/evals-regression",
+   "criteria_there": [
+    3
+   ],
+   "criteria": [
+    4
+   ],
+   "closes": {
+    "ru": "Порог прохождения и запуск eval-набора в CI разобраны в теме «Evals и регрессионное тестирование» (G4), критерий 3. Здесь только подключить тот же шаг к пайплайну рядом с тестами (критерий 4).",
+    "en": "Pass threshold and running the eval set in CI are covered in 'Evals and regression testing' (G4), criterion 3. Here you only wire that step into the same pipeline next to the tests (criterion 4)."
+   }
+  }
+ ]
+}

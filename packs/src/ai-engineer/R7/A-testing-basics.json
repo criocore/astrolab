@@ -1,0 +1,123 @@
+{
+ "id": "testing-basics",
+ "area": "R7",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R7.A",
+ "order": 1,
+ "title": {
+  "ru": "Пирамида тестов и что тестировать первым",
+  "en": "The test pyramid and what to test first"
+ },
+ "goal": {
+  "ru": "Понимать виды тестов, зачем нужна пирамида, и уметь написать первый осмысленный тест.",
+  "en": "Understand test types, why the pyramid exists, and write a first meaningful test."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю пирамиду тестов: почему юнит-тестов много, а сквозных мало.",
+   "Отличаю unit, integration и e2e тест на примере своего кода.",
+   "Для теста называю оракул (откуда известен ожидаемый результат) и пишу проверку assert.",
+   "Выбираю, что тестировать первым: публичное поведение и места, где уже были баги."
+  ],
+  "en": [
+   "I explain the test pyramid: why unit tests are many and end-to-end tests few.",
+   "I tell a unit, integration and e2e test apart on an example from my own code.",
+   "For a test I name the oracle (where the expected result comes from) and write an assert.",
+   "I choose what to test first: public behaviour and places where bugs already happened."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tb-fowler-practical-pyramid",
+   "title": "The Practical Test Pyramid (martinfowler.com)",
+   "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2018-02",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "article, free to read",
+   "closes": {
+    "ru": "Пирамида, виды тестов, моки и заглушки, раздел «What to Test?» (критерии 1, 2, 4).",
+    "en": "The pyramid, test types, mocks and stubs, the «What to Test?» section (criteria 1, 2, 4)."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "tb-fowler-testpyramid",
+   "title": "Test Pyramid (martinfowler.com)",
+   "url": "https://martinfowler.com/bliki/TestPyramid.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2012-05",
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "article, free to read",
+   "closes": {
+    "ru": "Короткая заметка: почему UI-тесты дороги и хрупки, и правило «баг сначала воспроизводим юнит-тестом» (критерии 1, 4).",
+    "en": "Short note: why UI tests are costly and brittle, and the rule «reproduce a bug with a unit test first» (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "tb-pytest-start",
+   "title": "Get Started (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/getting-started.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (pytest), vendor docs, free to read",
+   "closes": {
+    "ru": "Пишем первые тесты руками: assert, исключения, pytest.approx (критерии 2, 3). Для TypeScript то же в Vitest.",
+    "en": "Write first tests by hand: assert, exceptions, pytest.approx (criteria 2, 3). For TypeScript do the same in Vitest."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "tb-oracle",
+   "title": {
+    "ru": "Оракул теста",
+    "en": "Test oracle"
+   },
+   "kind": "understand",
+   "minutes": 10,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Оракул — это источник ожидаемого результата: расчёт руками, спецификация, прежняя правильная версия, свойство вида «после сортировки список упорядочен». Если оракул взят из самого тестируемого кода, тест ничего не проверяет. Перед assert спросите себя: откуда я знаю, что это правильный ответ?",
+    "en": "An oracle is the source of the expected result: a hand calculation, a specification, an earlier correct version, or a property such as «after sorting the list is ordered». If the oracle is taken from the code under test, the test checks nothing. Before writing assert, ask: how do I know this answer is correct?"
+   }
+  }
+ ],
+ "minutes_total": 90
+}

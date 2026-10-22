@@ -1,0 +1,36 @@
+{
+ "area": "R4",
+ "title": {
+  "ru": "Данные и базы данных",
+  "en": "Data and databases"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 14,
+   "to_grade": "G3",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 14,
+   "to_grade": "G4",
+   "check": {
+    "ru": "Конвейер загрузки открытого датасета с проверкой качества и идемпотентной перезагрузкой.",
+    "en": "A load pipeline for an open dataset with quality checks and idempotent reload."
+   }
+  },
+  {
+   "level": "PII",
+   "hours": 4,
+   "to_grade": "G5",
+   "check": {
+    "ru": "В своём проекте найдены и закрыты места, где PII попадает в промпты и логи.",
+    "en": "In your own project, places where PII reaches prompts and logs are found and closed."
+   }
+  }
+ ]
+}

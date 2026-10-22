@@ -1,0 +1,121 @@
+{
+ "id": "streaming-ui",
+ "area": "R9",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R9.A",
+ "order": 2,
+ "title": {
+  "ru": "Потоковый вывод ответа в браузере",
+  "en": "Streaming a response in the browser"
+ },
+ "goal": {
+  "ru": "Показывать ответ модели по мере прихода, а не после завершения.",
+  "en": "Show a model answer as it arrives instead of after it finishes."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить формат SSE (text/event-stream, строки data:) и выбор между EventSource и fetch с потоком.",
+   "Прочитать тело ответа fetch через response.body.getReader() и TextDecoder и дописывать текст в DOM по мере прихода.",
+   "Корректно завершать и прерывать поток: флаг done, ошибка сети, AbortController, кнопка «Стоп».",
+   "Знать, в каком виде API модели присылает поток (события с дельтами текста), и достать из них текст."
+  ],
+  "en": [
+   "Explain the SSE format (text/event-stream, data: lines) and when to use EventSource versus fetch with a stream.",
+   "Read a fetch response body with response.body.getReader() and TextDecoder and append text to the DOM as it arrives.",
+   "End and cancel a stream correctly: the done flag, network error, AbortController, a Stop button.",
+   "Know how a model API delivers a stream (events with text deltas) and extract the text from them."
+  ]
+ },
+ "materials": [
+  {
+   "id": "su-mdn-sse",
+   "title": "Using server-sent events (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "Формат потока и EventSource, onmessage, onerror, close (критерий 1).",
+    "en": "Stream format and EventSource, onmessage, onerror, close (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "su-mdn-readable-streams",
+   "title": "Using readable streams (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN Web Docs, free to read (content licensed CC BY-SA 2.5, see MDN copyright page)",
+   "closes": {
+    "ru": "Чтение тела fetch через getReader и цикл read(), отмена через AbortController (критерии 2, 3; про EventSource против fetch для критерия 1 тоже полезно).",
+    "en": "Reading a fetch body via getReader and a read() loop, cancelling with AbortController (criteria 2, 3; also useful for the EventSource versus fetch choice in criterion 1)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "su-claude-streaming",
+   "title": "Streaming messages (Claude API docs)",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Как API присылает поток SSE и где в нём дельты текста (критерий 4); другие API устроены похоже.",
+    "en": "How the API sends an SSE stream and where text deltas sit (criterion 4); other APIs work similarly."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "su-own-exercise",
+   "title": {
+    "ru": "Упражнение: страница с потоковым ответом",
+    "en": "Exercise: a page with a streamed answer"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Напишите страницу из поля ввода, кнопки «Отправить», кнопки «Стоп» и блока для ответа. Для начала подставьте вместо модели свой простой сервер, который отдаёт текст кусками с паузами. По нажатию вызовите fetch, возьмите response.body.getReader(), в цикле декодируйте куски через TextDecoder и дописывайте текст в блок.\n\nЗатем добавьте остановку через AbortController и вывод ошибки, если соединение оборвалось посреди ответа. Проверьте, что страница не мигает: уже показанный текст не перерисовывается целиком на каждом куске.\n\nКогда всё работает, замените свой сервер на настоящий API модели и разберите события потока так, как описано в его документации.",
+    "en": "Build a page with an input, a Send button, a Stop button and a block for the answer. At first use a simple server of your own in place of the model, one that sends text in chunks with pauses. On click call fetch, take response.body.getReader(), decode chunks in a loop with TextDecoder and append the text to the block.\n\nThen add cancellation with AbortController and an error message for a connection that drops mid-answer. Check that the page does not flicker: text already shown must not be redrawn in full on every chunk.\n\nWhen it works, swap your server for a real model API and parse the stream events as its documentation describes."
+   }
+  }
+ ],
+ "minutes_total": 120
+}

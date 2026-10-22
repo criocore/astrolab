@@ -1,0 +1,140 @@
+{
+  "id": "inference-basics",
+  "grade": "G5",
+  "order": 7,
+  "title": {
+    "ru": "Локальный и edge-инференс",
+    "en": "Local and edge inference"
+  },
+  "goal": {
+    "ru": "Понимать основы локального запуска, квантизации и компромисса скорости и качества.",
+    "en": "Understand the basics of local runs, quantization and the speed versus quality trade-off."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, что такое квантизация и как битность влияет на память, скорость и качество.",
+      "Запускаю локальную модель и обращаюсь к ней по API.",
+      "Подбираю квантизацию под своё железо (VRAM или RAM) по таблице или подборщику.",
+      "Называю случаи, когда локальный инференс нужен (приватность, офлайн, объём), и когда облако лучше."
+    ],
+    "en": [
+      "I explain what quantization is and how bit width affects memory, speed and quality.",
+      "I run a local model and call it over an API.",
+      "I choose a quantization for my hardware (VRAM or RAM) using a table or picker.",
+      "I name cases where local inference is needed (privacy, offline, volume) and where the cloud is better."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ib-hf-quant",
+      "title": "Quantization overview (Hugging Face Transformers)",
+      "url": "https://huggingface.co/docs/transformers/quantization/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Apache-2.0",
+      "closes": {
+        "ru": "Что даёт квантизация, сравнительная таблица методов по железу и ссылка на подборщик (критерии 1, 3).",
+        "en": "What quantization gives, a method-by-hardware table and a picker link (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "ib-ollama",
+      "title": "Quickstart (Ollama Docs)",
+      "url": "https://docs.ollama.com/quickstart",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Установить, запустить локальную модель и вызвать её по локальному API (критерий 2).",
+        "en": "Install, run a local model and call it through the local API (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ib-dlai-quant",
+      "title": "Quantization Fundamentals with Hugging Face (DeepLearning.AI)",
+      "url": "https://www.deeplearning.ai/short-courses/quantization-fundamentals-with-hugging-face/",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 75,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free enrollment; graded part needs PRO",
+      "closes": {
+        "ru": "Короткий курс с тремя ноутбуками: линейная квантизация и квантизация открытых моделей (критерий 1). Задание с оценкой требует PRO.",
+        "en": "Short course with three notebooks: linear quantization and quantizing open models (criterion 1). The graded assignment requires PRO."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "ib-llamacpp-quantize",
+      "title": "llama-quantize README (llama.cpp)",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "MIT",
+      "closes": {
+        "ru": "Типы квантизации от IQ1_S до Q8_0, размер и скорость на Llama-3.1-8B и команда llama-quantize (критерии 1, 3).",
+        "en": "Quant types from IQ1_S to Q8_0, size and speed on Llama-3.1-8B and the llama-quantize command (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 150,
+  "own_texts": [
+    {
+      "id": "ib-when-local",
+      "title": {
+        "ru": "Когда локальный инференс нужен, а когда облако лучше",
+        "en": "When local inference is needed and when the cloud is better"
+      },
+      "kind": "understand",
+      "minutes": 10,
+      "criteria": [
+        4
+      ],
+      "source": "own",
+      "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Локальный запуск нужен в четырёх случаях. Первый: данные нельзя отправлять наружу. Это медицинские записи, персональные данные, внутренний код или документы под NDA, а также любая ситуация, где договор или закон запрещает передачу третьей стороне. Второй: сеть недоступна или ненадёжна. Устройство в поле, самолёт, закрытый контур предприятия, работа при обрывах связи. Третий: объём стабильный и большой. Если одни и те же запросы идут круглосуточно, то цена за токен в облаке со временем превышает стоимость своего железа и электричества; точку окупаемости считают по своим числам, а не по чужим таблицам. Четвёртый: нужна предсказуемая задержка без очередей и лимитов провайдера, например в интерактивном инструменте с коротким ответом.\n\nОблако лучше, когда задача требует самой сильной модели, когда нагрузка редкая или пиковая, когда нет людей, которые будут следить за обновлениями, безопасностью и мониторингом своего сервера, и когда проект ещё не вышел из стадии проверки идеи. Локальная модель на вашем железе, как правило, меньше облачной модели переднего края, поэтому решение принимайте по измерению: проверьте, хватает ли качества на вашем наборе проверочных вопросов (тема «Evals»), и посчитайте точку окупаемости по своим числам. Слово «всегда» здесь не работает: у каждой задачи свой результат.\n\nПрактическое правило: начинайте в облаке, меряйте качество и расход, и переходите на локальный запуск по одной из четырёх причин выше, а не по общим соображениям. Гибрид тоже нормален: чувствительные или массовые шаги локально, сложные шаги в облаке (тема «Экономика»).",
+        "en": "Local inference is needed in four cases. First, the data must not leave your perimeter: medical records, personal data, internal code or documents under NDA, or any case where a contract or a law forbids sending data to a third party. Second, the network is absent or unreliable: a device in the field, a plane, an air-gapped site, work with frequent disconnects. Third, the volume is large and steady. If the same kind of request runs around the clock, the per-token price in the cloud eventually exceeds the cost of your own hardware and power; compute the break-even point from your own numbers, not from someone else's table. Fourth, you need predictable latency without provider queues and rate limits, for example in an interactive tool with short answers.\n\nThe cloud is better when the task needs the strongest model available, when the load is rare or spiky, when nobody will maintain updates, security and monitoring of your own server, and when the project has not left the proof-of-concept stage. A local model running on your own hardware is usually smaller than the frontier cloud model, so decide by measurement: check that the quality is sufficient on your own evaluation set (topic «Evals») and compute the break-even point from your own numbers. A blanket claim such as «always weaker» does not hold: every task gives its own result.\n\nA practical rule: start in the cloud, measure quality and spend, and move to local inference for one of the four reasons above, not on general grounds. A hybrid is fine too: sensitive or high-volume steps locally, hard steps in the cloud (topic «Cost engineering»)."
+      }
+    }
+  ]
+}

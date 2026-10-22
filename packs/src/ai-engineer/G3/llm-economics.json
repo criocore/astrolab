@@ -1,0 +1,143 @@
+{
+  "id": "llm-economics",
+  "grade": "G3",
+  "order": 13,
+  "title": {
+    "ru": "Цены и экономика запросов",
+    "en": "Prices and request economics"
+  },
+  "goal": {
+    "ru": "Считать стоимость ответа и знать рычаги: кэш, батчи, выбор модели.",
+    "en": "Compute the cost of an answer and know the levers: cache, batches, model choice."
+  },
+  "criteria": {
+    "ru": [
+      "Посчитать стоимость запроса: токены входа и выхода, умноженные на цены, с учётом рассуждающих токенов как выходных.",
+      "Посчитать выгоду кэша промпта по множителям записи и чтения и сказать, когда он окупается.",
+      "Объяснить скидку батчей (50% от цены) и для каких задач батч подходит.",
+      "Посчитать стоимость одного ответа своего RAG (контекст + вопрос + ответ) для двух моделей и сравнить."
+    ],
+    "en": [
+      "Compute a request cost: input and output tokens times prices, counting reasoning tokens as output.",
+      "Compute the benefit of prompt caching from write and read multipliers and say when it pays off.",
+      "Explain the batch discount (50% of price) and which jobs suit batches.",
+      "Compute the cost of one answer of your own RAG (context + question + answer) for two models and compare."
+    ]
+  },
+  "materials": [
+    {
+      "id": "le-claude-pricing",
+      "title": "Pricing (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Таблица цен за миллион токенов, кэш, батчи, как скидки складываются, стратегии экономии (критерии 1, 2, 3).",
+        "en": "Per-million-token price table, caching, batches, how discounts stack, cost-saving strategies (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "le-claude-caching",
+      "title": "Prompt caching (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Множители: запись 1.25x и 2x, чтение 0.1x и ниже; TTL и минимальная длина кэшируемого промпта (критерий 2).",
+        "en": "Multipliers: writes 1.25x and 2x, reads 0.1x or lower; TTL and minimum cacheable prompt length (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "le-tiktoken-cost",
+      "title": "How to count tokens with tiktoken (OpenAI Cookbook)",
+      "url": "https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "OpenAI Cookbook, repo content MIT (check page); recipe marked archived",
+      "closes": {
+        "ru": "Считать токены промпта до вызова и оценивать цену; основа для расчёта стоимости ответа RAG (критерии 1, 4).",
+        "en": "Count prompt tokens before a call and estimate price; the basis for the RAG answer cost calculation (criteria 1, 4)."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "le-openai-batch",
+      "title": "Batch API (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/batch",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Скидка 50% к синхронным вызовам, окно 24 часа, подходящие задачи: оценки, классификация больших наборов, эмбеддинги; лимиты батча (критерий 3).",
+        "en": "50% discount versus synchronous calls, 24-hour window, suitable jobs: evals, classifying large datasets, embeddings; batch limits (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "le-gemini-caching",
+      "title": "Context caching (Gemini API docs, Google)",
+      "url": "https://ai.google.dev/gemini-api/docs/caching",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-10",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Неявное и явное кэширование у Gemini, минимальные размеры, учёт cached tokens; цены и множители в этой странице не указаны, считать по прайсу (критерий 2).",
+        "en": "Implicit and explicit caching in Gemini, minimum sizes, cached-token accounting; prices and multipliers are not on this page, so compute from the price list (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 95
+}

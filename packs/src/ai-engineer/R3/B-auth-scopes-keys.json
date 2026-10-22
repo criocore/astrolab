@@ -1,0 +1,147 @@
+{
+ "id": "auth-scopes-keys",
+ "area": "R3",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R3.B",
+ "order": 1,
+ "title": {
+  "ru": "Аутентификация и авторизация",
+  "en": "Authentication and authorization"
+ },
+ "goal": {
+  "ru": "Защитить API: проверять, кто пришёл, что ему можно, и управлять ключами доступа.",
+  "en": "Protect an API: verify who is calling, what they may do, and manage access keys."
+ },
+ "criteria": {
+  "ru": [
+   "Различаю аутентификацию и авторизацию и применяю 401 и 403 по назначению.",
+   "Задаю роли и scopes по принципу наименьших прав и запрета по умолчанию, проверяю их на каждом запросе на сервере.",
+   "Храню API-ключи правильно (хэш, показ один раз, префикс), выдаю ключи с ограниченными правами и ротирую с периодом наложения старого и нового.",
+   "Проверяю права на уровне объекта (чужой id в пути не даёт чужие данные) и защищаю эндпоинт токеном в коде."
+  ],
+  "en": [
+   "I tell authentication from authorization and use 401 and 403 correctly.",
+   "I define roles and scopes with least privilege and deny by default, and check them server-side on every request.",
+   "I handle API keys properly (hashed, shown once, prefix), issue keys with limited rights and rotate with an overlap of old and new.",
+   "I check object-level permissions (another user's id in the path gives no foreign data) and protect an endpoint with a token in code."
+  ]
+ },
+ "materials": [
+  {
+   "id": "asc-owasp-api-top10",
+   "title": "OWASP API Security Top 10 (2023)",
+   "url": "https://api-security.owasp.org/editions/2023/en/0x11-t10",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2023",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0, OWASP",
+   "closes": {
+    "ru": "Главные риски API: сломанная аутентификация и авторизация на уровне объекта и функции (критерии 1, 4).",
+    "en": "The main API risks: broken authentication and object- and function-level authorization (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "asc-owasp-authz",
+   "title": "Authorization Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0, OWASP",
+   "closes": {
+    "ru": "Наименьшие права, запрет по умолчанию, проверка на каждом запросе, RBAC (критерий 2).",
+    "en": "Least privilege, deny by default, per-request checks, RBAC (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "asc-stripe-keys",
+   "title": "API keys (Stripe docs)",
+   "url": "https://docs.stripe.com/keys",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Ограниченные ключи, хранение, ротация с переходным периодом (критерии 2, 3).",
+    "en": "Restricted keys, storage, rotation with a grace period (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "asc-fastapi-security",
+   "title": "Security: First Steps (FastAPI docs)",
+   "url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/security/first-steps.md",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, FastAPI repo",
+   "closes": {
+    "ru": "Bearer-токен в FastAPI и защищённый эндпоинт (критерии 1, 4).",
+    "en": "Bearer token in FastAPI and a protected endpoint (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "asc-hono-bearer",
+   "title": "Bearer Auth Middleware (Hono docs)",
+   "url": "https://hono.dev/docs/middleware/builtin/bearer-auth",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, Hono docs",
+   "closes": {
+    "ru": "Bearer-аутентификация в Hono, проверка токена (критерии 1, 3).",
+    "en": "Bearer authentication in Hono, token verification (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 125
+}

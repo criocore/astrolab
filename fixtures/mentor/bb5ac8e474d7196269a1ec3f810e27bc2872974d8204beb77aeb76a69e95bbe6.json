@@ -1,0 +1,126 @@
+{
+ "hash": "bb5ac8e474d7196269a1ec3f810e27bc2872974d8204beb77aeb76a69e95bbe6",
+ "mode": "check",
+ "step": "questions",
+ "prompt_version": "mentor-questions@1",
+ "request": {
+  "mode": "check",
+  "step": "questions",
+  "system": "prompt_version: mentor-questions@1\n\nYou are a mentor. A learner says they finished one study topic. You write the exam questions for that topic.\n\nReply language: en. Write every question in this language (ru = Russian, en = English). Keep JSON keys in English.\n\nInput: the user message holds one topic in this form:\n<topic id=\"...\"><title>...</title><goal>...</goal><criteria>1. ... 2. ... 3. ...</criteria></topic>\nThe criteria are the numbered \"done\" criteria of the topic. Use only this text as your source.\n\nTask: write 2 or 3 questions. Together they must cover every criterion.\n\nRules:\n1. Write 2 or 3 questions. Not 1. Not 4 or more.\n2. Every criterion must be covered by at least one question. A question may cover more than one criterion.\n3. For each question, put the numbers of the criteria it covers in \"covers\", as strings: \"1\", \"2\", \"3\".\n4. Each question stands alone. The learner can answer it without answering the other questions. Do not refer to another question. Do not build a question on the answer to another question.\n5. A question must not contain its own answer. Do not name the fact the learner must say. Do not write a yes/no question that states the claim. Do not write \"is it true that ...\".\n   Bad: \"The model returns JSON with a tool name. Is this true?\" (the answer is in the question.)\n   Good: \"What does the model send back when it wants to use a tool, and who runs the tool?\"\n6. Ask the learner to explain in own words. Ask for a reason or a mechanism. Do not ask for a definition from memory.\n7. Do not copy a criterion word for word into a question.\n8. Use short, plain sentences. One question asks for one idea.\n9. Ids are \"q1\", \"q2\", \"q3\" in order.\n\nOutput: JSON only, no other text, in this form:\n{\"questions\":[{\"id\":\"q1\",\"text\":\"...\",\"covers\":[\"1\"]}]}\n",
+  "schema": {
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "mentor-questions",
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "questions"
+   ],
+   "properties": {
+    "questions": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 3,
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "id",
+       "text",
+       "covers"
+      ],
+      "properties": {
+       "id": {
+        "type": "string",
+        "minLength": 1
+       },
+       "text": {
+        "type": "string",
+        "minLength": 1
+       },
+       "covers": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "string",
+         "pattern": "^[0-9]+$"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "prompt_version": "mentor-questions@1",
+  "user": "<topic id=\"G0/how-llm-works\">\n<title>How an LLM works</title>\n<goal>Understand that an LLM scores the next token at every step, and how this relates to training and the transformer.</goal>\n<criteria>\n1. Explain that at each step the model outputs probabilities for the next token and text is produced by a loop: pick a token, append it to the input.\n2. Tell training (weights change, expensive) from inference (weights fixed, token-by-token generation).\n3. Describe at diagram level that tokens become vectors and attention layers relate tokens to each other.\n</criteria>\n</topic>"
+ },
+ "response": {
+  "ok": true,
+  "json": {
+   "questions": [
+    {
+     "id": "q1",
+     "text": "You give a model a prompt and it writes back a whole paragraph. Walk me through what happens inside, step by step, from the first word to the last. What does the model actually produce at each step, and how does one step lead to the next?",
+     "covers": [
+      "1"
+     ]
+    },
+    {
+     "id": "q2",
+     "text": "Someone says 'the model learns from my chat as we talk'. Using what you know about the two phases in a model's life, explain why this is wrong. What changes in each phase, and why does one phase cost so much more than the other?",
+     "covers": [
+      "2"
+     ]
+    },
+    {
+     "id": "q3",
+     "text": "Draw or describe a rough picture of what happens to the words of a prompt between the moment they enter the model and the moment the model is ready to choose the next word. What form do the words take inside, and what do the main layers do with them?",
+     "covers": [
+      "3"
+     ]
+    }
+   ]
+  },
+  "text": "{\"questions\":[{\"id\":\"q1\",\"text\":\"You give a model a prompt and it writes back a whole paragraph. Walk me through what happens inside, step by step, from the first word to the last. What does the model actually produce at each step, and how does one step lead to the next?\",\"covers\":[\"1\"]},{\"id\":\"q2\",\"text\":\"Someone says 'the model learns from my chat as we talk'. Using what you know about the two phases in a model's life, explain why this is wrong. What changes in each phase, and why does one phase cost so much more than the other?\",\"covers\":[\"2\"]},{\"id\":\"q3\",\"text\":\"Draw or describe a rough picture of what happens to the words of a prompt between the moment they enter the model and the moment the model is ready to choose the next word. What form do the words take inside, and what do the main layers do with them?\",\"covers\":[\"3\"]}]}",
+  "agent": "claude",
+  "ms": 7862,
+  "session_id": "528fdf28-71d0-49e7-b7e5-c727b83b5af5",
+  "tools": [],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2078,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 316,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2078,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 316,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2078,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2078
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "total_cost_usd": 0.05738
+ },
+ "recorded_at": "2026-10-22T09:18:59.371Z",
+ "duration_ms": 7863
+}

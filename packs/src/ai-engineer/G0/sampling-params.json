@@ -1,0 +1,99 @@
+{
+  "id": "sampling-params",
+  "grade": "G0",
+  "order": 3,
+  "title": {
+    "ru": "Сэмплинг и параметры генерации",
+    "en": "Sampling and generation parameters"
+  },
+  "goal": {
+    "ru": "Уметь предсказать, как temperature, top-p, max tokens и stop меняют вывод.",
+    "en": "Be able to predict how temperature, top-p, max tokens and stop change the output."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, как temperature меняет распределение вероятностей следующего токена (ниже — предсказуемее).",
+      "Объяснить top-p и top-k как отсечение хвоста распределения.",
+      "Задать max tokens и stop-последовательности и по stop_reason понять, почему генерация остановилась.",
+      "Объяснить, почему жадная генерация детерминирована, а низкая temperature в API не гарантирует побайтно одинаковый ответ."
+    ],
+    "en": [
+      "Explain how temperature reshapes the next-token probability distribution (lower is more predictable).",
+      "Explain top-p and top-k as cutting off the tail of the distribution.",
+      "Set max tokens and stop sequences and use stop_reason to tell why generation stopped.",
+      "Explain why greedy decoding is deterministic while low temperature in an API does not guarantee byte-identical replies."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sp-hf-how-to-generate",
+      "title": "How to generate text (Hugging Face blog)",
+      "url": "https://huggingface.co/blog/how-to-generate",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2020-03",
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "HF blog, free to read; Colab code linked",
+      "closes": {
+        "ru": "Greedy, beam search, sampling, temperature, top-k, top-p с запускаемым кодом на GPT-2 (критерии 1, 2, 4).",
+        "en": "Greedy, beam search, sampling, temperature, top-k, top-p with runnable GPT-2 code (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "sp-transformer-explainer",
+      "title": "Transformer Explainer: temperature and top-k/top-p controls",
+      "url": "https://poloclub.github.io/transformer-explainer/",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open-source interactive tool (license not seen on page)",
+      "closes": {
+        "ru": "Подвигать temperature и top-k/top-p и увидеть, как меняются вероятности (критерии 1, 2).",
+        "en": "Move the temperature and top-k/top-p controls and watch the probabilities change (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "sp-claude-messages-api",
+      "title": "Messages API reference: max_tokens, stop_sequences (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/api/messages",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "max_tokens как потолок, stop_sequences и stop_reason end_turn/stop_sequence (критерий 3).",
+        "en": "max_tokens as a ceiling, stop_sequences and stop_reason end_turn/stop_sequence (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 70
+}

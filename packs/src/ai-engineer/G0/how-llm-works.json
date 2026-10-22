@@ -1,0 +1,142 @@
+{
+  "id": "how-llm-works",
+  "grade": "G0",
+  "order": 1,
+  "title": {
+    "ru": "Как работает LLM",
+    "en": "How an LLM works"
+  },
+  "goal": {
+    "ru": "Понять, что LLM на каждом шаге оценивает следующий токен, и как это связано с обучением и трансформером.",
+    "en": "Understand that an LLM scores the next token at every step, and how this relates to training and the transformer."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, что модель на каждом шаге выдаёт вероятности следующего токена, а текст получается циклом «выбрали токен, добавили к входу».",
+      "Различить обучение (веса меняются, дорого) и инференс (веса фиксированы, генерация по токену).",
+      "Описать на уровне схемы, что токены превращаются в векторы, а слои внимания (attention) связывают токены друг с другом."
+    ],
+    "en": [
+      "Explain that at each step the model outputs probabilities for the next token and text is produced by a loop: pick a token, append it to the input.",
+      "Tell training (weights change, expensive) from inference (weights fixed, token-by-token generation).",
+      "Describe at diagram level that tokens become vectors and attention layers relate tokens to each other."
+    ]
+  },
+  "materials": [
+    {
+      "id": "hlw-hf-transformers",
+      "title": "How do Transformers work? (Hugging Face LLM Course, ch.1)",
+      "url": "https://huggingface.co/learn/llm-course/chapter1/4",
+      "kind": "understand",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "HF course, free to read",
+      "closes": {
+        "ru": "Архитектура трансформера и предобучение языковых моделей (критерии 2, 3).",
+        "en": "Transformer architecture and language-model pretraining (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hlw-illustrated-gpt2",
+      "title": "The Illustrated GPT-2 (Jay Alammar)",
+      "url": "https://jalammar.github.io/illustrated-gpt2/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2019-08",
+      "classic": true,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog, free to read",
+      "closes": {
+        "ru": "Генерация по одному токену с добавлением к входу, decoder-блоки и маскированное внимание (критерии 1, 3); кратко про обучение и инференс (2).",
+        "en": "One-token-at-a-time generation fed back into the input, decoder blocks, masked attention (criteria 1, 3); brief on training vs inference (2)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hlw-transformer-explainer",
+      "title": "Transformer Explainer (Georgia Tech, poloclub)",
+      "url": "https://poloclub.github.io/transformer-explainer/",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open-source interactive tool (license not seen on page)",
+      "closes": {
+        "ru": "Руками ввести текст в живую GPT-2 в браузере и посмотреть вероятности следующего токена и внимание (критерии 1, 3).",
+        "en": "Type text into a live in-browser GPT-2 and inspect next-token probabilities and attention (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "hlw-nanochat",
+      "title": "nanochat: the best ChatGPT that $100 can buy (Andrej Karpathy, GitHub)",
+      "url": "https://github.com/karpathy/nanochat",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "MIT",
+      "closes": {
+        "ru": "Прочитать код модели (nanochat/gpt.py) и скрипт обучения base_train.py, запустить шаг обучения, если позволяет машина: обучение против инференса на практике (критерий 2).",
+        "en": "Read the model code (nanochat/gpt.py) and the base_train.py training script, run one training step if the machine allows: training vs inference in practice (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "hlw-attention-paper",
+      "title": "Attention Is All You Need (Vaswani et al., arXiv 1706.03762)",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2017-06",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "arXiv paper, free to read",
+      "closes": {
+        "ru": "Оригинальная статья про трансформер: аннотация, рисунок 1, раздел 3.2 про внимание (критерий 3).",
+        "en": "The original transformer paper: abstract, figure 1, section 3.2 on attention (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 155
+}

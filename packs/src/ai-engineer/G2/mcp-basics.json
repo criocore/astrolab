@@ -1,0 +1,98 @@
+{
+  "id": "mcp-basics",
+  "grade": "G2",
+  "order": 1,
+  "title": {
+    "ru": "MCP: хост, клиент, сервер, транспорт",
+    "en": "MCP: host, client, server, transport"
+  },
+  "goal": {
+    "ru": "Понимать, из каких частей состоит MCP и что по нему передаётся, чтобы читать конфиги и логи чужих серверов.",
+    "en": "Understand the parts of MCP and what travels over it, so you can read configs and logs of other people's servers."
+  },
+  "criteria": {
+    "ru": [
+      "Различаю хост, клиент и сервер MCP и объясняю, что хост создаёт по одному клиенту на каждый сервер.",
+      "Объясняю разницу между транспортами stdio и Streamable HTTP и привожу случай применения каждого.",
+      "Называю три примитива сервера (tools, resources, prompts) и показываю, как клиент находит инструменты (tools/list) и вызывает их (tools/call) по JSON-RPC."
+    ],
+    "en": [
+      "I can tell the MCP host, client and server apart and explain that the host creates one client per server.",
+      "I can explain the difference between the stdio and Streamable HTTP transports and give a use case for each.",
+      "I can name the three server primitives (tools, resources, prompts) and show how a client discovers tools (tools/list) and calls them (tools/call) over JSON-RPC."
+    ]
+  },
+  "materials": [
+    {
+      "id": "mb-mcp-architecture",
+      "title": "MCP architecture overview (modelcontextprotocol.io)",
+      "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "protocol docs, free to read",
+      "closes": {
+        "ru": "Участники, слои, транспорты, примитивы и пример обмена tools/list и tools/call (критерии 1, 2, 3).",
+        "en": "Participants, layers, transports, primitives and a worked tools/list and tools/call exchange (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "mb-anthropic-academy-mcp",
+      "title": "Introduction to Model Context Protocol (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/introduction-to-model-context-protocol",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 90,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free course, registration required",
+      "closes": {
+        "ru": "Практика на Python: сервер с tools, resources и prompts, инспектор и клиент (критерии 1, 3).",
+        "en": "Hands-on Python course: a server with tools, resources and prompts, the inspector and a client (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "mb-gemini-mcp-add",
+      "title": "Gemini CLI cheatsheet: gemini mcp add",
+      "url": "https://geminicli.com/docs/cli/cli-reference/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Подключить свой MCP-сервер к другому клиенту командой gemini mcp add (stdio и HTTP) (критерии 1, 2).",
+        "en": "Connect your own MCP server to another client with gemini mcp add (stdio and HTTP) (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    }
+  ],
+  "minutes_total": 140
+}

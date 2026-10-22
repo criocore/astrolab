@@ -1,0 +1,27 @@
+{
+ "area": "R2",
+ "title": {
+  "ru": "Языки",
+  "en": "Languages"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 10,
+   "to_grade": "G1",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 12,
+   "to_grade": "G3",
+   "check": {
+    "ru": "Модуль с тестами в строгом режиме типизации.",
+    "en": "A module with tests in strict typing mode."
+   }
+  }
+ ]
+}

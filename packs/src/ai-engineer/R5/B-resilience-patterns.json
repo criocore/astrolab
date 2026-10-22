@@ -1,0 +1,169 @@
+{
+ "id": "resilience-patterns",
+ "area": "R5",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R5.B",
+ "order": 2,
+ "title": {
+  "ru": "Retry, circuit breaker, bulkhead, таймауты, идемпотентность",
+  "en": "Retry, circuit breaker, bulkhead, timeouts, idempotency"
+ },
+ "goal": {
+  "ru": "Строить вызовы между сервисами так, чтобы сбой зависимости не превращался в каскадный отказ.",
+  "en": "Build service-to-service calls so that a dependency failure does not turn into a cascading outage."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить retry с экспоненциальной задержкой и jitter, почему повторы без ограничений усиливают перегрузку, и правила: бюджет повторов, повтор на одном слое.",
+   "Объяснить, зачем нужны таймауты и дедлайны и как их выбирать и пробрасывать вниз по цепочке вызовов.",
+   "Описать circuit breaker (closed, open, half-open) и bulkhead и сказать, какую поломку каждый ограничивает.",
+   "Объяснить, почему безопасный retry требует идемпотентных операций, и привести пример ключа идемпотентности."
+  ],
+  "en": [
+   "Explain retry with exponential backoff and jitter, why unbounded retries amplify overload, and the rules: retry budget, retry at one layer only.",
+   "Explain why timeouts and deadlines are needed and how to choose and propagate them down the call chain.",
+   "Describe a circuit breaker (closed, open, half-open) and a bulkhead and say which failure each one contains.",
+   "Explain why a safe retry needs idempotent operations and give an example of an idempotency key."
+  ]
+ },
+ "materials": [
+  {
+   "id": "rp-aws",
+   "title": "Timeouts, retries, and backoff with jitter (AWS Builders' Library)",
+   "url": "https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2019-12",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Таймауты, повторы, backoff, jitter, идемпотентные API (критерии 1, 2, 4).",
+    "en": "Timeouts, retries, backoff, jitter, idempotent APIs (criteria 1, 2, 4)."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "rp-retry",
+   "title": "Retry pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/retry",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2024-07",
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Стратегии повтора и раздел об идемпотентности (критерии 1, 4).",
+    "en": "Retry strategies and the idempotency section (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "rp-cb",
+   "title": "Circuit Breaker pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-02",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Три состояния, связь с retry, когда не нужен (критерий 3).",
+    "en": "The three states, relation to retry, when not needed (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "rp-bulkhead",
+   "title": "Bulkhead pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-03",
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Изоляция пулов ресурсов по потребителям и зависимостям (критерий 3).",
+    "en": "Isolating resource pools per consumer and dependency (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "rp-sre-cascade",
+   "title": "Addressing Cascading Failures (Google SRE book)",
+   "url": "https://sre.google/sre-book/addressing-cascading-failures/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-ND 4.0 (link only)",
+   "closes": {
+    "ru": "Причины каскада, бюджет повторов, дедлайны, отсечение нагрузки (критерии 1, 2). Читать разделы про повторы, таймауты и очереди.",
+    "en": "Causes of cascades, retry budgets, deadlines, load shedding (criteria 1, 2). Read the sections on retries, timeouts and queues."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "rp-lab",
+   "title": {
+    "ru": "Упражнение: клиент к нестабильной зависимости",
+    "en": "Exercise: a client for a flaky dependency"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Напишите заглушку сервиса, которая отвечает с задержкой и иногда падает, и клиент к ней. Сначала без защиты, затем добавьте таймаут, повторы с экспоненциальной задержкой и jitter, ограничение числа повторов и ключ идемпотентности для операции записи.\n\nПосчитайте, сколько запросов получает заглушка в обоих вариантах, когда она перегружена. Сравните и запишите вывод.",
+    "en": "Write a stub service that answers with delay and sometimes fails, and a client for it. First without protection, then add a timeout, retries with exponential backoff and jitter, a cap on retries and an idempotency key for a write operation.\n\nCount how many requests the stub receives in both variants while it is overloaded. Compare and write down the conclusion."
+   }
+  }
+ ],
+ "minutes_total": 130
+}

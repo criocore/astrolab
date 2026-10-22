@@ -1,0 +1,128 @@
+{
+  "$comment": "Пресеты coding-агентов. Локальные правки: data/agents.local.json с теми же полями (поля переопределяются, массивы и null заменяются целиком). Режимы: check = один вызов без чтения файлов, ответ по JSON-схеме; session = агент читает папку (экзамен); chat = панель наставника; terminal = интерактивная сессия во вкладке терминала. system: флаг CLI или \"inline\" (текст идёт в начале промпта). schema: флаг со строкой, {flag, file: true} (схема пишется в файл) или \"inline\" (схема в промпте). output: json (один объект на stdout) или jsonl (события построчно). Промпт всегда идёт через stdin. scope: как у этого CLI держится «только чтение»: restricted = файлы только внутри папки (Claude --restricted), sandbox = песочница без записи, чтение всей ФС (Codex --sandbox read-only), plan = режим только чтения (Gemini --approval-mode plan). options: параметры CLI, которые выбирает пользователь (онбординг и меню настроек); args с подстановкой {value}, choices = подсказки, free = можно ввести своё; значение хранится в data/agents.local.json → options[preset][name]; пустое значение = умолчание самого CLI.",
+  "default": "claude",
+  "presets": {
+    "claude": {
+      "title": "Claude Code",
+      "cmd": "claude",
+      "format": "claude",
+      "install": "https://code.claude.com/docs/en/setup",
+      "scope": "restricted",
+      "options": {
+        "model": {
+          "args": ["--model", "{value}"],
+          "choices": ["fable", "opus", "sonnet"],
+          "free": true
+        },
+        "effort": {
+          "args": ["--effort", "{value}"],
+          "choices": ["low", "medium", "high", "xhigh", "max"]
+        }
+      },
+      "modes": {
+        "check": {
+          "args": ["-p", "--output-format", "json", "--tools", "", "--strict-mcp-config", "--safe-mode", "--no-session-persistence", "--permission-prompts", "none"],
+          "output": "json",
+          "system": "--system-prompt",
+          "schema": "--json-schema"
+        },
+        "session": {
+          "args": ["-p", "--output-format", "stream-json", "--verbose", "--restricted", "--safe-mode", "--strict-mcp-config", "--permission-prompts", "none", "--tools", "Read,Grep,Glob", "--allowedTools", "Read", "Grep", "Glob"],
+          "output": "jsonl",
+          "system": "--append-system-prompt",
+          "schema": "--json-schema",
+          "resume": "--resume"
+        },
+        "chat": {
+          "args": ["-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--allowedTools", "Read", "Grep", "Glob", "WebFetch", "WebSearch", "--permission-prompts", "none", "--disallowedTools", "Bash", "Edit", "Write", "NotebookEdit", "--strict-mcp-config"],
+          "output": "jsonl",
+          "resume": "--resume"
+        }
+      },
+      "terminal": {
+        "resume": "--resume"
+      }
+    },
+    "codex": {
+      "title": "Codex CLI",
+      "cmd": "codex",
+      "format": "codex",
+      "install": "https://learn.chatgpt.com/docs/codex/cli",
+      "scope": "sandbox",
+      "options": {
+        "model": {
+          "args": ["-m", "{value}"],
+          "choices": [],
+          "free": true
+        },
+        "effort": {
+          "args": ["-c", "model_reasoning_effort=\"{value}\""],
+          "choices": ["low", "medium", "high", "xhigh"]
+        }
+      },
+      "modes": {
+        "check": {
+          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--ephemeral", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "output": "jsonl",
+          "system": "inline",
+          "schema": {
+            "flag": "--output-schema",
+            "file": true
+          }
+        },
+        "session": {
+          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "output": "jsonl",
+          "system": "inline",
+          "schema": {
+            "flag": "--output-schema",
+            "file": true
+          }
+        },
+        "chat": {
+          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--color", "never", "-"],
+          "output": "jsonl"
+        }
+      },
+      "terminal": {}
+    },
+    "gemini": {
+      "title": "Gemini CLI",
+      "cmd": "gemini",
+      "format": "gemini",
+      "install": "https://geminicli.com/docs/get-started/installation/",
+      "scope": "plan",
+      "options": {
+        "model": {
+          "args": ["-m", "{value}"],
+          "choices": ["gemini-3.1-pro-preview", "gemini-3.5-flash", "gemini-2.5-pro"],
+          "free": true
+        }
+      },
+      "modes": {
+        "check": {
+          "args": ["-p", "", "--output-format", "json", "--approval-mode", "plan", "--skip-trust"],
+          "output": "json",
+          "system": "inline",
+          "schema": "inline"
+        },
+        "session": {
+          "args": ["-p", "", "--output-format", "stream-json", "--approval-mode", "plan", "--skip-trust"],
+          "output": "jsonl",
+          "system": "inline",
+          "schema": "inline",
+          "resume": "--resume"
+        },
+        "chat": {
+          "args": ["-p", "", "--output-format", "stream-json", "--approval-mode", "plan", "--skip-trust"],
+          "output": "jsonl",
+          "resume": "--resume"
+        }
+      },
+      "terminal": {
+        "prompt_flag": "-i",
+        "resume": "--resume"
+      }
+    }
+  }
+}

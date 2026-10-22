@@ -1,0 +1,117 @@
+{
+  "id": "model-selection",
+  "grade": "G3",
+  "order": 4,
+  "title": {
+    "ru": "Выбор модели",
+    "en": "Model selection"
+  },
+  "goal": {
+    "ru": "Выбирать модель под задачу по критериям и собственным проверкам, а не по рейтингу.",
+    "en": "Pick a model for a task by criteria and your own tests, not by a leaderboard."
+  },
+  "criteria": {
+    "ru": [
+      "Составить список критериев выбора под задачу: качество на своих примерах, цена за токен, задержка, окно контекста, лицензия и приватность.",
+      "Объяснить, как устроены публичные бенчмарки и арена предпочтений и почему рейтинг не заменяет проверку на своих данных.",
+      "Вызвать две модели через агрегатор (OpenRouter) одним кодом и сравнить ответ, цену и задержку на 5 своих примерах."
+    ],
+    "en": [
+      "List selection criteria for a task: quality on your own examples, price per token, latency, context window, license and privacy.",
+      "Explain how public benchmarks and a preference arena are built and why a ranking does not replace testing on your data.",
+      "Call two models through an aggregator (OpenRouter) with the same code and compare answer, price and latency on 5 of your own examples."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ms-aa-methodology",
+      "title": "Benchmarking Methodology (Artificial Analysis)",
+      "url": "https://artificialanalysis.ai/methodology",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "site methodology page, free to read",
+      "closes": {
+        "ru": "Из чего считаются индекс качества, скорость и цена; как читать «стоимость задачи» (критерии 1, 2).",
+        "en": "What the quality index, speed and price are computed from; how to read cost per task (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ms-chatbot-arena",
+      "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference (arXiv 2403.04132)",
+      "url": "https://arxiv.org/abs/2403.04132",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2024-03",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint, free to read",
+      "closes": {
+        "ru": "Как набираются голоса людей и считается рейтинг арены; чем он отличается от задачи ученика (критерий 2).",
+        "en": "How human votes are collected and the arena ranking computed; how that differs from the learner's own task (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ms-openrouter-quickstart",
+      "title": "OpenRouter Quickstart",
+      "url": "https://openrouter.ai/docs/quickstart",
+      "kind": "do",
+      "type": "docs",
+      "access": "freemium",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read; API calls are paid per token",
+      "closes": {
+        "ru": "Единый API к сотням моделей: вызвать две модели одним кодом и сравнить (критерий 3).",
+        "en": "One API to hundreds of models: call two models with the same code and compare (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "ms-openrouter-models",
+      "title": "Models catalog (OpenRouter)",
+      "url": "https://openrouter.ai/models",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "public catalog page",
+      "closes": {
+        "ru": "Каталог с ценой за миллион входных и выходных токенов для сравнения кандидатов (критерий 1).",
+        "en": "Catalog with input/output price per million tokens for comparing candidates (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 80
+}

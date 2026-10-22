@@ -1,0 +1,75 @@
+{
+  "id": "embeddings",
+  "grade": "G3",
+  "order": 7,
+  "title": {
+    "ru": "Эмбеддинги",
+    "en": "Embeddings"
+  },
+  "goal": {
+    "ru": "Понимать эмбеддинги как векторы смысла, уметь их получить, сравнить и знать пределы.",
+    "en": "Understand embeddings as meaning vectors, produce and compare them, and know their limits."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить эмбеддинг как вектор, отражающий смысл текста, и посчитать косинусную близость двух предложений.",
+      "Выбрать модель эмбеддингов по размерности, длине входа и цене; различить открытую модель и API.",
+      "Назвать три ограничения эмбеддингов: дата знаний модели, предел длины входа, необходимость реранкера после первичного поиска."
+    ],
+    "en": [
+      "Explain an embedding as a vector that captures text meaning and compute cosine similarity of two sentences.",
+      "Choose an embedding model by dimension, input length and price; tell an open model from an API.",
+      "Name three limits of embeddings: model knowledge cutoff, input length limit, the need for a reranker after first-stage retrieval."
+    ]
+  },
+  "materials": [
+    {
+      "id": "em-sbert-quickstart",
+      "title": "Quickstart (Sentence Transformers docs)",
+      "url": "https://www.sbert.net/docs/quickstart.html",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Apache-2.0 library, docs free to read",
+      "closes": {
+        "ru": "encode(), similarity(), семантический поиск; bi-encoder и cross-encoder для реранкинга (критерии 1, 3).",
+        "en": "encode(), similarity(), semantic search; bi-encoder plus cross-encoder reranking (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "em-openai-guide",
+      "title": "Vector embeddings (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/embeddings",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Модели, размерности, косинусная близость, применения и ограничения, цена по токенам (критерии 1, 2, 3).",
+        "en": "Models, dimensions, cosine similarity, use cases and limitations, per-token billing (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 45
+}

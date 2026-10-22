@@ -1,0 +1,141 @@
+{
+  "id": "harness-engineering",
+  "grade": "G4",
+  "order": 12,
+  "title": {
+    "ru": "Harness engineering: обвязка вокруг модели",
+    "en": "Harness engineering: the scaffolding around the model"
+  },
+  "goal": {
+    "ru": "Понимать, что качество агента задаёт не только модель, но и обвязка: инструменты, контекст, проверки, хуки, память между сессиями.",
+    "en": "Understand that agent quality depends not only on the model but on the harness: tools, context, checks, hooks, memory across sessions."
+  },
+  "criteria": {
+    "ru": [
+      "Определить harness как всё вокруг модели и перечислить его части (инструкции, инструменты, песочница, хуки, контекст, наблюдаемость).",
+      "Описать схему длинной работы: initializer, файл прогресса, git, список функций с pass/fail, сквозная проверка.",
+      "Привести рычаги обвязки (описания инструментов, управление контекстом) и пример, где смена одной обвязки меняет результат при той же модели.",
+      "Поставить хук, блокирующий или логирующий вызов инструмента."
+    ],
+    "en": [
+      "Define a harness as everything around the model and list its parts (instructions, tools, sandbox, hooks, context, observability).",
+      "Describe the long-running pattern: initializer, progress file, git, a pass/fail feature list, end-to-end checks.",
+      "Name harness levers (tool descriptions, context management) and an example where changing only the harness changes the result with the same model.",
+      "Add a hook that blocks or logs a tool call."
+    ]
+  },
+  "materials": [
+    {
+      "id": "he-osmani",
+      "title": "Agent Harness Engineering (Addy Osmani, O'Reilly Radar)",
+      "url": "https://www.oreilly.com/radar/agent-harness-engineering/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-05",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "publisher site, free to read",
+      "closes": {
+        "ru": "Agent = Model + Harness, части обвязки, пример с Terminal Bench (критерии 1, 3).",
+        "en": "Agent = Model + Harness, harness parts, the Terminal Bench example (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "he-long-running",
+      "title": "Effective harnesses for long-running agents (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-11",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Initializer-агент, файл прогресса, git, JSON-список функций, сквозные тесты (критерий 2).",
+        "en": "Initializer agent, progress file, git, JSON feature list, end-to-end tests (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "he-langchain-harness",
+      "title": "Improving Deep Agents with harness engineering (LangChain blog)",
+      "url": "https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-02",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Та же модель, менялась только обвязка: 52.8% до 66.5% на Terminal Bench 2.0; рычаги: системный промпт, middleware, бюджет рассуждений (критерий 3).",
+        "en": "Same model, only the harness changed: 52.8% to 66.5% on Terminal Bench 2.0; levers: system prompt, middleware, reasoning budget (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "he-hooks",
+      "title": "Intercept and control agent behavior with hooks (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/agent-sdk/hooks",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "PreToolUse блокирует вызов, PostToolUse пишет аудит; примеры для запуска (критерий 4).",
+        "en": "PreToolUse blocks a call, PostToolUse writes an audit log; runnable examples (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "he-gemini-hooks",
+      "title": "Writing hooks for Gemini CLI (Gemini CLI docs, Google)",
+      "url": "https://geminicli.com/docs/hooks/writing-hooks/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-03",
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Хук BeforeTool: JSON на stdin, exit 2 блокирует вызов, лог в файл; сделать свой хук (критерий 4). На странице баннер о замене Gemini CLI на Antigravity CLI.",
+        "en": "BeforeTool hook: JSON on stdin, exit 2 blocks the call, log to a file; build your own hook (criterion 4). The page carries a banner that Gemini CLI was replaced by Antigravity CLI."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 150
+}

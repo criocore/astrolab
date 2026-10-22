@@ -1,0 +1,144 @@
+{
+  "id": "sandbox-permissions",
+  "grade": "G5",
+  "order": 2,
+  "title": {
+    "ru": "Песочница и права инструментов",
+    "en": "Sandboxing and tool permissions"
+  },
+  "goal": {
+    "ru": "Давать агенту только нужные права, изолировать выполнение и просить подтверждение на опасное.",
+    "en": "Give an agent only the rights it needs, isolate execution, and require approval for dangerous actions."
+  },
+  "criteria": {
+    "ru": [
+      "Составляю для агента список инструментов с минимально нужными правами (разрешить и запретить) и обосновываю каждую строку.",
+      "Объясняю, зачем нужны одновременно файловая и сетевая изоляция.",
+      "Настраиваю песочницу или правила разрешений и показываю, что запрещённое действие блокируется.",
+      "Определяю, какие действия требуют подтверждения человека, и объясняю риск усталости от подтверждений."
+    ],
+    "en": [
+      "I write a tool list for an agent with minimal rights (allow and deny) and justify every line.",
+      "I explain why filesystem and network isolation are both needed.",
+      "I configure a sandbox or permission rules and show that a forbidden action is blocked.",
+      "I decide which actions need human approval and explain the risk of approval fatigue."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sp-anthropic-sandboxing",
+      "title": "Making Claude Code safer with sandboxing (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-10",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Две границы изоляции и почему песочница снижает число запросов подтверждения (критерии 2, 4).",
+        "en": "The two isolation boundaries and why a sandbox cuts approval prompts (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "sp-cc-permissions",
+      "title": "Configure permissions (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/permissions",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 35,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Правила allow/deny, режимы и какие инструменты требуют подтверждения; настраивается руками в своём проекте (критерии 1, 3, 4).",
+        "en": "Allow/deny rules, modes and which tools ask for approval; configured by hand in your own project (criteria 1, 3, 4)."
+      },
+      "criteria": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "sp-docker-security",
+      "title": "Docker Engine security (Docker docs)",
+      "url": "https://docs.docker.com/engine/security/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Что даёт изоляция контейнера (namespaces, cgroups, capabilities) и где она неполна: общее ядро, смонтированные каталоги; сеть отдельным слоем (критерий 2).",
+        "en": "What container isolation gives (namespaces, cgroups, capabilities) and where it is incomplete: shared kernel, mounted host dirs; network as a separate layer (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "sp-openai-shell",
+      "title": "Shell tool (OpenAI API docs)",
+      "url": "https://developers.openai.com/api/docs/guides/tools-shell",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Песочница для исполнения команд агента: сеть выключена по умолчанию, allowlist доменов, ревью команд человеком и логи (критерии 2, 4).",
+        "en": "Sandbox for agent command execution: network off by default, domain allowlist, human review of commands and logs (criteria 2, 4)."
+      },
+      "criteria": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "sp-codex-sandbox",
+      "title": "Sandbox (OpenAI Codex docs, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/sandboxing",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Режимы песочницы read-only, workspace-write, danger-full-access: упражнение с одним запрещённым сетевым вызовом и одним запрещённым путём (критерий 3).",
+        "en": "Sandbox modes read-only, workspace-write, danger-full-access: exercise with one forbidden network call and one forbidden path (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 145
+}

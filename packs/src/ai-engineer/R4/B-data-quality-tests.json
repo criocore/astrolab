@@ -1,0 +1,99 @@
+{
+ "id": "data-quality-tests",
+ "area": "R4",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R4.B",
+ "order": 2,
+ "title": {
+  "ru": "Тесты качества данных",
+  "en": "Data quality tests"
+ },
+ "goal": {
+  "ru": "Описывать ожидания к данным и проверять их в конвейере до публикации.",
+  "en": "Describe expectations for data and check them in the pipeline before publishing."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать типовые проверки качества: не пусто, уникально, допустимые значения, ссылочная целостность.",
+   "Написать тесты качества в dbt или Great Expectations для своей таблицы.",
+   "Остановить конвейер или пометить загрузку, если проверка не пройдена."
+  ],
+  "en": [
+   "Name typical quality checks: not null, unique, accepted values, referential integrity.",
+   "Write quality tests in dbt or Great Expectations for your table.",
+   "Stop the pipeline or flag the load when a check fails."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dq-dbt-tests",
+   "title": "Data tests (dbt docs)",
+   "url": "https://docs.getdbt.com/docs/build/data-tests",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Типовые и singular-тесты: unique, not_null, accepted_values, relationships (критерии 1, 2).",
+    "en": "Generic and singular tests: unique, not_null, accepted_values, relationships (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "dq-gx-overview",
+   "title": "GX Core overview (Great Expectations docs)",
+   "url": "https://docs.greatexpectations.io/docs/core/introduction/gx_overview",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Expectations, Validation Definitions, Checkpoints (критерии 1, 3).",
+    "en": "Expectations, Validation Definitions, Checkpoints (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "dq-gx-try",
+   "title": "Try GX Core",
+   "url": "https://docs.greatexpectations.io/docs/core/introduction/try_gx",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Проверить DataFrame и таблицу Postgres (критерий 2).",
+    "en": "Validate a DataFrame and a Postgres table (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "minutes_total": 95
+}

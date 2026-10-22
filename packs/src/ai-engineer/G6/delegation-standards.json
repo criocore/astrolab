@@ -1,0 +1,162 @@
+{
+  "id": "delegation-standards",
+  "grade": "G6",
+  "order": 3,
+  "title": {
+    "ru": "Делегирование и стандарты работы с агентами",
+    "en": "Delegation and team standards for working with agents"
+  },
+  "goal": {
+    "ru": "Уметь описать, что отдаём агенту, а что оставляем людям, и оформить это как командный стандарт.",
+    "en": "Describe what goes to the agent and what stays with humans, and turn it into a team standard."
+  },
+  "criteria": {
+    "ru": [
+      "Могу назвать признаки задачи, которую безопасно делегировать (проверяемая, чётко описанная, низкий риск), и что остаётся за человеком.",
+      "Могу написать короткий командный стандарт: CLAUDE.md/AGENTS.md, права, обязательная проверка результата, хуки.",
+      "Могу объяснить, кто отвечает за принятый код и в чём «парадокс надзора»."
+    ],
+    "en": [
+      "I can name the traits of a task that is safe to delegate (verifiable, well specified, low risk) and what stays with humans.",
+      "I can write a short team standard: CLAUDE.md/AGENTS.md, permissions, mandatory verification, hooks.",
+      "I can explain who owns merged code and what the 'paradox of supervision' is."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ds-anthropic-transforming-work",
+      "title": "How AI is transforming work at Anthropic",
+      "url": "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2025-12",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4117",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Что делегируют (проверяемое, рутинное), что оставляют, парадокс надзора (критерии 1, 3).",
+        "en": "What gets delegated (verifiable, routine), what is kept, the supervision paradox (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "ds-dora-ai-stance",
+      "title": "Clear and communicated AI stance (DORA)",
+      "url": "https://dora.dev/capabilities/clear-and-communicated-ai-stance/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-01",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "DORA site, free to read; license not seen on page",
+      "closes": {
+        "ru": "Деление использования ИИ на запрещённое, допустимое с ограничениями и разрешённое по риску; как оформить это политикой команды (критерии 1, 2).",
+        "en": "Sorting AI use into prohibited, guarded and allowed by risk; how to turn it into a team policy (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ds-claude-code-best-practices",
+      "title": "Best practices for Claude Code",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Практика: написать CLAUDE.md, права, критерии проверки, хуки, ревьюер-субагент для своего репозитория (критерий 2).",
+        "en": "Hands-on: write CLAUDE.md, permissions, verification criteria, hooks and a reviewer subagent for your repo (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ds-agents-md",
+      "title": "AGENTS.md: a README for agents",
+      "url": "https://agents.md",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open format site, free to read; license not named on page",
+      "closes": {
+        "ru": "Открытый формат файла инструкций для агентов: команды, стиль, тесты, правила PR; вложенные файлы (критерий 2).",
+        "en": "Open format for agent instruction files: commands, style, tests, PR rules; nested files (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ds-codex-agents-md",
+      "title": "Custom instructions with AGENTS.md (OpenAI Codex docs, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Одностраничный стандарт команды, записанный как AGENTS.md; различия с GEMINI.md и есть урок (критерий 2).",
+        "en": "The one-page team standard written as AGENTS.md; the diff against GEMINI.md is the lesson (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ds-gemini-md",
+      "title": "Provide context with GEMINI.md files (Gemini CLI)",
+      "url": "https://geminicli.com/docs/cli/gemini-md",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Тот же стандарт, записанный как GEMINI.md: иерархия, импорт через @, сравнение с AGENTS.md (критерий 2).",
+        "en": "The same standard written as GEMINI.md: hierarchy, @ imports, compared with AGENTS.md (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 185
+}

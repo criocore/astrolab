@@ -1,0 +1,96 @@
+{
+  "id": "ai4sdlc",
+  "grade": "G6",
+  "order": 1,
+  "title": {
+    "ru": "AI4SDLC: где ИИ в цикле разработки",
+    "en": "AI4SDLC: where AI sits in the development lifecycle"
+  },
+  "goal": {
+    "ru": "Понимать, на каких этапах SDLC ИИ реально используют и как смещаются узкие места.",
+    "en": "Know at which SDLC stages AI is actually used and how bottlenecks shift."
+  },
+  "criteria": {
+    "ru": [
+      "Могу назвать этапы SDLC, где ИИ применяют чаще всего и реже всего, и привести хотя бы два числа из опроса.",
+      "Могу объяснить, почему после ускорения кодинга узкое место смещается в ревью, тестирование и интеграцию.",
+      "Могу описать на одном этапе (например, планирование или ревью), что конкретно меняется в работе разработчика."
+    ],
+    "en": [
+      "I can name the SDLC stages where AI is used most and least, with at least two survey numbers.",
+      "I can explain why the bottleneck moves to review, testing and integration once coding gets faster.",
+      "I can describe, for one stage (e.g. planning or review), what concretely changes in a developer's work."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ai4sdlc-research-2025",
+      "title": "AI4SDLC: исследование применения ИИ в SDLC 2025",
+      "url": "https://ai4sdlc-research.space/ai-research-2025",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "ru",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4312",
+      "terms": "free to read; license not stated",
+      "closes": {
+        "ru": "Опрос по этапам: кодинг, ревью, тесты, legacy; сдвиг узких мест (критерии 1, 2).",
+        "en": "Survey by stage: coding, review, testing, legacy; bottleneck shift (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "ai4sdlc-fowler-exploring-genai",
+      "title": "Exploring Generative AI (Martin Fowler's site)",
+      "url": "https://martinfowler.com/articles/exploring-gen-ai.html",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-10",
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read on martinfowler.com",
+      "closes": {
+        "ru": "Серия заметок о том, как меняются кодинг, тесты, контекст и навыки (критерии 2, 3).",
+        "en": "Memo series on how coding, testing, context and skills change (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "ai4sdlc-claude-code-in-action",
+      "title": "Claude Code in Action (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/claude-code-in-action",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "catalog",
+      "terms": "free vendor course (registration)",
+      "closes": {
+        "ru": "Практика: планирование, настройка, автоматизация и проверка работы агента по этапам (критерий 3).",
+        "en": "Hands-on: planning, configuring, automating and verifying agent work stage by stage (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 140
+}

@@ -1,0 +1,74 @@
+{
+  "id": "discovery-business",
+  "grade": "G6",
+  "order": 6,
+  "title": {
+    "ru": "Дискавери и понимание бизнеса (FDE)",
+    "en": "Discovery and business understanding (FDE)"
+  },
+  "goal": {
+    "ru": "Уметь выяснить настоящую задачу клиента, учесть ограничения и договориться о результате.",
+    "en": "Find the customer's real problem, respect constraints and agree on the outcome."
+  },
+  "criteria": {
+    "ru": [
+      "Могу отличить заявленный запрос от настоящей проблемы на примере и назвать, какие вопросы это выясняют.",
+      "Могу перечислить ограничения среды клиента (унаследованные данные, безопасность и сеть, доступы) и как они меняют решение.",
+      "Могу описать коммуникацию: ранний рабочий прототип, перевод между бизнесом и инженерами, обратная связь в продукт."
+    ],
+    "en": [
+      "I can tell a stated request from the real problem with an example and name the questions that reveal it.",
+      "I can list customer-environment constraints (legacy data, security and network, access) and how they change the solution.",
+      "I can describe the communication: an early working prototype, translating between business and engineers, feedback into the product."
+    ]
+  },
+  "materials": [
+    {
+      "id": "db-underdog-fde",
+      "title": "What is a forward deployed engineer (Underdog.io)",
+      "url": "https://underdog.io/blog/forward-deployed-engineer",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-03",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Дискавери как расследование, ограничения клиента, коммуникация и обратная связь в продукт (критерии 1–3).",
+        "en": "Discovery as investigation, customer constraints, communication and product feedback (criteria 1-3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "db-pair-user-needs",
+      "title": "User Needs + Defining Success (Google PAIR Guidebook)",
+      "url": "https://pair.withgoogle.com/chapter/user-needs/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Google PAIR, free to read; worksheet PDF",
+      "closes": {
+        "ru": "Практика: упражнение «потребность пользователя × сильные стороны ИИ» по воркшиту (критерий 1).",
+        "en": "Hands-on: the user-need x AI-strengths exercise from the worksheet (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 60
+}

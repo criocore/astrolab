@@ -1,0 +1,123 @@
+{
+ "id": "git-basics",
+ "area": "R1",
+ "level": "A",
+ "to_grade": "G0",
+ "grade": "R1.A",
+ "order": 3,
+ "title": {
+  "ru": "init, commit, branch, merge, .gitignore, чтение истории",
+  "en": "init, commit, branch, merge, .gitignore, reading history"
+ },
+ "goal": {
+  "ru": "Вести локальный репозиторий: фиксировать изменения, ветвиться, сливать и читать историю.",
+  "en": "Keep a local repository: record changes, branch, merge and read the history."
+ },
+ "criteria": {
+  "ru": [
+   "Могу создать репозиторий (git init) и зафиксировать изменения циклом status, add, commit; объясняю роль индекса.",
+   "Могу создать ветку, переключиться на неё и слить в main; отличаю fast-forward от слияния с коммитом слияния.",
+   "Могу исключить файлы из репозитория через .gitignore и проверить результат через git status.",
+   "Могу прочитать историю (git log --oneline --graph, git diff) и найти, кто и когда менял файл."
+  ],
+  "en": [
+   "I can create a repository (git init) and record changes with the status, add, commit cycle; I can explain the staging area.",
+   "I can create a branch, switch to it and merge it into main; I can tell a fast-forward from a merge with a merge commit.",
+   "I can keep files out of the repository with .gitignore and verify the result with git status.",
+   "I can read the history (git log --oneline --graph, git diff) and find who changed a file and when."
+  ]
+ },
+ "materials": [
+  {
+   "id": "gb-recording",
+   "title": "Pro Git 2.2: Recording Changes to the Repository",
+   "url": "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "Цикл status, add, commit, индекс, .gitignore, diff; init описан в предыдущем разделе книги (критерии 1, 3).",
+    "en": "The status, add, commit cycle, the index, .gitignore and diff; init is in the previous book section (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "gb-history",
+   "title": "Pro Git 2.3: Viewing the Commit History",
+   "url": "https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "Опции git log: --oneline, --graph, -p, --author, -S, путь (критерий 4).",
+    "en": "git log options: --oneline, --graph, -p, --author, -S, a path (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  },
+  {
+   "id": "gb-branching",
+   "title": "Pro Git 3.2: Basic Branching and Merging",
+   "url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "Ветка, переключение, fast-forward и трёхстороннее слияние, конфликты (критерий 2).",
+    "en": "Branch, switching, fast-forward and three-way merge, conflicts (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "gb-learngitbranching",
+   "title": "Learn Git Branching",
+   "url": "https://learngitbranching.js.org/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Интерактивные уровни: коммиты, ветки, слияние на визуализации графа (критерии 1, 2).",
+    "en": "Interactive levels: commits, branches and merging on a graph visualisation (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

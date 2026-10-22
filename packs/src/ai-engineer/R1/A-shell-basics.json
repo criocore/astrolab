@@ -1,0 +1,126 @@
+{
+ "id": "shell-basics",
+ "area": "R1",
+ "level": "A",
+ "to_grade": "G0",
+ "grade": "R1.A",
+ "order": 1,
+ "title": {
+  "ru": "Навигация, pipes, redirects, grep и find, man",
+  "en": "Navigation, pipes, redirects, grep, find, man"
+ },
+ "goal": {
+  "ru": "Уверенно работать в командной строке: ходить по каталогам, соединять команды и искать нужное.",
+  "en": "Work confidently at the command line: move around directories, chain commands and find what you need."
+ },
+ "criteria": {
+  "ru": [
+   "Могу перейти в любой каталог по абсолютному и относительному пути (cd, ls, pwd) и объяснить разницу.",
+   "Могу соединить команды через | и перенаправить вывод и ошибки (>, >>, <, 2>).",
+   "Могу найти текст в файлах через grep и файлы по имени через find.",
+   "Могу узнать флаги незнакомой команды через man и --help."
+  ],
+  "en": [
+   "I can move to any directory by absolute and relative path (cd, ls, pwd) and explain the difference.",
+   "I can chain commands with | and redirect output and errors (>, >>, <, 2>).",
+   "I can search text in files with grep and files by name with find.",
+   "I can learn the flags of an unfamiliar command with man and --help."
+  ]
+ },
+ "materials": [
+  {
+   "id": "sb-ms-shell",
+   "title": "The Missing Semester: Course Overview + The Shell",
+   "url": "https://missing.csail.mit.edu/2020/course-shell/",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 50,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Навигация, pipes, перенаправление и man в одной лекции (критерии 1, 2, 4).",
+    "en": "Navigation, pipes, redirection and man in one lecture (criteria 1, 2, 4)."
+   },
+   "criteria": [
+    1,
+    2,
+    4
+   ]
+  },
+  {
+   "id": "sb-ms-shelltools",
+   "title": "The Missing Semester: Shell Tools and Scripting",
+   "url": "https://missing.csail.mit.edu/2020/shell-tools/",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "grep, find и поиск справки через man и --help; из лекции нужны только эти разделы (критерии 3, 4).",
+    "en": "grep, find and looking things up with man and --help; only those sections are needed here (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "sb-bash-redirections",
+   "title": "Bash Reference Manual (Pipelines, Redirections)",
+   "url": "https://www.gnu.org/software/bash/manual/bash.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "GNU FDL, free to read",
+   "closes": {
+    "ru": "Точные правила | и > < >> 2> (разделы Pipelines и Redirections; критерий 2).",
+    "en": "Exact rules for | and > < >> 2> (the Pipelines and Redirections sections; criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sb-bandit",
+   "title": "OverTheWire: Bandit",
+   "url": "https://overthewire.org/wargames/bandit/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free wargame, free to play",
+   "closes": {
+    "ru": "Первые уровни Bandit: практика навигации, grep, find и чтения man по SSH (критерии 1, 3, 4).",
+    "en": "The first Bandit levels: hands-on navigation, grep, find and man reading over SSH (criteria 1, 3, 4)."
+   },
+   "criteria": [
+    1,
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 150
+}

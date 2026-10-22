@@ -1,0 +1,122 @@
+{
+ "id": "hypothesis-testing",
+ "area": "R11",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R11.B",
+ "order": 1,
+ "title": {
+  "ru": "Проверка гипотез",
+  "en": "Hypothesis testing"
+ },
+ "goal": {
+  "ru": "Понимать, что значит «статистически значимо», и уметь проверить это на двух выборках.",
+  "en": "Understand what statistically significant means and check it on two samples."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить своими словами p-value, уровень значимости и ошибки I и II рода.",
+   "Выполнить t-тест (в том числе Уэлча) на двух выборках в scipy и прочитать p-value и доверительный интервал.",
+   "Оценить нужный размер выборки по базовому уровню, минимальному эффекту, мощности и уровню значимости.",
+   "Для сравнения двух моделей на одних и тех же вопросах выбрать парный подход и объяснить, чем он лучше."
+  ],
+  "en": [
+   "Explain in your own words the p-value, significance level and type I and II errors.",
+   "Run a t-test (including Welch) on two samples in scipy and read the p-value and confidence interval.",
+   "Estimate the needed sample size from the baseline, minimum effect, power and significance level.",
+   "For two models compared on the same questions, choose a paired approach and explain why it is better."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ht-openintro",
+   "title": "OpenIntro Statistics, chapter 5 Foundations for Inference",
+   "url": "https://www.openintro.org/book/os/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 50,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "OpenIntro Statistics, free PDF (license on openintro.org/license)",
+   "closes": {
+    "ru": "Логика проверки гипотез, p-value, ошибки, доверительные интервалы (критерий 1). Глава выбрана по оглавлению на странице.",
+    "en": "The logic of hypothesis tests, p-values, errors, confidence intervals (criterion 1). Chosen from the table of contents on the page."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ht-scipy-ttest-ind",
+   "title": "scipy.stats.ttest_ind",
+   "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "SciPy docs, free to read (BSD-3-Clause project)",
+   "closes": {
+    "ru": "Запуск t-теста, equal_var=False для Уэлча, разбор примеров (критерий 2).",
+    "en": "Running the t-test, equal_var=False for Welch, worked examples (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ht-miller-sample-size",
+   "title": "Sample Size Calculator (Evan Miller)",
+   "url": "https://www.evanmiller.org/ab-testing/sample-size.html",
+   "kind": "do",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free web tool, link only",
+   "closes": {
+    "ru": "Базовая доля, минимальный эффект, мощность, alpha и число наблюдений на вариант (критерий 3).",
+    "en": "Baseline rate, minimum detectable effect, power, alpha and observations per variant (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ht-anthropic-evals-stats",
+   "title": "A statistical approach to model evaluations (Anthropic)",
+   "url": "https://www.anthropic.com/research/statistical-approach-to-model-evals",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2024-11",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor research post, free to read",
+   "closes": {
+    "ru": "Парные разности, доверительные интервалы и анализ мощности для eval-наборов (критерии 3, 4).",
+    "en": "Paired differences, confidence intervals and power analysis for eval sets (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

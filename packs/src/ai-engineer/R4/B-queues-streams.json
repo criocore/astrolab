@@ -1,0 +1,120 @@
+{
+ "id": "queues-streams",
+ "area": "R4",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R4.B",
+ "order": 3,
+ "title": {
+  "ru": "Очереди и потоки",
+  "en": "Queues and streams"
+ },
+ "goal": {
+  "ru": "Понимать, когда нужна очередь или поток, и какие гарантии доставки они дают.",
+  "en": "Understand when a queue or stream is needed and what delivery guarantees they give."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, когда очередь нужна, а когда хватает прямого вызова или таблицы в БД.",
+   "Различать очередь задач и журнал событий (топик с партициями).",
+   "Объяснить, почему доставка at-least-once требует идемпотентного потребителя."
+  ],
+  "en": [
+   "Explain when a queue is needed and when a direct call or a DB table is enough.",
+   "Distinguish a work queue from an event log (topic with partitions).",
+   "Explain why at-least-once delivery requires an idempotent consumer."
+  ]
+ },
+ "materials": [
+  {
+   "id": "qs-kafka",
+   "title": "Apache Kafka introduction",
+   "url": "https://kafka.apache.org/intro",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 project docs, free to read",
+   "closes": {
+    "ru": "Топики, партиции, журнал событий (критерий 2).",
+    "en": "Topics, partitions, the event log (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "qs-rabbit-wq",
+   "title": "RabbitMQ tutorial 2: Work Queues (Python)",
+   "url": "https://www.rabbitmq.com/tutorials/tutorial-two-python",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Очередь задач с подтверждениями и устойчивостью (критерии 1, 2).",
+    "en": "Work queue with acknowledgements and durability (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "qs-rabbit-confirms",
+   "title": "Consumer Acknowledgements and Publisher Confirms (RabbitMQ)",
+   "url": "https://www.rabbitmq.com/docs/confirms",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Неподтверждённые сообщения возвращаются в очередь, возможны повторы (критерий 3).",
+    "en": "Unacknowledged messages are requeued, so redelivery is possible (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "qs-idem",
+   "title": "Idempotent Consumer pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/idempotent-consumer",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-08",
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Microsoft Learn, free to read",
+   "closes": {
+    "ru": "Дубли при at-least-once и как их гасить ключом дедупликации (критерий 3).",
+    "en": "Duplicates under at-least-once and how a deduplication key absorbs them (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

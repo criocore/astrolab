@@ -1,0 +1,27 @@
+{
+ "area": "R3",
+ "title": {
+  "ru": "Бэкенд и API",
+  "en": "Backend and APIs"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 12,
+   "to_grade": "G2",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 16,
+   "to_grade": "G4",
+   "check": {
+    "ru": "API с OpenAPI, ошибками по RFC 9457, авторизацией, rate limiting и контрактными тестами.",
+    "en": "An API with OpenAPI, RFC 9457 errors, authorization, rate limiting and contract tests."
+   }
+  }
+ ]
+}

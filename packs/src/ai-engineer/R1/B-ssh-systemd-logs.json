@@ -1,0 +1,144 @@
+{
+ "id": "ssh-systemd-logs",
+ "area": "R1",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R1.B",
+ "order": 5,
+ "title": {
+  "ru": "SSH, systemd, журналы, память и диск: что смотреть на сервере",
+  "en": "SSH, systemd, logs, memory and disk: what to check on a server"
+ },
+ "goal": {
+  "ru": "Зайти на чужой сервер по ключу и за несколько минут понять, что с ним и его сервисами.",
+  "en": "Log in to a server with a key and understand in a few minutes how it and its services are doing."
+ },
+ "criteria": {
+  "ru": [
+   "Могу создать ключ ssh-keygen, положить публичную часть в authorized_keys с верными правами и описать хост в ~/.ssh/config.",
+   "Могу посмотреть состояние сервиса systemd (status, start, restart, enable) и прочитать unit-файл: ExecStart, Restart.",
+   "Могу найти причину сбоя сервиса в журнале: journalctl -u, -b, -p, --since, -f.",
+   "Могу оценить память и диск: free (available), df -h, du, и найти самый прожорливый процесс."
+  ],
+  "en": [
+   "I can create a key with ssh-keygen, put the public part into authorized_keys with correct permissions and describe a host in ~/.ssh/config.",
+   "I can check a systemd service (status, start, restart, enable) and read a unit file: ExecStart, Restart.",
+   "I can find the cause of a service failure in the journal: journalctl -u, -b, -p, --since, -f.",
+   "I can assess memory and disk: free (available), df -h, du, and find the most hungry process."
+  ]
+ },
+ "materials": [
+  {
+   "id": "sy-ms-remote",
+   "title": "The Missing Semester: Command-line Environment",
+   "url": "https://missing.csail.mit.edu/2020/command-line/",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Раздел Remote Machines: ssh, ключи, ssh-copy-id, ~/.ssh/config (критерий 1). Повтор из темы про процессы, нужен другой раздел.",
+    "en": "The Remote Machines section: ssh, keys, ssh-copy-id, ~/.ssh/config (criterion 1). A repeat from the processes topic; a different section is needed."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "sy-systemd-service",
+   "title": "systemd.service(5)",
+   "url": "https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Секция [Service]: Type, ExecStart, Restart и пример unit-файла (критерий 2).",
+    "en": "The [Service] section: Type, ExecStart, Restart and an example unit file (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sy-journalctl",
+   "title": "journalctl(1)",
+   "url": "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Фильтры -u, -b, -p, --since и режим -f (критерий 3).",
+    "en": "The -u, -b, -p and --since filters and the -f follow mode (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "sy-free",
+   "title": "free(1) - Linux manual page",
+   "url": "https://man7.org/linux/man-pages/man1/free.1.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Разница колонок free и available (критерий 4).",
+    "en": "The difference between the free and available columns (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "sy-own-lab",
+   "title": {
+    "ru": "Практика: осмотр сервера",
+    "en": "Practice: a server walk-through"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "На виртуальной машине или в WSL с systemd: сгенерируйте ключ и войдите по нему на localhost, запретив себе пароль в тестовом конфиге. Напишите unit-файл для простого скрипта с Restart=on-failure, запустите, уроните скрипт и убедитесь по systemctl status и journalctl -u, что сервис перезапустился. В конце выполните free -h, df -h и du -sh * в большом каталоге и назовите, что занимает больше всего места и памяти.",
+    "en": "On a virtual machine or in WSL with systemd: generate a key and log in to localhost with it, disabling the password in a test config. Write a unit file for a simple script with Restart=on-failure, start it, crash the script and confirm with systemctl status and journalctl -u that the service restarted. Finally run free -h, df -h and du -sh * in a large directory and say what uses the most space and memory."
+   }
+  }
+ ],
+ "minutes_total": 110
+}

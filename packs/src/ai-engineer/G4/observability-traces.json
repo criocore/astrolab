@@ -1,0 +1,138 @@
+{
+  "id": "observability-traces",
+  "grade": "G4",
+  "order": 10,
+  "title": {
+    "ru": "Наблюдаемость: трассы шагов",
+    "en": "Observability: step traces"
+  },
+  "goal": {
+    "ru": "Уметь записывать трассу каждого шага агента (вызов модели, инструмент, токены, стоимость) и читать её.",
+    "en": "Be able to record a trace of every agent step (model call, tool, tokens, cost) and read it."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить структуру трассы: вложенные спаны для вызовов модели и инструментов, вход, выход, время.",
+      "Посчитать стоимость шага и всего запуска из числа токенов и цены модели.",
+      "Подключить инструмент трассировки к своему агенту и показать трассу запуска, где виден каждый шаг."
+    ],
+    "en": [
+      "Explain trace structure: nested spans for model and tool calls with input, output and timing.",
+      "Compute the cost of a step and of a whole run from token counts and model price.",
+      "Attach a tracing tool to your own agent and show a run trace in which every step is visible."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ob-langfuse",
+      "title": "Observability overview (Langfuse docs)",
+      "url": "https://langfuse.com/docs/observability/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read; Langfuse is open source",
+      "closes": {
+        "ru": "Трассы, вложенные observations для многошаговых агентов (критерий 1).",
+        "en": "Traces and nested observations for multi-step agents (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "ob-cost",
+      "title": "Token and cost tracking (Langfuse docs)",
+      "url": "https://langfuse.com/docs/observability/features/token-and-cost-tracking",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Учёт токенов и стоимости по каждому вызову, определения моделей с ценами (критерий 2).",
+        "en": "Per-call token and cost accounting, model definitions with prices (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ob-openai-tracing",
+      "title": "Tracing (OpenAI Agents SDK docs)",
+      "url": "https://openai.github.io/openai-agents-python/tracing/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Trace и span для agent, generation, function, handoff; внешние процессоры (критерий 1).",
+        "en": "Trace and span types for agent, generation, function, handoff; external processors (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "ob-langfuse-start",
+      "title": "Get started with tracing (Langfuse docs)",
+      "url": "https://langfuse.com/docs/observability/get-started",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Пять шагов: ключи, SDK, инструментирование, запуск, просмотр трассы (критерий 3).",
+        "en": "Five steps: keys, SDK, instrumentation, run, view the trace (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "ob-otel",
+      "title": "OpenTelemetry GenAI semantic conventions (repository)",
+      "url": "https://github.com/open-telemetry/semantic-conventions-genai",
+      "kind": "understand",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Apache-2.0",
+      "closes": {
+        "ru": "Нейтральный к вендору стандарт спанов и метрик для GenAI (критерий 1).",
+        "en": "A vendor-neutral standard for GenAI spans and metrics (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    }
+  ],
+  "minutes_total": 90
+}

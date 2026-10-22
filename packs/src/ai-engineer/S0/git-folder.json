@@ -1,0 +1,62 @@
+{
+  "id": "git-folder",
+  "grade": "S0",
+  "order": 4,
+  "probe": "git",
+  "title": { "ru": "Git и папка проекта", "en": "Git and a project folder" },
+  "goal": {
+    "ru": "Поставить git, завести папку проекта с репозиторием и понять, какую папку вы будете отдавать на экзамен и чего в ней быть не должно.",
+    "en": "Install git, create a project folder with a repository, and understand which folder you will hand in for an exam and what must not be in it."
+  },
+  "criteria": {
+    "ru": [
+      "Установить git так, чтобы `git --version` печатал версию, и выполнить `git init` в новой папке.",
+      "Объяснить, что папка с артефактом для экзамена не должна содержать ключей и файлов `.env`, и как `.gitignore` помогает их не хранить."
+    ],
+    "en": [
+      "Install git so that `git --version` prints a version, and run `git init` in a new folder.",
+      "Explain that the artifact folder for an exam must contain no keys or `.env` files, and how `.gitignore` helps keep them out."
+    ]
+  },
+  "materials": [
+    {
+      "id": "git-downloads",
+      "title": "Git downloads (git-scm.com)",
+      "url": "https://git-scm.com/downloads/",
+      "kind": "do", "type": "tool", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Git, GPL-2.0 software, free download",
+      "closes": { "ru": "Установщики git для Windows, macOS и Linux (критерий 1).", "en": "Git installers for Windows, macOS and Linux (criterion 1)." },
+      "criteria": [1]
+    },
+    {
+      "id": "git-basics-book",
+      "title": "Pro Git, 2.1 Getting a Git Repository",
+      "url": "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository",
+      "kind": "understand", "type": "book", "access": "free", "date": null, "classic": true, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Pro Git book, CC BY-NC-SA 3.0",
+      "closes": { "ru": "`git init` в существующей папке, первый коммит (критерий 1).", "en": "`git init` in an existing folder, the first commit (criterion 1)." },
+      "criteria": [1]
+    },
+    {
+      "id": "git-ignoring",
+      "title": "Ignoring files (GitHub Docs)",
+      "url": "https://docs.github.com/en/get-started/git-basics/ignoring-files",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 5, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "GitHub Docs, CC BY 4.0",
+      "closes": { "ru": "Как `.gitignore` исключает файлы вроде `.env` из репозитория (критерий 2).", "en": "How `.gitignore` keeps files like `.env` out of the repository (criterion 2)." },
+      "criteria": [2]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "git-guide",
+      "title": { "ru": "Папка проекта и что в ней не должно лежать", "en": "The project folder and what must not be in it" },
+      "kind": "do", "minutes": 10, "criteria": [1, 2], "source": "own", "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Эволюция каждой эпохи это экзамен по папке: вы называете путь, агент читает файлы и подтверждает каждый пункт цитатой, а хаб сам ищет цитату в файле. Так что уже сейчас полезно завести папку, в которой будут жить ваши учебные проекты.\n\n**Git.** Это программа, которая хранит историю изменений папки. Агенты ждут её и используют: Claude Code, например, показывает в экзамене состояние репозитория.\n\n- **Windows.** Установщик со страницы загрузки, везде «Далее». Закройте терминал, откройте новый.\n- **macOS.** Наберите в терминале `git --version`: если git не стоит, система сама предложит поставить инструменты командной строки. Или `brew install git`.\n- **Linux.** `sudo apt install git` (Debian, Ubuntu) или `sudo dnf install git` (Fedora).\n\n**Проверка.** В новом терминале `git --version` печатает версию. Затем:\n\n```\nmkdir astrolabe-projects\ncd astrolabe-projects\ngit init\n```\n\nПоявилась скрытая папка `.git`: это и есть репозиторий.\n\n**Чего не должно быть в папке экзамена.** Всё содержимое папки уходит в модель вашего агента. Поэтому в ней не должно быть ключей API, паролей и файлов `.env`. Заведите в проекте файл `.gitignore` со строками `.env` и `node_modules/`, а ключи держите в переменных окружения или в менеджере секретов. Это не формальность: экзамен читает именно файлы, и чужой ключ в них будет прочитан.\n\n**Как хаб проверяет.** Хаб запускает `git --version`. Если git найден, звезда горит.",
+        "en": "Each era's gate is an exam on a folder: you name a path, the agent reads the files and backs every item with a quote, and the hub itself looks the quote up in the file. So it already pays off to create the folder where your study projects will live.\n\n**Git.** A program that keeps the change history of a folder. Agents expect it and use it: Claude Code, for instance, shows the repository state during an exam.\n\n- **Windows.** The installer from the download page, \"Next\" everywhere. Close the terminal, open a new one.\n- **macOS.** Type `git --version` in the terminal: if git is missing, the system offers to install the command line tools. Or `brew install git`.\n- **Linux.** `sudo apt install git` (Debian, Ubuntu) or `sudo dnf install git` (Fedora).\n\n**Check.** In a new terminal `git --version` prints a version. Then:\n\n```\nmkdir astrolabe-projects\ncd astrolabe-projects\ngit init\n```\n\nA hidden `.git` folder appeared: that is the repository.\n\n**What must not be in the exam folder.** The whole content of the folder goes to your agent's model. So it must contain no API keys, passwords or `.env` files. Add a `.gitignore` file to the project with the lines `.env` and `node_modules/`, and keep keys in environment variables or a secret manager. This is not a formality: the exam reads exactly those files, and a stray key in them will be read.\n\n**How the hub checks.** The hub runs `git --version`. If git is found, the star is lit."
+      }
+    }
+  ],
+  "minutes_total": 35
+}

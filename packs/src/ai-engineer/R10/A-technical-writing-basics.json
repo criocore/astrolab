@@ -1,0 +1,99 @@
+{
+ "id": "technical-writing-basics",
+ "area": "R10",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R10.A",
+ "order": 1,
+ "title": {
+  "ru": "Основы технического письма",
+  "en": "Technical writing basics"
+ },
+ "goal": {
+  "ru": "Писать короткий структурный текст для конкретного читателя и отличать how-to от справочника.",
+  "en": "Write a short structured text for a specific reader and tell a how-to from a reference."
+ },
+ "criteria": {
+  "ru": [
+   "Перед текстом я называю читателя и его цель.",
+   "Я переписываю длинное предложение в короткие активные и оформляю шаги списком.",
+   "Я объясняю, чем how-to отличается от reference, и не смешиваю их на одной странице."
+  ],
+  "en": [
+   "Before writing I name the reader and their goal.",
+   "I rewrite a long sentence into short active ones and format steps as a list.",
+   "I explain how a how-to differs from a reference and do not mix them on one page."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tw-google-one",
+   "title": "Technical Writing One (Google for Developers)",
+   "url": "https://developers.google.com/tech-writing/one",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": "2025-03",
+   "classic": false,
+   "minutes": 70,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google course, free to read",
+   "closes": {
+    "ru": "Курс с упражнениями: аудитория, короткие активные предложения, списки, абзацы (критерии 1, 2).",
+    "en": "Course with exercises: audience, short active sentences, lists, paragraphs (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "dx-howto",
+   "title": "How-to guides (Diátaxis)",
+   "url": "https://diataxis.fr/how-to-guides/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Diátaxis site, CC BY-SA 4.0 per site; free to read",
+   "closes": {
+    "ru": "How-to решает задачу читателя, а не описывает инструмент (критерии 1, 3).",
+    "en": "A how-to solves the reader's task instead of describing the tool (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "dx-reference",
+   "title": "Reference (Diátaxis)",
+   "url": "https://diataxis.fr/reference/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Diátaxis site, CC BY-SA 4.0 per site; free to read",
+   "closes": {
+    "ru": "Справочник описывает устройство нейтрально, без инструкций (критерий 3).",
+    "en": "Reference describes the machinery neutrally, without instruction (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 95
+}

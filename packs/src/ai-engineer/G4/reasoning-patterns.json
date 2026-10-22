@@ -1,0 +1,138 @@
+{
+  "id": "reasoning-patterns",
+  "grade": "G4",
+  "order": 2,
+  "title": {
+    "ru": "Паттерны рассуждения: CoT, ToT",
+    "en": "Reasoning patterns: CoT and ToT"
+  },
+  "goal": {
+    "ru": "Знать, что дают цепочка рассуждений и дерево мыслей, когда они помогают, когда нет, и сколько стоят в токенах.",
+    "en": "Know what chain-of-thought and tree-of-thoughts give, when they help and when they do not, and what they cost in tokens."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить разницу между CoT (одна цепочка) и ToT (ветвление, оценка, возврат).",
+      "Назвать задачи, где CoT даёт заметный выигрыш (математика, символьные), и где выигрыш мал.",
+      "Включить рассуждение с лимитом токенов и измерить, сколько токенов ушло на мысли."
+    ],
+    "en": [
+      "Explain the difference between CoT (one chain) and ToT (branching, evaluation, backtracking).",
+      "Name the tasks where CoT gives a clear gain (math, symbolic) and where the gain is small.",
+      "Enable reasoning with a token budget and measure how many tokens went to thinking."
+    ]
+  },
+  "materials": [
+    {
+      "id": "rp-cot-guide",
+      "title": "Chain-of-Thought Prompting (Prompt Engineering Guide)",
+      "url": "https://www.promptingguide.ai/techniques/cot",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "open guide, free to read",
+      "closes": {
+        "ru": "Zero-shot и few-shot CoT с примерами (критерий 1).",
+        "en": "Zero-shot and few-shot CoT with examples (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "rp-tot",
+      "title": "Tree of Thoughts: Deliberate Problem Solving with LLMs",
+      "url": "https://arxiv.org/abs/2305.10601",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2023-05",
+      "classic": true,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint",
+      "closes": {
+        "ru": "ToT как обобщение CoT: ветвление, оценка, возврат; Game of 24 (критерий 1).",
+        "en": "ToT as a generalization of CoT: branching, evaluation, backtracking; Game of 24 (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "rp-to-cot",
+      "title": "To CoT or not to CoT? (Sprague et al.)",
+      "url": "https://arxiv.org/abs/2409.12183",
+      "kind": "understand",
+      "type": "paper",
+      "access": "free",
+      "date": "2024-09",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "arXiv preprint",
+      "closes": {
+        "ru": "Мета-анализ: CoT помогает в основном на математике и символьных задачах (критерий 2).",
+        "en": "Meta-analysis: CoT helps mainly on math and symbolic tasks (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "rp-ext-thinking",
+      "title": "Extended thinking (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Запрос с бюджетом мыслей и поле thinking_tokens для замера стоимости (критерий 3).",
+        "en": "A request with a thinking budget and the thinking_tokens field to measure cost (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "rp-openai-reasoning-lab",
+      "title": "Reasoning models (OpenAI API guide), reasoning on/off lab",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Одна математическая задача без reasoning и с ним, замерить разницу в токенах (критерий 3).",
+        "en": "One math item with reasoning off and on; record the token delta (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 150
+}

@@ -1,0 +1,125 @@
+{
+ "id": "core-data-structures",
+ "area": "R12",
+ "level": "A",
+ "to_grade": "G4",
+ "grade": "R12.A",
+ "order": 2,
+ "title": {
+  "ru": "Хеш-таблицы, деревья, графы",
+  "en": "Hash tables, trees, graphs"
+ },
+ "goal": {
+  "ru": "Выбирать структуру данных по операциям, которые нужны, и обходить граф вширь и вглубь.",
+  "en": "Choose a data structure by the operations needed and traverse a graph breadth-first and depth-first."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, как работает хеш-таблица, почему поиск в среднем O(1) и что такое коллизия.",
+   "Объяснить, чем сбалансированное дерево поиска отличается от хеш-таблицы (порядок, диапазоны, O(log n)).",
+   "Представить граф списком смежности и объяснить BFS (очередь, кратчайший путь по числу рёбер) и DFS (стек или рекурсия).",
+   "Для задачи выбрать структуру (список, словарь, множество, очередь, дерево, граф) и обосновать выбор."
+  ],
+  "en": [
+   "Explain how a hash table works, why lookup is O(1) on average, and what a collision is.",
+   "Explain how a balanced search tree differs from a hash table (ordering, ranges, O(log n)).",
+   "Represent a graph as an adjacency list and explain BFS (queue, shortest path by edge count) and DFS (stack or recursion).",
+   "For a task, choose a structure (list, dict, set, queue, tree, graph) and justify the choice."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ds-visualgo",
+   "title": "VisuAlgo: hash table, BST, graph traversal",
+   "url": "https://visualgo.net/en",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free for study, link only",
+   "closes": {
+    "ru": "Пошаговые анимации хеш-таблицы, BST и обхода графа BFS/DFS (критерии 1, 2, 3).",
+    "en": "Step-by-step animations of hash table, BST and BFS/DFS graph traversal (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "ds-cp-bfs",
+   "title": "Breadth First Search (cp-algorithms)",
+   "url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0",
+   "closes": {
+    "ru": "BFS: очередь, кратчайшие пути в невзвешенном графе, O(n+m) (критерий 3).",
+    "en": "BFS: queue, shortest paths in an unweighted graph, O(n+m) (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ds-cp-dfs",
+   "title": "Depth First Search (cp-algorithms)",
+   "url": "https://cp-algorithms.com/graph/depth-first-search.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0",
+   "closes": {
+    "ru": "DFS и его сложность O(n+m) (критерий 3).",
+    "en": "DFS and its O(n+m) complexity (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ds-python-tutorial",
+   "title": "Data Structures (Python tutorial)",
+   "url": "https://docs.python.org/3/tutorial/datastructures.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs, free to read",
+   "closes": {
+    "ru": "Руками: list, dict, set и collections.deque для очереди; напишите BFS по словарю смежности (критерии 1, 3, 4).",
+    "en": "Hands-on: list, dict, set and collections.deque as a queue; write BFS over an adjacency dict (criteria 1, 3, 4)."
+   },
+   "criteria": [
+    1,
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

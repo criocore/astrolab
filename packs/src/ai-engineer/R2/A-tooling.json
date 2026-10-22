@@ -1,0 +1,125 @@
+{
+ "id": "tooling",
+ "area": "R2",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R2.A",
+ "order": 4,
+ "title": {
+  "ru": "Форматтер, линтер, запуск и отладка",
+  "en": "Formatter, linter, running and debugging"
+ },
+ "goal": {
+  "ru": "Настроить автоматическую проверку стиля и уметь остановить программу в отладчике.",
+  "en": "Set up automatic style checks and stop a program in a debugger."
+ },
+ "criteria": {
+  "ru": [
+   "Запускаю форматтер и линтер одной командой и объясняю, чем они различаются.",
+   "Ставлю точку останова, шагаю по коду и смотрю значения переменных в отладчике."
+  ],
+  "en": [
+   "I run a formatter and a linter with one command and explain how they differ.",
+   "I set a breakpoint, step through code and inspect variables in a debugger."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tl-py-ruff",
+   "title": "Ruff Tutorial",
+   "url": "https://docs.astral.sh/ruff/tutorial/",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Ruff docs (MIT project), free to read",
+   "closes": {
+    "ru": "ruff check и ruff format на своём проекте (критерий 1).",
+    "en": "ruff check and ruff format on your own project (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tl-py-pdb",
+   "title": "pdb: The Python Debugger",
+   "url": "https://docs.python.org/3/library/pdb.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "Точки останова, шаги, просмотр стека (критерий 2).",
+    "en": "Breakpoints, stepping, stack inspection (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "tl-ts-eslint",
+   "title": "Getting Started with ESLint",
+   "url": "https://eslint.org/docs/latest/use/getting-started",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "ESLint docs (MIT project), free to read",
+   "closes": {
+    "ru": "Установить и запустить ESLint на проекте (критерий 1); форматтер добавить по выбору, см. notes.md.",
+    "en": "Install and run ESLint on a project (criterion 1); add a formatter of your choice, see notes.md."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tl-ts-debug",
+   "title": "Debugging Node.js",
+   "url": "https://nodejs.org/en/learn/getting-started/debugging",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Node.js docs, free to read",
+   "closes": {
+    "ru": "--inspect и подключение клиента: Chrome DevTools или VS Code (критерий 2).",
+    "en": "--inspect and attaching a client: Chrome DevTools or VS Code (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 40,
+  "typescript": 40
+ },
+ "minutes_total": 40
+}

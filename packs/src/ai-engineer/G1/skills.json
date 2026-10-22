@@ -1,0 +1,126 @@
+{
+  "id": "skills",
+  "grade": "G1",
+  "order": 5,
+  "title": {
+    "ru": "Скиллы",
+    "en": "Skills"
+  },
+  "goal": {
+    "ru": "Понимать, что такое скилл, уметь написать свой и управлять тем, когда он срабатывает.",
+    "en": "Understand what a skill is, write your own and control when it fires."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, что такое скилл и чем он отличается от CLAUDE.md и сабагента (тело грузится по требованию).",
+      "Пишу SKILL.md с frontmatter (name, description) и инструкциями и кладу в .claude/skills.",
+      "Формулирую description так, чтобы скилл срабатывал на нужные задачи, и проверяю вызов через /имя и автоматически.",
+      "Описываю прогрессивную загрузку (описание сначала, тело потом, файлы по необходимости) и управляю вызовом через disable-model-invocation."
+    ],
+    "en": [
+      "I explain what a skill is and how it differs from CLAUDE.md and a subagent (the body loads on demand).",
+      "I write a SKILL.md with frontmatter (name, description) and instructions and place it in .claude/skills.",
+      "I word the description so the skill fires on the right tasks, and test it via /name and automatically.",
+      "I describe progressive loading (description first, body later, files as needed) and control invocation with disable-model-invocation."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sk-docs",
+      "title": "Extend Claude with skills (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/skills",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Формат SKILL.md, где живут скиллы, срабатывание по description, управление вызовом (критерии 1, 2, 3, 4).",
+        "en": "SKILL.md format, where skills live, description-based triggering, invocation control (criteria 1, 2, 3, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "sk-eng-blog",
+      "title": "Equipping agents for the real world with Agent Skills (Anthropic Engineering)",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-10",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Anthropic blog, free to read",
+      "closes": {
+        "ru": "Устройство скилла и три уровня прогрессивной загрузки (критерии 1, 4).",
+        "en": "Skill anatomy and the three levels of progressive disclosure (criteria 1, 4)."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "sk-course",
+      "title": "Introduction to agent skills (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/introduction-to-agent-skills",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free Anthropic Academy course, account required",
+      "closes": {
+        "ru": "Создание первого скилла с нуля, конфигурация, сравнение с другими фичами, отладка (критерии 1, 2, 3).",
+        "en": "Building a first skill from scratch, configuration, comparison with other features, troubleshooting (criteria 1, 2, 3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "sk-codex-skills",
+      "title": "Build skills (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/build-skills",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Тот же формат у Codex: каталог с SKILL.md (name, description), поэтапная загрузка, неявный вызов по описанию (критерии 2, 3, 4).",
+        "en": "The same shape on Codex: a directory with SKILL.md (name, description), progressive loading, implicit invocation by description (criteria 2, 3, 4)."
+      },
+      "criteria": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 135
+}

@@ -1,0 +1,122 @@
+{
+ "id": "ux-basics",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 5,
+ "title": {
+  "ru": "Основы UX",
+  "en": "UX basics"
+ },
+ "goal": {
+  "ru": "Разобрать путь пользователя и задачу, собрать прототип и проверить его на людях.",
+  "en": "Map the user journey and task, build a prototype and test it with people."
+ },
+ "criteria": {
+  "ru": [
+   "Journey map: этапы, действия, мысли, эмоции и возможности улучшения.",
+   "Я разбиваю задачу пользователя на шаги (task analysis) и нахожу лишние.",
+   "Я собираю дешёвый прототип (бумага или макет) для одного сценария.",
+   "Я провожу тест прототипа: задачи, наблюдение без подсказок, список находок."
+  ],
+  "en": [
+   "Journey map: stages, actions, thoughts, emotions and opportunities.",
+   "I break a user task into steps (task analysis) and find redundant ones.",
+   "I build a cheap prototype (paper or mockup) for one scenario.",
+   "I run a prototype test: tasks, observation without hints, a list of findings."
+  ]
+ },
+ "materials": [
+  {
+   "id": "nng-journey",
+   "title": "Journey Mapping 101 (NN/g)",
+   "url": "https://www.nngroup.com/articles/journey-mapping-101/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "NN/g, free to read",
+   "closes": {
+    "ru": "Состав journey map (критерий 1).",
+    "en": "Parts of a journey map (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "nng-task",
+   "title": "Task Analysis (NN/g)",
+   "url": "https://www.nngroup.com/articles/task-analysis/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2020-09",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "NN/g, free to read",
+   "closes": {
+    "ru": "Разбор задачи на шаги (критерий 2).",
+    "en": "Breaking a task into steps (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "nng-usability",
+   "title": "Usability Testing 101 (NN/g)",
+   "url": "https://www.nngroup.com/articles/usability-testing-101/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "NN/g, free to read",
+   "closes": {
+    "ru": "Ведущий, задачи, участники (критерий 4).",
+    "en": "Facilitator, tasks, participants (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-proto-test",
+   "title": {
+    "ru": "Упражнение: прототип и тест на троих",
+    "en": "Exercise: prototype and a test with three people"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выберите один сценарий. Нарисуйте путь пользователя и шаги задачи. Сделайте прототип из бумажных экранов или простого макета. Дайте трём людям задачу без объяснений, молча наблюдайте, записывайте, где они споткнулись. Итог: список находок с приоритетом.",
+    "en": "Pick one scenario. Draw the user journey and task steps. Build a prototype from paper screens or a simple mockup. Give three people a task without explaining, watch silently, note where they stumbled. Result: a prioritized list of findings."
+   }
+  }
+ ],
+ "minutes_total": 105
+}

@@ -1,0 +1,121 @@
+{
+ "id": "a11y-and-ui-check",
+ "area": "R9",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R9.A",
+ "order": 4,
+ "title": {
+  "ru": "Доступность и проверка интерфейса, сделанного агентом",
+  "en": "Accessibility and checking an agent-built UI"
+ },
+ "goal": {
+  "ru": "Проверять интерфейс не на глаз: тестом в Playwright, скриншотом и axe.",
+  "en": "Check a UI by more than eye: a Playwright test, a screenshot and axe."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать базовые правила доступности: семантические элементы, подписи у полей, фокус с клавиатуры, контраст.",
+   "Написать Playwright-тест: открыть страницу, заполнить форму, нажать кнопку, проверить ожидаемый текст.",
+   "Снять скриншот, сравнить с эталоном через toHaveScreenshot и объяснить, почему эталоны зависят от окружения.",
+   "Запустить axe-проверку через Playwright и объяснить, что автоматика находит не всё."
+  ],
+  "en": [
+   "Name the basic accessibility rules: semantic elements, field labels, keyboard focus, contrast.",
+   "Write a Playwright test: open a page, fill a form, click a button, check the expected text.",
+   "Take a screenshot, compare it with a baseline using toHaveScreenshot and explain why baselines depend on the environment.",
+   "Run an axe check through Playwright and explain that automation does not find everything."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ay-webdev-learn-a11y",
+   "title": "Learn Accessibility (web.dev)",
+   "url": "https://web.dev/learn/accessibility",
+   "kind": "understand",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "web.dev, free to read",
+   "closes": {
+    "ru": "Структура, фокус, формы, контраст, автоматическое и ручное тестирование (критерий 1).",
+    "en": "Structure, focus, forms, contrast, automated and manual testing (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ay-pw-intro",
+   "title": "Installation (Playwright docs)",
+   "url": "https://playwright.dev/docs/intro",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Playwright docs, free to read (Apache-2.0 project)",
+   "closes": {
+    "ru": "Установка, первый тест, запуск, отчёт (критерий 2).",
+    "en": "Install, a first test, running it, the report (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ay-pw-visual",
+   "title": "Visual comparisons (Playwright docs)",
+   "url": "https://playwright.dev/docs/test-snapshots",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Playwright docs, free to read (Apache-2.0 project)",
+   "closes": {
+    "ru": "toHaveScreenshot, эталоны, --update-snapshots, зависимость от окружения (критерий 3).",
+    "en": "toHaveScreenshot, baselines, --update-snapshots, environment dependence (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ay-pw-a11y",
+   "title": "Accessibility testing (Playwright docs)",
+   "url": "https://playwright.dev/docs/accessibility-testing",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Playwright docs, free to read (Apache-2.0 project)",
+   "closes": {
+    "ru": "@axe-core/playwright и оговорка, что автоматика ловит лишь часть проблем (критерий 4).",
+    "en": "@axe-core/playwright and the caveat that automation catches only part of the problems (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

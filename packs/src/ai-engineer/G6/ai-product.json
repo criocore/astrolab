@@ -1,0 +1,117 @@
+{
+  "id": "ai-product",
+  "grade": "G6",
+  "order": 7,
+  "title": {
+    "ru": "Продукт с ИИ",
+    "en": "AI product"
+  },
+  "goal": {
+    "ru": "Уметь пройти путь от проблемы к метрике и написать требования к ИИ-функции, включая решение «ИИ не нужен».",
+    "en": "Go from problem to metric, write requirements for an AI feature, including the call that AI is not needed."
+  },
+  "criteria": {
+    "ru": [
+      "Могу сравнить ИИ с правилами и назвать случаи, где ИИ не подходит (нужна предсказуемость, дорогая ошибка, статичные данные).",
+      "Могу написать разделы PRD для ИИ-функции: матрица поведений, набор для оценки с порогом выпуска и порогом отката, запасной сценарий.",
+      "Могу выбрать автоматизацию или усиление человека и задать цену ошибок (ложноположительные против ложноотрицательных)."
+    ],
+    "en": [
+      "I can compare AI against rules and name cases where AI does not fit (predictability needed, costly errors, static data).",
+      "I can write PRD sections for an AI feature: behavior matrix, eval set with ship and rollback thresholds, fallback.",
+      "I can choose automation or augmentation and set the cost of errors (false positives vs false negatives)."
+    ]
+  },
+  "materials": [
+    {
+      "id": "aip-pair-user-needs",
+      "title": "User Needs + Defining Success (Google PAIR Guidebook)",
+      "url": "https://pair.withgoogle.com/chapter/user-needs/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Google PAIR, free to read; worksheet PDF",
+      "closes": {
+        "ru": "Практика: когда ИИ уместен, автоматизация против усиления, функция вознаграждения (критерии 1, 3).",
+        "en": "Hands-on: when AI fits, automate vs augment, reward function (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "aip-tianpan-prd",
+      "title": "The PRD for an AI Feature (Tian Pan)",
+      "url": "https://tianpan.co/blog/2026-05-02-prd-ai-feature-old-template-misses-cliff",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-05",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read; personal blog",
+      "closes": {
+        "ru": "Матрица поведений, набор оценки с порогом и откатом, fallback, владелец промпта (критерий 2).",
+        "en": "Behavior matrix, eval set with threshold and rollback, fallback, prompt owner (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "aip-anthropic-building-effective-agents",
+      "title": "Building effective agents (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2024-12",
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Начинать с простейшего решения; агент не всегда нужен (критерий 1).",
+        "en": "Start with the simplest solution; an agent is not always needed (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "aip-eugeneyan-llm-patterns",
+      "title": "Patterns for Building LLM-based Systems & Products (Eugene Yan)",
+      "url": "https://eugeneyan.com/writing/llm-patterns/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read; personal blog",
+      "closes": {
+        "ru": "Оценки, ограждения и сбор обратной связи как часть продукта (критерий 2).",
+        "en": "Evals, guardrails and feedback collection as part of the product (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 130
+}

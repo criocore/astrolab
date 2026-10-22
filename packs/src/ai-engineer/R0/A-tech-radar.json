@@ -1,0 +1,145 @@
+{
+ "id": "tech-radar",
+ "area": "R0",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R0.A",
+ "order": 3,
+ "title": {
+  "ru": "Личный технологический радар и spike",
+  "en": "Personal technology radar and spikes"
+ },
+ "goal": {
+  "ru": "Вести короткий личный радар технологий и проверять кандидатов из кольца Assess короткой пробой с заранее заданным критерием остановки, записывая вывод в ADR.",
+  "en": "Keep a short personal technology radar and check Assess-ring candidates with a short experiment that has a stop criterion set in advance, recording the outcome in an ADR."
+ },
+ "criteria": {
+  "ru": [
+   "Назвать кольца радара (Adopt, Trial, Assess, Hold или Caution) и что значит каждое.",
+   "Завести собственный радар (таблица или файл) минимум на 10 технологий и распределить их по кольцам.",
+   "Описать, как радар используется при выборе: сначала Adopt и Trial, Assess только через spike; объяснить, что spike снимает неопределённость, а не делает функцию.",
+   "Перед spike задать срок (1–2 дня) и критерий остановки в виде проверяемого условия.",
+   "Записать результат spike в ADR: что проверяли, что получилось, какое решение принято."
+  ],
+  "en": [
+   "Name the radar rings (Adopt, Trial, Assess, Hold or Caution) and what each means.",
+   "Create your own radar (table or file) with at least 10 technologies and place them in rings.",
+   "Describe how the radar is used when choosing: Adopt and Trial first, Assess only through a spike; explain that a spike removes uncertainty rather than builds a feature.",
+   "Before a spike, set a time box (1–2 days) and a stop criterion as a testable condition.",
+   "Record the result of the spike in an ADR: what was tested, what happened, what was decided."
+  ]
+ },
+ "materials": [
+  {
+   "id": "radar-thoughtworks",
+   "title": "Technology Radar (Thoughtworks)",
+   "url": "https://www.thoughtworks.com/radar",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-04",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "publisher site, free to read",
+   "closes": {
+    "ru": "Живой пример радара: кольца и их смысл (критерий 1). В актуальном выпуске четвёртое кольцо называется Caution.",
+    "en": "A live radar: rings and their meaning (criterion 1). The current edition calls the fourth ring Caution."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "radar-byor",
+   "title": "Build your Own Radar (Thoughtworks)",
+   "url": "https://www.thoughtworks.com/radar/how-to-byor",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "tool is AGPL, page free to read",
+   "closes": {
+    "ru": "Как собрать свой радар из таблицы или CSV и получить визуализацию (критерии 2, 3).",
+    "en": "How to build your own radar from a sheet or CSV and render it (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "radar-zalando",
+   "title": "zalando/tech-radar",
+   "url": "https://github.com/zalando/tech-radar",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Запасной вариант без сервиса: статический радар на d3.js, данные в одном файле (критерий 2).",
+    "en": "Service-free alternative: a static d3.js radar with data in one file (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "spike-safe",
+   "title": "Spikes (Scaled Agile Framework)",
+   "url": "https://framework.scaledagile.com/spikes/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "copyrighted by Scaled Agile, link only",
+   "closes": {
+    "ru": "Определение spike и его место в работе команды (критерий 3). Страница частично закрыта, видна только вводная часть; срок и критерий остановки даёт свой текст.",
+    "en": "Definition of a spike and its place in team work (criterion 3). The page is partly gated and only the intro is visible; the time box and stop criterion come from the own text."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 150,
+ "own_texts": [
+  {
+   "id": "spike-howto",
+   "title": {
+    "ru": "Как провести spike на 1–2 дня",
+    "en": "How to run a 1–2 day spike"
+   },
+   "kind": "do",
+   "minutes": 60,
+   "criteria": [
+    4,
+    5
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Перед началом запишите три вещи: вопрос, на который нужен ответ, срок в часах и критерий остановки вида «если за два дня не получим X при Y, берём вариант Б». Работайте до первого из двух событий: критерий достигнут или время вышло. Результат оформите ADR: вопрос, что сделали, цифры или наблюдения, решение. Код пробы можно выбросить, ADR остаётся.",
+    "en": "Before starting, write down three things: the question to answer, the time limit in hours, and a stop criterion such as: if in two days we do not get X at Y, we take option B. Work until the first of two events: the criterion is met or time runs out. Write the outcome up as an ADR: question, what was done, numbers or observations, decision. The spike code may be thrown away; the ADR stays."
+   }
+  }
+ ]
+}

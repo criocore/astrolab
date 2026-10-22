@@ -1,0 +1,98 @@
+{
+ "id": "compose-volumes",
+ "area": "R6",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R6.A",
+ "order": 2,
+ "title": {
+  "ru": "Docker Compose, тома, сети, окружение для разработки",
+  "en": "Docker Compose, volumes, networks, a dev environment"
+ },
+ "goal": {
+  "ru": "Описать приложение с базой в compose.yaml, сохранять данные в томе и понимать сеть между сервисами.",
+  "en": "Describe an app with a database in compose.yaml, persist data in a volume, and understand networking between services."
+ },
+ "criteria": {
+  "ru": [
+   "Я поднимаю и гашу приложение из нескольких сервисов одним compose.yaml.",
+   "Я объясняю разницу между томом и bind mount и показываю, что данные переживают пересоздание контейнера.",
+   "Я показываю, что сервисы обращаются друг к другу по имени сервиса, и передаю настройки через переменные окружения."
+  ],
+  "en": [
+   "I start and stop a multi-service app from one compose.yaml.",
+   "I explain the difference between a volume and a bind mount and show data surviving container recreation.",
+   "I show that services reach each other by service name and pass settings through environment variables."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cv-compose-qs",
+   "title": "Docker Compose Quickstart (Docker docs)",
+   "url": "https://docs.docker.com/compose/gettingstarted/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: два сервиса, хранилище, окружение (критерии 1, 3).",
+    "en": "Hands-on: two services, storage, environment (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "cv-volumes",
+   "title": "Volumes (Docker docs)",
+   "url": "https://docs.docker.com/engine/storage/volumes/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Тома и сохранность данных (критерий 2).",
+    "en": "Volumes and data persistence (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "cv-networking",
+   "title": "Networking in Compose (Docker docs)",
+   "url": "https://docs.docker.com/compose/how-tos/networking/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Имена сервисов и сеть по умолчанию (критерий 3).",
+    "en": "Service names and the default network (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 70
+}

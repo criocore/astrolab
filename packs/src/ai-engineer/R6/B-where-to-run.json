@@ -1,0 +1,119 @@
+{
+ "id": "where-to-run",
+ "area": "R6",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R6.B",
+ "order": 6,
+ "title": {
+  "ru": "Где запускать: VPS, PaaS, serverless и edge, Kubernetes",
+  "en": "Where to run: VPS, PaaS, serverless and edge, Kubernetes"
+ },
+ "goal": {
+  "ru": "Выбрать платформу под приложение и записать выбор как ADR.",
+  "en": "Choose a platform for the app and record the choice as an ADR."
+ },
+ "criteria": {
+  "ru": [
+   "Я сравниваю VPS с Docker, PaaS, serverless и Kubernetes по объёму эксплуатации и цене ошибки.",
+   "Я разворачиваю одну функцию на edge или serverless-платформе.",
+   "Я пишу короткий ADR с вариантами и причиной выбора."
+  ],
+  "en": [
+   "I compare a Docker VPS, PaaS, serverless and Kubernetes by operational burden and cost of mistakes.",
+   "I deploy one function to an edge or serverless platform.",
+   "I write a short ADR with options and the reason for the choice."
+  ]
+ },
+ "materials": [
+  {
+   "id": "wr-k8s",
+   "title": "Overview (Kubernetes docs)",
+   "url": "https://kubernetes.io/docs/concepts/overview/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Что даёт Kubernetes и какую сложность приносит (критерий 1).",
+    "en": "What Kubernetes gives and what complexity it brings (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "wr-aws",
+   "title": "Overview of Deployment Options on AWS (AWS whitepaper)",
+   "url": "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/welcome.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2024-05",
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Обзор вариантов развёртывания в облаке (критерий 1).",
+    "en": "Survey of cloud deployment options (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "wr-cf-workers",
+   "title": "Workers: get started (Cloudflare docs)",
+   "url": "https://developers.cloudflare.com/workers/get-started/guide/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Практика: деплой функции на edge (критерий 2).",
+    "en": "Hands-on: deploy a function to the edge (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "wr-adr",
+   "title": "Architectural Decision Records (adr.github.io)",
+   "url": "https://adr.github.io/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read",
+   "closes": {
+    "ru": "Формат и шаблоны ADR (критерий 3).",
+    "en": "ADR format and templates (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 95
+}

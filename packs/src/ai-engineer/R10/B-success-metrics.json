@@ -1,0 +1,121 @@
+{
+ "id": "success-metrics",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 3,
+ "title": {
+  "ru": "Метрики успеха",
+  "en": "Success metrics"
+ },
+ "goal": {
+  "ru": "Выбрать метрику успеха, входные метрики и пороги до запуска.",
+  "en": "Choose a success metric, input metrics and thresholds before launch."
+ },
+ "criteria": {
+  "ru": [
+   "North Star отражает ценность для пользователя, а не активность.",
+   "К North Star привязаны 3-5 входных метрик, на которые команда влияет.",
+   "Для каждой метрики записаны порог успеха и порог остановки до запуска.",
+   "Для ИИ-функции есть метрика качества ответов и способ её мерить."
+  ],
+  "en": [
+   "The North Star reflects user value, not activity.",
+   "3-5 input metrics tie to it that the team can influence.",
+   "Each metric has a success threshold and a stop threshold written before launch.",
+   "An AI feature has an answer-quality metric and a way to measure it."
+  ]
+ },
+ "materials": [
+  {
+   "id": "amp-ns-blog",
+   "title": "The North Star Framework (Amplitude)",
+   "url": "https://amplitude.com/blog/product-north-star-metric",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2024",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor blog, free to read",
+   "closes": {
+    "ru": "North Star и 3-5 входных метрик (критерии 1, 2).",
+    "en": "North Star and 3-5 input metrics (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "amp-playbook",
+   "title": "North Star Playbook (Amplitude)",
+   "url": "https://amplitude.com/books/north-star",
+   "kind": "understand",
+   "type": "book",
+   "access": "freemium",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor ebook, registration may be required",
+   "closes": {
+    "ru": "Как найти и назвать North Star на примере (критерий 1).",
+    "en": "How to find and name a North Star by example (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "pair-user-needs-2",
+   "title": "User Needs + Defining Success (Google PAIR Guidebook)",
+   "url": "https://pair.withgoogle.com/chapter/user-needs/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google PAIR, free to read",
+   "closes": {
+    "ru": "Нужен раздел про определение успеха для ИИ (критерий 4).",
+    "en": "Needed: the section on defining success for AI (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-thresholds",
+   "title": {
+    "ru": "Упражнение: пороги метрики",
+    "en": "Exercise: metric thresholds"
+   },
+   "kind": "do",
+   "minutes": 25,
+   "criteria": [
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Для своей функции запишите: метрика, текущее значение или «неизвестно», порог успеха, порог остановки, срок и как считать. Для ИИ-функции добавьте набор типовых запросов с оценкой «хорошо/плохо» и долю хороших ответов как метрику качества. Числа ставьте свои, с пометкой, откуда они.",
+    "en": "For your feature write: metric, current value or \"unknown\", success threshold, stop threshold, deadline and how it is counted. For an AI feature add a set of typical requests with a good/bad label and the share of good answers as the quality metric. Use your own numbers and note where they come from."
+   }
+  }
+ ],
+ "minutes_total": 95
+}

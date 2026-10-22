@@ -1,0 +1,126 @@
+{
+ "id": "minimal-service",
+ "area": "R3",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R3.A",
+ "order": 4,
+ "title": {
+  "ru": "Минимальный сервис",
+  "en": "A minimal service"
+ },
+ "goal": {
+  "ru": "Поднять маленький HTTP-сервис на FastAPI или Hono с валидацией входных данных.",
+  "en": "Stand up a small HTTP service in FastAPI or Hono with input validation."
+ },
+ "criteria": {
+  "ru": [
+   "Запускаю сервис локально и отвечаю на GET и POST по описанным роутам.",
+   "Описываю схему тела запроса и получаю 4xx с понятной ошибкой на неверные данные.",
+   "Нахожу автоматическую документацию или схему, которую отдаёт фреймворк.",
+   "Проверяю сервис руками через curl и записываю команду запуска."
+  ],
+  "en": [
+   "I run the service locally and answer GET and POST on defined routes.",
+   "I describe a request body schema and get a 4xx with a clear error on bad data.",
+   "I find the automatic documentation or schema the framework serves.",
+   "I check the service by hand with curl and write down the start command."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ms-fastapi-first",
+   "title": "First Steps (FastAPI docs)",
+   "url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/first-steps.md",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, FastAPI repo",
+   "closes": {
+    "ru": "Первый роут, запуск fastapi dev, Swagger UI и OpenAPI (критерии 1, 3, 4).",
+    "en": "First route, running fastapi dev, Swagger UI and OpenAPI (criteria 1, 3, 4)."
+   },
+   "criteria": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ms-fastapi-body",
+   "title": "Request Body (FastAPI docs)",
+   "url": "https://github.com/fastapi/fastapi/blob/master/docs/en/docs/tutorial/body.md",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, FastAPI repo",
+   "closes": {
+    "ru": "Тело запроса через Pydantic, валидация и ошибки (критерии 1, 2).",
+    "en": "Request body with Pydantic, validation and errors (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ms-hono-basic",
+   "title": "Getting Started (Hono docs)",
+   "url": "https://hono.dev/docs/getting-started/basic",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, Hono docs",
+   "closes": {
+    "ru": "Создание проекта, роуты, локальный запуск (критерии 1, 4).",
+    "en": "Project setup, routes, local run (criteria 1, 4)."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "ms-hono-validation",
+   "title": "Validation (Hono docs)",
+   "url": "https://hono.dev/docs/guides/validation",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT, Hono docs",
+   "closes": {
+    "ru": "Валидатор и Zod для тела запроса, 400 на неверные данные (критерии 2, 3).",
+    "en": "Validator and Zod for the request body, 400 on bad data (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 85
+}

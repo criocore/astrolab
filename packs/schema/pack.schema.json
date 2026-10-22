@@ -1,0 +1,123 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://github.com/criocore/astrolab/packs/schema/pack.schema.json",
+ "title": "Study Hub pack v2",
+ "type": "object",
+ "required": ["schema", "id", "version", "title", "license", "grades", "areas", "hours"],
+ "additionalProperties": false,
+ "properties": {
+  "schema": {"const": 2},
+  "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+  "version": {"type": "string"},
+  "built_at": {"type": "string"},
+  "title": {"$ref": "#/$defs/text"},
+  "description": {"$ref": "#/$defs/text"},
+  "license": {"type": "string"},
+  "language": {"type": "object"},
+  "hours": {"type": "object", "required": ["core", "adjacent", "total"],
+            "properties": {"core": {"type": "number"}, "adjacent": {"type": "number"}, "total": {"type": "number"}}},
+  "stats": {"type": "object"},
+  "credits": {"type": "array", "items": {"type": "object", "required": ["channel", "url"]}},
+  "areas": {"type": "array", "items": {"$ref": "#/$defs/area"}},
+  "grades": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/grade"}}
+ },
+ "$defs": {
+  "text": {"type": "object", "required": ["ru", "en"], "properties": {"ru": {"type": "string"}, "en": {"type": "string"}}},
+  "textList": {"type": "object", "required": ["ru", "en"],
+               "properties": {"ru": {"type": "array", "items": {"type": "string"}}, "en": {"type": "array", "items": {"type": "string"}}}},
+  "area": {
+   "type": "object", "required": ["id", "title", "levels"],
+   "properties": {
+    "id": {"type": "string", "pattern": "^R[0-9]+$"},
+    "title": {"$ref": "#/$defs/text"},
+    "levels": {"type": "array", "items": {"type": "object", "required": ["level", "hours", "to_grade", "check"],
+      "properties": {"level": {"enum": ["A", "B", "C", "PII"]}, "hours": {"type": "number"}, "to_grade": {"type": "string"}, "check": {"$ref": "#/$defs/text"}}}}
+   }
+  },
+  "grade": {
+   "type": "object", "required": ["id", "order", "title", "hours", "core", "adjacent", "exam", "checks"],
+   "properties": {
+    "id": {"type": "string", "pattern": "^[GS][0-9]$"},
+    "order": {"type": "integer"},
+    "title": {"$ref": "#/$defs/text"},
+    "gate": {"enum": ["exam", "none"]},
+    "hours": {"type": "object", "required": ["core", "adjacent", "total"]},
+    "exam": {"$ref": "#/$defs/text"},
+    "checks": {"type": "object", "required": ["ru", "en"], "properties": {
+     "ru": {"type": "array", "maxItems": 8, "items": {"type": "string", "minLength": 10}},
+     "en": {"type": "array", "maxItems": 8, "items": {"type": "string", "minLength": 10}}}},
+    "core": {"type": "array", "items": {"$ref": "#/$defs/topic"}},
+    "adjacent": {"type": "array", "items": {"type": "object", "required": ["area", "level", "hours", "check", "topics"],
+      "properties": {"area": {"type": "string"}, "area_title": {"$ref": "#/$defs/text"}, "level": {"type": "string"},
+                     "hours": {"type": "number"}, "check": {"$ref": "#/$defs/text"},
+                     "topics": {"type": "array", "items": {"$ref": "#/$defs/topic"}}}}}
+   },
+   "if": {"properties": {"gate": {"const": "none"}}, "required": ["gate"]},
+   "then": {"properties": {"checks": {"properties": {"ru": {"maxItems": 0}, "en": {"maxItems": 0}}}}},
+   "else": {"properties": {"checks": {"properties": {"ru": {"minItems": 5}, "en": {"minItems": 5}}}}}
+  },
+  "topic": {
+   "type": "object",
+   "required": ["key", "id", "seq", "order", "title", "goal", "criteria", "materials", "minutes_total"],
+   "properties": {
+    "key": {"type": "string"},
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "seq": {"type": "integer"},
+    "order": {"type": "integer"},
+    "grade": {"type": "string"},
+    "area": {"type": "string"},
+    "level": {"type": "string"},
+    "to_grade": {"type": "string"},
+    "title": {"$ref": "#/$defs/text"},
+    "goal": {"$ref": "#/$defs/text"},
+    "criteria": {"$ref": "#/$defs/textList"},
+    "materials": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/material"}},
+    "own_texts": {"type": "array", "items": {"$ref": "#/$defs/ownText"}},
+    "refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "minutes_total": {"type": "integer"},
+    "minutes_by_track": {"type": "object"},
+    "probe": {"enum": ["hub", "node", "git", "agent", "manual"]}
+   }
+  },
+  "material": {
+   "type": "object",
+   "required": ["id", "title", "url", "kind", "type", "access", "date", "classic", "minutes", "lang", "checked_at", "source", "terms", "closes", "criteria"],
+   "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "url": {"type": "string", "pattern": "^https?://"},
+    "kind": {"enum": ["understand", "do"]},
+    "type": {"enum": ["docs", "course", "video", "paper", "repo", "book", "article", "notebook", "report", "tool"]},
+    "access": {"enum": ["free", "freemium", "paid"]},
+    "date": {"type": ["string", "null"], "pattern": "^[0-9]{4}(-[0-9]{2})?$"},
+    "classic": {"type": "boolean"},
+    "minutes": {"type": "integer", "minimum": 1},
+    "lang": {"enum": ["en", "ru"]},
+    "checked_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "source": {"type": "string"},
+    "terms": {"type": "string"},
+    "track": {"type": "string"},
+    "closes": {"$ref": "#/$defs/text"},
+    "criteria": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+    "repeat_of": {"type": "object", "required": ["topic", "title"],
+                  "properties": {"topic": {"type": "string"}, "title": {"$ref": "#/$defs/text"}}}
+   }
+  },
+  "ownText": {
+   "type": "object", "required": ["id", "title", "kind", "minutes", "criteria", "source", "terms", "body"],
+   "properties": {
+    "id": {"type": "string"}, "title": {"$ref": "#/$defs/text"}, "kind": {"enum": ["understand", "do"]},
+    "minutes": {"type": "integer"}, "criteria": {"type": "array", "items": {"type": "integer"}},
+    "source": {"const": "own"}, "terms": {"type": "string"}, "body": {"$ref": "#/$defs/text"}
+   }
+  },
+  "ref": {
+   "type": "object", "required": ["id", "topic", "criteria_there", "criteria", "closes"],
+   "properties": {
+    "id": {"type": "string"}, "topic": {"type": "string"}, "title": {"$ref": "#/$defs/text"},
+    "criteria_there": {"type": "array", "items": {"type": "integer"}},
+    "criteria": {"type": "array", "items": {"type": "integer"}}, "closes": {"$ref": "#/$defs/text"}
+   }
+  }
+ }
+}

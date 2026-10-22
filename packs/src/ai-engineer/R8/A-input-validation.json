@@ -1,0 +1,121 @@
+{
+ "id": "input-validation",
+ "area": "R8",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R8.A",
+ "order": 3,
+ "title": {
+  "ru": "Валидация входа, SQLi и XSS",
+  "en": "Input validation, SQLi and XSS"
+ },
+ "goal": {
+  "ru": "Понимать, как возникают инъекции и как закрыть их в коде.",
+  "en": "Understand how injections arise and close them in code."
+ },
+ "criteria": {
+  "ru": [
+   "Применяю белый список и проверяю формат и смысл значения.",
+   "Закрываю SQL-инъекцию параметризованными запросами, а не экранированием.",
+   "Закрываю XSS кодированием вывода под контекст и безопасными приёмниками (textContent).",
+   "На локальном учебном приложении воспроизвожу одну инъекцию и объясняю, как её закрыть."
+  ],
+  "en": [
+   "I use an allowlist and check both format and meaning of a value.",
+   "I close SQL injection with parameterized queries, not escaping.",
+   "I close XSS with context-aware output encoding and safe sinks (textContent).",
+   "On a local training app I reproduce one injection and explain how to fix it."
+  ]
+ },
+ "materials": [
+  {
+   "id": "iv-owasp-input",
+   "title": "Input Validation Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Allowlist против denylist, синтаксис и семантика (критерий 1).",
+    "en": "Allowlist vs denylist, syntax and semantics (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "iv-owasp-sqli",
+   "title": "SQL Injection Prevention Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Параметризованные запросы как основная защита, минимальные права БД (критерий 2).",
+    "en": "Parameterized queries as the primary defense, least-privilege DB accounts (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "iv-owasp-xss",
+   "title": "XSS Prevention Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Кодирование вывода по контексту, санитайзинг HTML, safe sinks (критерий 3).",
+    "en": "Context output encoding, HTML sanitization, safe sinks (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "iv-juice-shop",
+   "title": "OWASP Juice Shop",
+   "url": "https://github.com/juice-shop/juice-shop",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 60,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Намеренно уязвимое учебное приложение: запускайте только локально (127.0.0.1) и разберите одну инъекцию и её исправление (критерий 4).",
+    "en": "A deliberately insecure training app: run it only locally (127.0.0.1) and work through one injection and its fix (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

@@ -1,0 +1,53 @@
+{
+  "id": "node-npm",
+  "grade": "S0",
+  "order": 2,
+  "probe": "node",
+  "title": { "ru": "Node.js и npm", "en": "Node.js and npm" },
+  "goal": {
+    "ru": "Поставить Node.js 22 или новее, проверить версию и понять, что npm ставит программы из интернета в одну команду.",
+    "en": "Install Node.js 22 or newer, verify the version, and understand that npm installs programs from the internet with one command."
+  },
+  "criteria": {
+    "ru": [
+      "Установить Node.js и показать, что `node -v` печатает версию 22.13 или новее.",
+      "Объяснить, что делает `npm install -g <пакет>` и куда попадает установленная команда."
+    ],
+    "en": [
+      "Install Node.js and show that `node -v` prints version 22.13 or newer.",
+      "Explain what `npm install -g <package>` does and where the installed command ends up."
+    ]
+  },
+  "materials": [
+    {
+      "id": "node-download",
+      "title": "Download Node.js (nodejs.org)",
+      "url": "https://nodejs.org/en/download",
+      "kind": "do", "type": "tool", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "Node.js, MIT-licensed software, free download",
+      "closes": { "ru": "Установщики Node.js для Windows, macOS и Linux, команды для менеджеров версий (критерий 1).", "en": "Node.js installers for Windows, macOS and Linux, commands for version managers (criterion 1)." },
+      "criteria": [1]
+    },
+    {
+      "id": "node-npm-docs",
+      "title": "Downloading and installing Node.js and npm (npm Docs)",
+      "url": "https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/",
+      "kind": "understand", "type": "docs", "access": "free", "date": null, "classic": false, "minutes": 10, "lang": "en",
+      "checked_at": "2026-10-22", "source": "web", "terms": "npm Docs, free to read",
+      "closes": { "ru": "Почему npm ставится вместе с Node, как проверить обе версии, что такое глобальная установка (критерии 1, 2).", "en": "Why npm ships with Node, how to check both versions, what a global install is (criteria 1, 2)." },
+      "criteria": [1, 2]
+    }
+  ],
+  "own_texts": [
+    {
+      "id": "node-guide",
+      "title": { "ru": "Поставить Node.js и проверить версию", "en": "Install Node.js and check the version" },
+      "kind": "do", "minutes": 10, "criteria": [1, 2], "source": "own", "terms": "CC BY-SA 4.0 (текст пакета)",
+      "body": {
+        "ru": "Node.js это программа, которая запускает JavaScript вне браузера. На нём работают сам хаб и все три coding-агента, поэтому он нужен первым.\n\n**Что ставить.** Версию LTS (долгой поддержки) 22 или новее. Хабу нужна как минимум 22.13: в ней встроена база SQLite, в которой он хранит ваш прогресс.\n\n**Windows.** Скачайте установщик `.msi` со страницы загрузки, запустите, везде «Далее». Закройте терминал, откройте новый.\n\n**macOS.** Скачайте установщик `.pkg` со страницы загрузки или, если у вас есть Homebrew, выполните `brew install node`. Закройте терминал, откройте новый.\n\n**Linux.** На странице загрузки выберите свой дистрибутив; команды для `apt`, `dnf` и менеджеров версий там же. Пакет `nodejs` из репозитория дистрибутива часто старый, сверьте версию.\n\n**Проверка.** В новом терминале:\n\n```\nnode -v\nnpm -v\n```\n\nПервая команда должна напечатать `v22.13.0` или больше, вторая любую версию npm. Если «команда не найдена», перечитайте тему «Терминал» про PATH.\n\n**Что такое npm.** Это магазин программ для Node. `npm install -g имя` скачивает программу и кладёт её команду в папку, которая уже есть в PATH, поэтому после установки команда работает из любого места. Именно так ставятся Claude Code, Codex CLI и Gemini CLI.\n\n**Как хаб проверяет.** Хаб сам работает на Node и видит версию своего процесса. Если она 22.13 или новее, звезда горит.",
+        "en": "Node.js is a program that runs JavaScript outside the browser. The hub itself and all three coding agents run on it, so it comes first.\n\n**What to install.** The LTS (long-term support) version, 22 or newer. The hub needs at least 22.13: it has a built-in SQLite database where your progress is stored.\n\n**Windows.** Download the `.msi` installer from the download page, run it, click \"Next\" everywhere. Close the terminal, open a new one.\n\n**macOS.** Download the `.pkg` installer from the download page or, if you have Homebrew, run `brew install node`. Close the terminal, open a new one.\n\n**Linux.** Pick your distribution on the download page; commands for `apt`, `dnf` and version managers are there too. The `nodejs` package from a distribution repository is often old, check the version.\n\n**Check.** In a new terminal:\n\n```\nnode -v\nnpm -v\n```\n\nThe first command must print `v22.13.0` or higher, the second any npm version. If you get \"command not found\", re-read the PATH part of the \"Terminal\" topic.\n\n**What npm is.** It is the app store for Node. `npm install -g name` downloads a program and puts its command into a folder that is already in PATH, so the command works from anywhere. That is exactly how Claude Code, Codex CLI and Gemini CLI are installed.\n\n**How the hub checks.** The hub runs on Node and sees the version of its own process. If it is 22.13 or newer, the star is lit."
+      }
+    }
+  ],
+  "minutes_total": 30
+}

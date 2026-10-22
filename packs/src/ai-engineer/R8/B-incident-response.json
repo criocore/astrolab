@@ -1,0 +1,120 @@
+{
+ "id": "incident-response",
+ "area": "R8",
+ "level": "B",
+ "to_grade": "G5",
+ "grade": "R8.B",
+ "order": 4,
+ "title": {
+  "ru": "План реагирования на инцидент",
+  "en": "Incident response plan"
+ },
+ "goal": {
+  "ru": "Составить план реагирования и провести разбор без поиска виноватых.",
+  "en": "Write a response plan and run a postmortem without blame."
+ },
+ "criteria": {
+  "ru": [
+   "Называю роли: руководитель, исполнитель, коммуникации, планирование.",
+   "В плане есть шаги: объявить, остановить ущерб, сохранить улики, восстановить, разобрать.",
+   "Пишу разбор без обвинений: хронология, причины, действия с владельцами."
+  ],
+  "en": [
+   "I name the roles: command, operations, communication, planning.",
+   "The plan has steps: declare, stop the damage, preserve evidence, recover, review.",
+   "I write a blameless review: timeline, causes, actions with owners."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ir-sre-incidents",
+   "title": "Managing Incidents (Google SRE book)",
+   "url": "https://sre.google/sre-book/managing-incidents/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-ND 4.0, free to read online",
+   "closes": {
+    "ru": "Роли, когда объявлять инцидент, живой документ состояния, передача командования (критерии 1, 2).",
+    "en": "Roles, when to declare an incident, a live state document, handing off command (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ir-sre-postmortem",
+   "title": "Postmortem Culture (Google SRE book)",
+   "url": "https://sre.google/sre-book/postmortem-culture/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-ND 4.0, free to read online",
+   "closes": {
+    "ru": "Бесвинный разбор, что входит в постмортем (критерий 3).",
+    "en": "Blameless postmortems, what a postmortem contains (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ir-nist-800-61",
+   "title": "NIST SP 800-61 Rev. 3, Incident Response Recommendations",
+   "url": "https://csrc.nist.gov/pubs/sp/800/61/r3/final",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2025-04",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "US government publication, free PDF",
+   "closes": {
+    "ru": "Как встроить реагирование в управление рисками (CSF 2.0): подготовка, обнаружение, реагирование, восстановление; читать выборочно (критерий 2).",
+    "en": "How to build incident response into risk management (CSF 2.0): preparation, detection, response, recovery; read selectively (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ir-tabletop",
+   "title": {
+    "ru": "Учения на бумаге",
+    "en": "Tabletop exercise"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Сценарий: ключ API нашли в публичном репозитории. Распределите роли между собой и воображаемой командой, запишите хронологию решений по шагам плана (объявить, отозвать ключ, сохранить логи, восстановить, разобрать) и составьте короткий разбор с действиями и владельцами. Это второй артефакт проверки уровня.",
+    "en": "Scenario: an API key was found in a public repository. Assign roles between yourself and an imaginary team, record the timeline of decisions by plan steps (declare, revoke the key, preserve logs, recover, review) and write a short review with actions and owners. This is the second artifact for the level check."
+   }
+  }
+ ],
+ "minutes_total": 120
+}

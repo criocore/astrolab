@@ -1,0 +1,101 @@
+{
+ "id": "least-privilege-iam",
+ "area": "R8",
+ "level": "A",
+ "to_grade": "G2",
+ "grade": "R8.A",
+ "order": 1,
+ "title": {
+  "ru": "Минимальные права, IAM, ключи",
+  "en": "Least privilege, IAM, keys"
+ },
+ "goal": {
+  "ru": "Выдавать доступ только в нужном объёме и держать ключи под контролем.",
+  "en": "Grant only the access that is needed and keep keys under control."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю принцип минимальных прав и «запрет по умолчанию».",
+   "Пишу политику с конкретными действиями и ресурсами вместо «*».",
+   "Предпочитаю роли и временные учётные данные долгоживущим ключам; знаю, когда ключ неизбежен.",
+   "Нахожу и убираю неиспользуемые доступы; у каждого ключа узкая область действия."
+  ],
+  "en": [
+   "I explain least privilege and deny by default.",
+   "I write a policy with specific actions and resources instead of «*».",
+   "I prefer roles and temporary credentials over long-lived keys and know when a key is unavoidable.",
+   "I find and remove unused access; every key has a narrow scope."
+  ]
+ },
+ "materials": [
+  {
+   "id": "iam-owasp-authz",
+   "title": "Authorization Cheat Sheet (OWASP)",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 4.0 (OWASP)",
+   "closes": {
+    "ru": "Enforce Least Privileges, Deny by Default (критерий 1).",
+    "en": "Enforce Least Privileges, Deny by Default (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "iam-aws-best",
+   "title": "Security best practices in IAM (AWS docs)",
+   "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Временные учётные данные, роли для рабочих нагрузок, least-privilege политики, Access Analyzer, чистка неиспользуемого (критерии 2-4). Идеи общие для любого облака.",
+    "en": "Temporary credentials, workload roles, least-privilege policies, Access Analyzer, removing unused access (criteria 2-4). The ideas apply to any cloud."
+   },
+   "criteria": [
+    2,
+    3,
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "iam-audit",
+   "title": {
+    "ru": "Практика: аудит своих токенов",
+    "en": "Practice: audit your tokens"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выпишите свои токены и ключи (GitHub, облако, API моделей): где живут, какие права, срок жизни. Для каждого замените широкие права узкими (например, fine-grained токен на один репозиторий), а ненужные отзовите. Итог: таблица «ключ, зачем, права, срок, действие».",
+    "en": "List your tokens and keys (GitHub, cloud, model APIs): where they live, what rights they have, their lifetime. For each, replace broad rights with narrow ones (for example a fine-grained token for one repository) and revoke the unneeded. Result: a table «key, purpose, rights, lifetime, action»."
+   }
+  }
+ ],
+ "minutes_total": 85
+}

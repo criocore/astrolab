@@ -1,0 +1,27 @@
+{
+ "area": "R10",
+ "title": {
+  "ru": "Тексты, продукт, управление",
+  "en": "Writing, product, management"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 6,
+   "to_grade": "G1",
+   "check": {
+    "ru": "How-to на одну страницу по своему инструменту, который читатель проходит без вопросов.",
+    "en": "A one-page how-to for your own tool that a reader completes without questions."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 24,
+   "to_grade": "G6",
+   "check": {
+    "ru": "PRD для ИИ-функции: проблема, метрика, риски, план проверки.",
+    "en": "A PRD for an AI feature: problem, metric, risks, validation plan."
+   }
+  }
+ ]
+}

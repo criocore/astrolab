@@ -1,0 +1,142 @@
+{
+ "id": "consistency-cap",
+ "area": "R5",
+ "level": "A",
+ "to_grade": "G3",
+ "grade": "R5.A",
+ "order": 2,
+ "title": {
+  "ru": "Консистентность, CAP, модели консистентности на практике",
+  "en": "Consistency, CAP and consistency models in practice"
+ },
+ "goal": {
+  "ru": "Понимать, что обещает и чего не обещает хранилище при сбоях и репликации, и выбирать уровень консистентности под фичу.",
+  "en": "Understand what a data store promises and does not promise under failures and replication, and pick a consistency level for a feature."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить CAP на примере разрыва сети и почему ярлыки «CP» и «AP» слишком грубы для реальных систем.",
+   "Назвать модели (linearizable, causal, eventual; read-your-writes, monotonic reads) и показать, какую аномалию видит пользователь при каждой слабой.",
+   "Для заданной фичи (баланс, лента, корзина) выбрать требуемый уровень консистентности и обосновать выбор."
+  ],
+  "en": [
+   "Explain CAP using a network partition and why the labels CP and AP are too coarse for real systems.",
+   "Name the models (linearizable, causal, eventual; read-your-writes, monotonic reads) and show which anomaly a user sees under each weaker one.",
+   "For a given feature (balance, feed, cart) choose the required consistency level and justify it."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cc-primer",
+   "title": "System Design Primer: availability vs consistency (CAP, consistency patterns)",
+   "url": "https://github.com/donnemartin/system-design-primer#availability-vs-consistency",
+   "kind": "understand",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Базовые CAP и паттерны weak/eventual/strong (критерий 1, вводно для 2).",
+    "en": "CAP basics and weak/eventual/strong patterns (criterion 1, intro to 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "cc-kleppmann",
+   "title": "Please stop calling databases CP or AP (Kleppmann)",
+   "url": "https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-05",
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "personal blog, free to read",
+   "closes": {
+    "ru": "Узкие определения CAP и почему реальные системы в них не помещаются (критерий 1).",
+    "en": "The narrow CAP definitions and why real systems do not fit them (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "cc-vogels",
+   "title": "Eventually Consistent - Revisited (Vogels)",
+   "url": "https://www.allthingsdistributed.com/2008/12/eventually_consistent.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2008-12",
+   "classic": true,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "personal blog, free to read",
+   "closes": {
+    "ru": "Клиентские модели: read-your-writes, session, monotonic reads, causal (критерии 2, 3).",
+    "en": "Client-side models: read-your-writes, session, monotonic reads, causal (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "cc-jepsen",
+   "title": "Consistency Models (Jepsen)",
+   "url": "https://jepsen.io/consistency/models",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Карта моделей: linearizable, sequential, causal, snapshot isolation, read committed (критерий 2).",
+    "en": "The map of models: linearizable, sequential, causal, snapshot isolation, read committed (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "cc-lab",
+   "title": {
+    "ru": "Мини-упражнение: уровень консистентности для трёх фич",
+    "en": "Mini exercise: a consistency level for three features"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите три фичи: показ баланса счёта, лента подписок, корзина интернет-магазина. Для каждой ответьте письменно: что произойдёт у пользователя, если он увидит устаревшее значение; нужно ли ему видеть собственную запись сразу (read-your-writes); какую модель вы выберете и что готовы за неё заплатить.\n\nЗатем сверьте выбор с картой моделей Jepsen и клиентскими моделями Vogels: найдите для каждой фичи ближайшую именованную модель.\n\nГотово, если для каждой фичи есть выбранная модель, названная аномалия слабой модели и цена сильной.",
+    "en": "Take three features: showing an account balance, a subscription feed, an online-shop cart. For each, write down what the user experiences when they see a stale value, whether they must see their own write at once (read-your-writes), which model you choose and what you are willing to pay for it.\n\nThen check your choice against the Jepsen model map and the Vogels client models: find the nearest named model for each feature.\n\nYou are done when each feature has a chosen model, a named anomaly of the weaker model and the cost of the stronger one."
+   }
+  }
+ ],
+ "minutes_total": 110
+}

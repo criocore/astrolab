@@ -1,0 +1,95 @@
+{
+  "id": "measuring-ai-effect",
+  "grade": "G6",
+  "order": 2,
+  "title": {
+    "ru": "Измерение эффекта ИИ",
+    "en": "Measuring the effect of AI"
+  },
+  "goal": {
+    "ru": "Уметь выбрать метрики эффекта ИИ для команды и не попасть в типичные ловушки.",
+    "en": "Choose metrics for AI's effect on a team and avoid the usual traps."
+  },
+  "criteria": {
+    "ru": [
+      "Могу назвать три группы метрик (использование, эффект, стоимость) и по одному примеру в каждой.",
+      "Могу объяснить, почему объём кода и самооценка продуктивности вводят в заблуждение и чем их уравновесить (качество, стабильность поставки).",
+      "Могу оценить эффект в числах: базовая линия, ожидаемое изменение, порог, при котором считаем внедрение успешным."
+    ],
+    "en": [
+      "I can name three metric groups (utilization, impact, cost) with one example each.",
+      "I can explain why code volume and self-reported productivity mislead and what balances them (quality, delivery stability).",
+      "I can estimate the effect in numbers: baseline, expected change, and the threshold at which adoption counts as a success."
+    ]
+  },
+  "materials": [
+    {
+      "id": "mae-dx-ai-framework",
+      "title": "DX AI Measurement Framework",
+      "url": "https://getdx.com/research/measuring-ai-code-assistants-and-agents/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Три измерения (использование, эффект, стоимость) и ловушки: накрутка, объём кода, обязательные цели (критерии 1, 2).",
+        "en": "Three dimensions (utilization, impact, cost) and traps: gaming, volume, mandates (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "mae-dora-capabilities",
+      "title": "DORA AI Capabilities Model",
+      "url": "https://dora.dev/ai/capabilities-model/report",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2025-11",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4441",
+      "terms": "CC BY 4.0 (site content)",
+      "closes": {
+        "ru": "Семь практик, при которых ИИ усиливает результат, и как следить за прогрессом (критерий 2).",
+        "en": "Seven capabilities that make AI amplify results, and how to monitor progress (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "mae-dora-roi-calculator",
+      "title": "ROI of AI-assisted Software Development: calculator (DORA)",
+      "url": "https://dora.dev/ai/roi/calculator",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": "2026-04",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "CC BY 4.0 (site content); calculator stores no answers",
+      "closes": {
+        "ru": "Калькулятор: прикинуть возможную отдачу по этапам SDLC своими числами (критерий 3).",
+        "en": "Calculator: estimate potential return across the SDLC with your own numbers (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 75
+}

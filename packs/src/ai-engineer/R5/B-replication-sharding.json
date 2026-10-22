@@ -1,0 +1,124 @@
+{
+ "id": "replication-sharding",
+ "area": "R5",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R5.B",
+ "order": 3,
+ "title": {
+  "ru": "Репликация и шардирование: зачем, цена",
+  "en": "Replication and sharding: why and at what cost"
+ },
+ "goal": {
+  "ru": "Понимать, что дают репликация и шардирование, и не применять шардирование раньше, чем оно оправдано.",
+  "en": "Understand what replication and sharding give you, and not shard before it is justified."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить репликацию (лидер и реплики): что она даёт (чтение, доступность) и что стоит (лаг репликации, проблема чтения собственной записи).",
+   "Объяснить шардирование и три стратегии выбора шарда (lookup, range, hash), и что ломается: запросы и транзакции между шардами, горячий шард, ребалансировка.",
+   "Решить, нужно ли шардирование: что пробуют раньше (вертикальный рост, реплики чтения, кэш) и по каким признакам шардирование оправдано."
+  ],
+  "en": [
+   "Explain replication (leader and replicas): what it gives (reads, availability) and what it costs (replication lag, reading your own write).",
+   "Explain sharding and the three shard-selection strategies (lookup, range, hash), and what breaks: cross-shard queries and transactions, hot shards, rebalancing.",
+   "Decide whether sharding is needed: what to try first (vertical scaling, read replicas, cache) and what signs justify sharding."
+  ]
+ },
+ "materials": [
+  {
+   "id": "rs-sharding",
+   "title": "Sharding pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-04",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Выбор ключа шарда, стратегии lookup/range/hash, кросс-шардовые запросы, когда шардирование не подходит (критерии 2, 3).",
+    "en": "Shard key choice, lookup/range/hash strategies, cross-shard queries, when sharding does not fit (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "rs-partition",
+   "title": "Data partitioning recommendations (Azure Well-Architected Framework)",
+   "url": "https://learn.microsoft.com/en-us/azure/well-architected/design-guides/partition-data",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2023-11",
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Горизонтальное, вертикальное, функциональное разбиение, горячие партиции, ребалансировка (критерии 2, 3). Репликация как защита от отказа партиции (критерий 1).",
+    "en": "Horizontal, vertical, functional partitioning, hot partitions, rebalancing (criteria 2, 3). Replication as protection against partition failure (criterion 1)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "rs-primer",
+   "title": "System Design Primer: database, replication, sharding sections",
+   "url": "https://github.com/donnemartin/system-design-primer#database",
+   "kind": "understand",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Лидер и реплики, master-master, шардирование, денормализация (критерии 1, 2).",
+    "en": "Leader-follower, master-master, sharding, denormalization (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "rs-scaling",
+   "title": "Design a system that scales to millions of users on AWS: worked solution (System Design Primer)",
+   "url": "https://github.com/donnemartin/system-design-primer/blob/master/solutions/system_design/scaling_aws/README.md",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Пройти по шагам роста нагрузки и на каждом шаге ответить, что добавляют и чем платят; шардирование здесь лишь упомянуто, это стоит заметить (критерии 1, 3).",
+    "en": "Walk through the growth stages and at each say what is added and what it costs; sharding is only named here, which is worth noticing (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  }
+ ],
+ "minutes_total": 115
+}

@@ -1,0 +1,118 @@
+{
+  "id": "tokens-context",
+  "grade": "G0",
+  "order": 2,
+  "title": {
+    "ru": "Токены и окно контекста",
+    "en": "Tokens and the context window"
+  },
+  "goal": {
+    "ru": "Понимать, что модель видит токены, а не слова, и что всё в запросе делит одно окно контекста.",
+    "en": "Understand that the model sees tokens, not words, and that everything in a request shares one context window."
+  },
+  "criteria": {
+    "ru": [
+      "Объяснить, что токен не равен слову и что число токенов зависит от токенайзера и языка текста.",
+      "Перечислить, что занимает окно контекста: системный промпт, история, определения инструментов, ответ модели.",
+      "Объяснить, что происходит у предела окна, и посчитать токены запроса до отправки."
+    ],
+    "en": [
+      "Explain that a token is not a word and that token count depends on the tokenizer and the language of the text.",
+      "List what occupies the context window: system prompt, history, tool definitions, the model output.",
+      "Explain what happens at the window limit, and count a request's tokens before sending it."
+    ]
+  },
+  "materials": [
+    {
+      "id": "tc-claude-context-windows",
+      "title": "Context windows (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Что входит в окно, поведение у предела, context rot (критерии 2, 3).",
+        "en": "What the window holds, behavior at the limit, context rot (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "tc-openai-tiktoken",
+      "title": "How to count tokens with tiktoken (OpenAI Cookbook)",
+      "url": "https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "OpenAI Cookbook (page marked archived), free to read",
+      "closes": {
+        "ru": "Запустить токенайзер, сравнить число токенов для английского и японского текста (критерий 1).",
+        "en": "Run a tokenizer and compare token counts for English and Japanese text (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "tc-hf-tokenizers",
+      "title": "Tokenizers (Hugging Face LLM Course, ch. 2)",
+      "url": "https://huggingface.co/learn/llm-course/chapter2/4",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "course content free to read; license not seen on page",
+      "closes": {
+        "ru": "Токен не равен слову: подслова, загрузка токенайзера и запуск tokenize/decode в коде (критерий 1).",
+        "en": "A token is not a word: subwords, loading a tokenizer and running tokenize/decode in code (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "tc-claude-token-counting",
+      "title": "Token counting (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Вызвать count_tokens до отправки; разные токенайзеры дают разные числа (критерии 1, 3).",
+        "en": "Call count_tokens before sending; different tokenizers give different counts (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    }
+  ],
+  "minutes_total": 80
+}

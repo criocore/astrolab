@@ -1,0 +1,118 @@
+{
+  "id": "adoption-strategy",
+  "grade": "G6",
+  "order": 8,
+  "title": {
+    "ru": "Стратегия внедрения ИИ в команде",
+    "en": "AI adoption strategy for a team"
+  },
+  "goal": {
+    "ru": "Уметь собрать стратегию внедрения ИИ для команды из 8 разработчиков с метриками, порогом успеха и условием остановки.",
+    "en": "Build an AI adoption strategy for an 8-developer team with metrics, a success threshold and a stop condition."
+  },
+  "criteria": {
+    "ru": [
+      "Могу оформить стратегию как диагноз, принципы и конкретные шаги (по Larson/Rumelt) для команды из 8 человек.",
+      "Могу задать метрики с базовой линией, порог успеха в числах и порог остановки, учитывая просадку производительности после старта.",
+      "Могу описать план внедрения: обучение, правила использования, уровень надзора за агентами, пересмотр через фиксированный срок."
+    ],
+    "en": [
+      "I can write a strategy as diagnosis, guiding policies and coherent actions (Larson/Rumelt) for an 8-person team.",
+      "I can set metrics with a baseline, a numeric success threshold and a stop threshold, allowing for the post-launch productivity dip.",
+      "I can describe the rollout plan: training, usage rules, level of agent oversight, and a review after a fixed period."
+    ]
+  },
+  "materials": [
+    {
+      "id": "as-larson-eng-strategies",
+      "title": "Writing an engineering strategy (Will Larson)",
+      "url": "https://lethain.com/eng-strategies/",
+      "kind": "do",
+      "type": "article",
+      "access": "free",
+      "date": "2023-02",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4857",
+      "terms": "free to read; excerpt from a paid book",
+      "closes": {
+        "ru": "Структура стратегии (диагноз, принципы, действия) на разобранном примере; написать свою (критерий 1).",
+        "en": "Strategy structure (diagnosis, policies, actions) with a worked example; write your own (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "as-dora-roi-report",
+      "title": "The ROI of AI-assisted Software Development (DORA)",
+      "url": "https://dora.dev/ai/roi/report",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2026-04",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4629",
+      "terms": "CC BY 4.0 (site content)",
+      "closes": {
+        "ru": "Рамка расчёта отдачи и просадка производительности после внедрения (критерии 2, 3).",
+        "en": "ROI framework and the productivity dip after rollout (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "as-dora-2025-report",
+      "title": "DORA 2025: State of AI-assisted Software Development",
+      "url": "https://dora.dev/research/2025/dora-report",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2025",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4161",
+      "terms": "CC BY 4.0 (site content)",
+      "closes": {
+        "ru": "ИИ усиливает сильные и слабые стороны организации; отдача от системы, а не от инструмента (критерии 2, 3).",
+        "en": "AI amplifies an organization's strengths and weaknesses; returns come from the system, not the tool (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "as-so-agents-on-a-leash",
+      "title": "Agents on a leash (Stack Overflow Blog)",
+      "url": "https://stackoverflow.blog/2026/05/27/agents-on-a-leash-agentic-ai-remains-mostly-monitored-at-work",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2026-05",
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4663",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Как команды ограничивают агентов: 63% редко дают автономию (критерий 3).",
+        "en": "How teams restrain agents: 63% rarely allow autopilot (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 100
+}

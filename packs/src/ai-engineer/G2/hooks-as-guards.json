@@ -1,0 +1,101 @@
+{
+  "id": "hooks-as-guards",
+  "grade": "G2",
+  "order": 4,
+  "title": {
+    "ru": "Хуки как стражи",
+    "en": "Hooks as guards"
+  },
+  "goal": {
+    "ru": "Поставить хук PreToolUse, который детерминированно не даёт агенту менять защищённые файлы, например tests/.",
+    "en": "Set up a PreToolUse hook that deterministically stops the agent from changing protected files such as tests/."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю, что хук PreToolUse срабатывает до вызова инструмента и получает tool_name и tool_input в JSON на stdin.",
+      "Пишу скрипт, который по tool_input.file_path отказывает в Edit/Write внутри tests/ и возвращает причину агенту (exit 2 со stderr или permissionDecision deny).",
+      "Объясняю, что запрет хука действует в любом режиме разрешений, а инструкция в промпте или стиле вывода его не заменяет.",
+      "Проверяю страж живой попыткой: агент пытается изменить тест, вызов отклонён, причина видна в отладочном логе."
+    ],
+    "en": [
+      "I explain that a PreToolUse hook fires before the tool runs and gets tool_name and tool_input as JSON on stdin.",
+      "I write a script that denies Edit/Write inside tests/ based on tool_input.file_path and returns the reason to the agent (exit 2 with stderr, or permissionDecision deny).",
+      "I explain that a hook denial holds in every permission mode, and that an instruction in a prompt or output style is no substitute.",
+      "I test the guard with a live attempt: the agent tries to change a test, the call is rejected, the reason shows in the debug log."
+    ]
+  },
+  "materials": [
+    {
+      "id": "hg-hooks-guide",
+      "title": "Automate actions with hooks (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/hooks-guide",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Раздел «Block edits to protected files»: готовый скрипт protect-files.sh с exit 2, настройка в settings, deny действует в любом режиме (критерии 1-3).",
+        "en": "The 'Block edits to protected files' section: a ready protect-files.sh with exit 2, settings wiring, deny holds in every mode (criteria 1-3)."
+      },
+      "criteria": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "hg-hooks-reference",
+      "title": "Hooks reference (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Поля ввода PreToolUse, поведение exit 2, JSON-решение permissionDecision, раздел Debug hooks (критерии 1, 2, 4).",
+        "en": "PreToolUse input fields, exit 2 behavior, the permissionDecision JSON, the Debug hooks section (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "hg-gemini-writing-hooks",
+      "title": "Writing hooks for Gemini CLI",
+      "url": "https://geminicli.com/docs/hooks/writing-hooks/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Тот же страж на Gemini: JSON в stdin, BeforeTool, отказ кодом 2 или JSON-решением deny; логи только в stderr (критерии 1, 2).",
+        "en": "The same guard on Gemini: JSON on stdin, BeforeTool, deny via exit 2 or a JSON deny decision; logs only to stderr (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    }
+  ],
+  "minutes_total": 100
+}

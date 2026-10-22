@@ -1,0 +1,221 @@
+{
+ "id": "testing-framework",
+ "area": "R2",
+ "level": "B",
+ "to_grade": "G3",
+ "grade": "R2.B",
+ "order": 2,
+ "title": {
+  "ru": "pytest или vitest: структура, фикстуры, параметризация, покрытие",
+  "en": "pytest or vitest: structure, fixtures, parametrization, coverage"
+ },
+ "goal": {
+  "ru": "Покрыть модуль автоматическими тестами и увидеть, какие строки они не затронули.",
+  "en": "Cover a module with automated tests and see which lines they miss."
+ },
+ "criteria": {
+  "ru": [
+   "Пишу и запускаю тесты в отдельной папке, проверяю результат и ожидаемое исключение.",
+   "Выношу общую подготовку данных в фикстуру.",
+   "Один тест запускаю на наборе входных данных (параметризация).",
+   "Получаю отчёт о покрытии и нахожу непокрытые строки."
+  ],
+  "en": [
+   "I write and run tests in a separate folder, check results and an expected exception.",
+   "I move shared data setup into a fixture.",
+   "I run one test over a set of inputs (parametrization).",
+   "I produce a coverage report and find uncovered lines."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tf-py-start",
+   "title": "Get Started (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/getting-started.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pytest docs (MIT project), free to read",
+   "closes": {
+    "ru": "Первый тест, assert, pytest.raises, tmp_path (критерий 1).",
+    "en": "First test, assert, pytest.raises, tmp_path (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tf-py-fixtures",
+   "title": "How to use fixtures (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pytest docs (MIT project), free to read",
+   "closes": {
+    "ru": "Фикстуры, области видимости, yield-очистка (критерий 2).",
+    "en": "Fixtures, scopes, yield teardown (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "tf-py-param",
+   "title": "How to parametrize fixtures and test functions (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pytest docs (MIT project), free to read",
+   "closes": {
+    "ru": "@pytest.mark.parametrize (критерий 3).",
+    "en": "@pytest.mark.parametrize (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "tf-py-cov",
+   "title": "pytest-cov documentation",
+   "url": "https://pytest-cov.readthedocs.io/en/latest/readme.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "pytest-cov docs (MIT project), free to read",
+   "closes": {
+    "ru": "Ключ --cov и отчёт (критерий 4); вывод пропущенных строк смотреть в разделе про отчёты.",
+    "en": "The --cov option and a report (criterion 4); look for the missing-lines output in the reporting section."
+   },
+   "criteria": [
+    4
+   ]
+  },
+  {
+   "id": "tf-ts-start",
+   "title": "Getting Started (Vitest)",
+   "url": "https://vitest.dev/guide/",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Vitest docs (MIT project), free to read",
+   "closes": {
+    "ru": "Установка, первый тест, запуск (критерий 1).",
+    "en": "Install, first test, run (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "tf-ts-context",
+   "title": "Test Context (Vitest)",
+   "url": "https://vitest.dev/guide/test-context",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Vitest docs (MIT project), free to read",
+   "closes": {
+    "ru": "Фикстуры через test.extend (критерий 2).",
+    "en": "Fixtures via test.extend (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "tf-ts-api",
+   "title": "Test API (Vitest)",
+   "url": "https://vitest.dev/api/test",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Vitest docs (MIT project), free to read",
+   "closes": {
+    "ru": "test.each (критерий 3).",
+    "en": "test.each (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "tf-ts-cov",
+   "title": "Coverage (Vitest)",
+   "url": "https://vitest.dev/guide/coverage",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Vitest docs (MIT project), free to read",
+   "closes": {
+    "ru": "Провайдеры v8 и Istanbul, отчёт (критерий 4).",
+    "en": "v8 and Istanbul providers, a report (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 75,
+  "typescript": 75
+ },
+ "minutes_total": 75
+}

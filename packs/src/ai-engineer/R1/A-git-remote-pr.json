@@ -1,0 +1,122 @@
+{
+ "id": "git-remote-pr",
+ "area": "R1",
+ "level": "A",
+ "to_grade": "G0",
+ "grade": "R1.A",
+ "order": 4,
+ "title": {
+  "ru": "Remote, clone, push, pull, fork и pull request на GitHub",
+  "en": "Remotes, clone, push, pull, fork and pull request on GitHub"
+ },
+ "goal": {
+  "ru": "Работать с удалённым репозиторием на GitHub и предлагать изменения через pull request.",
+  "en": "Work with a remote repository on GitHub and propose changes through a pull request."
+ },
+ "criteria": {
+  "ru": [
+   "Могу клонировать репозиторий, показать remote (git remote -v) и объяснить, чем fetch отличается от pull и push.",
+   "Могу сделать fork чужого репозитория, клонировать его и добавить upstream.",
+   "Могу создать ветку, запушить её и открыть pull request с описанием.",
+   "Могу слить pull request и обновить локальный main через pull."
+  ],
+  "en": [
+   "I can clone a repository, show remotes (git remote -v) and explain how fetch differs from pull and push.",
+   "I can fork someone else's repository, clone it and add an upstream remote.",
+   "I can create a branch, push it and open a pull request with a description.",
+   "I can merge a pull request and update my local main with pull."
+  ]
+ },
+ "materials": [
+  {
+   "id": "rp-remotes",
+   "title": "Pro Git 2.5: Working with Remotes",
+   "url": "https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 3.0",
+   "closes": {
+    "ru": "clone и origin, remote add, fetch, pull, push (критерий 1).",
+    "en": "clone and origin, remote add, fetch, pull, push (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "rp-gh-fork",
+   "title": "Fork a repository (GitHub Docs)",
+   "url": "https://docs.github.com/en/get-started/quickstart/fork-a-repo",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Fork, clone своего форка, remote upstream (критерий 2).",
+    "en": "Fork, cloning your fork, the upstream remote (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "rp-gh-pr",
+   "title": "Creating a pull request (GitHub Docs)",
+   "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Base и compare, заголовок, описание, черновик PR (критерий 3).",
+    "en": "Base and compare branches, title, description, draft PR (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "rp-skills-intro",
+   "title": "GitHub Skills: Introduction to GitHub",
+   "url": "https://github.com/skills/introduction-to-github",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT",
+   "closes": {
+    "ru": "Практика в своём репозитории: ветка, коммит, pull request, слияние (критерии 3, 4).",
+    "en": "Hands-on in your own repository: branch, commit, pull request, merge (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  }
+ ],
+ "minutes_total": 95
+}

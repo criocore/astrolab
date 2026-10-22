@@ -1,0 +1,138 @@
+{
+  "id": "agent-sdks",
+  "grade": "G4",
+  "order": 9,
+  "title": {
+    "ru": "SDK и фреймворки для агентов",
+    "en": "Agent SDKs and frameworks"
+  },
+  "goal": {
+    "ru": "Знать основные SDK и фреймворки, уметь выбрать один и записать выбор как ADR.",
+    "en": "Know the main agent SDKs and frameworks, be able to choose one and record the choice as an ADR."
+  },
+  "criteria": {
+    "ru": [
+      "Назвать ключевые примитивы Claude Agent SDK, OpenAI Agents SDK и LangGraph и чем они различаются.",
+      "Записать выбор в виде ADR: контекст, решение, рассмотренные варианты, последствия, статус.",
+      "Запустить агента на выбранном SDK и сравнить с версией «с нуля» по коду, управляемости и стоимости."
+    ],
+    "en": [
+      "Name the key primitives of the Claude Agent SDK, OpenAI Agents SDK and LangGraph and how they differ.",
+      "Record the choice as an ADR: context, decision, alternatives considered, consequences, status.",
+      "Run an agent on the chosen SDK and compare it with the from-scratch version by code size, control and cost."
+    ]
+  },
+  "materials": [
+    {
+      "id": "sdk-claude",
+      "title": "Agent SDK overview (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Встроенные инструменты, hooks, subagents, MCP, права, сессии (критерий 1).",
+        "en": "Built-in tools, hooks, subagents, MCP, permissions, sessions (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "sdk-openai",
+      "title": "OpenAI Agents SDK (docs)",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Примитивы: agents, handoffs, guardrails, tracing (критерий 1).",
+        "en": "Primitives: agents, handoffs, guardrails, tracing (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "sdk-langgraph",
+      "title": "LangGraph overview (LangChain docs)",
+      "url": "https://docs.langchain.com/oss/python/langgraph/overview",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Граф состояний, durable execution, память, human-in-the-loop (критерий 1).",
+        "en": "State graph, durable execution, memory, human-in-the-loop (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "sdk-adr",
+      "title": "Architecture Decision Record (Martin Fowler)",
+      "url": "https://martinfowler.com/bliki/ArchitectureDecisionRecord.html",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-03",
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "author site, free to read",
+      "closes": {
+        "ru": "Состав ADR и статусы (критерий 2).",
+        "en": "ADR fields and statuses (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "sdk-quickstart",
+      "title": "Agent SDK quickstart (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Агент, который находит и чинит баги: установка, query, права (критерий 3).",
+        "en": "An agent that finds and fixes bugs: install, query, permissions (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 100
+}

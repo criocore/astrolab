@@ -1,0 +1,123 @@
+{
+ "id": "text-processing",
+ "area": "R1",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R1.B",
+ "order": 2,
+ "title": {
+  "ru": "sed, awk, jq, cut, sort, uniq для логов и JSON",
+  "en": "sed, awk, jq, cut, sort, uniq for logs and JSON"
+ },
+ "goal": {
+  "ru": "Превращать сырые логи и JSON в ответы на вопросы одной командной строкой.",
+  "en": "Turn raw logs and JSON into answers with a single command line."
+ },
+ "criteria": {
+  "ru": [
+   "Могу выбрать колонки (cut, awk) и посчитать частоты через sort | uniq -c | sort -nr.",
+   "Могу заменить текст через sed s/старое/новое/ с регулярным выражением и править файл на месте.",
+   "Могу отфильтровать и просуммировать строки по полям через awk (шаблон и действие, NR, $N).",
+   "Могу выбрать и преобразовать данные JSON через jq (.[], select, map, -r)."
+  ],
+  "en": [
+   "I can pick columns (cut, awk) and count frequencies with sort | uniq -c | sort -nr.",
+   "I can replace text with sed s/old/new/ using a regular expression and edit a file in place.",
+   "I can filter and sum lines by fields with awk (pattern and action, NR, $N).",
+   "I can select and transform JSON data with jq (.[], select, map, -r)."
+  ]
+ },
+ "materials": [
+  {
+   "id": "tp-ms-wrangling",
+   "title": "The Missing Semester: Data Wrangling",
+   "url": "https://missing.csail.mit.edu/2020/data-wrangling/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 60,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Лекция и шесть упражнений: sed, awk, sort, uniq, регулярные выражения на реальных логах (критерии 1, 2, 3).",
+    "en": "The lecture and six exercises: sed, awk, sort, uniq and regular expressions on real logs (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "tp-gawk-start",
+   "title": "The GNU Awk User's Guide: Getting Started",
+   "url": "https://www.gnu.org/software/gawk/manual/gawk.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "GNU FDL, free to read",
+   "closes": {
+    "ru": "Глава 1: правила шаблон-действие, поля, однострочники, NR (критерий 3).",
+    "en": "Chapter 1: pattern-action rules, fields, one-liners, NR (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "tp-jq-tutorial",
+   "title": "jq Tutorial",
+   "url": "https://jqlang.org/tutorial/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 3.0 (jq docs)",
+   "closes": {
+    "ru": "Практика на настоящем JSON API: фильтры, pipe, построение объектов (критерий 4).",
+    "en": "Practice on a real JSON API: filters, pipes, building objects (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  },
+  {
+   "id": "tp-jq-manual",
+   "title": "jq Manual (select, map, group_by, -r)",
+   "url": "https://jqlang.org/manual/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 3.0 (jq docs)",
+   "closes": {
+    "ru": "Справка по select, map, group_by, length и ключу -r (критерий 4).",
+    "en": "Reference for select, map, group_by, length and the -r option (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "minutes_total": 130
+}

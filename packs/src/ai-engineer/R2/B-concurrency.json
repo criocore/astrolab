@@ -1,0 +1,198 @@
+{
+ "id": "concurrency",
+ "area": "R2",
+ "level": "B",
+ "to_grade": "G3",
+ "grade": "R2.B",
+ "order": 3,
+ "title": {
+  "ru": "async/await, параллельные запросы к API, ограничения",
+  "en": "async/await, parallel API requests, limits"
+ },
+ "goal": {
+  "ru": "Делать много запросов к API одновременно, не блокируя программу и не перегружая сервер.",
+  "en": "Make many API requests at once without blocking the program or overloading the server."
+ },
+ "criteria": {
+  "ru": [
+   "Объясняю, что делает await и почему асинхронный код не блокирует остальную работу.",
+   "Запускаю несколько запросов параллельно (gather/TaskGroup или Promise.all/allSettled) и обрабатываю сбой одного из них.",
+   "Ограничиваю число одновременных запросов и ставлю таймаут."
+  ],
+  "en": [
+   "I explain what await does and why async code does not block other work.",
+   "I run several requests in parallel (gather/TaskGroup or Promise.all/allSettled) and handle one of them failing.",
+   "I cap the number of simultaneous requests and set a timeout."
+  ]
+ },
+ "materials": [
+  {
+   "id": "cc-py-tasks",
+   "title": "Coroutines and Tasks (asyncio docs)",
+   "url": "https://docs.python.org/3/library/asyncio-task.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "async/await, gather, TaskGroup, timeout (критерии 1-3).",
+    "en": "async/await, gather, TaskGroup, timeout (criteria 1-3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "cc-py-httpx",
+   "title": "Async Support (HTTPX)",
+   "url": "https://www.python-httpx.org/async/",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "HTTPX docs (BSD-3-Clause project), free to read",
+   "closes": {
+    "ru": "AsyncClient: сделать несколько запросов к открытому API; объединить через gather из asyncio (критерии 1, 2).",
+    "en": "AsyncClient: make several requests to a public API; combine them with asyncio gather (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "cc-py-sem",
+   "title": "Synchronization Primitives (asyncio docs)",
+   "url": "https://docs.python.org/3/library/asyncio-sync.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Python docs (PSF license), free to read",
+   "closes": {
+    "ru": "asyncio.Semaphore как лимит параллельных запросов (критерий 3).",
+    "en": "asyncio.Semaphore as a cap on parallel requests (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "cc-ts-promises",
+   "title": "How to use promises (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "Промисы, async/await, Promise.all (критерии 1, 2).",
+    "en": "Promises, async/await, Promise.all (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "cc-ts-allsettled",
+   "title": "Promise.allSettled() (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "Отличие от Promise.all: сбой одного не отбрасывает остальные (критерий 2).",
+    "en": "Difference from Promise.all: one failure does not discard the others (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "cc-ts-timeout",
+   "title": "AbortSignal.timeout() (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/timeout_static",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MDN, CC BY-SA 2.5",
+   "closes": {
+    "ru": "Таймаут для fetch через сигнал (критерий 3, часть про таймаут; лимит параллелизма в собственном тексте).",
+    "en": "A fetch timeout through a signal (criterion 3, timeout part; the concurrency cap is in the own text)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "cc-ts-limit",
+   "title": {
+    "ru": "Лимит одновременных запросов без библиотеки",
+    "en": "Capping concurrent requests without a library"
+   },
+   "kind": "do",
+   "track": "typescript",
+   "minutes": 20,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Лимит нужен, чтобы сервер API не получил весь список запросов разом. Простой приём: запустить N воркеров, каждый в цикле берёт следующий адрес из общей очереди, ждёт ответ и берёт следующий. Так одновременно в полёте не больше N запросов.\n\nУпражнение: возьмите список из адресов открытого API, запустите три воркера на async-функциях, собирайте результаты через Promise.allSettled и считайте, сколько запросов выполнялось одновременно (счётчик увеличивайте перед запросом, уменьшайте после).\n\nПроверьте себя: что изменится, если поставить один воркер, и что, если воркеров столько же, сколько адресов.",
+    "en": "A cap keeps the API server from receiving the whole list of requests at once. A simple pattern: start N workers; each loops, takes the next address from a shared queue, awaits the response, then takes the next. At most N requests are in flight at any time.\n\nExercise: take a list of addresses of a public API, start three async workers, collect results with Promise.allSettled and count how many requests ran at once (increment a counter before the request, decrement after).\n\nCheck yourself: what changes with one worker, and with as many workers as addresses."
+   }
+  }
+ ],
+ "minutes_by_track": {
+  "python": 65,
+  "typescript": 80
+ },
+ "minutes_total": 80
+}

@@ -1,0 +1,95 @@
+{
+ "id": "cqrs-event-sourcing",
+ "area": "R5",
+ "level": "C",
+ "to_grade": "G6",
+ "grade": "R5.C",
+ "order": 2,
+ "title": {
+  "ru": "CQRS и event sourcing: когда нужны и отказ по умолчанию",
+  "en": "CQRS and event sourcing: when needed and declining by default"
+ },
+ "goal": {
+  "ru": "Понимать, что меняют CQRS и event sourcing в хранении и запросах, какую цену добавляют, и отказываться от них там, где они не окупаются.",
+  "en": "Understand what CQRS and event sourcing change in storage and queries, what cost they add, and decline them where they do not pay off."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить, что меняется в хранении и запросах при CQRS и event sourcing, и какую цену это добавляет: версионирование событий, идемпотентность, отложенная согласованность.",
+   "Для заданного случая решить, нужны ли CQRS и event sourcing, и обосновать отказ по умолчанию: CRUD, пока простого решения хватает."
+  ],
+  "en": [
+   "Explain what changes in storage and queries under CQRS and event sourcing, and what cost it adds: event versioning, idempotency, eventual consistency.",
+   "For a given case decide whether CQRS and event sourcing are needed, and justify declining by default: CRUD while the simple solution suffices."
+  ]
+ },
+ "materials": [
+  {
+   "id": "dt-fowler-cqrs",
+   "title": "CQRS (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/CQRS.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2011-07",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Предупреждение: для большинства систем CQRS добавляет рискованную сложность; применять по контекстам (критерии 1, 2).",
+    "en": "The warning: for most systems CQRS adds risky complexity; apply per bounded context (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "dt-azure-es",
+   "title": "Event Sourcing pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-03",
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Что меняется в хранении и запросах, версионирование событий, идемпотентность, раздел «когда не подходит» (критерии 1, 2).",
+    "en": "What changes in storage and queries, event versioning, idempotency, the 'when not suitable' section (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ces-verdict",
+   "title": {
+    "ru": "Упражнение: вынести вердикт по CQRS и event sourcing",
+    "en": "Exercise: rule on CQRS and event sourcing"
+   },
+   "kind": "do",
+   "minutes": 15,
+   "criteria": [
+    2
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите систему, которую знаете (для примера заказы или баланс). Ответьте письменно: какие две причины были бы достаточны для CQRS, а какие для event sourcing, и есть ли они на самом деле. Если нет, запишите отказ и условие, при котором вернётесь к вопросу.",
+    "en": "Take a system you know (orders or a balance, for example). Answer in writing: which two reasons would be sufficient for CQRS and which for event sourcing, and whether they actually exist. If not, record the refusal and the condition under which you will revisit it."
+   }
+  }
+ ],
+ "minutes_total": 60
+}

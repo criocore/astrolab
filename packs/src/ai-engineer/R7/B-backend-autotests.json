@@ -1,0 +1,123 @@
+{
+ "id": "backend-autotests",
+ "area": "R7",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R7.B",
+ "order": 1,
+ "title": {
+  "ru": "Автотесты API: моки, данные, изоляция",
+  "en": "API autotests: mocks, data, isolation"
+ },
+ "goal": {
+  "ru": "Писать автотесты API, не зависящие друг от друга и от внешних сервисов.",
+  "en": "Write API autotests that depend neither on each other nor on external services."
+ },
+ "criteria": {
+  "ru": [
+   "Готовлю тестовые данные фикстурой с очисткой, у каждого теста свои данные.",
+   "Заменяю внешний сервис моком или заглушкой и запрещаю реальную сеть в тестах.",
+   "Вызываю эндпоинт API тестом и проверяю статус, тело и ошибки.",
+   "Тесты проходят в любом порядке и поодиночке."
+  ],
+  "en": [
+   "I prepare test data with a fixture that cleans up; each test has its own data.",
+   "I replace an external service with a mock or stub and forbid real network in tests.",
+   "I call an API endpoint from a test and check status, body and errors.",
+   "Tests pass in any order and one at a time."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ba-pytest-fixtures",
+   "title": "How to use fixtures (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (pytest), vendor docs, free to read",
+   "closes": {
+    "ru": "Фикстуры, scope, yield-очистка, фабрики (критерии 1, 4). Вариант Python.",
+    "en": "Fixtures, scope, yield teardown, factories (criteria 1, 4). Python variant."
+   },
+   "criteria": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": "ba-pytest-monkeypatch",
+   "title": "How to monkeypatch/mock modules and environments (pytest docs)",
+   "url": "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (pytest), vendor docs, free to read",
+   "closes": {
+    "ru": "Повторить примеры: подмена функции, ответ HTTP, autouse-фикстура против реальных запросов (критерий 2). Python.",
+    "en": "Reproduce the examples: replacing a function, an HTTP response, an autouse fixture blocking real requests (criterion 2). Python."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ba-vitest-requests",
+   "title": "Mocking Requests (Vitest docs)",
+   "url": "https://vitest.dev/guide/mocking/requests",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "MIT (Vitest), vendor docs, free to read",
+   "closes": {
+    "ru": "MSW: перехват HTTP, сброс обработчиков после каждого теста, onUnhandledRequest: 'error' (критерии 2, 4). TypeScript.",
+    "en": "MSW: HTTP interception, resetting handlers after each test, onUnhandledRequest: 'error' (criteria 2, 4). TypeScript."
+   },
+   "criteria": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "ba-playwright-api",
+   "title": "API testing (Playwright docs)",
+   "url": "https://playwright.dev/docs/api-testing",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 35,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0 (Playwright), vendor docs, free to read",
+   "closes": {
+    "ru": "Тесты API через request-контекст: GET/POST, проверка ответа (критерий 3). TypeScript; для Python те же идеи в pytest с httpx или TestClient фреймворка.",
+    "en": "API tests via the request context: GET/POST, response checks (criterion 3). TypeScript; for Python use the same ideas with pytest and httpx or your framework's TestClient."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

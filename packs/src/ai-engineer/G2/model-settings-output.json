@@ -1,0 +1,140 @@
+{
+  "id": "model-settings-output",
+  "grade": "G2",
+  "order": 6,
+  "title": {
+    "ru": "Настройки моделей, стили вывода, статусная строка",
+    "en": "Model settings, output styles, status line"
+  },
+  "goal": {
+    "ru": "Настроить модель, глубину рассуждений, стиль ответов и статусную строку и понимать, какая настройка побеждает.",
+    "en": "Configure the model, effort, response style and status line, and know which setting wins."
+  },
+  "criteria": {
+    "ru": [
+      "Задаю модель и уровень effort в сессии, при запуске, переменной окружения и в settings и называю порядок приоритета.",
+      "Называю области настроек (user, project, local, managed) и порядок приоритета; для разового «профиля» использую --settings или локальный файл.",
+      "Выбираю между стилем вывода, CLAUDE.md, скиллом и хуком и объясняю, что стиль только инструкция, а не гарантия.",
+      "Настраиваю статусную строку скриптом, который читает JSON сессии со stdin, и показываю в ней контекст или стоимость."
+    ],
+    "en": [
+      "I set the model and effort in a session, at startup, by environment variable and in settings, and name the priority order.",
+      "I name the settings scopes (user, project, local, managed) and their precedence; for a one-off 'profile' I use --settings or a local file.",
+      "I choose between an output style, CLAUDE.md, a skill and a hook and explain that a style is only an instruction, not a guarantee.",
+      "I configure a status line with a script that reads session JSON from stdin and shows context or cost."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ms-model-config",
+      "title": "Model configuration (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Алиасы, effort, пять способов задать модель в порядке приоритета (критерий 1). Отдельного понятия «профиль» страница не даёт.",
+        "en": "Aliases, effort, the five ways to set the model in priority order (criterion 1). The page has no separate 'profile' concept."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "ms-settings",
+      "title": "Settings files and precedence (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/settings",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Четыре файла настроек, приоритеты, --settings на одну сессию, settings.local.json (критерий 2).",
+        "en": "The four settings files, precedence, --settings for one session, settings.local.json (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ms-output-styles",
+      "title": "Output styles (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/output-styles",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Встроенные и свои стили, таблица «стиль или CLAUDE.md, скилл, хук» (критерий 3).",
+        "en": "Built-in and custom styles, the table 'style vs CLAUDE.md, skill, hook' (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "ms-statusline",
+      "title": "Customize your status line (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/statusline",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Скрипт статусной строки: JSON на stdin, вывод в stdout, примеры с контекстом и стоимостью (критерий 4).",
+        "en": "A status line script: JSON on stdin, output on stdout, context and cost examples (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "ms-codex-config",
+      "title": "Configuration reference (Codex, OpenAI, ChatGPT Learn)",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Области настроек Codex: ~/.codex/config.toml и проектный .codex/config.toml, какие ключи проектный файл не может переопределить (критерий 2).",
+        "en": "Codex config scopes: ~/.codex/config.toml and project .codex/config.toml, which keys a project file cannot override (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    }
+  ],
+  "minutes_total": 110
+}

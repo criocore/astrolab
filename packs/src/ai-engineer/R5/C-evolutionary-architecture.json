@@ -1,0 +1,163 @@
+{
+ "id": "evolutionary-architecture",
+ "area": "R5",
+ "level": "C",
+ "to_grade": "G6",
+ "grade": "R5.C",
+ "order": 3,
+ "title": {
+  "ru": "Эволюционная архитектура, fitness functions, миграция систем",
+  "en": "Evolutionary architecture, fitness functions, system migration"
+ },
+ "goal": {
+  "ru": "Проектировать систему так, чтобы её можно было менять постепенно, и вести миграцию малыми обратимыми шагами.",
+  "en": "Design a system so that it can change gradually, and migrate it in small reversible steps."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить fitness function: как архитектурная цель превращается в автоматическую проверку, и привести примеры (производительность, безопасность, границы модулей).",
+   "Описать миграцию по паттерну strangler fig: фасад, перенос по частям, слой-переводчик, снятие старой системы, и когда паттерн не подходит.",
+   "Составить план эволюции: что начинаем просто (монолит), по каким признакам разделяем и как каждый шаг можно откатить."
+  ],
+  "en": [
+   "Explain a fitness function: how an architectural goal becomes an automatic check, with examples (performance, security, module boundaries).",
+   "Describe migration by the strangler fig pattern: a facade, piecewise move, an anti-corruption layer, retiring the old system, and when the pattern does not fit.",
+   "Draft an evolution plan: what starts simple (a monolith), what signs trigger a split, and how each step can be rolled back."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ev-fitness",
+   "title": "Fitness function-driven development (Thoughtworks)",
+   "url": "https://www.thoughtworks.com/en-us/insights/articles/fitness-function-driven-development",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2019-01",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Определение fitness function и примеры по качествам (критерий 1).",
+    "en": "Definition of a fitness function and examples by quality (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ev-strangler",
+   "title": "Strangler Fig (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/StranglerFigApplication.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2024-08",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Идея постепенной замены вместо переписывания, швы, переходная архитектура (критерий 2).",
+    "en": "Gradual replacement instead of rewrite, seams, transitional architecture (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ev-azure-strangler",
+   "title": "Strangler Fig pattern (Azure Architecture Center)",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/strangler-fig",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-05",
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Фасад, этапы, anti-corruption layer, миграция базы данных, когда не подходит (критерий 2).",
+    "en": "The facade, phases, anti-corruption layer, database migration, when not suitable (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ev-monolith",
+   "title": "Monolith First (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/MonolithFirst.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-06",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Почему границы сервисов трудно найти заранее и как начинать с монолита (критерий 3).",
+    "en": "Why service boundaries are hard to find upfront and how to start with a monolith (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ev-premium",
+   "title": "Microservice Premium (Martin Fowler)",
+   "url": "https://martinfowler.com/bliki/MicroservicePremium.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2015-05",
+   "classic": true,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Цена микросервисов и признак, когда она окупается (критерий 3).",
+    "en": "The cost of microservices and the sign that it pays off (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "ev-archunit",
+   "title": "ArchUnit (repo)",
+   "url": "https://github.com/TNG/ArchUnit",
+   "kind": "do",
+   "type": "repo",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Apache-2.0",
+   "closes": {
+    "ru": "Записать правило слоёв или запрет цикла как тест, простейшая fitness function (критерий 1). Для Python вместо этого подойдёт Import Linter из уровня A.",
+    "en": "Write a layer rule or a cycle ban as a test, the simplest fitness function (criterion 1). For Python, use Import Linter from level A instead."
+   },
+   "criteria": [
+    1
+   ]
+  }
+ ],
+ "minutes_total": 110
+}

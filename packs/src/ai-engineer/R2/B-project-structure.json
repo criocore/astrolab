@@ -1,0 +1,176 @@
+{
+ "id": "project-structure",
+ "area": "R2",
+ "level": "B",
+ "to_grade": "G3",
+ "grade": "R2.B",
+ "order": 4,
+ "title": {
+  "ru": "pyproject или package.json, lock-файлы, структура проекта, публикация",
+  "en": "pyproject or package.json, lock files, project layout, publishing"
+ },
+ "goal": {
+  "ru": "Собрать проект так, чтобы другой человек поставил зависимости одной командой и получил те же версии.",
+  "en": "Set up a project so another person installs dependencies with one command and gets the same versions."
+ },
+ "criteria": {
+  "ru": [
+   "Описываю проект в pyproject.toml или package.json: имя, версия, зависимости, скрипты.",
+   "Объясняю, зачем lock-файл, и храню его в репозитории.",
+   "Раскладываю код и тесты по каталогам (src и tests или аналог).",
+   "Собираю пакет и публикую его в тестовом индексе или проверяю сборку без публикации."
+  ],
+  "en": [
+   "I describe a project in pyproject.toml or package.json: name, version, dependencies, scripts.",
+   "I explain why a lock file exists and keep it in the repository.",
+   "I lay out code and tests in directories (src and tests or similar).",
+   "I build a package and publish it to a test index, or check the build without publishing."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ps-py-uv-layout",
+   "title": "Project structure and files (uv docs)",
+   "url": "https://docs.astral.sh/uv/concepts/projects/layout/",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "uv docs (MIT/Apache-2.0 project), free to read",
+   "closes": {
+    "ru": "pyproject.toml, .venv, uv.lock (критерии 1, 2).",
+    "en": "pyproject.toml, .venv, uv.lock (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "ps-py-packaging",
+   "title": "Packaging Python Projects",
+   "url": "https://packaging.python.org/en/latest/tutorials/packaging-projects/",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "PyPA docs, free to read",
+   "closes": {
+    "ru": "Структура каталогов, метаданные, сборка и загрузка на TestPyPI (критерии 1, 3, 4).",
+    "en": "Directory layout, metadata, build and upload to TestPyPI (criteria 1, 3, 4)."
+   },
+   "criteria": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ps-ts-package-json",
+   "title": "package.json (npm docs)",
+   "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "npm docs, free to read",
+   "closes": {
+    "ru": "Поля name, version, dependencies, scripts, exports (критерий 1).",
+    "en": "Fields name, version, dependencies, scripts, exports (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ps-ts-lock",
+   "title": "package-lock.json (npm docs)",
+   "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-lock-json",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "npm docs, free to read",
+   "closes": {
+    "ru": "Назначение lock-файла (критерий 2).",
+    "en": "Purpose of the lock file (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ps-ts-publish",
+   "title": "Creating and publishing unscoped public packages (npm docs)",
+   "url": "https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "npm docs, free to read",
+   "closes": {
+    "ru": "Подготовить пакет и проверить его перед публикацией; саму публикацию не выполнять (критерий 4).",
+    "en": "Prepare a package and check it before publishing; do not actually publish (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ps-ts-layout",
+   "title": {
+    "ru": "Как разложить TypeScript-проект",
+    "en": "Laying out a TypeScript project"
+   },
+   "kind": "understand",
+   "track": "typescript",
+   "minutes": 10,
+   "criteria": [
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Исходники кладут в src, тесты рядом с ними или в tests, конфиги (tsconfig.json, package.json, настройки линтера) остаются в корне. Результат сборки идёт в отдельный каталог вроде dist, и его не коммитят. Это соглашение, а не правило языка: главное, чтобы структура была одинакова во всех ваших проектах.\n\nУпражнение: возьмите проект из темы про тесты и приведите к такому виду, затем удалите каталог сборки и убедитесь, что его можно получить заново одной командой из scripts.",
+    "en": "Sources go in src, tests next to them or in tests, and configs (tsconfig.json, package.json, linter settings) stay in the root. Build output goes to a separate directory such as dist, which is not committed. This is a convention, not a language rule: what matters is that the layout is the same across your projects.\n\nExercise: take the project from the testing topic and reshape it this way, then delete the build directory and confirm one command from scripts brings it back."
+   }
+  }
+ ],
+ "minutes_by_track": {
+  "python": 60,
+  "typescript": 75
+ },
+ "minutes_total": 75
+}

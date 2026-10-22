@@ -1,0 +1,99 @@
+{
+  "id": "prompt-injection",
+  "grade": "G5",
+  "order": 1,
+  "title": {
+    "ru": "Промпт-инъекции",
+    "en": "Prompt injection"
+  },
+  "goal": {
+    "ru": "Понимать, почему модель не отличает данные от инструкций, и строить защиту несколькими слоями.",
+    "en": "Understand why a model cannot tell data from instructions, and build layered defenses."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю разницу между прямой и косвенной инъекцией и почему текст из внешнего источника нельзя считать инструкцией.",
+      "Называю «смертельную тройку» (приватные данные, недоверенный контент, внешняя связь) и на примере своего агента показываю, какое звено убрать.",
+      "Перечисляю слои защиты (разделение контента, фильтры входа и выхода, минимальные права, подтверждение человеком) и объясняю, почему ни один слой не достаточен.",
+      "Прогоняю на своём промпте набор тестовых входов и записываю, какие слои сработали."
+    ],
+    "en": [
+      "I explain the difference between direct and indirect injection and why text from an external source must not be treated as instructions.",
+      "I name the lethal trifecta (private data, untrusted content, external communication) and show which leg to remove in my own agent.",
+      "I list the defense layers (content separation, input and output filters, least privilege, human approval) and explain why no single layer is enough.",
+      "I run a set of test inputs against my own prompt and record which layers fired."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pi-lethal-trifecta",
+      "title": "The lethal trifecta for AI agents (Simon Willison)",
+      "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-06",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "blog post, free to read",
+      "closes": {
+        "ru": "Почему модель исполняет любые инструкции из контекста и какое сочетание возможностей делает агента уязвимым (критерии 1, 2).",
+        "en": "Why a model follows any instruction in its context and which capability mix makes an agent exploitable (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "pi-owasp-llm01",
+      "title": "LLM01:2025 Prompt Injection (OWASP GenAI)",
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "CC BY-SA 4.0 (OWASP)",
+      "closes": {
+        "ru": "Прямая и косвенная инъекция и перечень слоёв защиты (критерии 1, 3).",
+        "en": "Direct vs indirect injection and the list of defense layers (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "pi-owasp-cheatsheet",
+      "title": "LLM Prompt Injection Prevention Cheat Sheet (OWASP)",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "CC BY-SA 4.0 (OWASP)",
+      "closes": {
+        "ru": "Код фильтра входа, шаблона промпта и валидатора выхода плюс список тестовых входов, который можно повторить на своём промпте (критерии 3, 4).",
+        "en": "Code for an input filter, prompt template and output validator plus a smoke-test list to reuse on your own prompt (criteria 3, 4)."
+      },
+      "criteria": [
+        3,
+        4
+      ]
+    }
+  ],
+  "minutes_total": 60
+}

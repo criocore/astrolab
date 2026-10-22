@@ -1,0 +1,146 @@
+{
+  "id": "rag",
+  "grade": "G3",
+  "order": 9,
+  "title": {
+    "ru": "RAG",
+    "en": "RAG"
+  },
+  "goal": {
+    "ru": "Собрать RAG по открытым документам и измерить качество поиска и ответов.",
+    "en": "Build RAG over open documents and measure retrieval and answer quality."
+  },
+  "criteria": {
+    "ru": [
+      "Разбить документы на чанки и объяснить, как размер и границы чанков влияют на поиск.",
+      "Построить индекс и извлечение (эмбеддинги, при необходимости BM25 и реранкер) и измерить качество поиска на тестовых вопросах (доля вопросов, где нужный фрагмент попал в топ-k).",
+      "Получать ответ по найденным фрагментам со ссылками на источники.",
+      "Подготовить набор из 30 вопросов с эталонными ответами и измерить качество ответов (сравнение с эталоном, в том числе LLM-судьёй).",
+      "Назвать типовые ошибки RAG: чанк потерял контекст, найден не тот фрагмент, ответ выходит за пределы источников."
+    ],
+    "en": [
+      "Split documents into chunks and explain how chunk size and boundaries affect retrieval.",
+      "Build the index and retrieval (embeddings, optionally BM25 and a reranker) and measure retrieval quality on test questions (share of questions where the right passage lands in the top-k).",
+      "Produce answers from retrieved passages with links to sources.",
+      "Prepare a set of 30 questions with reference answers and measure answer quality (comparison with reference, including an LLM judge).",
+      "Name typical RAG failures: a chunk lost its context, the wrong passage was found, the answer goes beyond the sources."
+    ]
+  },
+  "materials": [
+    {
+      "id": "rag-contextual-retrieval",
+      "title": "Introducing Contextual Retrieval (Anthropic)",
+      "url": "https://www.anthropic.com/news/contextual-retrieval",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2024-09",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Потеря контекста чанка, BM25 плюс эмбеддинги, реранкинг; метрика «доля промахов в топ-20» (критерии 1, 2, 5).",
+        "en": "Chunk context loss, BM25 plus embeddings, reranking; the 'top-20 retrieval failure rate' metric (criteria 1, 2, 5)."
+      },
+      "criteria": [
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "id": "rag-hf-advanced",
+      "title": "Advanced RAG on Hugging Face documentation using LangChain (HF Open-Source AI Cookbook)",
+      "url": "https://huggingface.co/learn/cookbook/advanced_rag",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face Cookbook, notebooks Apache-2.0 (verify in repo)",
+      "closes": {
+        "ru": "Сквозной ноутбук: чанкинг, эмбеддинги, FAISS, реранкер, генерация (критерии 1, 2).",
+        "en": "End-to-end notebook: chunking, embeddings, FAISS, reranker, generation (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "rag-hf-evaluation",
+      "title": "RAG Evaluation (HF Open-Source AI Cookbook)",
+      "url": "https://huggingface.co/learn/cookbook/rag_evaluation",
+      "kind": "do",
+      "type": "notebook",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "Hugging Face Cookbook, notebooks Apache-2.0 (verify in repo)",
+      "closes": {
+        "ru": "Синтетический тестовый набор вопрос-ответ, LLM-судья против эталона, влияние размера чанка (критерии 4, 5).",
+        "en": "Synthetic QA test set, LLM judge against a reference, effect of chunk size (criteria 4, 5)."
+      },
+      "criteria": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "rag-claude-citations",
+      "title": "Citations (Claude Docs)",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/citations",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Передать документы с citations.enabled и получить ответ со ссылками на фрагменты (критерий 3).",
+        "en": "Pass documents with citations enabled and get an answer with references to passages (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    },
+    {
+      "id": "rag-inspect-grader",
+      "title": "Inspect: a framework for LLM evaluations (UK AI Security Institute)",
+      "url": "https://inspect.aisi.org.uk/",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "MIT (inspect_ai)",
+      "closes": {
+        "ru": "Добавить к лабе HF проверку Inspect-скорером, что ответ цитирует найденный фрагмент (критерий 3).",
+        "en": "Add an Inspect scorer to the HF lab that checks the answer quotes a retrieved chunk (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 220
+}

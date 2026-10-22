@@ -1,0 +1,147 @@
+{
+ "id": "team-processes",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 6,
+ "title": {
+  "ru": "Процессы команды: минимум для лида",
+  "en": "Team processes: the minimum for a lead"
+ },
+ "goal": {
+  "ru": "Вести статус, риски и инциденты и делегировать так, чтобы команда не зависела от лида.",
+  "en": "Run status, risks and incidents and delegate so the team does not depend on the lead."
+ },
+ "criteria": {
+  "ru": [
+   "Статус-отчёт короткий: приоритеты, что сделано, риски, что нужно от других.",
+   "Риски записаны в реестр с владельцем и действием.",
+   "После инцидента пишу разбор без поиска виноватых: хронология, причины, действия.",
+   "Во время инцидента роли разведены (ведущий, связь, исправление).",
+   "Я делегирую задачу с результатом, границами, сроком и точкой проверки."
+  ],
+  "en": [
+   "A status report is short: priorities, done, risks, what is needed from others.",
+   "Risks go into a register with an owner and an action.",
+   "After an incident I write a blameless review: timeline, causes, actions.",
+   "During an incident roles are separated (command, communication, fix).",
+   "I delegate a task with outcome, boundaries, deadline and a check point."
+  ]
+ },
+ "materials": [
+  {
+   "id": "lethain-5-15",
+   "title": "Sending weekly 5-15 updates (Will Larson)",
+   "url": "https://lethain.com/weekly-updates/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2019-11",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "blog, free to read",
+   "closes": {
+    "ru": "Короткий еженедельный статус (критерий 1).",
+    "en": "A short weekly status (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "atl-risk-register",
+   "title": "Risk register (Atlassian)",
+   "url": "https://www.atlassian.com/work-management/project-management/risk-register",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Atlassian, free to read",
+   "closes": {
+    "ru": "Реестр рисков (критерий 2).",
+    "en": "Risk register (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "sre-postmortem",
+   "title": "Postmortem Culture (Google SRE book)",
+   "url": "https://sre.google/sre-book/postmortem-culture/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google SRE book, CC BY-NC-ND 4.0; free to read",
+   "closes": {
+    "ru": "Разбор без виноватых (критерий 3).",
+    "en": "Blameless postmortem (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "sre-incidents",
+   "title": "Managing Incidents (Google SRE book)",
+   "url": "https://sre.google/sre-book/managing-incidents/",
+   "kind": "understand",
+   "type": "book",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google SRE book, CC BY-NC-ND 4.0; free to read",
+   "closes": {
+    "ru": "Роли и связь во время инцидента (критерий 4).",
+    "en": "Roles and communication during an incident (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-delegate",
+   "title": {
+    "ru": "Упражнение: делегирование и статус",
+    "en": "Exercise: delegation and status"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выберите задачу, которую отдали бы другому. Запишите пять строк: нужный результат, границы (что можно решать самому), срок, точка проверки по пути, кто поможет. Затем напишите недельный статус по своему проекту из четырёх блоков, внесите в реестр два риска с владельцем и сделайте шаблон разбора инцидента на полстраницы.",
+    "en": "Pick a task you would hand over. Write five lines: needed outcome, boundaries (what they may decide), deadline, a mid-way check point, who helps. Then write a weekly status for your project in four blocks, enter two risks in a register with owners, and draft a half-page incident review template."
+   }
+  }
+ ],
+ "minutes_total": 120
+}

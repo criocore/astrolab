@@ -1,0 +1,98 @@
+{
+ "id": "two-way-doors",
+ "area": "R0",
+ "level": "A",
+ "to_grade": "G1",
+ "grade": "R0.A",
+ "order": 2,
+ "title": {
+  "ru": "Обратимые и необратимые решения",
+  "en": "Reversible and irreversible decisions"
+ },
+ "goal": {
+  "ru": "Различать решения, которые можно откатить, и те, что нельзя, и тратить время на выбор пропорционально цене ошибки.",
+  "en": "Tell reversible decisions from irreversible ones and spend time on a choice in proportion to the cost of being wrong."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить различие «двери в обе стороны» и «двери в одну сторону» и привести по примеру из своих проектов.",
+   "Оценить цену ошибки (откат, стоимость, срок) и по ней решить, сколько времени отдать выбору.",
+   "Назвать, когда решать быстро с неполной информацией и когда замедляться."
+  ],
+  "en": [
+   "Explain two-way versus one-way doors and give one example of each from your own projects.",
+   "Estimate the cost of being wrong (rollback, price, time) and use it to decide how long to spend on the choice.",
+   "Say when to decide fast with incomplete information and when to slow down."
+  ]
+ },
+ "materials": [
+  {
+   "id": "doors-bezos-2015",
+   "title": "Amazon 2015 letter to shareholders (Type 1 / Type 2 decisions)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2016-04",
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "public SEC filing",
+   "closes": {
+    "ru": "Первоисточник: решения типа 1 (необратимые) и типа 2 (обратимые); нужен абзац про них (критерии 1, 3).",
+    "en": "Primary source: Type 1 (irreversible) and Type 2 (reversible) decisions; read the passage on them (criteria 1, 3)."
+   },
+   "criteria": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "doors-bezos-2016",
+   "title": "Amazon 2016 letter to shareholders (high-velocity decisions)",
+   "url": "https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2017-04",
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "company letter, free to read",
+   "closes": {
+    "ru": "Принимать решение примерно при 70% информации и «не согласен, но делаю» для обратимых дверей (критерии 2, 3).",
+    "en": "Deciding with about 70% of the information and disagree-and-commit for reversible doors (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "doors-exercise",
+   "title": {
+    "ru": "Упражнение: разложить свои решения по дверям",
+    "en": "Exercise: sort your decisions into doors"
+   },
+   "kind": "do",
+   "minutes": 30,
+   "criteria": [
+    1,
+    2
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выпишите пять технических решений последних месяцев (язык, база, хостинг, библиотека, схема данных). Для каждого ответьте на два вопроса: во что обойдётся откат и что именно придётся переделать. Решения с дорогим откатом отметьте как односторонние и вынесите в ADR; остальные принимайте за вечер и записывайте одной строкой.",
+    "en": "List five technical decisions from recent months (language, database, hosting, library, data schema). For each, answer two questions: what would a rollback cost, and what exactly would have to be redone. Mark those with an expensive rollback as one-way doors and write them up as ADRs; decide the rest within an evening and log them in one line."
+   }
+  }
+ ],
+ "minutes_total": 60
+}

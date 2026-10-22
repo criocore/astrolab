@@ -1,0 +1,123 @@
+{
+ "id": "prd-writing",
+ "area": "R10",
+ "level": "B",
+ "to_grade": "G6",
+ "grade": "R10.B",
+ "order": 4,
+ "title": {
+  "ru": "PRD, включая ИИ-функцию",
+  "en": "PRD, including an AI feature"
+ },
+ "goal": {
+  "ru": "Написать PRD, в котором проблема связана с метрикой, риски названы, а проверка запланирована.",
+  "en": "Write a PRD where the problem ties to a metric, risks are named and validation is planned."
+ },
+ "criteria": {
+  "ru": [
+   "PRD содержит проблему, пользователя, метрику с порогом, объём и что вне объёма.",
+   "Риски разобраны по ценности, удобству, реализуемости и жизнеспособности, у каждого есть действие.",
+   "План проверки: что тестируем, на ком, за какой срок, какой результат значит «идём дальше».",
+   "Для ИИ-функции описаны ошибки модели, как пользователь их видит и исправляет, и как оценивается качество."
+  ],
+  "en": [
+   "The PRD has the problem, user, metric with threshold, scope and out-of-scope.",
+   "Risks are sorted into value, usability, feasibility and viability, each with an action.",
+   "Validation plan: what is tested, on whom, in what time, which result means go.",
+   "For an AI feature: model errors, how the user sees and fixes them, and how quality is evaluated."
+  ]
+ },
+ "materials": [
+  {
+   "id": "atl-prd",
+   "title": "What is a Product Requirements Document (Atlassian)",
+   "url": "https://www.atlassian.com/agile/product-management/requirements",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Atlassian, free to read",
+   "closes": {
+    "ru": "Структура PRD (критерий 1).",
+    "en": "PRD structure (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "svpg-discovery",
+   "title": "Product Discovery (Marty Cagan, SVPG)",
+   "url": "https://www.svpg.com/product-discovery/",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2007",
+   "classic": true,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "SVPG, free to read",
+   "closes": {
+    "ru": "Виды риска и быстрая проверка (критерии 2, 3).",
+    "en": "Kinds of risk and fast validation (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "pair-errors",
+   "title": "Errors + Graceful Failure (Google PAIR Guidebook)",
+   "url": "https://pair.withgoogle.com/chapter/errors-failing/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Google PAIR, free to read",
+   "closes": {
+    "ru": "Ошибки ИИ и как пользователь их исправляет (критерий 4).",
+    "en": "AI errors and how users recover (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "own-prd-ai",
+   "title": {
+    "ru": "Проверка уровня: PRD для ИИ-функции",
+    "en": "Level check: a PRD for an AI feature"
+   },
+   "kind": "do",
+   "minutes": 60,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите ИИ-функцию из своей идеи. Напишите PRD на две-три страницы: проблема и job statement из темы 1, метрика и пороги из темы 2, дерево или хотя бы одно допущение из темы 3, риски по четырём видам, план проверки, поведение при ошибке модели. Это же материал для проверки уровня.",
+    "en": "Take an AI feature from your own idea. Write a PRD of two or three pages: the problem and job statement from topic 1, metric and thresholds from topic 2, a tree or at least one assumption from topic 3, risks in four kinds, a validation plan, behavior when the model errs. This is also the level check."
+   }
+  }
+ ],
+ "minutes_total": 125
+}

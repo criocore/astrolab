@@ -1,0 +1,142 @@
+{
+  "id": "claude-code-basics",
+  "grade": "G1",
+  "order": 1,
+  "title": {
+    "ru": "Claude Code: режимы, workflow, разрешения",
+    "en": "Claude Code: modes, workflow, permissions"
+  },
+  "goal": {
+    "ru": "Понять, как устроен агентный цикл Claude Code, что он видит и что ему разрешено, и пройти первую сессию руками.",
+    "en": "Understand the Claude Code agentic loop, what it can see and what it is allowed to do, and run a first session by hand."
+  },
+  "criteria": {
+    "ru": [
+      "Объясняю цикл агента (собрать контекст, действовать, проверить) и перечисляю категории его инструментов.",
+      "Называю режимы разрешений (Manual, accept edits, plan, auto), что каждый выполняет без вопроса, и переключаю их Shift+Tab.",
+      "Перечисляю, что агент видит (проект, терминал, git-состояние, CLAUDE.md, память) и что не переносится между сессиями.",
+      "Устанавливаю Claude Code, запускаю сессию в своём проекте, прошу небольшое изменение и принимаю или отклоняю его."
+    ],
+    "en": [
+      "I explain the agent loop (gather context, act, verify) and name the categories of its tools.",
+      "I name the permission modes (Manual, accept edits, plan, auto), what each runs without asking, and switch them with Shift+Tab.",
+      "I list what the agent sees (project, terminal, git state, CLAUDE.md, memory) and what does not carry over between sessions.",
+      "I install Claude Code, start a session in my project, ask for a small change and accept or reject it."
+    ]
+  },
+  "materials": [
+    {
+      "id": "ccb-how-it-works",
+      "title": "How Claude Code works (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/how-claude-code-works",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Агентный цикл, инструменты, что агент видит, сессии и контекст (критерии 1, 3).",
+        "en": "The agentic loop, tools, what the agent sees, sessions and context (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "ccb-permission-modes",
+      "title": "Choose a permission mode (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Таблица режимов и что идёт без запроса, переключение режимов (критерий 2).",
+        "en": "Mode table, what runs without a prompt, switching modes (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "ccb-quickstart",
+      "title": "Quickstart (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/quickstart",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Установка, первая сессия, первое изменение кода и подтверждение (критерий 4).",
+        "en": "Install, first session, first code change and approval (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    },
+    {
+      "id": "course-claude-code-101",
+      "title": "Claude Code 101 (Anthropic Academy)",
+      "url": "https://anthropic.skilljar.com/claude-code-101",
+      "kind": "do",
+      "type": "course",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 60,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free Anthropic Academy course, account required",
+      "closes": {
+        "ru": "Полный вводный курс: установка, первый промпт, как работает Claude Code (критерии 1, 4).",
+        "en": "Full intro course: install, first prompt, how Claude Code works (criteria 1, 4)."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "ccb-codex-cli",
+      "title": "Codex CLI (OpenAI, ChatGPT Learn; repo openai/codex)",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 45,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "Apache-2.0 (openai/codex repo); docs free to read",
+      "closes": {
+        "ru": "То же упражнение в другом CLI: установить Codex CLI, сделать одну маленькую правку в пробном репозитории, принять или отклонить её (критерий 4).",
+        "en": "The same exercise on another CLI: install Codex CLI, make one small change in a scratch repo, accept or reject it (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 165
+}

@@ -1,0 +1,99 @@
+{
+  "id": "debugging-with-agent",
+  "grade": "G1",
+  "order": 10,
+  "title": {
+    "ru": "Промптинг для кода и отладка с агентом",
+    "en": "Prompting for code and debugging with an agent"
+  },
+  "goal": {
+    "ru": "Давать агенту ошибку так, чтобы он воспроизвёл и починил причину, а не симптом, и замечать, когда сессию пора сбросить.",
+    "en": "Give the agent an error so it reproduces and fixes the cause, not the symptom, and notice when it is time to reset the session."
+  },
+  "criteria": {
+    "ru": [
+      "Даю ошибку полностью: текст или стек, команда воспроизведения, ожидаемое и фактическое поведение, стабильно или плавающе.",
+      "Прошу сначала воспроизвести (падающий тест), затем чинить причину, а не подавлять ошибку, и проверить исправление.",
+      "Подаю логи и данные через @файлы, pipe (cat error.log | claude -p) и скриншоты; направляю агента в нужный каталог или историю git.",
+      "Замечаю тупик: после двух неудачных исправлений делаю /clear и пишу новый промпт; записываю в журнал, какие гипотезы агента оказались ложными."
+    ],
+    "en": [
+      "I give the error in full: text or stack trace, the command to reproduce, expected vs actual behavior, steady or intermittent.",
+      "I ask to reproduce first (a failing test), then fix the cause and not suppress the error, then verify the fix.",
+      "I pass logs and data via @files, pipes (cat error.log | claude -p) and screenshots; I point the agent to the right directory or git history.",
+      "I spot a dead end: after two failed fixes I /clear and write a new prompt; I log which agent hypotheses turned out wrong."
+    ]
+  },
+  "materials": [
+    {
+      "id": "dbg-workflows",
+      "title": "Common workflows: fix bugs, tests, images, @ references (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/common-workflows",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Рецепты: поделиться ошибкой, воспроизведение и стек, ссылки @, скриншоты, pipe (критерии 1, 3).",
+        "en": "Recipes: sharing an error, reproduction and stack trace, @ references, screenshots, pipes (criteria 1, 3)."
+      },
+      "criteria": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "cc-best-practices-dbg",
+      "title": "Best practices for Claude Code (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "kind": "understand",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Таблицы Provide specific context и Address root causes; правило двух поправок и /clear (критерии 1, 2, 4).",
+        "en": "The Provide specific context and Address root causes tables; the two-corrections rule and /clear (criteria 1, 2, 4)."
+      },
+      "criteria": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "dbg-gemini-headless",
+      "title": "Headless mode reference (Gemini CLI)",
+      "url": "https://geminicli.com/docs/cli/headless",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-22",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Передать лог ошибки в gemini -p через конвейер так же, как cat error.log | claude -p (критерий 3).",
+        "en": "Pipe an error log into gemini -p, the same move as cat error.log | claude -p (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 55
+}

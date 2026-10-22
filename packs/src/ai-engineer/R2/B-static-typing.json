@@ -1,0 +1,175 @@
+{
+ "id": "static-typing",
+ "area": "R2",
+ "level": "B",
+ "to_grade": "G3",
+ "grade": "R2.B",
+ "order": 1,
+ "title": {
+  "ru": "Строгая типизация и валидация на границах",
+  "en": "Strict typing and boundary validation"
+ },
+ "goal": {
+  "ru": "Включить строгий режим проверки типов и проверять внешние данные на входе, а не доверять им.",
+  "en": "Turn on the strict type-checking mode and validate external data at the entry point instead of trusting it."
+ },
+ "criteria": {
+  "ru": [
+   "Включаю строгий режим (mypy/pyright strict или tsconfig strict) и исправляю ошибки про отсутствующие аннотации и None/undefined.",
+   "Отличаю Any/any от неизвестного типа и сужаю тип проверкой перед использованием.",
+   "Описываю схему входных данных (Pydantic или zod), разбираю JSON с границы и получаю понятную ошибку на неверных данных."
+  ],
+  "en": [
+   "I turn on strict mode (mypy/pyright strict or tsconfig strict) and fix errors about missing annotations and None/undefined.",
+   "I tell Any/any from an unknown type and narrow a type with a check before using it.",
+   "I describe an input schema (Pydantic or zod), parse JSON from the boundary and get a clear error on bad data."
+  ]
+ },
+ "materials": [
+  {
+   "id": "st-py-mypy",
+   "title": "Getting started (mypy docs)",
+   "url": "https://mypy.readthedocs.io/en/stable/getting_started.html",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "mypy docs (MIT project), free to read",
+   "closes": {
+    "ru": "Запустить mypy и перейти на --strict в своём коде (критерий 1).",
+    "en": "Run mypy and move to --strict in your own code (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "st-py-narrowing",
+   "title": "Type Narrowing (typing.python.org)",
+   "url": "https://typing.python.org/en/latest/guides/type_narrowing.html",
+   "track": "python",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "typing.python.org docs, free to read",
+   "closes": {
+    "ru": "Сужение типов проверками и TypeIs (критерий 2).",
+    "en": "Narrowing types with checks and TypeIs (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "st-py-pydantic",
+   "title": "Models (Pydantic docs)",
+   "url": "https://pydantic.dev/docs/validation/latest/concepts/models/",
+   "track": "python",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 30,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Pydantic docs (MIT project), free to read",
+   "closes": {
+    "ru": "Модель, проверка данных извне, ValidationError (критерий 3).",
+    "en": "A model, validating outside data, ValidationError (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  },
+  {
+   "id": "st-ts-tsconfig",
+   "title": "TSConfig Reference (strict)",
+   "url": "https://www.typescriptlang.org/tsconfig/",
+   "track": "typescript",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "TypeScript docs, free to read",
+   "closes": {
+    "ru": "Что включает strict: noImplicitAny, strictNullChecks, useUnknownInCatchVariables (критерии 1, 2). Страница длинная, читать раздел strict.",
+    "en": "What strict enables: noImplicitAny, strictNullChecks, useUnknownInCatchVariables (criteria 1, 2). The page is long, read the strict section."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "st-ts-everyday",
+   "title": "Everyday Types (TypeScript Handbook)",
+   "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "TypeScript docs, free to read",
+   "closes": {
+    "ru": "Повтор из уровня A: включить strict в tsconfig и исправить ошибки на примерах страницы (критерии 1, 2).",
+    "en": "Repeat from level A: enable strict in tsconfig and fix the errors on the page examples (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "st-ts-zod",
+   "title": "Basic usage (Zod docs)",
+   "url": "https://zod.dev/basics",
+   "track": "typescript",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "Zod docs (MIT project), free to read",
+   "closes": {
+    "ru": "Схема, parse/safeParse, z.infer (критерий 3).",
+    "en": "A schema, parse/safeParse, z.infer (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "minutes_by_track": {
+  "python": 75,
+  "typescript": 65
+ },
+ "minutes_total": 75
+}

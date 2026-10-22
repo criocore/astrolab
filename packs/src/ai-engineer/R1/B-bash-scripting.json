@@ -1,0 +1,145 @@
+{
+ "id": "bash-scripting",
+ "area": "R1",
+ "level": "B",
+ "to_grade": "G2",
+ "grade": "R1.B",
+ "order": 1,
+ "title": {
+  "ru": "Скрипты: переменные, функции, set -e, обработка ошибок, отладка",
+  "en": "Scripts: variables, functions, set -e, error handling, debugging"
+ },
+ "goal": {
+  "ru": "Писать bash-скрипты, которые падают громко и понятно, а не молча.",
+  "en": "Write bash scripts that fail loudly and clearly instead of silently."
+ },
+ "criteria": {
+  "ru": [
+   "Могу написать скрипт с shebang, аргументами через \"$@\", кавычками вокруг переменных и функцией с local.",
+   "Могу объяснить, что делают set -e, -u и -o pipefail и где они не срабатывают; использую коды возврата и сообщения об ошибках в stderr.",
+   "Могу гарантировать уборку через trap и завершать скрипт ненулевым кодом при сбое.",
+   "Могу отладить скрипт через bash -x и найти типичные ошибки через shellcheck."
+  ],
+  "en": [
+   "I can write a script with a shebang, arguments via \"$@\", quoted variables and a function with local variables.",
+   "I can explain what set -e, -u and -o pipefail do and where they do not trigger; I use exit codes and error messages on stderr.",
+   "I can guarantee cleanup with trap and make the script exit non-zero on failure.",
+   "I can debug a script with bash -x and catch typical mistakes with shellcheck."
+  ]
+ },
+ "materials": [
+  {
+   "id": "bs-google-style",
+   "title": "Shell Style Guide (Google)",
+   "url": "https://google.github.io/styleguide/shellguide.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "open source style guide, free to read",
+   "closes": {
+    "ru": "Кавычки, \"$@\", функции и local, ошибки в STDERR, когда скрипт пора переписывать (критерии 1, 2).",
+    "en": "Quoting, \"$@\", functions and local, errors to STDERR, when a script should be rewritten (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "bs-bash-manual",
+   "title": "Bash Reference Manual (The Set Builtin, Exit Status, trap)",
+   "url": "https://www.gnu.org/software/bash/manual/bash.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "GNU FDL, free to read",
+   "closes": {
+    "ru": "Точное поведение set -e/-u/pipefail, коды возврата и trap (критерии 2, 3).",
+    "en": "Exact behaviour of set -e/-u/pipefail, exit statuses and trap (criteria 2, 3)."
+   },
+   "criteria": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "bs-ms-shelltools-do",
+   "title": "The Missing Semester: Shell Tools and Scripting",
+   "url": "https://missing.csail.mit.edu/2020/shell-tools/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 45,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Повтор: упражнения на скрипты (цикл повтора до сбоя, функции) и разделы про переменные и коды возврата (критерии 1, 2).",
+    "en": "Repeat: the scripting exercises (retry-until-failure loop, functions) and the sections on variables and exit codes (criteria 1, 2)."
+   },
+   "criteria": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "bs-shellcheck",
+   "title": "ShellCheck",
+   "url": "https://www.shellcheck.net/",
+   "kind": "do",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 25,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "GPL-3.0 (tool), free to use",
+   "closes": {
+    "ru": "Прогнать свой скрипт через shellcheck и исправить предупреждения (критерий 4).",
+    "en": "Run your own script through shellcheck and fix the warnings (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "bs-own-lab",
+   "title": {
+    "ru": "Практика: скрипт, который падает громко",
+    "en": "Practice: a script that fails loudly"
+   },
+   "kind": "do",
+   "minutes": 20,
+   "criteria": [
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Напишите скрипт backup.sh, который копирует каталог в архив во временную папку. Включите set -euo pipefail, создайте временную папку через mktemp -d и удалите её в trap на EXIT. Запустите с несуществующим каталогом и проверьте, что код возврата не ноль и сообщение ушло в stderr. Затем запустите через bash -x и найдите строку, на которой скрипт остановился.",
+    "en": "Write backup.sh that copies a directory into an archive in a temporary folder. Enable set -euo pipefail, create the folder with mktemp -d and remove it in a trap on EXIT. Run it with a missing directory and check that the exit code is non-zero and the message went to stderr. Then run it with bash -x and find the line where the script stopped."
+   }
+  }
+ ],
+ "minutes_total": 140
+}

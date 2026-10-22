@@ -1,0 +1,121 @@
+{
+  "id": "production-monitoring",
+  "grade": "G5",
+  "order": 8,
+  "title": {
+    "ru": "Мониторинг в проде",
+    "en": "Production monitoring"
+  },
+  "goal": {
+    "ru": "Видеть качество и расходы работающей системы и ловить деградацию, в том числе от изменений обвязки.",
+    "en": "See quality and cost of a running system and catch degradation, including from harness changes."
+  },
+  "criteria": {
+    "ru": [
+      "Называю метрики качества и затрат LLM-приложения (трейсы, токены, задержка, оценки) и где они берутся.",
+      "Объясняю, почему обычные оценки пропустили деградацию, и как ловить дрейф (постоянные эвалы на прод-трафике, сигналы пользователей).",
+      "Привожу пример инцидента из-за конфигурации обвязки (уровень рассуждения, системный промпт, очистка кэша) и контрмеры: абляции и постепенный выкат.",
+      "Включаю трассировку в своём приложении и разбираю трассу одного запроса."
+    ],
+    "en": [
+      "I name quality and cost metrics of an LLM application (traces, tokens, latency, evals) and where they come from.",
+      "I explain why standard evals missed the degradation and how to catch drift (continuous evals on production traffic, user signals).",
+      "I give an example of an incident caused by harness configuration (reasoning effort, system prompt, cache clearing) and the countermeasures: ablations and gradual rollout.",
+      "I enable tracing in my own application and inspect the trace of one request."
+    ]
+  },
+  "materials": [
+    {
+      "id": "pm-apr-postmortem",
+      "title": "An update on recent Claude Code quality reports (Anthropic, April 23 2026)",
+      "url": "https://anthropic.com/engineering/april-23-postmortem",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-04",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Три изменения обвязки (уровень рассуждения, очистка рассуждений, ограничение многословия), как нашли и какие процессы добавили (критерии 2, 3).",
+        "en": "Three harness changes (reasoning effort, reasoning clearing, verbosity limit), how they were found and the process changes (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "pm-sep-postmortem",
+      "title": "A postmortem of three recent issues (Anthropic, September 2025)",
+      "url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-09",
+      "classic": false,
+      "minutes": 20,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor blog, free to read",
+      "closes": {
+        "ru": "Почему стандартные оценки не заметили деградацию и какие пробелы обнаружения назвали (критерии 1, 2).",
+        "en": "Why standard evals missed degradation and which detection gaps were named (criteria 1, 2)."
+      },
+      "criteria": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "pm-langfuse",
+      "title": "langfuse/langfuse (LLM observability)",
+      "url": "https://github.com/langfuse/langfuse",
+      "kind": "do",
+      "type": "repo",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "MIT (except ee folders)",
+      "closes": {
+        "ru": "Трассировка, оценки LLM-as-a-judge, датасеты; поднять и посмотреть трассу (критерии 1, 4). Учёт стоимости на странице репозитория не подтверждён.",
+        "en": "Tracing, LLM-as-a-judge evals, datasets; set it up and inspect a trace (criteria 1, 4). Cost tracking is not confirmed on the repo page."
+      },
+      "criteria": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "pm-langfuse-get-started",
+      "title": "Get started with tracing (Langfuse docs)",
+      "url": "https://langfuse.com/docs/observability/get-started",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 25,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Пошагово: ключи, SDK, переменные окружения, обёртка клиента и просмотр трассы одного запроса (критерий 4).",
+        "en": "Step by step: keys, SDK, environment variables, wrapping the client and inspecting the trace of one request (criterion 4)."
+      },
+      "criteria": [
+        4
+      ]
+    }
+  ],
+  "minutes_total": 105
+}

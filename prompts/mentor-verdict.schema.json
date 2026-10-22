@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "mentor-verdict@2",
+  "type": "object",
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "gap"
+      ]
+    },
+    "quote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "gap": {
+      "type": "string"
+    },
+    "material_id": {
+      "type": "string"
+    },
+    "feedback": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "verdict",
+    "quote",
+    "gap",
+    "material_id",
+    "feedback"
+  ],
+  "additionalProperties": false
+}

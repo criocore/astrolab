@@ -1,0 +1,167 @@
+{
+ "id": "idempotency-pagination-ratelimit",
+ "area": "R3",
+ "level": "B",
+ "to_grade": "G4",
+ "grade": "R3.B",
+ "order": 2,
+ "title": {
+  "ru": "Идемпотентность, пагинация, rate limiting",
+  "en": "Idempotency, pagination, rate limiting"
+ },
+ "goal": {
+  "ru": "Сделать API устойчивым к повторам и нагрузке: безопасные ретраи, постраничная выдача и лимиты.",
+  "en": "Make an API robust to retries and load: safe retries, paged results and limits."
+ },
+ "criteria": {
+  "ru": [
+   "Реализую ключ идемпотентности: повтор с тем же ключом возвращает сохранённый ответ, а те же ключ и другие параметры дают ошибку.",
+   "Выбираю между offset и курсорной пагинацией и отдаю следующую страницу через токен или заголовок Link.",
+   "Ограничиваю частоту запросов: отвечаю 429 с Retry-After и заголовками остатка, а тело ошибки оформляю по RFC 9457.",
+   "Пишу клиента, который соблюдает Retry-After и повторяет только безопасные запросы."
+  ],
+  "en": [
+   "I implement an idempotency key: a retry with the same key returns the stored response, the same key with different parameters gives an error.",
+   "I choose between offset and cursor pagination and expose the next page via a token or the Link header.",
+   "I limit request rate: respond 429 with Retry-After and remaining-quota headers, with the error body shaped per RFC 9457.",
+   "I write a client that honors Retry-After and retries only safe requests."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ipr-stripe-idem",
+   "title": "Idempotent requests (Stripe API)",
+   "url": "https://docs.stripe.com/api/idempotent_requests",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Заголовок Idempotency-Key, срок хранения, сверка параметров (критерий 1).",
+    "en": "Idempotency-Key header, retention, parameter comparison (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ipr-github-pagination",
+   "title": "Using pagination in the REST API (GitHub Docs)",
+   "url": "https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Заголовок Link, per_page, обход страниц (критерий 2).",
+    "en": "Link header, per_page, walking pages (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ipr-aip158",
+   "title": "AIP-158: Pagination",
+   "url": "https://google.aip.dev/158",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0, Google AIP",
+   "closes": {
+    "ru": "page_size, page_token, next_page_token как курсорная схема (критерий 2).",
+    "en": "page_size, page_token, next_page_token as a cursor scheme (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ipr-github-ratelimit",
+   "title": "Rate limits for the REST API (GitHub Docs)",
+   "url": "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Заголовки лимита, 403 и 429, retry-after, экспоненциальная пауза (критерии 3, 4).",
+    "en": "Limit headers, 403 and 429, retry-after, exponential wait (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ipr-mdn-429",
+   "title": "429 Too Many Requests (MDN)",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-SA 2.5, MDN",
+   "closes": {
+    "ru": "Смысл 429 и заголовок Retry-After (критерий 3).",
+    "en": "Meaning of 429 and the Retry-After header (criterion 3)."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ipr-own-lab",
+   "title": {
+    "ru": "Практика: идемпотентность, страницы и лимит",
+    "en": "Practice: idempotency, pages and a limit"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Возьмите сервис из темы «Минимальный сервис». Добавьте POST, который принимает заголовок Idempotency-Key и хранит ответ по ключу: повторный запрос возвращает тот же ответ, ключ с другим телом даёт 422 или 409.\n\nСделайте GET-коллекцию с курсорной пагинацией (параметр limit и токен следующей страницы). Добавьте простой лимит на ключ клиента: после превышения возвращайте 429, Retry-After и тело в формате application/problem+json. Напишите короткий скрипт-клиент, который ждёт Retry-After и повторяет запрос.",
+    "en": "Take the service from the Minimal service topic. Add a POST that accepts an Idempotency-Key header and stores the response by key: a repeated request returns the same response, the same key with a different body gives 422 or 409.\n\nMake a GET collection with cursor pagination (a limit parameter and a next-page token). Add a simple per-client limit: past it, return 429, Retry-After and an application/problem+json body. Write a short client script that waits for Retry-After and retries."
+   }
+  }
+ ],
+ "minutes_total": 125
+}

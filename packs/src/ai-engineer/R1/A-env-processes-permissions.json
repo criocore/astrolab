@@ -1,0 +1,164 @@
+{
+ "id": "env-processes-permissions",
+ "area": "R1",
+ "level": "A",
+ "to_grade": "G0",
+ "grade": "R1.A",
+ "order": 2,
+ "title": {
+  "ru": "Переменные окружения, права файлов, процессы и сигналы",
+  "en": "Environment variables, file permissions, processes and signals"
+ },
+ "goal": {
+  "ru": "Понимать, как оболочка передаёт окружение программам, кто может читать и запускать файл и как управлять запущенными процессами.",
+  "en": "Understand how the shell passes its environment to programs, who may read and run a file, and how to control running processes."
+ },
+ "criteria": {
+  "ru": [
+   "Могу показать, задать и экспортировать переменную окружения и объяснить, зачем нужен PATH и почему дочерний процесс получает копию окружения.",
+   "Могу прочитать вывод ls -l и изменить права через chmod в числовой и символьной записи.",
+   "Могу показать процессы (ps) и задания оболочки и запустить команду в фоне (&, jobs, fg, bg).",
+   "Могу остановить процесс сигналом и объяснить разницу SIGTERM и SIGKILL."
+  ],
+  "en": [
+   "I can show, set and export an environment variable, and explain what PATH is for and why a child process gets a copy of the environment.",
+   "I can read ls -l output and change permissions with chmod in numeric and symbolic form.",
+   "I can list processes (ps) and shell jobs and run a command in the background (&, jobs, fg, bg).",
+   "I can stop a process with a signal and explain the difference between SIGTERM and SIGKILL."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ep-environ",
+   "title": "environ(7) - Linux manual page",
+   "url": "https://man7.org/linux/man-pages/man7/environ.7.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Что такое окружение, PATH, HOME и наследование копии дочерним процессом (критерий 1).",
+    "en": "What the environment is, PATH, HOME and copy inheritance by child processes (criterion 1)."
+   },
+   "criteria": [
+    1
+   ]
+  },
+  {
+   "id": "ep-chmod",
+   "title": "chmod(1) - Linux manual page",
+   "url": "https://man7.org/linux/man-pages/man1/chmod.1.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 10,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Числовые и символьные режимы chmod (критерий 2).",
+    "en": "Numeric and symbolic chmod modes (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ep-signal",
+   "title": "signal(7) - Linux manual page",
+   "url": "https://man7.org/linux/man-pages/man7/signal.7.html",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "man page, free to read",
+   "closes": {
+    "ru": "Таблица сигналов: SIGTERM, SIGKILL, SIGINT и их действия по умолчанию (критерий 4).",
+    "en": "The signal table: SIGTERM, SIGKILL, SIGINT and their default actions (criterion 4)."
+   },
+   "criteria": [
+    4
+   ]
+  },
+  {
+   "id": "ep-ms-command-line",
+   "title": "The Missing Semester: Command-line Environment",
+   "url": "https://missing.csail.mit.edu/2020/command-line/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Раздел про управление заданиями и сигналами с упражнениями (критерии 3, 4).",
+    "en": "The job control and signals section with exercises (criteria 3, 4)."
+   },
+   "criteria": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "ep-ms-shell-perms",
+   "title": "The Missing Semester: Course Overview + The Shell",
+   "url": "https://missing.csail.mit.edu/2020/course-shell/",
+   "kind": "do",
+   "type": "course",
+   "access": "free",
+   "date": null,
+   "classic": true,
+   "minutes": 20,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY-NC-SA 4.0",
+   "closes": {
+    "ru": "Повтор: раздел про права в ls -l и упражнения с chmod (критерий 2).",
+    "en": "Repeat: the ls -l permissions section and the chmod exercises (criterion 2)."
+   },
+   "criteria": [
+    2
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ep-own-env",
+   "title": {
+    "ru": "Практика: переменные окружения",
+    "en": "Practice: environment variables"
+   },
+   "kind": "do",
+   "minutes": 15,
+   "criteria": [
+    1
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Задайте переменную без export и выполните bash -c 'echo $X', затем повторите с export и сравните вывод. Добавьте каталог со своим скриптом в PATH на время сессии и запустите скрипт по имени. Объясните, почему переменная, заданная в дочернем процессе, не возвращается в родительский.",
+    "en": "Set a variable without export and run bash -c 'echo $X', then repeat with export and compare the output. Add the directory with your own script to PATH for the session and run the script by name. Explain why a variable set in a child process does not return to the parent."
+   }
+  }
+ ],
+ "minutes_total": 110
+}

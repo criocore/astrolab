@@ -1,0 +1,117 @@
+{
+  "id": "review-techdebt",
+  "grade": "G6",
+  "order": 4,
+  "title": {
+    "ru": "Ревью и техдолг в эпоху агентов",
+    "en": "Review and tech debt in the agent era"
+  },
+  "goal": {
+    "ru": "Понимать, почему ревью стало узким местом, что в нём остаётся за человеком и чем сдерживать долг.",
+    "en": "Understand why review became the bottleneck, what stays human, and how to hold debt down."
+  },
+  "criteria": {
+    "ru": [
+      "Могу объяснить, почему ревью стало узким местом, и привести число (например, доля респондентов, у которых узкое место сместилось на ревью).",
+      "Могу разделить проверки на автоматические (CI, линтеры, сканеры секретов) и человеческие (архитектура, смысл, ответственность).",
+      "Могу описать «сенсоры» для агента (типы, линтеры, правила зависимостей, мутационные тесты) и как отслеживать их историю."
+    ],
+    "en": [
+      "I can explain why review became the bottleneck and cite a number (e.g. share of respondents where the bottleneck moved to review).",
+      "I can split checks into automated (CI, linters, secret scanning) and human (architecture, intent, accountability).",
+      "I can describe sensors for an agent (types, linters, dependency rules, mutation tests) and how to track their history."
+    ]
+  },
+  "materials": [
+    {
+      "id": "rt-github-code-review",
+      "title": "Code review in the age of AI (GitHub Blog)",
+      "url": "https://github.blog/ai-and-ml/generative-ai/code-review-in-the-age-of-ai-why-developers-will-always-own-the-merge-button",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2025-07",
+      "classic": false,
+      "minutes": 15,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4239",
+      "terms": "free to read",
+      "closes": {
+        "ru": "Кто отвечает за слияние, что проверяет ИИ, что остаётся человеку (критерий 2).",
+        "en": "Who owns the merge, what AI checks, what stays human (criterion 2)."
+      },
+      "criteria": [
+        2
+      ]
+    },
+    {
+      "id": "rt-gitlab-accountability-2026",
+      "title": "GitLab 2026 AI Accountability Report",
+      "url": "https://about.gitlab.com/press/releases/2026-06-23-gitlab-research-reveals-organizations-are-generating-ai-code-faster-than-they-can-control-it",
+      "kind": "understand",
+      "type": "report",
+      "access": "free",
+      "date": "2026-06",
+      "classic": false,
+      "minutes": 10,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "channel:book_cube/4668",
+      "terms": "free to read (press release)",
+      "closes": {
+        "ru": "Опрос 1528 человек: у 85% узкое место сместилось на ревью и проверку (критерий 1).",
+        "en": "Survey of 1,528: 85% say the bottleneck moved to review and validation (criterion 1)."
+      },
+      "criteria": [
+        1
+      ]
+    },
+    {
+      "id": "rt-fowler-sensors",
+      "title": "Maintainability sensors for coding agents (martinfowler.com)",
+      "url": "https://martinfowler.com/articles/sensors-for-coding-agents.html",
+      "kind": "understand",
+      "type": "article",
+      "access": "free",
+      "date": "2026-05",
+      "classic": false,
+      "minutes": 30,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "free to read on martinfowler.com",
+      "closes": {
+        "ru": "Вычислительные и LLM-сенсоры, зависимости, мутационные тесты, история сигналов (критерии 2, 3).",
+        "en": "Computational and LLM sensors, dependency rules, mutation tests, sensor history (criteria 2, 3)."
+      },
+      "criteria": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "rt-claude-hooks-guide",
+      "title": "Automate actions with hooks (Claude Code Docs)",
+      "url": "https://code.claude.com/docs/en/hooks-guide",
+      "kind": "do",
+      "type": "docs",
+      "access": "free",
+      "date": null,
+      "classic": false,
+      "minutes": 40,
+      "lang": "en",
+      "checked_at": "2026-10-21",
+      "source": "web",
+      "terms": "vendor docs, free to read",
+      "closes": {
+        "ru": "Практика: детерминированные проверки после правок и перед завершением хода (критерий 3).",
+        "en": "Hands-on: deterministic checks after edits and before a turn ends (criterion 3)."
+      },
+      "criteria": [
+        3
+      ]
+    }
+  ],
+  "minutes_total": 95
+}

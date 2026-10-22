@@ -1,0 +1,18 @@
+{
+ "area": "R0",
+ "title": {
+  "ru": "Выбор технологий",
+  "en": "Choosing technology"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 8,
+   "to_grade": "G1",
+   "check": {
+    "ru": "ADR минимум с тремя вариантами для типовой задачи; агент следует ему без напоминаний.",
+    "en": "An ADR with at least three options for a typical task; the agent follows it without reminders."
+   }
+  }
+ ]
+}

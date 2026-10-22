@@ -1,0 +1,27 @@
+{
+ "area": "R6",
+ "title": {
+  "ru": "DevOps и инфраструктура",
+  "en": "DevOps and infrastructure"
+ },
+ "levels": [
+  {
+   "level": "A",
+   "hours": 10,
+   "to_grade": "G2",
+   "check": {
+    "ru": "Проходит проверка уровня B.",
+    "en": "Covered by the level B check."
+   }
+  },
+  {
+   "level": "B",
+   "hours": 20,
+   "to_grade": "G4",
+   "check": {
+    "ru": "Учебное приложение в контейнере, CI с тестами и eval-гейтом, логи и метрики, инфраструктура в terraform.",
+    "en": "A study app in a container, CI with tests and an eval gate, logs and metrics, infrastructure in terraform."
+   }
+  }
+ ]
+}

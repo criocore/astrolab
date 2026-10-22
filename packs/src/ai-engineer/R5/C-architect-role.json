@@ -1,0 +1,120 @@
+{
+ "id": "architect-role",
+ "area": "R5",
+ "level": "C",
+ "to_grade": "G6",
+ "grade": "R5.C",
+ "order": 4,
+ "title": {
+  "ru": "Роль архитектора: принятие решений в команде, защита решения, документация",
+  "en": "The architect's role: team decisions, defending a decision, documentation"
+ },
+ "goal": {
+  "ru": "Принимать и защищать архитектурные решения вместе с командой, оставляя после себя понятный документ.",
+  "en": "Make and defend architectural decisions together with the team, leaving behind a document people can follow."
+ },
+ "criteria": {
+  "ru": [
+   "Объяснить процесс консультаций (advice process): кто принимает решение, с кем обязан посоветоваться и как фиксируется совет.",
+   "Вести журнал решений: запись с контекстом, вариантами, последствиями, статусом и уровнем уверенности; пересмотр новой записью, а не правкой.",
+   "Подготовить документ решения для команды: варианты, риски, план эволюции, критерии пересмотра, и защитить его перед людьми, отвечая на возражения."
+  ],
+  "en": [
+   "Explain the advice process: who makes the decision, whom they must consult and how the advice is recorded.",
+   "Keep a decision log: a record with context, options, consequences, status and confidence level; revise with a new record rather than an edit.",
+   "Prepare a decision document for a team: options, risks, evolution plan, criteria for revisiting, and defend it in front of people, answering objections."
+  ]
+ },
+ "materials": [
+  {
+   "id": "ar-advice",
+   "title": "Scaling the Practice of Architecture, Conversationally (Martin Fowler)",
+   "url": "https://martinfowler.com/articles/scaling-architecture-conversationally.html",
+   "kind": "understand",
+   "type": "article",
+   "access": "free",
+   "date": "2021-12",
+   "classic": false,
+   "minutes": 40,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "free to read (link only)",
+   "closes": {
+    "ru": "Advice process, ADR как инструмент разговора, Architecture Advisory Forum (критерии 1, 2, 3).",
+    "en": "The advice process, ADRs as a conversation tool, the Architecture Advisory Forum (criteria 1, 2, 3)."
+   },
+   "criteria": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "ar-msadr",
+   "title": "Maintain an architecture decision record (Azure Well-Architected Framework)",
+   "url": "https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": "2026-04",
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "vendor docs, free to read",
+   "closes": {
+    "ru": "Что записывать, статусы, уровень уверенности, журнал без правок задним числом (критерий 2). Повтор из уровня B.",
+    "en": "What to record, statuses, confidence level, a log without retroactive edits (criterion 2). Repeat from level B."
+   },
+   "criteria": [
+    2
+   ]
+  },
+  {
+   "id": "ar-c4",
+   "title": "The C4 model for visualising software architecture",
+   "url": "https://c4model.com/",
+   "kind": "understand",
+   "type": "docs",
+   "access": "free",
+   "date": null,
+   "classic": false,
+   "minutes": 15,
+   "lang": "en",
+   "checked_at": "2026-10-21",
+   "source": "web",
+   "terms": "CC BY 4.0",
+   "closes": {
+    "ru": "Выбрать уровень схемы под аудиторию документа решения (критерий 3). Повтор из уровня B.",
+    "en": "Choose the diagram level to fit the audience of the decision document (criterion 3). Repeat from level B."
+   },
+   "criteria": [
+    3
+   ]
+  }
+ ],
+ "own_texts": [
+  {
+   "id": "ar-check",
+   "title": {
+    "ru": "Проверка уровня: документ решения и защита",
+    "en": "Level check: the decision document and its defense"
+   },
+   "kind": "do",
+   "minutes": 45,
+   "criteria": [
+    2,
+    3
+   ],
+   "source": "own",
+   "terms": "CC BY-SA 4.0",
+   "body": {
+    "ru": "Выберите реальное архитектурное решение для команды (например, добавлять ли очередь, делить ли монолит, добавлять ли кэш). Напишите документ: контекст и требования; два-три варианта с последствиями; риски и как их заметите; план эволюции малыми обратимыми шагами; условия, при которых решение пересматривается; ADR со статусом.\n\nЗатем защитите его вслух перед людьми (коллегами, друзьями или записью для себя): перечислите три сильнейших возражения, ответьте на каждое и запишите, что поменяли в документе.\n\nГотово, если документ понятен без вашего пояснения, а возражения отражены либо в тексте, либо в записанном отказе.",
+    "en": "Pick a real architectural decision for a team (for example whether to add a queue, split a monolith, add a cache). Write the document: context and requirements; two or three options with consequences; risks and how you will notice them; an evolution plan in small reversible steps; conditions for revisiting the decision; an ADR with a status.\n\nThen defend it aloud in front of people (colleagues, friends, or a recording for yourself): list the three strongest objections, answer each and note what you changed in the document.\n\nYou are done when the document is clear without your explanation and the objections are reflected either in the text or in a recorded rejection."
+   }
+  }
+ ],
+ "minutes_total": 115
+}
