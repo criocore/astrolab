@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.1.1 (2026-10-24)
+
+Community release: fixes and tests by [@geibos](https://github.com/geibos) (13 issues, 5 pull requests on day one), reviewed and merged on Windows.
 
 - The mentor panel goes through the same pipeline as topic checks and exams: each call is a line in `data/logs/mentor.jsonl`, `MENTOR_MODE=record` records it, and replay (the demo) answers from recordings without starting a CLI. The "Check the agent call" button follows the same rule.
 - Fixed: a panel request with a preset that has no chat mode crashed the server.
@@ -16,6 +18,7 @@
 - Deleting a panel chat while it answers stops its agent, and nothing of the chat stays in the database.
 - Demo: "Check the agent call" says the answer comes from a recording instead of showing a working agent.
 - Record mode: a follow-up question that continues the conversation is recorded per topic, so the same question on two topics no longer shares one recording.
+- The English interface no longer shows a Russian line under a locked era gate; a test keeps each dictionary in its own script (no Cyrillic in English values, Cyrillic in every Russian one).
 
 ## 0.1.0 (2026-10-23)
 
