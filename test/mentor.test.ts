@@ -85,7 +85,7 @@ const ids0 = () => g0.checks.ru.map((_, i) => `G0#${i + 1}`);
 const okCheck = (id: string, i: number) => ({ id, verdict: 'pass', evidence: i % 2 ? { path: 'README.md', quote: QUOTES[1] } : { path: 'app.py', quote: QUOTES[0] }, note: 'ok' });
 async function runExam(checks: unknown[], folder: string, verdict = 'pass') {
   fakeAgent({ 'exam-grade': () => ({ verdict, checks, feedback: 'f', next_steps: verdict === 'pass' ? [] : ['x'] }) });
-  const st = startExam(config, db, lp, { kind: 'grade', target: 'G0', folder });
+  const st = startExam(config, db, lp, { kind: 'grade', target: 'G0', folder, lang: 'ru' }); // the client always sends lang; the checks below are the Russian ones
   assert.equal(st.status, 200, JSON.stringify(st.body));
   const examId = String(st.body.exam_id);
   const events: any[] = [];

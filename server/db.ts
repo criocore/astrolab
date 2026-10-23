@@ -11,9 +11,10 @@ export type ExamRow = {
 };
 
 // Database schema version: PRAGMA user_version. New version = new entry in MIGRATIONS; old databases are upgraded step by step on open.
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 const MIGRATIONS: Record<number, string> = {
   1: `CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);`, // meta: service values (last agent call, etc.)
+  2: "ALTER TABLE chats ADD COLUMN lang TEXT NOT NULL DEFAULT '';", // language of the conversation: a saved answer is reopened in its own language only ('' = saved before)
 };
 
 export function openDb(path: string) {
@@ -50,7 +51,12 @@ export function openDb(path: string) {
   `);
   const current = Number((db.prepare('PRAGMA user_version').get() as any).user_version ?? 0);
   if (current > DB_VERSION) throw new Error(`hub.db is version ${current}, this hub understands up to ${DB_VERSION}: update the hub`);
-  for (let v = current + 1; v <= DB_VERSION; v++) { db.exec(MIGRATIONS[v] ?? ''); db.exec(`PRAGMA user_version = ${v}`); }
+  // One transaction per step: an interrupted start leaves the database at the old version, never half-migrated
+  // (ALTER TABLE ADD COLUMN cannot be repeated).
+  for (let v = current + 1; v <= DB_VERSION; v++) {
+    db.exec('BEGIN');
+    try { db.exec(MIGRATIONS[v] ?? ''); db.exec(`PRAGMA user_version = ${v}`); db.exec('COMMIT'); } catch (e) { db.exec('ROLLBACK'); throw e; }
+  }
   return db;
 }
 export type Db = ReturnType<typeof openDb>;
@@ -206,10 +212,10 @@ export function importState(db: Db, pack: string, s: any) {
 }
 
 // Conversations with the mentor: stored so that a repeated "Explain" does not burn tokens again.
-export type ChatRow = { id: string; pack: string; topic_key: string; template: string; title: string; session_id: string; created_at: string; updated_at: string; messages: { id: number; role: string; text: string; at: string }[] };
+export type ChatRow = { id: string; pack: string; topic_key: string; template: string; title: string; lang: string; session_id: string; created_at: string; updated_at: string; messages: { id: number; role: string; text: string; at: string }[] };
 const chatMessages = (db: Db, id: string) => db.prepare('SELECT * FROM chat_messages WHERE chat_id = ? ORDER BY id ASC').all(id) as ChatRow['messages'];
-export function insertChat(db: Db, c: { id: string; pack: string; topic_key: string; template: string; title: string }) {
-  db.prepare('INSERT INTO chats (id, pack, topic_key, template, title, session_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)').run(c.id, c.pack, c.topic_key, c.template, c.title, '', now(), now());
+export function insertChat(db: Db, c: { id: string; pack: string; topic_key: string; template: string; title: string; lang: string }) {
+  db.prepare('INSERT INTO chats (id, pack, topic_key, template, title, lang, session_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').run(c.id, c.pack, c.topic_key, c.template, c.title, c.lang, '', now(), now());
 }
 export function appendChatMessage(db: Db, chatId: string, role: 'user' | 'agent' | 'error', text: string, sessionId?: string) {
   db.prepare('INSERT INTO chat_messages (chat_id, role, text, at) VALUES (?, ?, ?, ?)').run(chatId, role, text, now());

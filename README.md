@@ -196,7 +196,7 @@ Development: `npm run dev:server` and `npm run dev:web` (Vite on :5173 proxies /
 | `STUDY_HUB_PACK` | path to a pack instead of the first one in `packs/` |
 | `STUDY_HUB_DATA` | progress folder (default `data/`) |
 | `STUDY_HUB_PORT` | port (4317) |
-| `STUDY_HUB_LANG` | server-side default language for the mentor, `en` (default) or `ru`; the interface keeps its own choice in the browser |
+| `STUDY_HUB_LANG` | default language, `en` (default) or `ru`: the interface starts in it until a language is chosen on the first run (the choice is kept in the browser), and the mentor uses it for API requests without a language |
 | `MENTOR_MODE` | `live` (default), `record` (calls the agent and writes recordings), `replay` (recordings only) |
 | `STUDY_HUB_DEMO=1` | replay + `data-demo/` |
 | `STUDY_HUB_PRESET` | agent preset from `agents.json` (overrides the choice in `data/agents.local.json`) |

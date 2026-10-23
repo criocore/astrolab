@@ -33,3 +33,6 @@ export function makeConfig(over: Partial<Config> = {}): Config {
     lang: over.lang ?? (env.STUDY_HUB_LANG === 'ru' ? 'ru' : 'en'),
   };
 }
+
+// Language of a request: as asked, otherwise the hub default (STUDY_HUB_LANG). One rule for checks, exams and the panel.
+export const requestLang = (v: unknown, config: Config): 'ru' | 'en' => (v === 'ru' || v === 'en' ? v : config.lang);
