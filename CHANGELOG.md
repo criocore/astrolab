@@ -13,6 +13,9 @@
 - A saved panel answer is reopened only in the language it was written in; in the other language "Explain" asks the mentor again. Database schema version 2 (chats keep their language; older chats open in any language).
 - Error messages: every error code the server sends is shown as a sentence in the interface language (`bad_material`, `internal_error`, `bad_request`, `answer_too_long`, `unknown_preset` and `bad_option` were shown raw, as were import and agent settings errors); the error banner translates codes itself, and a test keeps the codes and the phrases in step.
 - macOS and Linux: an agent runs in its own process group, so Stop and a timeout also end the processes it started (also after the agent itself has exited), with SIGKILL for what is still alive 2 s after SIGTERM, and the call no longer waits for them; the hub stops running agents when it exits (Ctrl+C no longer reaches them directly).
+- Deleting a panel chat while it answers stops its agent, and nothing of the chat stays in the database.
+- Demo: "Check the agent call" says the answer comes from a recording instead of showing a working agent.
+- Record mode: a follow-up question that continues the conversation is recorded per topic, so the same question on two topics no longer shares one recording.
 
 ## 0.1.0 (2026-10-23)
 

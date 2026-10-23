@@ -149,7 +149,10 @@ export function WorkstationLog({ grade, onOpenTopic }: { grade: Grade; onOpenTop
   const topics = gradeTopics(grade);
   const lit = (tp: Topic) => state?.topics[tp.key]?.status === 'learned';
   const left = topics.filter((tp) => !lit(tp));
-  const callLine = agentCall ? (agentCall.ok ? `${ui('probe.call.ok', { ms: agentCall.ms })} · ${ui('probe.call.via', { d: agentCall.at.slice(0, 16).replace('T', ' ') })}` : ui('probe.call.err', { e: explainError(agentCall.error ?? '', lang) })) : ui('probe.agent.unknown');
+  // In the demo the answer comes from a recording: it says nothing about the learner's agent, so it is not shown as a success.
+  const fromRecording = agentCall?.source === 'record';
+  const answered = Boolean(agentCall?.ok && !fromRecording);
+  const callLine = agentCall ? (agentCall.ok ? (fromRecording ? ui('probe.call.rec') : `${ui('probe.call.ok', { ms: agentCall.ms })} · ${ui('probe.call.via', { d: agentCall.at.slice(0, 16).replace('T', ' ') })}`) : ui('probe.call.err', { e: explainError(agentCall.error ?? '', lang) })) : ui('probe.agent.unknown');
   return (
     <section className="card workstation">
       <div className="first-step">
@@ -164,8 +167,8 @@ export function WorkstationLog({ grade, onOpenTopic }: { grade: Grade; onOpenTop
             <span className="link" onClick={() => onOpenTopic?.(tp, grade)}>{t(tp.title)}</span>
             <span className="muted small">{ok ? ui('probe.ok') : ui('probe.missing')}{r?.detail ? ` · ${r.detail}` : ''}</span>
           </li>); })}
-        <li className={`probe-line ${agentCall?.ok ? 'ok' : ''}`}>
-          {agentCall?.ok ? <Check size={14} /> : <Circle size={14} />}
+        <li className={`probe-line ${answered ? 'ok' : ''}`}>
+          {answered ? <Check size={14} /> : <Circle size={14} />}
           <span>{ui('probe.agent.answers')}</span>
           <span className="muted small">{callLine}</span>
         </li>

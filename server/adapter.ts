@@ -14,7 +14,8 @@ export const hooks: { spawn?: SpawnFn } = {}; // tests replace process spawning
 export type CheckRequest = { mode: 'check'; step: string; system: string; user: string; schema: unknown; prompt_version: string; timeout_ms?: number };
 export type SessionRequest = { mode: 'session'; step: string; system: string; user: string; schema: unknown; prompt_version: string; workspace: string; resume?: string; timeout_ms?: number };
 // chat: the whole prompt is in user (system and schema are not used), the answer streams out as text deltas.
-export type ChatAgentRequest = { mode: 'chat'; step: string; user: string; prompt_version: string; workspace: string; resume?: string; timeout_ms?: number };
+// topic: only with resume, where user is the bare question; it keeps recordings of equal follow-ups on different topics apart.
+export type ChatAgentRequest = { mode: 'chat'; step: string; user: string; prompt_version: string; workspace: string; resume?: string; topic?: string; timeout_ms?: number };
 export type AgentRequest = CheckRequest | SessionRequest | ChatAgentRequest;
 export type AgentError = 'not_found' | 'timeout' | 'exit_code' | 'bad_output' | 'limit' | 'auth' | 'stopped' | 'no_recording' | 'mode_not_supported';
 export type Tool = { name: string; target: string };

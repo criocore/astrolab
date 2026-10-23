@@ -218,7 +218,8 @@ export function insertChat(db: Db, c: { id: string; pack: string; topic_key: str
   db.prepare('INSERT INTO chats (id, pack, topic_key, template, title, lang, session_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').run(c.id, c.pack, c.topic_key, c.template, c.title, c.lang, '', now(), now());
 }
 export function appendChatMessage(db: Db, chatId: string, role: 'user' | 'agent' | 'error', text: string, sessionId?: string) {
-  db.prepare('INSERT INTO chat_messages (chat_id, role, text, at) VALUES (?, ?, ?, ?)').run(chatId, role, text, now());
+  // Only into an existing chat: an answer finishing after its chat was deleted leaves no rows behind.
+  db.prepare('INSERT INTO chat_messages (chat_id, role, text, at) SELECT ?, ?, ?, ? WHERE EXISTS (SELECT 1 FROM chats WHERE id = ?)').run(chatId, role, text, now(), chatId);
   db.prepare("UPDATE chats SET updated_at = ?, session_id = COALESCE(NULLIF(?, ''), session_id) WHERE id = ?").run(now(), sessionId ?? '', chatId);
 }
 export function getChat(db: Db, id: string): ChatRow | null {

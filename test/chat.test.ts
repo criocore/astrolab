@@ -217,3 +217,32 @@ test('a failure without its own panel sentence reaches the client as a code, whi
   const err = ev.find((e) => e.type === 'error');
   assert.equal(err?.message, 'exit_code', 'a code, not the raw detail ("exit 1: boom")');
 });
+
+test('deleting a chat while it answers stops the agent and leaves nothing of the chat in the database', { timeout: 5000 }, async () => {
+  const h = await hub('live');
+  fakeSpawn([delta('Going on')], { hang: true });
+  const { reader, chatId } = await untilDelta(await h.req('POST', '/api/agent/ask', ask));
+  assert.equal((await h.req('DELETE', `/api/chat/${chatId}`)).status, 200);
+  let text = '';
+  for (;;) { const { value, done } = await reader.read(); if (done) break; text += value; }
+  assert.equal(events(text).at(-1).type, 'done');
+  const rows = (h.db as any).prepare('SELECT COUNT(*) AS n FROM chat_messages WHERE chat_id = ?').get(chatId).n;
+  assert.equal(rows, 0, 'no orphan messages');
+  assert.equal((await h.req('POST', `/api/chat/${chatId}/stop`)).status, 409, 'the agent is no longer running');
+});
+
+async function followUps(withKey: boolean, tag: string) {
+  const rec = await hub('record');
+  const dir = join(fixturesDir, 'mentor');
+  const before = existsSync(dir) ? readdirSync(dir).length : 0;
+  for (const [key, title] of [['G0/how-llm-works', `Follow-up topic one ${tag}`], ['G0/tokens', `Follow-up topic two ${tag}`]]) {
+    fakeSpawn([delta(`About ${title}.`), result(`About ${title}.`, `s-${key}`)]);
+    const first = events(await (await rec.req('POST', '/api/agent/ask', { ...ask, key, context: { title } })).text());
+    const calls = fakeSpawn([delta(`Example for ${title}.`), result(`Example for ${title}.`, `s-${key}`)]);
+    await (await rec.req('POST', '/api/agent/ask', { template: 'free', question: `Give an example ${tag}`, ...(withKey ? { key } : {}), chatId: first[0].id, lang: 'en' })).text();
+    assert.ok(calls[0].args.includes('--resume'), 'the follow-up resumes the conversation');
+  }
+  assert.equal(readdirSync(dir).length - before, 4, 'two topics, each with its own explanation and its own follow-up');
+}
+test('record mode: the same follow-up question on two topics makes two recordings', () => followUps(true, 'a'));
+test('record mode: the topic of a follow-up comes from its chat, also when the request has no key', () => followUps(false, 'b'));
