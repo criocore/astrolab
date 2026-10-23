@@ -61,7 +61,7 @@ const en = {
   'search.title': 'Search: “{q}”', 'search.core': 'core',
 
   'tech.meta': '{n} min · practice {d}', 'tech.gap': ' · gap', 'tech.progress': ' · in progress',
-  'gate.head': 'Gate of era {e}', 'gate.done': 'passed, the next era is open', 'gate.open': 'submitted as an artifact folder', 'gate.locked': 'закрыта до эволюции предыдущей эпохи',
+  'gate.head': 'Gate of era {e}', 'gate.done': 'passed, the next era is open', 'gate.open': 'submitted as an artifact folder', 'gate.locked': 'closed until the previous era’s evolution is passed',
   'level.passed': 'passed', 'level.btn': 'check',
   'era.label': 'Era {e}', 'topics.n': (n: number) => `${n} ${enPl(n, 'topic', 'topics')}`, 'era.meta': '{h} h · {l}/{t} topics',
   'lane.pick.t': '{l}: {a}/{b} topics. You can pick several', 'lane.core': 'AI core',
@@ -191,7 +191,7 @@ const ru: Record<Key, Entry> = {
   'menu.agent': 'Агент', 'menu.saved': 'сохранено',
 };
 
-const DICT: Record<Lang, Record<Key, Entry>> = { en, ru };
+export const DICT: Record<Lang, Record<Key, Entry>> = { en, ru };
 
 // Server error code → phrase in the UI language: any code with an `err.<code>` entry; unknown text is shown as is.
 export function explainError(e: string, lang: Lang) {

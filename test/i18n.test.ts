@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { explainError, tr, type Key } from '../web/src/i18n.ts';
+import { explainError, tr, DICT, type Key } from '../web/src/i18n.ts';
 import { ROOT } from '../server/config.ts';
 
 // Codes the client never shows: the exam stop answers not_running when the exam has already ended (ignored),
@@ -36,4 +36,15 @@ test('explainError: the "Error: " prefix of a thrown error is dropped; unknown t
   assert.equal(explainError('Error: format_unsupported', 'en'), tr('en', 'err.format_unsupported'));
   assert.equal(explainError('GET /api/x: 500 boom', 'en'), 'GET /api/x: 500 boom');
   assert.equal(explainError('Error: hide', 'en'), 'Error: hide', 'only error phrases, not other err.* entries');
+});
+
+// Plural helpers are functions: check a couple of numbers besides the plain strings.
+const entryText = (v: unknown): string => (typeof v === 'function' ? [1, 2, 5].map((n) => String((v as (x: number) => string)(n))).join(' ') : String(v));
+const CYRILLIC = /[\u0400-\u04FF]/;
+
+test('each dictionary keeps its own script: no Cyrillic in English values, Cyrillic in every Russian one', () => {
+  const enBad = Object.entries(DICT.en).filter(([, v]) => CYRILLIC.test(entryText(v)));
+  assert.deepEqual(enBad.map(([k]) => k), [], 'English values with Cyrillic text');
+  const ruBad = Object.entries(DICT.ru).filter(([, v]) => !CYRILLIC.test(entryText(v)));
+  assert.deepEqual(ruBad.map(([k]) => k), [], 'Russian values without a single Cyrillic letter');
 });
