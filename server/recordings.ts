@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Config } from './config.ts';
-import { callAgent, type AgentRequest, type AgentResult, type Ctl, type Tool } from './adapter.ts';
+import { callAgent, type AgentRequest, type AgentResult, type CallOpts } from './adapter.ts';
 
 export type Source = 'live' | 'record';
 export type Recording = { hash: string; mode: string; step: string; prompt_version: string; request: Record<string, unknown>; response: AgentResult; recorded_at: string; duration_ms: number };
@@ -18,15 +18,19 @@ function canon(v: unknown): unknown {
   }
   return v;
 }
-export function requestHash(request: AgentRequest): string {
+// The request without machine-dependent fields: the recording key is made of it, and a recording keeps only it.
+function portable(request: AgentRequest): Record<string, unknown> {
   const { timeout_ms: _t, ...rest } = request as any;
-  if (rest.mode === 'session') { delete rest.workspace; delete rest.resume; }
-  return createHash('sha256').update(JSON.stringify(canon(rest))).digest('hex');
+  if (rest.mode !== 'check') { delete rest.workspace; delete rest.resume; }
+  return rest;
+}
+export function requestHash(request: AgentRequest): string {
+  return createHash('sha256').update(JSON.stringify(canon(portable(request)))).digest('hex');
 }
 
 export const hooks: { agent?: typeof callAgent } = {}; // tests replace the agent
 
-export async function mentorCall(config: Config, request: AgentRequest, opts: { ctl?: Ctl; onTool?: (t: Tool) => void; retry?: boolean } = {}): Promise<MentorResult> {
+export async function mentorCall(config: Config, request: AgentRequest, opts: CallOpts = {}): Promise<MentorResult> {
   const started = Date.now();
   const hash = requestHash(request);
   const dir = join(config.fixturesDir, 'mentor');
@@ -36,11 +40,12 @@ export async function mentorCall(config: Config, request: AgentRequest, opts: { 
     if (!existsSync(file)) return { result: { ok: false, error: 'no_recording', detail: hash.slice(0, 12), tools: [] }, source: 'record', duration_ms: 0 };
     const rec = JSON.parse(readFileSync(file, 'utf8')) as Recording;
     for (const t of rec.response.tools ?? []) opts.onTool?.(t); // tool events are replayed from the recording
+    if (rec.response.ok && rec.response.text) opts.onDelta?.(rec.response.text); // a chat answer is replayed as one delta
     return { result: rec.response, source: 'record', duration_ms: Date.now() - started, recorded_at: rec.recorded_at };
   }
   const result = await agent(config, request, opts);
   if (config.mentorMode === 'record' && result.ok) {
-    const rec: Recording = { hash, mode: request.mode, step: request.step, prompt_version: request.prompt_version, request: request as any, response: result, recorded_at: new Date().toISOString(), duration_ms: Date.now() - started };
+    const rec: Recording = { hash, mode: request.mode, step: request.step, prompt_version: request.prompt_version, request: portable(request), response: result, recorded_at: new Date().toISOString(), duration_ms: Date.now() - started };
     mkdirSync(dir, { recursive: true });
     const tmp = `${file}.tmp`;
     writeFileSync(tmp, JSON.stringify(rec, null, 1) + '\n', 'utf8');

@@ -13,7 +13,9 @@ export const hooks: { spawn?: SpawnFn } = {}; // tests replace process spawning
 
 export type CheckRequest = { mode: 'check'; step: string; system: string; user: string; schema: unknown; prompt_version: string; timeout_ms?: number };
 export type SessionRequest = { mode: 'session'; step: string; system: string; user: string; schema: unknown; prompt_version: string; workspace: string; resume?: string; timeout_ms?: number };
-export type AgentRequest = CheckRequest | SessionRequest;
+// chat: the whole prompt is in user (system and schema are not used), the answer streams out as text deltas.
+export type ChatAgentRequest = { mode: 'chat'; step: string; user: string; prompt_version: string; workspace: string; resume?: string; timeout_ms?: number };
+export type AgentRequest = CheckRequest | SessionRequest | ChatAgentRequest;
 export type AgentError = 'not_found' | 'timeout' | 'exit_code' | 'bad_output' | 'limit' | 'auth' | 'stopped' | 'no_recording' | 'mode_not_supported';
 export type Tool = { name: string; target: string };
 export type AgentResult =
@@ -140,10 +142,13 @@ export const looksLikeAuth = (s: string) => AUTH_RE.test(s);
 
 export function killTree(child: ChildProcess | undefined) {
   if (!child || child.pid === undefined || child.exitCode !== null) return;
+  const kill = () => { try { child.kill(); } catch { /* ignore */ } };
+  // Windows: taskkill /T finds the tree through the parent, so the parent (cmd.exe for a .cmd shim) is killed only after it.
+  // Through the spawn hook: in tests the pid is fake and must not reach a real process.
   if (process.platform === 'win32') {
-    try { nodeSpawn('taskkill', ['/pid', String(child.pid), '/T', '/F'], { windowsHide: true, stdio: 'ignore' }).on('error', () => {}); } catch { /* ignore */ }
+    try { (hooks.spawn ?? nodeSpawn)('taskkill', ['/pid', String(child.pid), '/T', '/F'], { windowsHide: true, stdio: 'ignore' }).on('close', kill).on('error', kill); return; } catch { /* no taskkill */ }
   }
-  try { child.kill(); } catch { /* ignore */ }
+  kill();
 }
 
 // What stays in the log about a tool: domain for a URL, path for a file, command for the shell. Never page or file text.
@@ -369,12 +374,15 @@ export function shortTarget(target: string): string {
   return target;
 }
 
-// Topic check and exam: a wrapper over runAgent with a call log. The answer is expected to follow the schema.
-export async function callAgent(config: Config, request: AgentRequest, opts: { ctl?: Ctl; onTool?: (t: Tool) => void; preset?: string; retry?: boolean } = {}): Promise<AgentResult> {
+export type CallOpts = { ctl?: Ctl; onTool?: (t: Tool) => void; onDelta?: (text: string) => void; preset?: string; retry?: boolean };
+// Topic check, exam and panel chat: a wrapper over runAgent with a call log. Check and exam answers are expected to follow the schema.
+export async function callAgent(config: Config, request: AgentRequest, opts: CallOpts = {}): Promise<AgentResult> {
   const started = Date.now();
-  const cwd = request.mode === 'session' ? request.workspace : join(config.dataDir, 'tmp');
-  const r = await runAgent(config, { mode: request.mode, system: request.system, user: request.user, schema: request.schema, cwd, timeout_ms: request.timeout_ms, ...(request.mode === 'session' ? { resume: request.resume } : {}) },
-    { ctl: opts.ctl, preset: opts.preset, onEvent: (e) => { if (e.type === 'tool') opts.onTool?.(e.tool); } });
+  const cwd = request.mode === 'check' ? join(config.dataDir, 'tmp') : request.workspace;
+  const r = await runAgent(config, request.mode === 'chat'
+    ? { mode: 'chat', user: request.user, resume: request.resume, cwd, timeout_ms: request.timeout_ms }
+    : { mode: request.mode, system: request.system, user: request.user, schema: request.schema, cwd, timeout_ms: request.timeout_ms, ...(request.mode === 'session' ? { resume: request.resume } : {}) },
+    { ctl: opts.ctl, preset: opts.preset, onEvent: (e) => { if (e.type === 'tool') opts.onTool?.(e.tool); else if (e.type === 'delta') opts.onDelta?.(e.text); } });
   const result: AgentResult = r.ok
     ? { ok: true, json: r.json, text: r.text, agent: r.name, ms: Date.now() - started, session_id: r.session_id, tools: r.tools, ...(r.usage !== undefined ? { usage: r.usage } : {}), ...(r.total_cost_usd !== undefined ? { total_cost_usd: r.total_cost_usd } : {}) }
     : { ok: false, error: r.error, detail: r.detail, tools: r.tools };
@@ -382,6 +390,7 @@ export async function callAgent(config: Config, request: AgentRequest, opts: { c
     at: new Date().toISOString(), mode: request.mode, step: request.step, preset: r.name, source: 'live', duration_ms: Date.now() - started,
     ok: result.ok, ...(result.ok ? {} : { error: result.error }), retry: opts.retry ?? false,
     ...(result.ok && result.usage !== undefined ? { usage: result.usage } : {}), ...(result.ok && result.total_cost_usd !== undefined ? { total_cost_usd: result.total_cost_usd } : {}),
+    // Tools only for an exam: in the panel a search query or a command can repeat the learner's question.
     ...(request.mode === 'session' ? { tools: r.tools.map((t) => ({ name: t.name, target: shortTarget(t.target) })) } : {}),
   });
   return result;

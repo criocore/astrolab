@@ -1,0 +1,73 @@
+{
+ "hash": "421c8adc38a8bf9eaaaba379aebeb1bbd75857cac13085d08bb1bb8012eccc19",
+ "mode": "check",
+ "step": "probe-call",
+ "prompt_version": "probe-call@1",
+ "request": {
+  "mode": "check",
+  "step": "probe-call",
+  "prompt_version": "probe-call@1",
+  "system": "You answer with one JSON object and nothing else.",
+  "user": "Reply with {\"ok\": true}.",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "ok": {
+     "type": "boolean"
+    }
+   },
+   "required": [
+    "ok"
+   ],
+   "additionalProperties": false
+  }
+ },
+ "response": {
+  "ok": true,
+  "json": {
+   "ok": true
+  },
+  "text": "{\"ok\":true}",
+  "agent": "claude",
+  "ms": 3337,
+  "session_id": "ae38079e-6432-4421-bb46-c6c784e3835f",
+  "tools": [],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1261,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 52,
+   "output_tokens_details": {
+    "thinking_tokens": 0
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1261,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 52,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 1261,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1261
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "total_cost_usd": 0.011136
+ },
+ "recorded_at": "2026-10-23T04:36:33.728Z",
+ "duration_ms": 3339
+}

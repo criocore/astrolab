@@ -10,7 +10,7 @@ import { findPack, loadPack } from './pack.ts';
 import { askInPanel, openInTerminal, type ChatRequest } from './chat.ts';
 import { createAttempt, createCheck, noteAgentAnswered } from './mentor.ts';
 import { startExam, stopExam, subscribe } from './exam.ts';
-import { agentHealth, agentsStatus, setDefaultPreset, setPresetOptions } from './adapter.ts';
+import { agentHealth, agentsStatus, type Ctl, killTree, setDefaultPreset, setPresetOptions } from './adapter.ts';
 import { checkAgentCall, runProbes } from './probes.ts';
 
 export function createApp(config: Config) {
@@ -120,6 +120,15 @@ export function createApp(config: Config) {
   app.get('/api/chats', (c) => c.json({ chats: listChats(db, PACK_ID, c.req.query('key') ?? '') }));
   app.get('/api/chat/:id', (c) => { const ch = getChat(db, c.req.param('id')); return ch ? c.json(ch) : c.json({ error: 'not_found' }, 404); });
   app.delete('/api/chat/:id', (c) => { deleteChat(db, c.req.param('id')); return c.json({ ok: true }); });
+  // Answers being written right now: chat id -> controls of the agent processes (two tabs can ask in one chat at once).
+  // "Stop" in the panel kills them; closing the panel does not.
+  const running = new Map<string, Set<Ctl>>();
+  app.post('/api/chat/:id/stop', (c) => {
+    const ctls = running.get(c.req.param('id'));
+    if (!ctls) return c.json({ error: 'not_running' }, 409);
+    for (const ctl of ctls) { ctl.stopped = true; killTree(ctl.child); }
+    return c.json({ ok: true });
+  });
   app.post('/api/agent/ask', async (c) => {
     const req = (await c.req.json()) as ChatRequest & { key?: string; chatId?: string };
     const key = typeof req.key === 'string' ? req.key : '';
@@ -130,23 +139,46 @@ export function createApp(config: Config) {
       insertChat(db, { id: chatId, pack: PACK_ID, topic_key: key, template: req.template, title: req.context?.title ?? '' });
     } else if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
     appendChatMessage(db, chatId, 'user', [req.template !== 'free' ? req.template : '', req.question ?? ''].filter(Boolean).join(': '));
+    // Events are kept until the end: the stream may subscribe after a fast (replayed or refused) answer has already finished.
+    const events: unknown[] = [];
+    const subs = new Set<(e: unknown) => void>();
+    const send = (e: unknown) => { events.push(e); for (const s of subs) s(e); };
     let text = '';
     let sessionId = '';
-    const run = askInPanel(config, req, (e) => {
+    // Errors are saved after the answer text: a chat ending with an error row is not taken for a finished answer.
+    const errors: string[] = [];
+    const ctl: Ctl = { stopped: false };
+    const ctls = running.get(chatId) ?? new Set<Ctl>();
+    running.set(chatId, ctls.add(ctl));
+    // Saving must not throw out of the chain below: an unhandled rejection would stop the whole server.
+    const save = (role: 'agent' | 'error', t: string, session?: string) => { try { appendChatMessage(db, chatId, role, t, session); } catch (e) { console.error(`chat ${chatId}: not saved: ${(e as Error).message}`); } };
+    void askInPanel(config, req, (e) => {
       if (e.type === 'delta') text += e.text;
       else if (e.type === 'session') sessionId = e.id;
-      else if (e.type === 'error') appendChatMessage(db, chatId, 'error', e.message);
-      if (e.type !== 'done') for (const s of subs) s(e); // "done" goes to the client after the database write
-    }, new AbortController().signal).then(() => { appendChatMessage(db, chatId, 'agent', text, sessionId); for (const s of subs) s({ type: 'done' } as any); subs.clear(); });
-    const subs = new Set<(e: unknown) => void>();
+      else if (e.type === 'error') errors.push(e.message);
+      if (e.type !== 'done') send(e); // "done" goes to the client after the database write
+    }, ctl).catch((e) => {
+      const message = String((e as Error)?.message ?? e);
+      errors.push(message);
+      send({ type: 'error', message });
+    }).finally(() => {
+      ctls.delete(ctl);
+      if (!ctls.size) running.delete(chatId);
+      save('agent', text, sessionId);
+      for (const m of errors) save('error', m);
+      if (ctl.stopped) save('error', 'stopped'); // the client shows the code as "Stopped"
+      send({ type: 'done' });
+      subs.clear();
+    });
     return streamSSE(c, async (stream) => {
       await stream.writeSSE({ data: JSON.stringify({ type: 'chat', id: chatId }) });
       let chain = Promise.resolve();
       await new Promise<void>((done) => {
         const sub = (e: unknown) => { chain = chain.then(() => stream.writeSSE({ data: JSON.stringify(e) })); if ((e as any).type === 'done') void chain.then(done); };
+        for (const e of events) sub(e);
+        if (events.some((e) => (e as any).type === 'done')) return;
         subs.add(sub);
         stream.onAbort(() => { subs.delete(sub); done(); }); // client left: the agent finishes, the answer lands in the database
-        void run;
       });
     });
   });
@@ -155,10 +187,10 @@ export function createApp(config: Config) {
   // Era I probes: rerun on request (after installing git or an agent), without a model call.
   app.get('/api/probes', async (c) => { probes = runProbes(config, lp, db, await health); return c.json({ probes: await probes, agentCall: getMeta(db, 'agent_call') }); });
   // "Check call": one short call of the selected agent, only on an explicit button press. Answer: ok or an error code (auth, limit, not_found...).
-  // A successful answer is remembered in meta, like any live topic check.
+  // A successful live answer is remembered in meta, like any live topic check; in replay the call comes from a recording.
   app.post('/api/agents/check', async (c) => {
     const r = await checkAgentCall(config);
-    if (r.ok) noteAgentAnswered(config, db, r.ms, 'button');
+    if (r.ok && r.source === 'live') noteAgentAnswered(config, db, r.ms, 'button');
     return c.json(r);
   });
 

@@ -10,6 +10,8 @@ export type SkySettings = { period: number; angle: number; flash: number; concur
 export const SKY_DEFAULTS: SkySettings = { period: 600, angle: 45, flash: 4, concurrent: 6, flashes: true, enabled: true };
 export type ChatRow = { id: string; topic_key: string; template: string; title: string; session_id: string; created_at: string; updated_at: string; messages: { id: number; role: string; text: string; at: string }[] };
 const TEMPLATE_KEY: Record<ChatCall['template'], Key | ''> = { explain: 'tpl.explain', task: 'tpl.task', exam: 'tpl.exam', free: '' };
+// A saved answer can be reopened instead of calling the agent: it has agent text and was not cut by "Stop" (the chat then ends with an error row).
+export const hasAnswer = (c: ChatRow) => c.messages.some((m) => m.role === 'agent' && m.text) && c.messages.at(-1)?.role !== 'error';
 
 export const ls = {
   get: (k: string, d: string) => { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
@@ -104,7 +106,7 @@ function useHub() {
     const key = followUp ? agent.key ?? '' : opts.key ?? '';
     if (!followUp && !opts.force && !question && key) {
       const list = chats[key] ?? (await loadChats(key).catch(() => []));
-      const saved = list.find((c) => c.template === template && c.messages.some((m) => m.role === 'agent' && m.text));
+      const saved = list.find((c) => c.template === template && hasAnswer(c));
       if (saved) { openChat(saved, context); return; }
     }
     abortRef.current?.abort();
@@ -138,9 +140,14 @@ function useHub() {
   const resumeInTerminal = useCallback(async () => {
     if (agent.sessionId) await openTerminal({ template: 'free', sessionId: agent.sessionId, lang }).catch((e) => setError(String(e)));
   }, [agent.sessionId, lang]);
-  // Closing the panel only hides it: the agent keeps working, the answer is saved on the server. Stopping is a separate button.
+  // Closing the panel only hides it: the agent keeps working, the answer is saved on the server. Stopping is a separate button:
+  // the server kills the agent process and keeps the answer so far.
   const closeAgent = useCallback(() => setAgent((a) => ({ ...a, open: false })), []);
-  const stopAgent = useCallback(() => { abortRef.current?.abort(); setAgent((a) => ({ ...a, busy: false })); }, []);
+  const stopAgent = useCallback(() => {
+    if (agent.chatId) void api('POST', `/api/chat/${agent.chatId}/stop`).catch(() => {}); // 409: already finished
+    abortRef.current?.abort();
+    setAgent((a) => ({ ...a, busy: false }));
+  }, [agent.chatId]);
 
   return { pack, state, session, refreshSession, error, setError, reload, lang, setLang, ui, t, setup, finishSetup, reopenSetup, track, setTrack, setTopic, saveRow, deleteRow, agent, ask, toTerminal, resumeInTerminal, closeAgent, stopAgent, chats, loadChats, openChat, sky, setSky, probes, refreshProbes, agentCall, checkAgentCall };
 }
