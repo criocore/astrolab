@@ -8,6 +8,9 @@
 - Call log: tool targets are kept for exams only; in the panel a search query or a command can repeat the learner's question.
 - Recordings keep only the machine-independent part of the request (no workspace path, no session id).
 - Demo recordings: "Explain" for "How an LLM works" in English and Russian, and the agent call check.
+- Deleting a panel chat while it answers stops its agent, and nothing of the chat stays in the database.
+- Demo: "Check the agent call" says the answer comes from a recording instead of showing a working agent.
+- Record mode: a follow-up question that continues the conversation is recorded per topic, so the same question on two topics no longer shares one recording.
 
 ## 0.1.0 (2026-10-23)
 

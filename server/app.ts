@@ -119,10 +119,15 @@ export function createApp(config: Config) {
   // Closing the panel on the client does not break the stream: the answer is appended to the database and waits.
   app.get('/api/chats', (c) => c.json({ chats: listChats(db, PACK_ID, c.req.query('key') ?? '') }));
   app.get('/api/chat/:id', (c) => { const ch = getChat(db, c.req.param('id')); return ch ? c.json(ch) : c.json({ error: 'not_found' }, 404); });
-  app.delete('/api/chat/:id', (c) => { deleteChat(db, c.req.param('id')); return c.json({ ok: true }); });
   // Answers being written right now: chat id -> controls of the agent processes (two tabs can ask in one chat at once).
   // "Stop" in the panel kills them; closing the panel does not.
   const running = new Map<string, Set<Ctl>>();
+  // Deleting a chat that is answering stops its agents first: the answer would have nowhere to go.
+  app.delete('/api/chat/:id', (c) => {
+    for (const ctl of running.get(c.req.param('id')) ?? []) { ctl.stopped = true; killTree(ctl.child); }
+    deleteChat(db, c.req.param('id'));
+    return c.json({ ok: true });
+  });
   app.post('/api/chat/:id/stop', (c) => {
     const ctls = running.get(c.req.param('id'));
     if (!ctls) return c.json({ error: 'not_running' }, 409);

@@ -16,7 +16,7 @@ export type Topic = {
 };
 export type Probe = 'hub' | 'node' | 'git' | 'agent' | 'manual';
 export type ProbeResult = { topic: string; probe: Probe; ok: boolean; detail: string };
-export type AgentCall = { ok: boolean; error?: string; detail?: string; ms: number; agent: string; at: string; via?: 'check' | 'button' };
+export type AgentCall = { ok: boolean; error?: string; detail?: string; ms: number; agent: string; at: string; via?: 'check' | 'button'; source?: 'live' | 'record' };
 export type AdjacentLevel = { area: string; area_title: Text; level: string; hours: number; check: Text; topics: Topic[] };
 export type Grade = { id: string; order: number; title: Text; gate?: 'exam' | 'none'; hours: { core: number; adjacent: number; total: number }; exam: Text; checks: { ru: string[]; en: string[] }; core: Topic[]; adjacent: AdjacentLevel[] };
 export type Pack = {

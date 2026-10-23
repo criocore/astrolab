@@ -202,3 +202,30 @@ test('a database failure while saving the answer still ends the stream and does 
   for (;;) { const { value, done } = await reader.read(); if (done) break; text += value; }
   assert.equal(events(text).at(-1).type, 'done');
 });
+
+test('deleting a chat while it answers stops the agent and leaves nothing of the chat in the database', { timeout: 5000 }, async () => {
+  const h = await hub('live');
+  fakeSpawn([delta('Going on')], { hang: true });
+  const { reader, chatId } = await untilDelta(await h.req('POST', '/api/agent/ask', ask));
+  assert.equal((await h.req('DELETE', `/api/chat/${chatId}`)).status, 200);
+  let text = '';
+  for (;;) { const { value, done } = await reader.read(); if (done) break; text += value; }
+  assert.equal(events(text).at(-1).type, 'done');
+  const rows = (h.db as any).prepare('SELECT COUNT(*) AS n FROM chat_messages WHERE chat_id = ?').get(chatId).n;
+  assert.equal(rows, 0, 'no orphan messages');
+  assert.equal((await h.req('POST', `/api/chat/${chatId}/stop`)).status, 409, 'the agent is no longer running');
+});
+
+test('record mode: the same follow-up question on two topics makes two recordings', async () => {
+  const rec = await hub('record');
+  const dir = join(fixturesDir, 'mentor');
+  const before = existsSync(dir) ? readdirSync(dir).length : 0;
+  for (const [key, title] of [['G0/how-llm-works', 'Follow-up topic one'], ['G0/tokens', 'Follow-up topic two']]) {
+    fakeSpawn([delta(`About ${title}.`), result(`About ${title}.`, `s-${key}`)]);
+    const first = events(await (await rec.req('POST', '/api/agent/ask', { ...ask, key, context: { title } })).text());
+    const calls = fakeSpawn([delta(`Example for ${title}.`), result(`Example for ${title}.`, `s-${key}`)]);
+    await (await rec.req('POST', '/api/agent/ask', { template: 'free', question: 'Give an example', key, chatId: first[0].id, lang: 'en' })).text();
+    assert.ok(calls[0].args.includes('--resume'), 'the follow-up resumes the conversation');
+  }
+  assert.equal(readdirSync(dir).length - before, 4, 'two topics, each with its own explanation and its own follow-up');
+});

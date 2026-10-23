@@ -14,6 +14,7 @@ export type ChatRequest = {
   question?: string;
   context?: { title?: string; summary?: string; grade?: string; criteria?: string[]; links?: { title: string; url: string }[]; exam?: string; note?: string };
   sessionId?: string;
+  key?: string; // topic key of the conversation
   lang?: Lang;
 };
 
@@ -82,7 +83,7 @@ export async function askInPanel(config: Config, r: ChatRequest, onEvent: (e: Ag
   const canResume = Boolean(r.sessionId && mode.resume);
   const request = {
     mode: 'chat' as const, step: `chat-${r.template}`, prompt_version: CHAT_PROMPT_VERSION, workspace: workspace(config.dataDir),
-    user: canResume && r.template === 'free' ? r.question ?? '' : buildPrompt(r), ...(canResume ? { resume: r.sessionId } : {}),
+    user: canResume && r.template === 'free' ? r.question ?? '' : buildPrompt(r), ...(canResume ? { resume: r.sessionId, topic: r.key ?? '' } : {}),
   };
   const { result: res, source } = await mentorCall(config, request, { ctl, onDelta: (text) => onEvent({ type: 'delta', text }) });
   if (!res.ok) {
