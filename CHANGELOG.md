@@ -8,6 +8,7 @@
 - Call log: tool targets are kept for exams only; in the panel a search query or a command can repeat the learner's question.
 - Recordings keep only the machine-independent part of the request (no workspace path, no session id).
 - Demo recordings: "Explain" for "How an LLM works" in English and Russian, and the agent call check.
+- macOS and Linux: an agent runs in its own process group, so Stop and a timeout also end the processes it started, and the call no longer waits for them; the hub stops running agents when it exits (Ctrl+C no longer reaches them directly).
 
 ## 0.1.0 (2026-10-23)
 

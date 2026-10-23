@@ -140,9 +140,17 @@ export const looksLikeLimit = (s: string) => LIMIT_RE.test(s);
 const AUTH_RE = /not (logged|signed) in|please (run|use) .*login|login required|authentication (failed|error)|error authenticating|unauthorized|invalid api key|ineligible|\b401\b/i;
 export const looksLikeAuth = (s: string) => AUTH_RE.test(s);
 
+// macOS/Linux: an agent runs in its own process group, so Stop and the hub's exit reach the processes it started
+// (shell commands, MCP servers), which would otherwise outlive it and hold its output open. Only real processes:
+// with the spawn hook (tests) the pid is fake, and a group kill must never reach a real process.
+const groups = new Set<ChildProcess>();
+// The hub is exiting: the groups do not get the terminal's Ctrl+C, so they are stopped here.
+export function killAll() { for (const c of groups) killTree(c); }
+
 export function killTree(child: ChildProcess | undefined) {
   if (!child || child.pid === undefined || child.exitCode !== null) return;
   const kill = () => { try { child.kill(); } catch { /* ignore */ } };
+  if (groups.has(child)) { try { process.kill(-child.pid, 'SIGTERM'); return; } catch { /* group already gone */ } }
   // Windows: taskkill /T finds the tree through the parent, so the parent (cmd.exe for a .cmd shim) is killed only after it.
   // Through the spawn hook: in tests the pid is fake and must not reach a real process.
   if (process.platform === 'win32') {
@@ -318,14 +326,16 @@ export function runAgent(config: Config, input: RunInput, opts: { ctl?: Ctl; onE
     if (ctl.stopped) return finish(fail('stopped', '', args));
     const { file, viaCmd } = resolveCmd(preset.cmd);
     const spawn = hooks.spawn ?? nodeSpawn;
+    const group = !hooks.spawn && process.platform !== 'win32';
     let child: ChildProcess;
     try {
       child = viaCmd
         ? spawn('cmd.exe', ['/d', '/s', '/c', `"${[file, ...args.map(winQuote)].join(' ')}"`], { cwd: input.cwd, shell: false, windowsHide: true, windowsVerbatimArguments: true })
-        : spawn(file, args, { cwd: input.cwd, shell: false, windowsHide: true });
+        : spawn(file, args, { cwd: input.cwd, shell: false, windowsHide: true, detached: group });
     } catch (e) {
       return finish(fail('not_found', (e as Error).message, args));
     }
+    if (group) { groups.add(child); child.on('exit', () => groups.delete(child)); }
     ctl.child = child;
     timer = setTimeout(() => { finish(fail('timeout', `${timeout} ms`, args)); killTree(child); }, timeout);
     child.on('error', (e) => finish(fail('not_found', e.message, args)));

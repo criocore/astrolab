@@ -5,6 +5,11 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { makeConfig } from './config.ts';
 import { createApp } from './app.ts';
+import { killAll } from './adapter.ts';
+
+// Running agents are in their own process groups (macOS/Linux), out of reach of the terminal's Ctrl+C: they stop with the hub.
+process.on('exit', killAll);
+for (const [sig, code] of [['SIGINT', 130], ['SIGTERM', 143], ['SIGHUP', 129]] as const) process.on(sig, () => process.exit(code));
 
 const config = makeConfig();
 const { app, stale, port: PORT, packId: PACK_ID } = createApp(config);
