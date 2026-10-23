@@ -11,6 +11,7 @@
 - Demo recordings: "Explain" for "How an LLM works" in English and Russian, and the agent call check.
 - One default language: `STUDY_HUB_LANG` is the interface language until one is chosen on the first run, and the language of topic checks, exams and the panel for API requests without one (they defaulted to Russian, Russian and English).
 - A saved panel answer is reopened only in the language it was written in; in the other language "Explain" asks the mentor again. Database schema version 2 (chats keep their language; older chats open in any language).
+- Error messages: every error code the server sends is shown as a sentence in the interface language (`bad_material`, `internal_error`, `bad_request`, `answer_too_long`, `unknown_preset` and `bad_option` were shown raw, as were import and agent settings errors); the error banner translates codes itself, and a test keeps the codes and the phrases in step.
 
 ## 0.1.0 (2026-10-23)
 

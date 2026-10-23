@@ -1,6 +1,7 @@
 import { Settings, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { api } from './api';
+import { explainError } from './i18n';
 import { AgentPanel } from './components';
 import { HubProvider, useStore } from './store';
 import { Journal, RadarAdr, SearchResults } from './views';
@@ -101,7 +102,7 @@ function Shell() {
     await reload();
   };
 
-  if (error && !pack) return <div className="fatal">{ui('load.fail', { e: error })}</div>;
+  if (error && !pack) return <div className="fatal">{ui('load.fail', { e: explainError(error, lang) })}</div>;
   if (!pack || !state) return <div className="fatal">{ui('loading')}</div>;
   if (!setup) return <div className="app"><Sky /><Onboarding /></div>;
   return (
@@ -136,7 +137,7 @@ function Shell() {
           <input ref={fileRef} type="file" accept="application/json" hidden onChange={(e) => { if (e.target.files?.[0]) setConfirmImport(e.target.files[0]); e.target.value = ''; }} />
         </div>
       </header>
-      {error && <div className="error" onClick={() => setError('')}>{error} {ui('err.hide')}</div>}
+      {error && <div className="error" onClick={() => setError('')}>{explainError(error, lang)} {ui('error.hide')}</div>}
       {confirmImport && (
         <div className="error">{ui('import.confirm', { name: confirmImport.name })} <button className="btn" onClick={() => importJson(confirmImport)}>{ui('import.replace')}</button> <button className="btn ghost" onClick={() => setConfirmImport(null)}>{ui('cancel')}</button></div>
       )}

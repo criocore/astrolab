@@ -2,7 +2,7 @@ import { Check, Circle, RefreshCw } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Markdown } from './markdown';
 import { api, examEvents } from './api';
-import { type Key, tr, type Lang } from './i18n';
+import { explainError, type Key, tr, type Lang } from './i18n';
 import { gradeTopics, hasAnswer, isUnlocked, topicContext, useStore } from './store';
 import type { AgentContext, AttemptResult, CheckHistory, ExamRow, Grade, Material, Question, Topic } from './types';
 
@@ -16,13 +16,6 @@ export function Bar({ pct, label }: { pct: number; label?: string }) {
 }
 
 const STATUS_KEY: Record<string, Key | ''> = { not_started: '', in_progress: 'status.in_progress', gap: 'status.gap', learned: 'status.learned' };
-const ERROR_KEYS = new Set<string>(['locked', 'limit', 'not_found', 'auth', 'timeout', 'schema_invalid', 'quote_not_in_answer', 'no_recording', 'bad_folder', 'agent_failed', 'stopped', 'exit_code', 'bad_output', 'mode_not_supported', 'pack_mismatch', 'no_gate', 'probe_topic', 'format_unsupported']);
-
-// Server error code → phrase in the UI language; unknown text is shown as is.
-export function explainError(e: string, lang: Lang) {
-  const code = e.replace(/^Error:\s*/, '');
-  return ERROR_KEYS.has(code) ? tr(lang, `err.${code}` as Key) : e;
-}
 
 export function AgentButtons({ context, exam, topicKey }: { context: AgentContext; exam?: boolean; topicKey?: string }) {
   const { ask, toTerminal, session, chats, loadChats, openChat, ui, lang } = useStore();
