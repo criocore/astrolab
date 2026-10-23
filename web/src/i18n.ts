@@ -14,7 +14,7 @@ const en = {
   'menu.title': 'Settings', 'menu.open': 'Search and settings', 'menu.search': 'Search the program', 'menu.search.ph': 'topic, criterion, material',
   'menu.track': 'Track', 'menu.lang': 'Language', 'menu.export': 'Export', 'menu.export.t': 'Download progress as JSON', 'menu.import': 'Import', 'menu.import.t': 'Load progress from JSON',
   'menu.setup': 'Setup: language, agent, model',
-  'load.fail': 'Could not load: {e}', 'loading': 'Loading…', 'err.hide': '(click to hide)',
+  'load.fail': 'Could not load: {e}', 'loading': 'Loading…', 'error.hide': '(click to hide)',
   'import.confirm': 'Import will replace all current progress with “{name}”.', 'import.replace': 'Replace', 'cancel': 'Cancel',
 
   'status.in_progress': 'in progress', 'status.gap': 'gap', 'status.learned': 'learned',
@@ -26,6 +26,7 @@ const en = {
   'err.stopped': 'Stopped.', 'err.exit_code': 'The agent exited with an error.', 'err.bad_output': 'The agent returned no result.',
   'err.mode_not_supported': 'This agent preset does not support this mode.', 'err.pack_mismatch': 'The file belongs to another pack.',
   'err.bad_material': 'The agent named a material that is not in this topic, try again.', 'err.internal_error': 'The hub failed while checking the answer. Try again.',
+  'err.unknown_preset': 'There is no such agent preset.', 'err.bad_option': 'This value is not accepted: one word, no spaces or quotes.',
   'err.bad_request': 'The hub could not read this request.', 'err.answer_too_long': 'The answer is too long: up to 4000 characters.',
 
   'agent.saved.t': 'Saved answer, the agent is not called', 'agent.panel.t': 'Answer in the panel on the right',
@@ -106,7 +107,7 @@ const ru: Record<Key, Entry> = {
   'menu.title': 'Настройки', 'menu.open': 'Поиск и настройки', 'menu.search': 'Поиск по программе', 'menu.search.ph': 'тема, критерий, материал',
   'menu.track': 'Трек', 'menu.lang': 'Язык', 'menu.export': 'Экспорт', 'menu.export.t': 'Скачать прогресс в JSON', 'menu.import': 'Импорт', 'menu.import.t': 'Загрузить прогресс из JSON',
   'menu.setup': 'Настройка: язык, агент, модель',
-  'load.fail': 'Не удалось загрузить: {e}', 'loading': 'Загрузка…', 'err.hide': '(нажми, чтобы скрыть)',
+  'load.fail': 'Не удалось загрузить: {e}', 'loading': 'Загрузка…', 'error.hide': '(нажми, чтобы скрыть)',
   'import.confirm': 'Импорт заменит весь текущий прогресс файлом «{name}».', 'import.replace': 'Заменить', 'cancel': 'Отмена',
 
   'status.in_progress': 'в работе', 'status.gap': 'пробел', 'status.learned': 'изучено',
@@ -118,6 +119,7 @@ const ru: Record<Key, Entry> = {
   'err.stopped': 'Остановлено.', 'err.exit_code': 'Агент завершился с ошибкой.', 'err.bad_output': 'Агент не вернул результат.',
   'err.mode_not_supported': 'Этот пресет агента не умеет такой режим.', 'err.pack_mismatch': 'Файл от другого пакета.',
   'err.bad_material': 'Агент назвал материал не из этой темы, попробуйте ещё раз.', 'err.internal_error': 'Хаб сломался при проверке ответа. Попробуйте ещё раз.',
+  'err.unknown_preset': 'Такого пресета агента нет.', 'err.bad_option': 'Такое значение не подходит: одно слово, без пробелов и кавычек.',
   'err.bad_request': 'Хаб не смог разобрать запрос.', 'err.answer_too_long': 'Ответ слишком длинный: не больше 4000 символов.',
 
   'agent.saved.t': 'Сохранённый ответ, агент не вызывается', 'agent.panel.t': 'Ответ в панели справа',
