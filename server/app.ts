@@ -138,7 +138,10 @@ export function createApp(config: Config) {
     if (!existing) {
       chatId = `ch-${randomBytes(6).toString('hex')}`;
       insertChat(db, { id: chatId, pack: PACK_ID, topic_key: key, template: req.template, title: req.context?.title ?? '', lang: req.lang ?? '' });
-    } else if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
+    } else {
+      if (existing.lang) req.lang = existing.lang as 'ru' | 'en'; // a conversation keeps its language: its saved answer is looked up by it
+      if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
+    }
     appendChatMessage(db, chatId, 'user', [req.template !== 'free' ? req.template : '', req.question ?? ''].filter(Boolean).join(': '));
     // Events are kept until the end: the stream may subscribe after a fast (replayed or refused) answer has already finished.
     const events: unknown[] = [];

@@ -79,6 +79,16 @@ test('a saved answer keeps its language and is reopened only in that language', 
   assert.equal(hasAnswer({ ...chats[0], lang: '' }, 'ru'), true, 'a chat saved before the language was kept opens in any language');
 });
 
+test('a follow-up keeps the language of its conversation, also after the interface switched', async () => {
+  const req = await hub('en');
+  const first = (await (await req('POST', '/api/agent/ask', { template: 'explain', key: 'G0/how-llm-works', context: { title: 'How an LLM works' }, lang: 'en' })).text());
+  const chatId = JSON.parse(first.split('\n\n')[0].replace(/^data:\s*/, '')).id;
+  await (await req('POST', '/api/agent/ask', { template: 'free', question: 'and?', key: 'G0/how-llm-works', chatId, lang: 'ru' })).text();
+  assert.equal(cyrillic(lastUser()), false, 'the follow-up is asked in English, the language of the chat');
+  const { chats } = await (await req('GET', '/api/chats?key=G0%2Fhow-llm-works')).json() as { chats: ChatRow[] };
+  assert.equal(chats.find((c) => c.id === chatId)!.lang, 'en');
+});
+
 test('a database of version 1 is upgraded: its chats get an empty language and open in any language', () => {
   const file = join(root, 'v1.db');
   const db1 = openDb(file);

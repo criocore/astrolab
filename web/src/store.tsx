@@ -69,6 +69,7 @@ function useHub() {
   // After first launch the tree opens on the first era: its stars are already lit by probes, the evolution is open.
   const finishSetup = () => {
     ls.set('hub.setup', '1');
+    ls.set('hub.lang', lang); // the language shown on the first run is the choice, even without pressing its button
     const first = pack ? [...pack.grades].sort((a, b) => a.order - b.order)[0] : null;
     if (first) { ls.set('hub.tree.focus', first.id); try { localStorage.removeItem('hub.tree.sel'); } catch { /* private window */ } }
     setSetupState(true);

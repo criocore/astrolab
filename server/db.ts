@@ -51,7 +51,12 @@ export function openDb(path: string) {
   `);
   const current = Number((db.prepare('PRAGMA user_version').get() as any).user_version ?? 0);
   if (current > DB_VERSION) throw new Error(`hub.db is version ${current}, this hub understands up to ${DB_VERSION}: update the hub`);
-  for (let v = current + 1; v <= DB_VERSION; v++) { db.exec(MIGRATIONS[v] ?? ''); db.exec(`PRAGMA user_version = ${v}`); }
+  // One transaction per step: an interrupted start leaves the database at the old version, never half-migrated
+  // (ALTER TABLE ADD COLUMN cannot be repeated).
+  for (let v = current + 1; v <= DB_VERSION; v++) {
+    db.exec('BEGIN');
+    try { db.exec(MIGRATIONS[v] ?? ''); db.exec(`PRAGMA user_version = ${v}`); db.exec('COMMIT'); } catch (e) { db.exec('ROLLBACK'); throw e; }
+  }
   return db;
 }
 export type Db = ReturnType<typeof openDb>;
