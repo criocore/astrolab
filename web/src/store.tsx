@@ -8,10 +8,11 @@ type AgentMsg = { role: 'user' | 'agent' | 'error'; text: string };
 type AgentPanel = { open: boolean; context?: AgentContext; msgs: AgentMsg[]; sessionId?: string; chatId?: string; key?: string; template?: ChatCall['template']; busy: boolean };
 export type SkySettings = { period: number; angle: number; flash: number; concurrent: number; flashes: boolean; enabled: boolean };
 export const SKY_DEFAULTS: SkySettings = { period: 600, angle: 45, flash: 4, concurrent: 6, flashes: true, enabled: true };
-export type ChatRow = { id: string; topic_key: string; template: string; title: string; session_id: string; created_at: string; updated_at: string; messages: { id: number; role: string; text: string; at: string }[] };
+export type ChatRow = { id: string; topic_key: string; template: string; title: string; lang: string; session_id: string; created_at: string; updated_at: string; messages: { id: number; role: string; text: string; at: string }[] };
 const TEMPLATE_KEY: Record<ChatCall['template'], Key | ''> = { explain: 'tpl.explain', task: 'tpl.task', exam: 'tpl.exam', free: '' };
-// A saved answer can be reopened instead of calling the agent: it has agent text and was not cut by "Stop" (the chat then ends with an error row).
-export const hasAnswer = (c: ChatRow) => c.messages.some((m) => m.role === 'agent' && m.text) && c.messages.at(-1)?.role !== 'error';
+// A saved answer can be reopened instead of calling the agent: it is in the interface language (or was saved before chats kept one),
+// has agent text and was not cut by "Stop" or an error (the chat then ends with an error row).
+export const hasAnswer = (c: ChatRow, lang: Lang) => (c.lang === lang || !c.lang) && c.messages.some((m) => m.role === 'agent' && m.text) && c.messages.at(-1)?.role !== 'error';
 
 export const ls = {
   get: (k: string, d: string) => { try { return localStorage.getItem(k) ?? d; } catch { return d; } },
@@ -51,7 +52,9 @@ function useHub() {
   useEffect(() => {
     (async () => {
       try {
-        setSession(await initSession());
+        const s = await initSession();
+        setSession(s);
+        if (!ls.get('hub.lang', '')) setLangState(s.lang); // not chosen yet: the hub default (STUDY_HUB_LANG) until the first-run choice
         setPack(await api<Pack>('GET', '/api/pack'));
         await reload();
         // probes after the first render: they can light stars, so the state is re-read after them
@@ -106,7 +109,7 @@ function useHub() {
     const key = followUp ? agent.key ?? '' : opts.key ?? '';
     if (!followUp && !opts.force && !question && key) {
       const list = chats[key] ?? (await loadChats(key).catch(() => []));
-      const saved = list.find((c) => c.template === template && hasAnswer(c));
+      const saved = list.find((c) => c.template === template && hasAnswer(c, lang));
       if (saved) { openChat(saved, context); return; }
     }
     abortRef.current?.abort();

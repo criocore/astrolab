@@ -4,7 +4,7 @@ import { Hono } from 'hono';
 import { streamSSE } from 'hono/streaming';
 import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
-import type { Config } from './config.ts';
+import { type Config, requestLang } from './config.ts';
 import { appendChatMessage, closeStaleExams, deleteChat, deleteRow, examsPassed, EXPORT_FORMAT, exportState, getChat, getMeta, importState, insertChat, isList, listChats, listExams, openDb, readState, setTopic, topicHistory, upsertRow } from './db.ts';
 import { findPack, loadPack } from './pack.ts';
 import { askInPanel, openInTerminal, type ChatRequest } from './chat.ts';
@@ -59,7 +59,7 @@ export function createApp(config: Config) {
   app.get('/api/topic/history', (c) => c.json({ checks: topicHistory(db, PACK_ID, c.req.query('key') ?? '') }));
   app.post('/api/topic/check', async (c) => {
     const b = await c.req.json().catch(() => ({}));
-    const r = await createCheck(config, db, lp, String(b.key ?? ''), b.lang === 'en' ? 'en' : 'ru');
+    const r = await createCheck(config, db, lp, String(b.key ?? ''), requestLang(b.lang, config));
     return c.json(r.body, r.status as 200);
   });
   app.post('/api/check/:id/attempt', async (c) => {
@@ -131,12 +131,13 @@ export function createApp(config: Config) {
   });
   app.post('/api/agent/ask', async (c) => {
     const req = (await c.req.json()) as ChatRequest & { key?: string; chatId?: string };
+    req.lang = requestLang(req.lang, config);
     const key = typeof req.key === 'string' ? req.key : '';
     let chatId = typeof req.chatId === 'string' ? req.chatId : '';
     const existing = chatId ? getChat(db, chatId) : null;
     if (!existing) {
       chatId = `ch-${randomBytes(6).toString('hex')}`;
-      insertChat(db, { id: chatId, pack: PACK_ID, topic_key: key, template: req.template, title: req.context?.title ?? '' });
+      insertChat(db, { id: chatId, pack: PACK_ID, topic_key: key, template: req.template, title: req.context?.title ?? '', lang: req.lang ?? '' });
     } else if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
     appendChatMessage(db, chatId, 'user', [req.template !== 'free' ? req.template : '', req.question ?? ''].filter(Boolean).join(': '));
     // Events are kept until the end: the stream may subscribe after a fast (replayed or refused) answer has already finished.
@@ -182,7 +183,7 @@ export function createApp(config: Config) {
       });
     });
   });
-  app.post('/api/agent/terminal', async (c) => c.json(openInTerminal(config, (await c.req.json()) as ChatRequest)));
+  app.post('/api/agent/terminal', async (c) => { const req = (await c.req.json()) as ChatRequest; req.lang = requestLang(req.lang, config); return c.json(openInTerminal(config, req)); });
 
   // Era I probes: rerun on request (after installing git or an agent), without a model call.
   app.get('/api/probes', async (c) => { probes = runProbes(config, lp, db, await health); return c.json({ probes: await probes, agentCall: getMeta(db, 'agent_call') }); });

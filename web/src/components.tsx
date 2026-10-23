@@ -25,14 +25,14 @@ export function explainError(e: string, lang: Lang) {
 }
 
 export function AgentButtons({ context, exam, topicKey }: { context: AgentContext; exam?: boolean; topicKey?: string }) {
-  const { ask, toTerminal, session, chats, loadChats, openChat, ui } = useStore();
+  const { ask, toTerminal, session, chats, loadChats, openChat, ui, lang } = useStore();
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
   const noCli = session ? !session.agent.found : false;
   const off = noCli && session?.mentorMode !== 'replay'; // replay (demo) answers from recordings; the terminal still needs the CLI
   const key = topicKey ?? (exam ? `exam:${context.grade}` : '');
   useEffect(() => { if (key && !chats[key]) void loadChats(key).catch(() => {}); }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
-  const saved = (tpl: string) => (chats[key] ?? []).find((c) => c.template === tpl && hasAnswer(c));
+  const saved = (tpl: string) => (chats[key] ?? []).find((c) => c.template === tpl && hasAnswer(c, lang));
   const mark = (tpl: string) => (saved(tpl) ? ' ✓' : '');
   const opts = { key };
   const others = (chats[key] ?? []).filter((c) => c.template === 'free' && c.messages.some((m) => m.role === 'agent' && m.text));

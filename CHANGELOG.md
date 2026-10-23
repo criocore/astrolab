@@ -8,6 +8,8 @@
 - Call log: tool targets are kept for exams only; in the panel a search query or a command can repeat the learner's question.
 - Recordings keep only the machine-independent part of the request (no workspace path, no session id).
 - Demo recordings: "Explain" for "How an LLM works" in English and Russian, and the agent call check.
+- One default language: `STUDY_HUB_LANG` is the interface language until one is chosen on the first run, and the language of topic checks, exams and the panel for API requests without one (they defaulted to Russian, Russian and English).
+- A saved panel answer is reopened only in the language it was written in; in the other language "Explain" asks the mentor again. Database schema version 2 (chats keep their language; older chats open in any language).
 
 ## 0.1.0 (2026-10-23)
 

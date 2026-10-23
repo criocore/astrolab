@@ -3,7 +3,7 @@
 import { randomBytes } from 'node:crypto';
 import { readFileSync, realpathSync, statSync } from 'node:fs';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
-import type { Config } from './config.ts';
+import { type Config, requestLang } from './config.ts';
 import { type Db, type ExamRow, examsPassed, getExam, insertExam, updateExam } from './db.ts';
 import type { Ctl, Tool } from './adapter.ts';
 import { killTree } from './adapter.ts';
@@ -69,7 +69,7 @@ function rubric(lp: LoadedPack, kind: 'grade' | 'level', target: string, lang: L
 export function startExam(config: Config, db: Db, lp: LoadedPack, body: any): Handled {
   const kind = body?.kind === 'level' ? 'level' : body?.kind === 'grade' ? 'grade' : null;
   const target = typeof body?.target === 'string' ? body.target : '';
-  const lang: Lang = body?.lang === 'en' ? 'en' : 'ru';
+  const lang: Lang = requestLang(body?.lang, config);
   if (!kind || !target) return bad(400, 'bad_request');
   const r = rubric(lp, kind, target, lang);
   if (!r) return bad(404, 'not_found');
