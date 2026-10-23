@@ -202,3 +202,18 @@ test('a database failure while saving the answer still ends the stream and does 
   for (;;) { const { value, done } = await reader.read(); if (done) break; text += value; }
   assert.equal(events(text).at(-1).type, 'done');
 });
+
+test('a failure without its own panel sentence reaches the client as a code, which the interface translates', async () => {
+  const h = await hub('live');
+  adapterHooks.spawn = () => {
+    const child: any = new EventEmitter();
+    child.pid = 4242; child.exitCode = null;
+    child.stdout = new PassThrough(); child.stderr = new PassThrough(); child.stdin = new PassThrough();
+    child.kill = () => {};
+    setTimeout(() => { child.stdout.end(); child.stderr.end('boom'); setTimeout(() => { child.exitCode = 1; child.emit('close', 1); }, 5); }, 5);
+    return child;
+  };
+  const ev = events(await (await h.req('POST', '/api/agent/ask', ask)).text());
+  const err = ev.find((e) => e.type === 'error');
+  assert.equal(err?.message, 'exit_code', 'a code, not the raw detail ("exit 1: boom")');
+});

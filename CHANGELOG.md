@@ -4,6 +4,7 @@
 
 - The mentor panel goes through the same pipeline as topic checks and exams: each call is a line in `data/logs/mentor.jsonl`, `MENTOR_MODE=record` records it, and replay (the demo) answers from recordings without starting a CLI. The "Check the agent call" button follows the same rule.
 - Fixed: a panel request with a preset that has no chat mode crashed the server.
+- Panel failures without a sentence of their own show the error's phrase in the interface language (a timeout read "600000 ms").
 - "Stop" in the panel now stops the agent process on the server; the answer written so far is kept and marked as stopped, so "Explain" asks again instead of opening the cut answer; the same holds for an answer cut by an error (limit, login, timeout). Closing the panel still lets the agent finish.
 - Call log: tool targets are kept for exams only; in the panel a search query or a command can repeat the learner's question.
 - Recordings keep only the machine-independent part of the request (no workspace path, no session id).

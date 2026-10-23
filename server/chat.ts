@@ -90,7 +90,7 @@ export async function askInPanel(config: Config, r: ChatRequest, onEvent: (e: Ag
     const msg = res.error === 'not_found' ? fmt(L.notFound, { c: preset.cmd, d: res.detail })
       : res.error === 'auth' ? fmt(L.auth, { n: title, d: res.detail.slice(-200) })
       : res.error === 'limit' ? fmt(L.limit, { n: title })
-      : res.error === 'no_recording' ? L.noRecording : res.detail || res.error;
+      : res.error === 'no_recording' ? L.noRecording : res.error; // a code: the interface shows its phrase (not "600000 ms")
     if (res.error !== 'stopped') onEvent({ type: 'error', message: msg });
   } else if (res.session_id && source === 'live') onEvent({ type: 'session', id: res.session_id }); // a recorded session lives on the recording machine
   onEvent({ type: 'done', ...(res.ok && res.total_cost_usd !== undefined ? { cost: res.total_cost_usd } : {}) });
