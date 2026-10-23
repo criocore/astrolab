@@ -143,14 +143,23 @@ export const looksLikeAuth = (s: string) => AUTH_RE.test(s);
 // macOS/Linux: an agent runs in its own process group, so Stop and the hub's exit reach the processes it started
 // (shell commands, MCP servers), which would otherwise outlive it and hold its output open. Only real processes:
 // with the spawn hook (tests) the pid is fake, and a group kill must never reach a real process.
+// A group is kept until the agent's output closes, not until the agent exits: a helper it left behind holding the output
+// keeps the call open, and Stop or the timeout must still reach it.
 const groups = new Set<ChildProcess>();
-// The hub is exiting: the groups do not get the terminal's Ctrl+C, so they are stopped here.
-export function killAll() { for (const c of groups) killTree(c); }
+const GRACE_MS = 2000; // after SIGTERM, a group still alive gets SIGKILL
+const signalGroup = (pid: number, sig: NodeJS.Signals | 0) => { try { process.kill(-pid, sig); return true; } catch { return false; } };
+// The hub is exiting: the groups do not get the terminal's Ctrl+C. SIGTERM first; what is left at exit gets SIGKILL.
+export function killAll(sig: 'SIGTERM' | 'SIGKILL' = 'SIGTERM') { for (const c of groups) signalGroup(c.pid!, sig); return groups.size; }
 
 export function killTree(child: ChildProcess | undefined) {
-  if (!child || child.pid === undefined || child.exitCode !== null) return;
+  if (!child || child.pid === undefined) return;
+  if (groups.has(child)) {
+    const pid = child.pid;
+    if (signalGroup(pid, 'SIGTERM')) setTimeout(() => { if (signalGroup(pid, 0)) signalGroup(pid, 'SIGKILL'); }, GRACE_MS).unref();
+    return;
+  }
+  if (child.exitCode !== null) return;
   const kill = () => { try { child.kill(); } catch { /* ignore */ } };
-  if (groups.has(child)) { try { process.kill(-child.pid, 'SIGTERM'); return; } catch { /* group already gone */ } }
   // Windows: taskkill /T finds the tree through the parent, so the parent (cmd.exe for a .cmd shim) is killed only after it.
   // Through the spawn hook: in tests the pid is fake and must not reach a real process.
   if (process.platform === 'win32') {
@@ -335,7 +344,7 @@ export function runAgent(config: Config, input: RunInput, opts: { ctl?: Ctl; onE
     } catch (e) {
       return finish(fail('not_found', (e as Error).message, args));
     }
-    if (group) { groups.add(child); child.on('exit', () => groups.delete(child)); }
+    if (group) { groups.add(child); child.on('close', () => groups.delete(child)).on('error', () => groups.delete(child)); }
     ctl.child = child;
     timer = setTimeout(() => { finish(fail('timeout', `${timeout} ms`, args)); killTree(child); }, timeout);
     child.on('error', (e) => finish(fail('not_found', e.message, args)));

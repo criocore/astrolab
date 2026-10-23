@@ -8,8 +8,16 @@ import { createApp } from './app.ts';
 import { killAll } from './adapter.ts';
 
 // Running agents are in their own process groups (macOS/Linux), out of reach of the terminal's Ctrl+C: they stop with the hub.
-process.on('exit', killAll);
-for (const [sig, code] of [['SIGINT', 130], ['SIGTERM', 143], ['SIGHUP', 129]] as const) process.on(sig, () => process.exit(code));
+// A signal gives them a second after SIGTERM (a second signal exits at once); whatever is left at exit gets SIGKILL.
+process.on('exit', () => killAll('SIGKILL'));
+let exiting = false;
+for (const [sig, code] of [['SIGINT', 130], ['SIGTERM', 143], ['SIGHUP', 129]] as const) {
+  process.on(sig, () => {
+    if (exiting || !killAll('SIGTERM')) process.exit(code);
+    exiting = true;
+    setTimeout(() => process.exit(code), 1000);
+  });
+}
 
 const config = makeConfig();
 const { app, stale, port: PORT, packId: PACK_ID } = createApp(config);
