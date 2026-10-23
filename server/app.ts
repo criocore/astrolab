@@ -142,7 +142,10 @@ export function createApp(config: Config) {
     if (!existing) {
       chatId = `ch-${randomBytes(6).toString('hex')}`;
       insertChat(db, { id: chatId, pack: PACK_ID, topic_key: key, template: req.template, title: req.context?.title ?? '' });
-    } else if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
+    } else {
+      req.key = existing.topic_key; // the conversation's own topic, whatever the request says (it keys a resumed follow-up's recording)
+      if (!req.sessionId && existing.session_id) req.sessionId = existing.session_id;
+    }
     appendChatMessage(db, chatId, 'user', [req.template !== 'free' ? req.template : '', req.question ?? ''].filter(Boolean).join(': '));
     // Events are kept until the end: the stream may subscribe after a fast (replayed or refused) answer has already finished.
     const events: unknown[] = [];

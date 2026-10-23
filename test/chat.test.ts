@@ -216,16 +216,18 @@ test('deleting a chat while it answers stops the agent and leaves nothing of the
   assert.equal((await h.req('POST', `/api/chat/${chatId}/stop`)).status, 409, 'the agent is no longer running');
 });
 
-test('record mode: the same follow-up question on two topics makes two recordings', async () => {
+async function followUps(withKey: boolean, tag: string) {
   const rec = await hub('record');
   const dir = join(fixturesDir, 'mentor');
   const before = existsSync(dir) ? readdirSync(dir).length : 0;
-  for (const [key, title] of [['G0/how-llm-works', 'Follow-up topic one'], ['G0/tokens', 'Follow-up topic two']]) {
+  for (const [key, title] of [['G0/how-llm-works', `Follow-up topic one ${tag}`], ['G0/tokens', `Follow-up topic two ${tag}`]]) {
     fakeSpawn([delta(`About ${title}.`), result(`About ${title}.`, `s-${key}`)]);
     const first = events(await (await rec.req('POST', '/api/agent/ask', { ...ask, key, context: { title } })).text());
     const calls = fakeSpawn([delta(`Example for ${title}.`), result(`Example for ${title}.`, `s-${key}`)]);
-    await (await rec.req('POST', '/api/agent/ask', { template: 'free', question: 'Give an example', key, chatId: first[0].id, lang: 'en' })).text();
+    await (await rec.req('POST', '/api/agent/ask', { template: 'free', question: `Give an example ${tag}`, ...(withKey ? { key } : {}), chatId: first[0].id, lang: 'en' })).text();
     assert.ok(calls[0].args.includes('--resume'), 'the follow-up resumes the conversation');
   }
   assert.equal(readdirSync(dir).length - before, 4, 'two topics, each with its own explanation and its own follow-up');
-});
+}
+test('record mode: the same follow-up question on two topics makes two recordings', () => followUps(true, 'a'));
+test('record mode: the topic of a follow-up comes from its chat, also when the request has no key', () => followUps(false, 'b'));
