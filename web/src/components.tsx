@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Markdown } from './markdown';
 import { api, examEvents } from './api';
 import { type Key, tr, type Lang } from './i18n';
-import { gradeTopics, isUnlocked, topicContext, useStore } from './store';
+import { gradeTopics, hasAnswer, isUnlocked, topicContext, useStore } from './store';
 import type { AgentContext, AttemptResult, CheckHistory, ExamRow, Grade, Material, Question, Topic } from './types';
 
 export function Bar({ pct, label }: { pct: number; label?: string }) {
@@ -28,10 +28,11 @@ export function AgentButtons({ context, exam, topicKey }: { context: AgentContex
   const { ask, toTerminal, session, chats, loadChats, openChat, ui } = useStore();
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
-  const off = session ? !session.agent.found : false;
+  const noCli = session ? !session.agent.found : false;
+  const off = noCli && session?.mentorMode !== 'replay'; // replay (demo) answers from recordings; the terminal still needs the CLI
   const key = topicKey ?? (exam ? `exam:${context.grade}` : '');
   useEffect(() => { if (key && !chats[key]) void loadChats(key).catch(() => {}); }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
-  const saved = (tpl: string) => (chats[key] ?? []).find((c) => c.template === tpl && c.messages.some((m) => m.role === 'agent' && m.text));
+  const saved = (tpl: string) => (chats[key] ?? []).find((c) => c.template === tpl && hasAnswer(c));
   const mark = (tpl: string) => (saved(tpl) ? ' ✓' : '');
   const opts = { key };
   const others = (chats[key] ?? []).filter((c) => c.template === 'free' && c.messages.some((m) => m.role === 'agent' && m.text));
@@ -45,7 +46,7 @@ export function AgentButtons({ context, exam, topicKey }: { context: AgentContex
       )}
       <button className="btn ghost" disabled={off} onClick={() => setOpen((v) => !v)}>{ui('agent.ask')}</button>
       {others.length > 0 && <button className="btn ghost" onClick={() => openChat(others[0], context)} title={ui('agent.chats.t')}>{ui('agent.chats', { n: others.length })}</button>}
-      <button className="btn ghost" disabled={off} onClick={() => toTerminal(exam ? 'exam' : 'explain', context, q || undefined)} title={ui('agent.terminal.t')}>{ui('agent.terminal')}</button>
+      <button className="btn ghost" disabled={noCli} onClick={() => toTerminal(exam ? 'exam' : 'explain', context, q || undefined)} title={ui('agent.terminal.t')}>{ui('agent.terminal')}</button>
       {open && (
         <form className="ask-inline" onSubmit={(e) => { e.preventDefault(); if (q.trim()) { ask('free', context, q.trim(), false, opts); setQ(''); setOpen(false); } }}>
           <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder={ui('agent.q.ph')} />
@@ -178,7 +179,7 @@ export function WorkstationLog({ grade, onOpenTopic }: { grade: Grade; onOpenTop
       </ul>
       <div className="row">
         <button className="btn ghost" disabled={busy !== null} onClick={async () => { setBusy('probes'); await refreshProbes().catch(() => {}); setBusy(null); }}><RefreshCw size={12} /> {ui('probe.recheck')}</button>
-        <button className="btn" disabled={busy !== null || !session?.agent.found} title={ui('probe.call.note')} onClick={async () => { setBusy('call'); await checkAgentCall().catch(() => {}); setBusy(null); }}>{busy === 'call' ? ui('panel.thinking') : ui('probe.call')}</button>
+        <button className="btn" disabled={busy !== null || (!session?.agent.found && session?.mentorMode !== 'replay')} title={ui('probe.call.note')} onClick={async () => { setBusy('call'); await checkAgentCall().catch(() => {}); setBusy(null); }}>{busy === 'call' ? ui('panel.thinking') : ui('probe.call')}</button>
         <span className="muted small">{ui('probe.call.note')}</span>
       </div>
       {left.length > 0 && <div className="small muted">{ui('probe.left')}: {left.map((tp) => <span key={tp.key} className="chip link" onClick={() => onOpenTopic?.(tp, grade)}>{t(tp.title)}</span>)}</div>}
@@ -335,7 +336,7 @@ export function ExamCard({ kind, target, title, task, gradeId }: { kind: 'grade'
 }
 
 export function AgentPanel() {
-  const { agent, ask, closeAgent, stopAgent, resumeInTerminal, session, ui } = useStore();
+  const { agent, ask, closeAgent, stopAgent, resumeInTerminal, session, ui, lang } = useStore();
   const [q, setQ] = useState('');
   if (!agent.open) return null;
   const canRedo = !agent.busy && agent.template && agent.template !== 'free' && agent.context;
@@ -351,7 +352,7 @@ export function AgentPanel() {
         <button className="btn ghost" onClick={closeAgent} title={ui('panel.close.t')}>✕</button>
       </header>
       <div className="msgs">
-        {agent.msgs.map((m, i) => <div key={i} className={`msg ${m.role}`}>{m.role === 'agent' && m.text ? <Markdown text={m.text} /> : (m.text || (agent.busy && i === agent.msgs.length - 1 ? ui('panel.thinking') : ''))}</div>)}
+        {agent.msgs.map((m, i) => <div key={i} className={`msg ${m.role}`}>{m.role === 'agent' && m.text ? <Markdown text={m.text} /> : m.role === 'error' ? explainError(m.text, lang) : (m.text || (agent.busy && i === agent.msgs.length - 1 ? ui('panel.thinking') : ''))}</div>)}
       </div>
       <form onSubmit={(e) => { e.preventDefault(); if (q.trim() && !agent.busy) { ask('free', undefined, q.trim(), true); setQ(''); } }}>
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={agent.busy ? ui('panel.busy.ph') : ui('panel.ask.ph')} disabled={agent.busy} />

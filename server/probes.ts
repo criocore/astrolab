@@ -2,7 +2,8 @@
 // hub: the hub is running (so a terminal exists). node: process version >= 22.13. git: `git --version` in PATH.
 // agent: the selected CLI is found (`--version`). manual: a checkbox set by hand via PUT /api/topic. No probe goes to the network.
 import { spawn, type ChildProcess } from 'node:child_process';
-import { type AgentHealth, agentHealth, callAgent, killTree, resolveCmd, resolvePreset } from './adapter.ts';
+import { type AgentHealth, agentHealth, killTree, resolveCmd, resolvePreset } from './adapter.ts';
+import { mentorCall, type Source } from './recordings.ts';
 import type { Config } from './config.ts';
 import { type Db, getTopic, setTopic } from './db.ts';
 import type { LoadedPack, Topic } from './pack.ts';
@@ -60,17 +61,18 @@ export async function runProbes(config: Config, lp: LoadedPack, db: Db, agent?: 
 }
 
 // "Check call": one short agent call in check mode. The only probe that needs a model; only on an explicit button press.
-export async function checkAgentCall(config: Config): Promise<{ ok: boolean; error?: string; detail?: string; ms: number; agent: string }> {
+// Through mentorCall like any other call: logged in data/logs/mentor.jsonl when live, taken from a recording in replay (demo).
+export async function checkAgentCall(config: Config): Promise<{ ok: boolean; error?: string; detail?: string; ms: number; agent: string; source: Source }> {
   const t0 = Date.now();
   const { name } = resolvePreset(config);
-  const r = await callAgent(config, { // via callAgent, so the call lands in data/logs/mentor.jsonl like any other
+  const { result: r, source } = await mentorCall(config, {
     mode: 'check', step: 'probe-call', prompt_version: 'probe-call@1', timeout_ms: 90_000,
     system: 'You answer with one JSON object and nothing else.',
     user: 'Reply with {"ok": true}.',
     schema: { type: 'object', properties: { ok: { type: 'boolean' } }, required: ['ok'], additionalProperties: false },
   });
   const ms = Date.now() - t0;
-  if (!r.ok) return { ok: false, error: r.error, detail: r.detail, ms, agent: name };
+  if (!r.ok) return { ok: false, error: r.error, detail: r.detail, ms, agent: name, source };
   const ok = !!(r.json as any)?.ok || /\bok\b/i.test(r.text);
-  return ok ? { ok: true, ms, agent: name } : { ok: false, error: 'bad_output', detail: r.text.slice(0, 200), ms, agent: name };
+  return ok ? { ok: true, ms, agent: name, source } : { ok: false, error: 'bad_output', detail: r.text.slice(0, 200), ms, agent: name, source };
 }

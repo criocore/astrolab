@@ -176,7 +176,7 @@ npm start            # http://127.0.0.1:4317
 
 Or just `start.cmd` (Windows) and `./start.sh` (macOS, Linux). Version 0.1 was run and checked on Windows only; `start.sh` and the macOS/Linux paths have not been exercised yet, so a report or a fix from those systems is welcome. On the first run the hub asks for the language, the agent, its model and effort level; all of it can be changed later in the settings menu.
 
-`start.cmd --demo` runs the hub without an agent: the mentor's answers come from recordings in `fixtures/mentor`, progress goes to a separate `data-demo/` folder. For the Era II demo exam point it at `fixtures/exam-g0-demo`: a deliberately incomplete artifact (the code is there, the cost calculation is not), which shows how the gate confirms quotes against files and where it marks a gap.
+`start.cmd --demo` runs the hub without an agent: the mentor's answers come from recordings in `fixtures/mentor`, progress goes to a separate `data-demo/` folder. For the Era II demo exam point it at `fixtures/exam-g0-demo`: a deliberately incomplete artifact (the code is there, the cost calculation is not), which shows how the gate confirms quotes against files and where it marks a gap. In the mentor panel the demo has a recorded "Explain" for "How an LLM works"; other panel requests say there is no recording, the demo never starts a CLI.
 
 Development: `npm run dev:server` and `npm run dev:web` (Vite on :5173 proxies /api). Tests: `npm test` (no live agent needed). Pack check: `npm run check:pack`.
 
