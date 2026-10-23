@@ -25,6 +25,8 @@ const en = {
   'err.bad_folder': 'Folder not found. Give an absolute path to the artifact folder.', 'err.agent_failed': 'The agent failed, try again.',
   'err.stopped': 'Stopped.', 'err.exit_code': 'The agent exited with an error.', 'err.bad_output': 'The agent returned no result.',
   'err.mode_not_supported': 'This agent preset does not support this mode.', 'err.pack_mismatch': 'The file belongs to another pack.',
+  'err.bad_material': 'The agent named a material that is not in this topic, try again.', 'err.internal_error': 'The hub failed while checking the answer. Try again.',
+  'err.bad_request': 'The hub could not read this request.', 'err.answer_too_long': 'The answer is too long: up to 4000 characters.',
 
   'agent.saved.t': 'Saved answer, the agent is not called', 'agent.panel.t': 'Answer in the panel on the right',
   'agent.prep': 'Prepare for the exam', 'agent.explain': 'Explain', 'agent.task': 'Task', 'agent.ask': 'Ask…',
@@ -115,6 +117,8 @@ const ru: Record<Key, Entry> = {
   'err.bad_folder': 'Папка не найдена. Укажите абсолютный путь к папке с артефактом.', 'err.agent_failed': 'Агент не справился, попробуйте ещё раз.',
   'err.stopped': 'Остановлено.', 'err.exit_code': 'Агент завершился с ошибкой.', 'err.bad_output': 'Агент не вернул результат.',
   'err.mode_not_supported': 'Этот пресет агента не умеет такой режим.', 'err.pack_mismatch': 'Файл от другого пакета.',
+  'err.bad_material': 'Агент назвал материал не из этой темы, попробуйте ещё раз.', 'err.internal_error': 'Хаб сломался при проверке ответа. Попробуйте ещё раз.',
+  'err.bad_request': 'Хаб не смог разобрать запрос.', 'err.answer_too_long': 'Ответ слишком длинный: не больше 4000 символов.',
 
   'agent.saved.t': 'Сохранённый ответ, агент не вызывается', 'agent.panel.t': 'Ответ в панели справа',
   'agent.prep': 'Подготовиться к экзамену', 'agent.explain': 'Объясни', 'agent.task': 'Задание', 'agent.ask': 'Спросить…',
@@ -186,6 +190,12 @@ const ru: Record<Key, Entry> = {
 };
 
 const DICT: Record<Lang, Record<Key, Entry>> = { en, ru };
+
+// Server error code → phrase in the UI language: any code with an `err.<code>` entry; unknown text is shown as is.
+export function explainError(e: string, lang: Lang) {
+  const key = `err.${e.replace(/^Error:\s*/, '')}`;
+  return key in en ? tr(lang, key as Key) : e;
+}
 
 export function tr(lang: Lang, key: Key, vars?: Record<string, string | number>): string {
   const e = DICT[lang][key] ?? en[key];

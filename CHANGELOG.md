@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Error messages: every error code the server sends is shown as a sentence in the interface language (`bad_material`, `internal_error`, `bad_request` and `answer_too_long` were shown raw, as were import errors); a test keeps the codes and the phrases in step.
+
 ## 0.1.0 (2026-10-23)
 
 First public cut.

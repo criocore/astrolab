@@ -1,6 +1,7 @@
 import { Settings, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { api } from './api';
+import { explainError } from './i18n';
 import { AgentPanel } from './components';
 import { HubProvider, useStore } from './store';
 import { Journal, RadarAdr, SearchResults } from './views';
@@ -96,7 +97,7 @@ function Shell() {
     a.click();
   };
   const importJson = async (f: File) => {
-    await api('POST', '/api/import', JSON.parse(await f.text())).catch((e) => setError(String(e)));
+    await api('POST', '/api/import', JSON.parse(await f.text())).catch((e) => setError(explainError(String(e), lang)));
     setConfirmImport(null);
     await reload();
   };
