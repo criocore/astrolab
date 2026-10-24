@@ -196,8 +196,10 @@ export function exportState(db: Db, pack: string) {
 export function importState(db: Db, pack: string, s: any) {
   db.exec('BEGIN');
   try {
+    // Attempts have no pack column: they go with this pack's checks, the other packs' answers stay.
+    // Answers without a check belong to no pack (saved after an import removed their check) and go too.
+    db.prepare('DELETE FROM attempts WHERE check_id IN (SELECT id FROM checks WHERE pack = ?) OR check_id NOT IN (SELECT id FROM checks)').run(pack);
     for (const t of ['topic_state', 'checks', 'exams']) db.prepare(`DELETE FROM ${t} WHERE pack = ?`).run(pack);
-    db.exec('DELETE FROM attempts');
     for (const l of Object.keys(LISTS)) db.exec(`DELETE FROM ${l}`);
     for (const [key, v] of Object.entries(s.topics ?? {})) setTopic(db, pack, key, v as TopicState);
     for (const c of s.checks ?? []) insertCheck(db, { ...c, pack });
