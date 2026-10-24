@@ -211,7 +211,7 @@ The mentor and the examiner is your own coding agent. The hub keeps no keys and 
 | Preset | CLI | Topic check | Exam on a folder: how read-only is enforced | Mentor panel |
 |---|---|---|---|---|
 | `claude` | Claude Code | `claude -p` without tools, response schema by flag | `--restricted`: file tools limited to the folder, Bash and writes disabled | streaming answer, conversation continues (`--resume`) |
-| `codex` | Codex CLI | `codex exec --json`, schema as a file (`--output-schema`), web search disabled | `--sandbox read-only`: no writes, no network; Codex reads with shell commands inside the sandbox and can read the whole file system, the folder boundary holds by the prompt only | whole answer after the turn, no conversation continuation |
+| `codex` | Codex CLI | `codex exec --json`, schema as a file (`--output-schema`), web search disabled | `--sandbox read-only`: no writes, no network; Codex reads with shell commands inside the sandbox and can read the whole file system, the folder boundary holds by the prompt only | whole answer after the turn, conversation continues (`exec resume`) |
 | `gemini` | Gemini CLI | `gemini -p` with JSON output, schema inside the prompt | `--approval-mode plan`: read-only tools only (read_file, glob, grep_search, list_directory) and Google web search | streaming answer, conversation continues (`--resume`) |
 
 Model and effort are chosen on the first run and in the settings menu; the choice is stored in `data/agents.local.json` under `options` and passed to the CLI as flags on every call (topic check, exam, mentor panel, terminal tab). Empty means the CLI's own default.

@@ -75,6 +75,15 @@ test('codex: every mode skips the user config and the apps, so only the sandboxe
   }
 });
 
+// `codex exec [flags] resume <thread> -`: a panel follow-up continues the thread instead of arriving without the topic.
+test('codex chat: a follow-up resumes the thread, "resume <id>" goes before the stdin "-"', async () => {
+  const calls = fakeSpawn({ stdout: jsonl([{ type: 'thread.started', thread_id: 'th-9' }, { type: 'item.completed', item: { id: 'm', type: 'agent_message', text: 'ok' } }]) });
+  const r = await callAgent(config, { mode: 'chat', step: 'chat-free', user: 'and then?', prompt_version: 'chat@1', workspace: dir, resume: 'th-9' }, { preset: 'codex' });
+  assert.equal(r.ok, true);
+  assert.match(argline(calls[0]), /\sresume th-9 -"?$/);
+  assert.equal(calls[0].stdin, 'and then?');
+});
+
 // Codex has no file tools: in the exam it reads with shell commands inside its read-only sandbox, which the prompt's "Run nothing" forbids.
 test('codex session: the preset adds its own note to the system part, after the prompt', async () => {
   const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });

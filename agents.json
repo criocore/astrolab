@@ -82,7 +82,8 @@
         },
         "chat": {
           "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-"],
-          "output": "jsonl"
+          "output": "jsonl",
+          "resume": "resume"
         }
       },
       "terminal": {}
