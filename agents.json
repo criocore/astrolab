@@ -1,5 +1,5 @@
 {
-  "$comment": "Пресеты coding-агентов. Локальные правки: data/agents.local.json с теми же полями (поля переопределяются, массивы и null заменяются целиком). Режимы: check = один вызов без чтения файлов, ответ по JSON-схеме; session = агент читает папку (экзамен); chat = панель наставника; terminal = интерактивная сессия во вкладке терминала. system: флаг CLI или \"inline\" (текст идёт в начале промпта). schema: флаг со строкой, {flag, file: true} (схема пишется в файл) или \"inline\" (схема в промпте). output: json (один объект на stdout) или jsonl (события построчно). Промпт всегда идёт через stdin. scope: как у этого CLI держится «только чтение»: restricted = файлы только внутри папки (Claude --restricted), sandbox = песочница без записи, чтение всей ФС (Codex --sandbox read-only), plan = режим только чтения (Gemini --approval-mode plan). options: параметры CLI, которые выбирает пользователь (онбординг и меню настроек); args с подстановкой {value}, choices = подсказки, free = можно ввести своё; значение хранится в data/agents.local.json → options[preset][name]; пустое значение = умолчание самого CLI.",
+  "$comment": "Пресеты coding-агентов. Локальные правки: data/agents.local.json с теми же полями (поля переопределяются, массивы и null заменяются целиком). Режимы: check = один вызов без чтения файлов, ответ по JSON-схеме; session = агент читает папку (экзамен); chat = панель наставника; terminal = интерактивная сессия во вкладке терминала. system: флаг CLI или \"inline\" (текст идёт в начале промпта). schema: флаг со строкой, {flag, file: true} (схема пишется в файл) или \"inline\" (схема в промпте). output: json (один объект на stdout) или jsonl (события построчно). system_extra: текст, который добавляется к системной части только для этого CLI (например, как он читает файлы). Промпт всегда идёт через stdin. scope: как у этого CLI держится «только чтение»: restricted = файлы только внутри папки (Claude --restricted), sandbox = песочница без записи, чтение всей ФС (Codex --sandbox read-only), plan = режим только чтения (Gemini --approval-mode plan). options: параметры CLI, которые выбирает пользователь (онбординг и меню настроек); args с подстановкой {value}, choices = подсказки, free = можно ввести своё; значение хранится в data/agents.local.json → options[preset][name]; пустое значение = умолчание самого CLI.",
   "default": "claude",
   "presets": {
     "claude": {
@@ -62,7 +62,7 @@
       },
       "modes": {
         "check": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--ephemeral", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--ephemeral", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
           "output": "jsonl",
           "system": "inline",
           "schema": {
@@ -71,16 +71,17 @@
           }
         },
         "session": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
           "output": "jsonl",
           "system": "inline",
+          "system_extra": "Codex has no file tools here: read the folder with read-only shell commands (ls, find, cat, sed -n, rg) inside the working directory. That is allowed; a command that writes, installs or uses the network is not, and the sandbox blocks it.",
           "schema": {
             "flag": "--output-schema",
             "file": true
           }
         },
         "chat": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--skip-git-repo-check", "--color", "never", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-"],
           "output": "jsonl"
         }
       },

@@ -22,7 +22,7 @@ A map of eras, a check in your own words, an exam that reads your files. Free, o
   <img alt="MIT" src="https://img.shields.io/badge/license-MIT-2fbf9a?style=flat-square">
   <img alt="Node 22.13+" src="https://img.shields.io/badge/node-%E2%89%A5%2022.13-121a33?style=flat-square&logo=nodedotjs&logoColor=white">
   <img alt="Claude Code tested live" src="https://img.shields.io/badge/Claude%20Code-tested%20live-e2b955?style=flat-square">
-  <img alt="Codex CLI from docs" src="https://img.shields.io/badge/Codex%20CLI-from%20docs-b08d57?style=flat-square">
+  <img alt="Codex CLI tested live" src="https://img.shields.io/badge/Codex%20CLI-tested%20live-e2b955?style=flat-square">
   <img alt="Gemini CLI from docs" src="https://img.shields.io/badge/Gemini%20CLI-from%20docs-b08d57?style=flat-square">
   <img alt="Windows checked" src="https://img.shields.io/badge/Windows-checked-2fbf9a?style=flat-square">
   <img alt="macOS and Linux: CI green, start.sh untested" src="https://img.shields.io/badge/macOS%20%7C%20Linux-CI%20green%2C%20start.sh%20untested-b08d57?style=flat-square">
@@ -110,7 +110,7 @@ The hub itself sends nothing anywhere; the only network traffic is what your CLI
 | Topic check | Claude Code, live; verdicts with quotes checked against the answer | recordings for a demo of more topics |
 | Era gate | quotes verified in files by the hub; demo folder with a deliberate gap | a deed per topic: one file or one command output the hub can confirm |
 | Era I | four probes (terminal, Node, git, agent), two topics ticked by hand | "check the call" on the first-run screen, custom CLI on screen |
-| Agents | Claude Code run live; Codex CLI and Gemini CLI set up from their docs | live runs of Codex and Gemini, an opencode adapter |
+| Agents | Claude Code and Codex CLI run live; Gemini CLI set up from its docs | a live run of Gemini, an opencode adapter |
 | Pack "AI Engineer" | 8 eras, 13 adjacent areas, 172 topics, 660 open materials with checked dates | monthly link check in CI, YAML sources |
 | Chronicle and Rutter | notes, technology radar and ADRs beside the program | an automatic feed of events; decisions stored as files in your repository |
 | Platforms | Windows, checked end to end; tests, pack check and build pass in CI on Ubuntu and macOS | macOS and Linux: `start.sh` is written but has not been run by a person yet |
@@ -211,7 +211,7 @@ The mentor and the examiner is your own coding agent. The hub keeps no keys and 
 | Preset | CLI | Topic check | Exam on a folder: how read-only is enforced | Mentor panel |
 |---|---|---|---|---|
 | `claude` | Claude Code | `claude -p` without tools, response schema by flag | `--restricted`: file tools limited to the folder, Bash and writes disabled | streaming answer, conversation continues (`--resume`) |
-| `codex` | Codex CLI | `codex exec --json`, schema as a file (`--output-schema`), web search disabled | `--sandbox read-only`: no writes, no network; Codex can read the whole file system, the folder boundary holds by the prompt only | whole answer after the turn, no conversation continuation |
+| `codex` | Codex CLI | `codex exec --json`, schema as a file (`--output-schema`), web search disabled | `--sandbox read-only`: no writes, no network; Codex reads with shell commands inside the sandbox and can read the whole file system, the folder boundary holds by the prompt only | whole answer after the turn, no conversation continuation |
 | `gemini` | Gemini CLI | `gemini -p` with JSON output, schema inside the prompt | `--approval-mode plan`: read-only tools only (read_file, glob, grep_search, list_directory) and Google web search | streaming answer, conversation continues (`--resume`) |
 
 Model and effort are chosen on the first run and in the settings menu; the choice is stored in `data/agents.local.json` under `options` and passed to the CLI as flags on every call (topic check, exam, mentor panel, terminal tab). Empty means the CLI's own default.
@@ -222,7 +222,7 @@ Model and effort are chosen on the first run and in the settings menu; the choic
 | `codex` | `-m <model>` | `-c model_reasoning_effort="low … xhigh"` |
 | `gemini` | `-m <model>` | no flag; thinking depth lives in the CLI's own settings |
 
-The hub verifies exam quotes against files itself, so the verdict is honest with any agent; what differs is what the agent may read beyond the folder. Codex and Gemini flags were checked against the vendors' documentation on 2026-10-22; live runs were done with Claude Code only. Your own CLI or other flags: put `data/agents.local.json` with the same fields as `agents.json`; the local file overrides a preset field by field, arrays and `null` replace the value entirely.
+The hub verifies exam quotes against files itself, so the verdict is honest with any agent; what differs is what the agent may read beyond the folder. Gemini flags were checked against the vendor's documentation on 2026-10-22. Codex CLI 0.162.1 was run live on macOS on 2026-10-24: topic check, exam on `fixtures/exam-g0-demo`, mentor panel. Every call the hub makes to Codex (topic check, exam, panel) runs with `--ignore-user-config --ignore-rules --disable apps`: MCP servers from `~/.codex/config.toml` and ChatGPT apps run outside its read-only sandbox, and saved "allow" rules in `~/.codex/rules` can let a command out of it, so none of them applies. The terminal tab opens your ordinary interactive Codex, with your own config. This also skips the model and profiles set in that file (choose the model in the hub's settings); sign-in still comes from `CODEX_HOME`. Your own CLI or other flags: put `data/agents.local.json` with the same fields as `agents.json`; the local file overrides a preset field by field, arrays and `null` replace the value entirely.
 
 </details>
 
