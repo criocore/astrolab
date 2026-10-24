@@ -30,7 +30,7 @@ export type Mode = {
   args: string[];
   output?: 'json' | 'jsonl';                         // json: one object on stdout; jsonl: events line by line (default)
   system?: string | null;                            // CLI flag or "inline": text at the start of the prompt
-  system_extra?: string;                             // added to the system part for this CLI only (how it reads files, for example)
+  system_extra?: string;                             // added to the system part, when the request has one (check, exam), for this CLI only
   schema?: string | { flag: string; file: true } | null; // flag with a string, flag with a file, or "inline": schema in the prompt
   resume?: string | null;
 };

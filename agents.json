@@ -62,7 +62,7 @@
       },
       "modes": {
         "check": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--disable", "apps", "--skip-git-repo-check", "--ephemeral", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--ephemeral", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
           "output": "jsonl",
           "system": "inline",
           "schema": {
@@ -71,7 +71,7 @@
           }
         },
         "session": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-c", "web_search=\"disabled\"", "-"],
           "output": "jsonl",
           "system": "inline",
           "system_extra": "Codex has no file tools here: read the folder with read-only shell commands (ls, find, cat, sed -n, rg) inside the working directory. That is allowed; a command that writes, installs or uses the network is not, and the sandbox blocks it.",
@@ -81,7 +81,7 @@
           }
         },
         "chat": {
-          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-"],
+          "args": ["exec", "--json", "--sandbox", "read-only", "--ignore-user-config", "--ignore-rules", "--disable", "apps", "--skip-git-repo-check", "--color", "never", "-"],
           "output": "jsonl"
         }
       },
