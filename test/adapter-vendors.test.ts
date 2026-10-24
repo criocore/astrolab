@@ -71,6 +71,7 @@ test('codex: every mode skips the user config and the apps, so only the sandboxe
     await callAgent(config, req, { preset: 'codex' });
     const a = argline(calls[0]);
     assert.match(a, /\s--ignore-user-config\s/, `${req.mode}: user config skipped`);
+    assert.match(a, /\s--ignore-rules\s/, `${req.mode}: saved "allow" rules skipped`);
     assert.match(a, /\s--disable apps\s/, `${req.mode}: apps disabled`);
   }
 });
