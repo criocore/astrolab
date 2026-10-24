@@ -2,20 +2,15 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, basename } from 'node:path';
 
-export type Text = { ru: string; en: string };
-export type Material = {
-  id: string; title: string; url: string; kind: 'understand' | 'do'; type: string; access: string;
-  date: string | null; classic: boolean; minutes: number; lang: string; checked_at: string;
-  source: string; terms: string; track?: string; closes: Text; criteria: number[];
-  repeat_of?: { topic: string; title: Text };
-};
+// Materials, refs and texts have the built pack's shape (shared/pack.ts); topics and own texts below are the source files, before the build.
+import type { Material, Probe, Ref, Text } from '../shared/pack.ts';
+export type { Material, Ref, Text } from '../shared/pack.ts';
 export type OwnText = { id: string; title: Text; kind: 'understand' | 'do'; minutes: number; criteria: number[]; source: 'own'; terms: string; body: Text };
-export type Ref = { id: string; topic: string; title?: Text; criteria_there: number[]; criteria: number[]; closes: Text };
 export type Topic = {
   key: string; seq?: number; id: string; order: number; grade?: string; area?: string; level?: string; to_grade?: string;
   title: Text; goal: Text; criteria: { ru: string[]; en: string[] };
   materials: Material[]; own_texts?: OwnText[]; refs?: Ref[]; minutes_total: number; minutes_by_track?: Record<string, number>;
-  probe?: 'hub' | 'node' | 'git' | 'agent' | 'manual'; // topic of a gateless era: the hub lights the star (or a tick when manual)
+  probe?: Probe; // topic of a gateless era: the hub lights the star (or a tick when manual)
   _file: string;
 };
 export type Level = { level: string; hours: number; to_grade: string; check: Text };

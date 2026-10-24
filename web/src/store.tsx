@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { api, askAgent, initSession, openTerminal, type ChatCall } from './api';
 import { type Key, tr } from './i18n';
 import { GRADE_EPOCH } from './icons';
+import { isGradeUnlocked } from '../../shared/pack';
 import type { AdjacentLevel, AgentCall, AgentContext, Grade, Lang, Pack, ProbeResult, Session, State, Text, Topic, TopicState } from './types';
 
 type AgentMsg = { role: 'user' | 'agent' | 'error'; text: string };
@@ -171,13 +172,8 @@ export function useStore() {
 export const levelKey = (lv: { area: string; level: string }) => `${lv.area}/${lv.level}`;
 export const gradeTopics = (g: Grade): Topic[] => [...g.core, ...g.adjacent.flatMap((a) => a.topics)];
 
-export function isUnlocked(pack: Pack, gradeId: string, state: State | null): boolean {
-  const sorted = [...pack.grades].sort((a, b) => a.order - b.order);
-  const i = sorted.findIndex((g) => g.id === gradeId);
-  if (i <= 0) return i === 0;
-  const prev = sorted[i - 1];
-  return prev.gate === 'none' || !!state?.exams[prev.id]?.passed;
-}
+// The server's lock rule (shared/pack.ts) on the progress the interface holds.
+export const isUnlocked = (pack: Pack, gradeId: string, state: State | null): boolean => isGradeUnlocked(pack, gradeId, state?.exams ?? {});
 // Era is closed: the evolution is passed, or, for an era without one, all topics are studied (probes or checkboxes).
 export function gradeDone(g: Grade, state: State | null): boolean {
   if (g.gate === 'none') { const ts = gradeTopics(g); return ts.length > 0 && ts.every((t) => state?.topics[t.key]?.status === 'learned'); }
