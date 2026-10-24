@@ -54,6 +54,24 @@ export async function mentorCall(config: Config, request: AgentRequest, opts: Ca
   return { result, source: 'live', duration_ms: Date.now() - started };
 }
 
+// At most two calls. An answer that came but is rejected (reject returns its code) is asked again once; an agent error
+// only when the caller's retry rule allows it. The last failure is the one returned. A stop ends the calls at once.
+export type Asked = { ok: true; call: MentorResult & { result: Extract<AgentResult, { ok: true }> }; json: any; total: number } | { ok: false; error: string; detail?: string; total: number };
+export async function askTwice(config: Config, request: AgentRequest, rule: { retryable: (error: string) => boolean; reject: (json: any) => string | null; opts?: CallOpts; stopped?: () => boolean }): Promise<Asked> {
+  let total = 0;
+  let failed: { error: string; detail?: string } = { error: '' };
+  for (let i = 0; i < 2; i++) {
+    const r = await mentorCall(config, request, { ...rule.opts, retry: i > 0 });
+    total += r.duration_ms;
+    if (rule.stopped?.()) return { ok: false, error: 'stopped', total };
+    if (!r.result.ok) { failed = { error: r.result.error, detail: r.result.detail }; if (!rule.retryable(r.result.error)) break; continue; }
+    const why = rule.reject(r.result.json);
+    if (why) { failed = { error: why }; continue; }
+    return { ok: true, call: { ...r, result: r.result }, json: r.result.json, total };
+  }
+  return { ok: false, ...failed, total };
+}
+
 export function loadPrompt(config: Config, name: string): { system: string; schema: unknown; version: string } {
   const system = readFileSync(join(config.promptsDir, `${name}.md`), 'utf8');
   const schema = JSON.parse(readFileSync(join(config.promptsDir, `${name}.schema.json`), 'utf8'));

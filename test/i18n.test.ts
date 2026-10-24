@@ -15,7 +15,8 @@ function serverCodes(): Set<string> {
   const dir = join(ROOT, 'server');
   const src = readdirSync(dir).filter((f) => f.endsWith('.ts') && f !== 'schema.ts').map((f) => readFileSync(join(dir, f), 'utf8')).join('\n');
   const codes = new Set<string>();
-  for (const re of [/fail\('([a-z_]+)'/g, /\b(?:bad|err)\(\d+, '([a-z_]+)'\)/g, /lastError = '([a-z_]+)'/g]) {
+  // fail(), bad()/err(), and the codes of a rejected agent answer (reject in askTwice)
+  for (const re of [/fail\('([a-z_]+)'/g, /\b(?:bad|err)\(\d+, '([a-z_]+)'\)/g, /return '([a-z_]+)'/g, /\? null : '([a-z_]+)'/g]) {
     for (const m of src.matchAll(re)) codes.add(m[1]);
   }
   // error: 'code', or a choice between codes (error: cond ? 'a' : 'b'): every quoted code up to the end of the value

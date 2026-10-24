@@ -4,12 +4,13 @@ import { randomBytes } from 'node:crypto';
 import type { Config } from './config.ts';
 import { type Db, getCheck, insertAttempt, insertCheck, attemptsOf, setMeta, setTopic, examsPassed } from './db.ts';
 import { resolvePreset } from './adapter.ts';
-import { esc, loadPrompt, mentorCall } from './recordings.ts';
+import { askTwice, esc, loadPrompt } from './recordings.ts';
 import { isTopicUnlocked, text, type Lang, type LoadedPack } from './pack.ts';
 import { isValid } from './schema.ts';
 
 export const MAX_ANSWER = 4000;
 const NO_RETRY = new Set(['limit', 'auth', 'not_found', 'no_recording', 'mode_not_supported']); // retrying will not help
+const retryable = (error: string) => !NO_RETRY.has(error); // the topic check's rule: any other agent error is asked again once
 type Handled = { status: number; body: Record<string, unknown> };
 
 // A live mentor answer proves the agent is logged in: the era I log reads this from meta.
@@ -35,21 +36,14 @@ export async function createCheck(config: Config, db: Db, lp: LoadedPack, key: s
     mode: 'check' as const, step: 'questions', system: p.system.replaceAll('{{lang}}', lang), schema: p.schema, prompt_version: p.version,
     user: `<topic id="${topic.key}">\n<title>${esc(text(topic.title, lang))}</title>\n<goal>${esc(text(topic.goal, lang))}</goal>\n<criteria>\n${crit.map((c, i) => `${i + 1}. ${esc(c)}`).join('\n')}\n</criteria>\n</topic>`,
   };
-  let total = 0;
-  let lastError = '';
-  for (let i = 0; i < 2; i++) {
-    const r = await mentorCall(config, request, { retry: i > 0 });
-    total += r.duration_ms;
-    if (!r.result.ok) { lastError = r.result.error; if (NO_RETRY.has(r.result.error)) break; continue; }
-    const json: any = r.result.json;
-    if (!isValid(p.schema, json) || !covered(json.questions, crit.length)) { lastError = 'schema_invalid'; continue; }
-    const check = { id: `ck-${randomBytes(6).toString('hex')}`, pack: lp.pack.id, topic_key: key, lang, questions: json.questions, source: r.source, prompt_version: p.version, created_at: new Date().toISOString() };
-    insertCheck(db, check);
-    if (r.source === 'live') noteAgentAnswered(config, db, r.duration_ms, 'check');
-    setTopic(db, lp.pack.id, key, { status: 'in_progress' });
-    return { status: 200, body: { check_id: check.id, questions: check.questions.map((q: any) => ({ id: q.id, text: q.text })), source: r.source, duration_ms: total, recorded_at: r.recorded_at } };
-  }
-  return { status: 502, body: { error: lastError || 'agent_failed', duration_ms: total } };
+  const a = await askTwice(config, request, { retryable, reject: (json) => (isValid(p.schema, json) && covered(json.questions, crit.length) ? null : 'schema_invalid') });
+  if (!a.ok) return { status: 502, body: { error: a.error, duration_ms: a.total } };
+  const r = a.call;
+  const check = { id: `ck-${randomBytes(6).toString('hex')}`, pack: lp.pack.id, topic_key: key, lang, questions: a.json.questions, source: r.source, prompt_version: p.version, created_at: new Date().toISOString() };
+  insertCheck(db, check);
+  if (r.source === 'live') noteAgentAnswered(config, db, r.duration_ms, 'check');
+  setTopic(db, lp.pack.id, key, { status: 'in_progress' });
+  return { status: 200, body: { check_id: check.id, questions: check.questions.map((q: any) => ({ id: q.id, text: q.text })), source: r.source, duration_ms: a.total, recorded_at: r.recorded_at } };
 }
 
 export async function createAttempt(config: Config, db: Db, lp: LoadedPack, checkId: string, input: { question_id?: unknown; answer?: unknown }): Promise<Handled> {
@@ -70,24 +64,21 @@ export async function createAttempt(config: Config, db: Db, lp: LoadedPack, chec
     user: `<question id="${question.id}">${esc(question.text)}</question>\n<covers>\n${covers}\n</covers>\n<materials>\n${materials}\n</materials>\n<answer>${esc(answer)}</answer>`,
   };
   const materialIds = new Set(topic.materials.map((m) => m.id));
-  let total = 0;
-  let verdict: any = null;
-  let source: 'live' | 'record' = 'live';
-  let recordedAt: string | undefined;
-  let lastError = '';
-  for (let i = 0; i < 2 && !verdict; i++) {
-    const r = await mentorCall(config, request, { retry: i > 0 });
-    total += r.duration_ms;
-    if (!r.result.ok) { lastError = r.result.error; if (NO_RETRY.has(r.result.error)) break; continue; }
-    const json: any = r.result.json;
-    if (!isValid(p.schema, json)) { lastError = 'schema_invalid'; continue; }
-    // The quote must be a non-empty substring of the answer; material_id comes from the topic (required for gap).
-    if (!json.quote || !answer.includes(json.quote)) { lastError = 'quote_not_in_answer'; continue; }
-    if (json.verdict === 'gap' ? !materialIds.has(json.material_id) : json.material_id !== '' && !materialIds.has(json.material_id)) { lastError = 'bad_material'; continue; }
-    verdict = json; source = r.source; recordedAt = r.recorded_at;
-    if (r.source === 'live') noteAgentAnswered(config, db, r.duration_ms, 'check');
-  }
-  if (!verdict) return { status: 502, body: { error: lastError || 'agent_failed', duration_ms: total } };
+  const a = await askTwice(config, request, {
+    retryable,
+    reject: (json) => {
+      if (!isValid(p.schema, json)) return 'schema_invalid';
+      // The quote must be a non-empty substring of the answer; material_id comes from the topic (required for gap).
+      if (!json.quote || !answer.includes(json.quote)) return 'quote_not_in_answer';
+      if (json.verdict === 'gap' ? !materialIds.has(json.material_id) : json.material_id !== '' && !materialIds.has(json.material_id)) return 'bad_material';
+      return null;
+    },
+  });
+  if (!a.ok) return { status: 502, body: { error: a.error, duration_ms: a.total } };
+  const verdict = a.json;
+  const { source, recorded_at: recordedAt } = a.call;
+  if (source === 'live') noteAgentAnswered(config, db, a.call.duration_ms, 'check');
+  const total = a.total;
   const attempt = {
     id: `at-${randomBytes(6).toString('hex')}`, check_id: check.id, question_id: question.id, answer, verdict: verdict.verdict, quote: verdict.quote,
     gap: verdict.gap ?? '', material_id: verdict.material_id ?? '', feedback: verdict.feedback ?? '', source, duration_ms: total, at: new Date().toISOString(),
