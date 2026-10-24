@@ -84,6 +84,18 @@ test('codex chat: a follow-up resumes the thread, "resume <id>" goes before the 
   assert.equal(calls[0].stdin, 'and then?');
 });
 
+// Codex often says what it is about to do before the answer: the panel shows both messages, so they must not run together.
+test('codex: messages of one turn stream apart; the result text is the last message', async () => {
+  fakeSpawn({ stdout: jsonl([
+    { type: 'item.completed', item: { id: 'm1', type: 'agent_message', text: 'I will read the notes.' } },
+    { type: 'item.completed', item: { id: 'm2', type: 'agent_message', text: '{"a":1}' } },
+  ]) });
+  let streamed = '';
+  const r = await callAgent(config, checkReq, { preset: 'codex', onDelta: (t) => { streamed += t; } });
+  assert.equal(streamed, 'I will read the notes.\n\n{"a":1}');
+  assert.equal(r.ok, true); if (r.ok) { assert.equal(r.text, '{"a":1}'); assert.deepEqual(r.json, { a: 1 }); }
+});
+
 // Codex has no file tools: in the exam it reads with shell commands inside its read-only sandbox, which the prompt's "Run nothing" forbids.
 test('codex session: the preset adds its own note to the system part, after the prompt', async () => {
   const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });

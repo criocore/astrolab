@@ -251,7 +251,12 @@ const codex: Handler = {
     else if (t === 'item.started' || t === 'item.completed' || t === 'item.updated') {
       const it = m.item ?? {};
       const key = String(it.id ?? '');
-      if (it.type === 'agent_message') { if (t === 'item.completed') { ctx.gotResult = true; ctx.text = ''; ctx.sawDelta = false; addText(ctx, String(it.text ?? ''), false); } }
+      if (it.type === 'agent_message') {
+        if (t === 'item.completed') {
+          if (ctx.gotResult) ctx.emit({ type: 'delta', text: '\n\n' }); // the answer after a preamble: apart in the stream, alone in the result
+          ctx.gotResult = true; ctx.text = ''; ctx.sawDelta = false; addText(ctx, String(it.text ?? ''), false);
+        }
+      }
       else if (it.type === 'command_execution') pushTool(ctx, 'shell', String(it.command ?? ''), key);
       else if (it.type === 'file_change') pushTool(ctx, 'file_change', (it.changes ?? []).map((c: any) => c.path).join(', '), key);
       else if (it.type === 'mcp_tool_call') pushTool(ctx, `${it.server ?? 'mcp'}/${it.tool ?? ''}`, '', key);
