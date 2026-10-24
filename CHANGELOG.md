@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed: importing progress deleted the answers to the checks of every pack in the data folder, not only of the imported one.
+
 ## 0.1.1 (2026-10-24)
 
 Community release: fixes and tests by [@geibos](https://github.com/geibos) (13 issues, 5 pull requests on day one), reviewed and merged on Windows.
