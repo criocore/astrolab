@@ -1,34 +1,9 @@
-// Pack v2: loading, topic index by key, grade membership and locks.
+// Pack v2: loading, topic index by key, grade membership and locks. Types and the lock rule are in shared/pack.ts.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-
-export type Text = { ru: string; en: string };
-export type Lang = 'ru' | 'en';
-export type Material = {
-  id: string; title: string; url: string; kind: 'understand' | 'do'; type: string; access: string; date: string | null; classic: boolean;
-  minutes: number; lang: string; checked_at: string; source: string; terms: string; track?: string; closes: Text; criteria: number[];
-  repeat_of?: { topic: string; title: Text };
-};
-export type OwnText = { id: string; title: Text; kind: 'understand' | 'do'; minutes: number; criteria: number[]; body: Text; terms: string };
-export type Ref = { id: string; topic: string; title?: Text; criteria_there: number[]; criteria: number[]; closes: Text };
-export type Topic = {
-  key: string; id: string; seq: number; order: number; grade?: string; area?: string; level?: string; to_grade?: string;
-  title: Text; goal: Text; criteria: { ru: string[]; en: string[] }; materials: Material[]; own_texts?: OwnText[]; refs?: Ref[];
-  minutes_total: number; minutes_by_track?: Record<string, number>;
-  probe?: 'hub' | 'node' | 'git' | 'agent' | 'manual';
-};
-export type AdjacentLevel = { area: string; area_title: Text; level: string; hours: number; check: Text; topics: Topic[] };
-export type Grade = {
-  id: string; order: number; title: Text; gate?: 'exam' | 'none'; hours: { core: number; adjacent: number; total: number }; exam: Text; checks: { ru: string[]; en: string[] };
-  core: Topic[]; adjacent: AdjacentLevel[];
-};
-export type Pack = {
-  schema: 2; id: string; version: string; title: Text; description?: Text; license: string;
-  hours: { core: number; adjacent: number; total: number }; stats?: Record<string, number>;
-  credits?: { channel: string; url: string; materials?: number }[];
-  areas: { id: string; title: Text; levels: { level: string; hours: number; to_grade: string; check: Text }[] }[];
-  grades: Grade[];
-};
+import { type AdjacentLevel, type ExamPassed, type Grade, isGradeUnlocked, type Lang, type Pack, type Text, type Topic } from '../shared/pack.ts';
+export type { AdjacentLevel, ExamPassed, Grade, Lang, Material, OwnText, Pack, Ref, Text, Topic } from '../shared/pack.ts';
+export { isGradeUnlocked } from '../shared/pack.ts';
 
 export type LoadedPack = {
   path: string; raw: string; pack: Pack;
@@ -65,18 +40,6 @@ export function loadPack(path: string): LoadedPack {
 }
 
 export const levelKey = (area: string, level: string) => `${area}/${level}`;
-
-export type ExamPassed = Record<string, { passed: boolean }>; // target (G1 | R1/A) -> status
-
-// A grade is open if it is the first grade, the previous one has no evolution (gate none), or the previous grade's exam is passed.
-export function isGradeUnlocked(pack: Pack, gradeId: string, exams: ExamPassed): boolean {
-  const sorted = [...pack.grades].sort((a, b) => a.order - b.order);
-  const i = sorted.findIndex((g) => g.id === gradeId);
-  if (i < 0) return false;
-  if (i === 0) return true;
-  const prev = sorted[i - 1];
-  return prev.gate === 'none' || !!exams[prev.id]?.passed;
-}
 
 export function isTopicUnlocked(lp: LoadedPack, key: string, exams: ExamPassed): boolean {
   const g = lp.gradeOf.get(key);
