@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Codex: every call runs without `~/.codex/config.toml` and ChatGPT apps (`--ignore-user-config --disable apps`). Their MCP servers ran outside the read-only sandbox; one of them, added by the ChatGPT desktop app, runs any JavaScript and was used by the examiner to read the folder.
+- Codex exam: Codex has no file tools, so its preset tells it to read the folder with read-only shell commands inside the sandbox (new preset field `system_extra`). Codex CLI 0.162.1 was run live: topic check, exam on `fixtures/exam-g0-demo`, mentor panel.
+
 ## 0.1.1 (2026-10-24)
 
 Community release: fixes and tests by [@geibos](https://github.com/geibos) (13 issues, 5 pull requests on day one), reviewed and merged on Windows.

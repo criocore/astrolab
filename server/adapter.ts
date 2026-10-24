@@ -30,6 +30,7 @@ export type Mode = {
   args: string[];
   output?: 'json' | 'jsonl';                         // json: one object on stdout; jsonl: events line by line (default)
   system?: string | null;                            // CLI flag or "inline": text at the start of the prompt
+  system_extra?: string;                             // added to the system part for this CLI only (how it reads files, for example)
   schema?: string | { flag: string; file: true } | null; // flag with a string, flag with a file, or "inline": schema in the prompt
   resume?: string | null;
 };
@@ -307,9 +308,10 @@ export function runAgent(config: Config, input: RunInput, opts: { ctl?: Ctl; onE
   // Prompt: the system part and the schema go as flags if the CLI supports them, otherwise into the text.
   let user = input.user;
   const extra: string[] = [];
-  if (input.system) {
-    if (mode.system === 'inline') user = `${input.system}\n\n---\n\n${user}`;
-    else if (mode.system) extra.push(mode.system, input.system);
+  const system = input.system && mode.system_extra ? `${input.system}\n\n${mode.system_extra}` : input.system;
+  if (system) {
+    if (mode.system === 'inline') user = `${system}\n\n---\n\n${user}`;
+    else if (mode.system) extra.push(mode.system, system);
   }
   if (input.schema !== undefined && input.schema !== null && mode.schema) {
     if (mode.schema === 'inline') user += INLINE_SCHEMA(input.schema);

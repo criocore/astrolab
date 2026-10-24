@@ -1,5 +1,5 @@
 // Codex CLI and Gemini CLI through the same requests as Claude Code. Flags and output shapes were checked against vendor docs
-// and the installed Gemini bundle on 22.10.2026; no live run of Codex or Gemini was done (no accounts).
+// and the installed Gemini bundle on 22.10.2026; Codex CLI 0.162.1 was run live on 24.10.2026, Gemini was not.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
@@ -61,6 +61,28 @@ test('codex check: exec --json, read-only sandbox, prompt from stdin after "-", 
   assert.deepEqual(JSON.parse(readFileSync(file, 'utf8')), { type: 'object' });
   assert.ok(c.stdin.startsWith('sys\n\n---\n\nhello'), 'system prompt goes inline before the user prompt');
   assert.ok(!a.includes('hello'), 'prompt never goes through argv');
+});
+
+// MCP servers from ~/.codex/config.toml and ChatGPT apps run outside the read-only sandbox (one can run any JavaScript).
+test('codex: every mode skips the user config and the apps, so only the sandboxed built-in tools are offered', async () => {
+  const chatReq = { mode: 'chat' as const, step: 'chat-explain', user: 'u', prompt_version: 'chat@1', workspace: dir };
+  for (const req of [checkReq, sessionReq, chatReq]) {
+    const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+    await callAgent(config, req, { preset: 'codex' });
+    const a = argline(calls[0]);
+    assert.match(a, /\s--ignore-user-config\s/, `${req.mode}: user config skipped`);
+    assert.match(a, /\s--disable apps\s/, `${req.mode}: apps disabled`);
+  }
+});
+
+// Codex has no file tools: in the exam it reads with shell commands inside its read-only sandbox, which the prompt's "Run nothing" forbids.
+test('codex session: the preset adds its own note to the system part, after the prompt', async () => {
+  const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+  await callAgent(config, sessionReq, { preset: 'codex' });
+  assert.match(calls[0].stdin, /^sys\n\n[^\n]*read-only shell commands[^\n]*\n\n---\n\nu/, 'the note follows the system text');
+  const check = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+  await callAgent(config, checkReq, { preset: 'codex' });
+  assert.ok(check[0].stdin.startsWith('sys\n\n---\n\nhello'), 'modes without a note are unchanged');
 });
 
 test('codex session: shell commands become tool events once per item; turn.failed is an error', async () => {
