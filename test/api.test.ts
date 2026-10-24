@@ -95,6 +95,16 @@ test('import replaces the answers of its own pack only', async () => {
   assert.equal(attemptsOf(db, 'ck-own').length, 1, 'the imported pack gets its answers from the file');
 });
 
+test('import drops answers whose check is gone, so the same file can be imported again', async () => {
+  // an answer saved after an import deleted its check (the agent was still judging it)
+  insertAttempt(db, { id: 'at-lost', check_id: 'ck-lost', question_id: 'q1', answer: 'a', verdict: 'pass', quote: 'a', gap: '', material_id: '', feedback: '', source: 'live', duration_ms: 0, at: '2026-10-24T00:00:00.000Z' });
+  const ex = await (await json('GET', '/api/export')).json() as any;
+  ex.state.checks.push({ ...ex.state.checks[0], id: 'ck-lost' });
+  ex.state.attempts.push({ ...ex.state.attempts[0], id: 'at-lost', check_id: 'ck-lost' }); // the file from before, when the check existed
+  assert.equal((await json('POST', '/api/import', ex)).status, 200);
+  assert.equal(attemptsOf(db, 'ck-lost').length, 1);
+});
+
 test('agents: status lists presets, default switch validates names and option values', async () => {
   const s = await (await json('GET', '/api/agents')).json() as any;
   assert.deepEqual(s.agents.map((a: any) => a.preset).sort(), ['claude', 'codex', 'gemini']);
