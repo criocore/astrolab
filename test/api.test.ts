@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { makeConfig, ROOT } from '../server/config.ts';
 import { createApp } from '../server/app.ts';
-import { DB_VERSION, EXPORT_FORMAT, insertExam, openDb } from '../server/db.ts';
+import { attemptsOf, DB_VERSION, EXPORT_FORMAT, insertAttempt, insertCheck, insertExam, openDb } from '../server/db.ts';
 import { hooks } from '../server/probes.ts';
 
 hooks.versionOf = async () => ({ found: false, version: '' });
@@ -80,6 +80,29 @@ test('export carries the format version; import refuses a newer format and a for
   const st = await (await json('GET', '/api/state')).json() as any;
   assert.equal(st.topics['S0/editor'].status, 'learned', 'import restored the exported state');
   assert.equal((await json('POST', '/api/import', 'not json {', { 'content-type': 'text/plain' })).status, 400);
+});
+
+test('import replaces the answers of its own pack only', async () => {
+  const check = (id: string, pack: string) => {
+    insertCheck(db, { id, pack, topic_key: 'G0/how-llm-works', lang: 'en', questions: [{ id: 'q1', text: 'q', covers: ['1'] }], source: 'live', prompt_version: 'p@1', created_at: '2026-10-24T00:00:00.000Z' });
+    insertAttempt(db, { id: `at-${id}`, check_id: id, question_id: 'q1', answer: 'a', verdict: 'pass', quote: 'a', gap: '', material_id: '', feedback: '', source: 'live', duration_ms: 0, at: '2026-10-24T00:00:00.000Z' });
+  };
+  check('ck-own', 'ai-engineer');
+  check('ck-other', 'other-pack'); // the same data folder used with STUDY_HUB_PACK pointing to another pack
+  const ex = await (await json('GET', '/api/export')).json() as any;
+  assert.equal((await json('POST', '/api/import', ex)).status, 200);
+  assert.equal(attemptsOf(db, 'ck-other').length, 1, 'the other pack keeps its answers');
+  assert.equal(attemptsOf(db, 'ck-own').length, 1, 'the imported pack gets its answers from the file');
+});
+
+test('import drops answers whose check is gone, so the same file can be imported again', async () => {
+  // an answer saved after an import deleted its check (the agent was still judging it)
+  insertAttempt(db, { id: 'at-lost', check_id: 'ck-lost', question_id: 'q1', answer: 'a', verdict: 'pass', quote: 'a', gap: '', material_id: '', feedback: '', source: 'live', duration_ms: 0, at: '2026-10-24T00:00:00.000Z' });
+  const ex = await (await json('GET', '/api/export')).json() as any;
+  ex.state.checks.push({ ...ex.state.checks[0], id: 'ck-lost' });
+  ex.state.attempts.push({ ...ex.state.attempts[0], id: 'at-lost', check_id: 'ck-lost' }); // the file from before, when the check existed
+  assert.equal((await json('POST', '/api/import', ex)).status, 200);
+  assert.equal(attemptsOf(db, 'ck-lost').length, 1);
 });
 
 test('agents: status lists presets, default switch validates names and option values', async () => {
