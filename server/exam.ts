@@ -7,7 +7,7 @@ import { type Config, requestLang } from './config.ts';
 import { type Db, type ExamRow, examsPassed, getExam, insertExam, updateExam } from './db.ts';
 import type { Ctl, Tool } from './adapter.ts';
 import { killTree } from './adapter.ts';
-import { esc, loadPrompt, mentorCall } from './recordings.ts';
+import { askTwice, esc, loadPrompt } from './recordings.ts';
 import { findLevel, isGradeUnlocked, levelKey, text, type Lang, type LoadedPack, type Topic } from './pack.ts';
 import { isValid } from './schema.ts';
 
@@ -82,10 +82,11 @@ export function startExam(config: Config, db: Db, lp: LoadedPack, body: any): Ha
 
   const p = loadPrompt(config, 'exam-artifact');
   const grade = kind === 'grade' ? lp.pack.grades.find((x) => x.id === target)! : null;
-  const items = grade
-    ? grade.checks[lang].map((c, i) => `- id: ${grade.id}#${i + 1} | ${esc(c)}`)
-    : r.topics.flatMap((t) => t.criteria[lang].map((c, i) => `- id: ${t.key}#${i + 1} | ${esc(text(t.title, lang))}: ${esc(c)}`));
-  const user = [`<exam kind="${kind}" target="${esc(target)}">`, `<title>${esc(r.title)}</title>`, `<task>${esc(r.task)}</task>`, `<criteria>`, ...items, `</criteria>`, `</exam>`].join('\n');
+  // Criterion ids are kept as data next to their prompt lines: the verdict is matched against them.
+  const criteria = grade
+    ? grade.checks[lang].map((c, i) => ({ id: `${grade.id}#${i + 1}`, text: esc(c) }))
+    : r.topics.flatMap((t) => t.criteria[lang].map((c, i) => ({ id: `${t.key}#${i + 1}`, text: `${esc(text(t.title, lang))}: ${esc(c)}` })));
+  const user = [`<exam kind="${kind}" target="${esc(target)}">`, `<title>${esc(r.title)}</title>`, `<task>${esc(r.task)}</task>`, `<criteria>`, ...criteria.map((c) => `- id: ${c.id} | ${c.text}`), `</criteria>`, `</exam>`].join('\n');
   const request = { mode: 'session' as const, step: `exam-${kind}`, system: p.system.replaceAll('{{lang}}', lang), user, schema: p.schema, prompt_version: p.version, workspace: folder, timeout_ms: 240_000 };
 
   const id = `ex-${randomBytes(6).toString('hex')}`;
@@ -96,15 +97,18 @@ export function startExam(config: Config, db: Db, lp: LoadedPack, body: any): Ha
   const emit = (e: ExamEvent) => { entry.events.push(e); for (const s of entry.subs) s(e); };
   entry.finished = (async () => {
     const t0 = Date.now();
-    let outcome: ExamEvent = { type: 'error', error: 'bad_output' };
+    let outcome: ExamEvent;
     try {
-      for (let attempt = 0; attempt < 2; attempt++) {
-        const res = await mentorCall(config, request, { ctl: entry.ctl, retry: attempt > 0, onTool: (t: Tool) => emit({ type: 'tool', name: t.name, target: t.target }) });
-        if (entry.ctl.stopped) { outcome = { type: 'error', error: 'stopped' }; break; }
-        if (!res.result.ok) { outcome = { type: 'error', error: res.result.error, detail: res.result.detail }; if (res.result.error !== 'bad_output') break; continue; }
-        const json: any = res.result.json;
-        if (!isValid(p.schema, json)) { outcome = { type: 'error', error: 'schema_invalid' }; continue; }
-        const ids = items.map((l) => /id: (\S+)/.exec(l)![1]);
+      // The exam's rule: an agent error ends it at once, except unreadable output (a rejected answer is asked again too).
+      const a = await askTwice(config, request, {
+        retryable: (error) => error === 'bad_output', reject: (json) => (isValid(p.schema, json) ? null : 'schema_invalid'), stopped: () => entry.ctl.stopped,
+        opts: { ctl: entry.ctl, onTool: (t: Tool) => emit({ type: 'tool', name: t.name, target: t.target }) },
+      });
+      if (!a.ok) outcome = { type: 'error', error: a.error, ...(a.detail !== undefined ? { detail: a.detail } : {}) };
+      else {
+        const res = a.call;
+        const json: any = a.json;
+        const ids = criteria.map((c) => c.id);
         const idSet = new Set(ids);
         const given = new Map<string, any[]>();
         for (const c of json.checks as any[]) if (idSet.has(c.id)) given.set(c.id, [...(given.get(c.id) ?? []), c]);
@@ -126,7 +130,6 @@ export function startExam(config: Config, db: Db, lp: LoadedPack, body: any): Ha
         const verdict = { ...json, checks };
         updateExam(db, id, { status: 'done', verdict, passed: isPass, source: res.source, duration_ms: Date.now() - t0, session_id: res.result.session_id });
         outcome = { type: 'done', exam: getExam(db, id)! };
-        break;
       }
     } catch (e) {
       outcome = { type: 'error', error: 'internal_error', detail: String((e as Error).message) };
