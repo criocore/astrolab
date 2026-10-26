@@ -2,7 +2,7 @@
 // A topic counts as learned when all questions of one check are accepted.
 import { randomBytes } from 'node:crypto';
 import type { Config } from './config.ts';
-import { type Db, getCheck, insertAttempt, insertCheck, attemptsOf, setMeta, setTopic, examsPassed } from './db.ts';
+import { type Db, getCheck, getTopic, insertAttempt, insertCheck, attemptsOf, setMeta, setTopic, examsPassed } from './db.ts';
 import { resolvePreset } from './adapter.ts';
 import { askTwice, esc, loadPrompt } from './recordings.ts';
 import { isTopicUnlocked, text, type Lang, type LoadedPack } from './pack.ts';
@@ -42,7 +42,8 @@ export async function createCheck(config: Config, db: Db, lp: LoadedPack, key: s
   const check = { id: `ck-${randomBytes(6).toString('hex')}`, pack: lp.pack.id, topic_key: key, lang, questions: a.json.questions, source: r.source, prompt_version: p.version, created_at: new Date().toISOString() };
   insertCheck(db, check);
   if (r.source === 'live') noteAgentAnswered(config, db, r.duration_ms, 'check');
-  setTopic(db, lp.pack.id, key, { status: 'in_progress' });
+  // A new check on a learned topic (a review) leaves it learned: only an answer with a gap takes it back.
+  if (getTopic(db, lp.pack.id, key)?.status !== 'learned') setTopic(db, lp.pack.id, key, { status: 'in_progress' });
   return { status: 200, body: { check_id: check.id, questions: check.questions.map((q: any) => ({ id: q.id, text: q.text })), source: r.source, duration_ms: a.total, recorded_at: r.recorded_at } };
 }
 
@@ -87,9 +88,11 @@ export async function createAttempt(config: Config, db: Db, lp: LoadedPack, chec
   // Topic status: all questions of the check accepted -> learned; otherwise gap/in_progress.
   const all = attemptsOf(db, check.id);
   const accepted = (q: string) => all.some((a) => a.question_id === q && a.verdict === 'pass');
-  let status: 'in_progress' | 'gap' | 'learned' = attempt.verdict === 'gap' ? 'gap' : 'in_progress';
-  if (check.questions.every((q) => accepted(q.id))) status = 'learned';
-  setTopic(db, lp.pack.id, check.topic_key, { status, ...(status === 'learned' ? { learnedAt: attempt.at } : {}) });
+  // A learned topic under review stays learned until an answer shows a gap; a gap clears the learned date.
+  const wasLearned = getTopic(db, lp.pack.id, check.topic_key)?.status === 'learned';
+  const allAccepted = check.questions.every((q) => accepted(q.id));
+  const status: 'in_progress' | 'gap' | 'learned' = allAccepted ? 'learned' : attempt.verdict === 'gap' ? 'gap' : wasLearned ? 'learned' : 'in_progress';
+  setTopic(db, lp.pack.id, check.topic_key, { status, ...(allAccepted ? { learnedAt: attempt.at } : status === 'gap' ? { learnedAt: null } : {}) });
   const body: Record<string, unknown> = { attempt_id: attempt.id, verdict: attempt.verdict, quote: attempt.quote, feedback: attempt.feedback, source, duration_ms: total, status, recorded_at: recordedAt };
   if (attempt.verdict === 'gap') {
     body.gap = attempt.gap;

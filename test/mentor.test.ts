@@ -62,6 +62,22 @@ test('topic check: questions cover all criteria, verdicts with quotes, all pass 
   assert.equal(readState(db, lp.pack.id).topics[topic.key].status, 'learned');
 });
 
+// #22: a review of a learned topic does not dim its star before the answers; only a gap takes it back.
+test('a new check on a learned topic leaves it learned until an answer shows a gap', async () => {
+  const learnedAt = readState(db, lp.pack.id).topics[topic.key].learnedAt;
+  assert.ok(learnedAt);
+  const ck = await createCheck(config, db, lp, topic.key, 'ru');
+  const id = String(ck.body.check_id);
+  assert.equal(readState(db, lp.pack.id).topics[topic.key].status, 'learned', 'questions alone change nothing');
+  const pass = await createAttempt(config, db, lp, id, { question_id: 'q1', answer: 'хороший ответ' });
+  assert.equal(pass.body.status, 'learned', 'an accepted answer keeps it learned');
+  assert.equal(readState(db, lp.pack.id).topics[topic.key].learnedAt, learnedAt);
+  const gap = await createAttempt(config, db, lp, id, { question_id: 'q2', answer: 'это плохой ответ' });
+  assert.equal(gap.body.status, 'gap');
+  const s = readState(db, lp.pack.id).topics[topic.key];
+  assert.deepEqual([s.status, s.learnedAt], ['gap', null]);
+});
+
 test('verdict with a quote that is not in the answer is rejected', async () => {
   fakeAgent({
     questions: () => ({ questions: [{ id: 'q1', text: 'A?', covers: Array.from({ length: n }, (_, i) => String(i + 1)) }, { id: 'q2', text: 'B?', covers: ['1'] }] }),
