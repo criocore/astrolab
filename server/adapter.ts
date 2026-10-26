@@ -17,7 +17,7 @@ export type SessionRequest = { mode: 'session'; step: string; system: string; us
 // topic: only with resume, where user is the bare question; it keeps recordings of equal follow-ups on different topics apart.
 export type ChatAgentRequest = { mode: 'chat'; step: string; user: string; prompt_version: string; workspace: string; resume?: string; topic?: string; timeout_ms?: number };
 export type AgentRequest = CheckRequest | SessionRequest | ChatAgentRequest;
-export type AgentError = 'not_found' | 'timeout' | 'exit_code' | 'bad_output' | 'limit' | 'auth' | 'stopped' | 'no_recording' | 'mode_not_supported';
+export type AgentError = 'not_found' | 'timeout' | 'exit_code' | 'bad_output' | 'limit' | 'auth' | 'stopped' | 'no_recording' | 'mode_not_supported' | 'bad_request';
 export type Tool = { name: string; target: string };
 export type AgentResult =
   | { ok: true; json: unknown; text: string; agent: string; ms: number; session_id: string; usage?: unknown; total_cost_usd?: number; tools: Tool[] }
@@ -70,6 +70,9 @@ function loadPresets(config: Config): { all: Record<string, Preset>; def: string
 
 // Parameter value: one word without spaces or quotes, because it is substituted into a CLI argument (inside -c key="value" for Codex).
 const VALUE_RE = /^[\w.@:+/-]{1,80}$/;
+// A conversation id from the CLI's own output, sent back by the client: it goes into argv (and into a shell line in a macOS
+// terminal tab), so it is letters, digits and . _ : / - only, never starting with "-" (it would be read as a flag).
+export const isSessionId = (v: unknown): v is string => typeof v === 'string' && /^[A-Za-z0-9][\w.:/-]{0,127}$/.test(v);
 export function validOptions(preset: Preset, values: OptionValues): OptionValues {
   const out: OptionValues = {};
   for (const [name, opt] of Object.entries(preset.options ?? {})) {
@@ -329,6 +332,7 @@ export function runAgent(config: Config, input: RunInput, opts: { ctl?: Ctl; onE
       extra.push(mode.schema.flag, file);
     }
   }
+  if (input.resume && !isSessionId(input.resume)) return Promise.resolve(fail('bad_request', 'session id'));
   if (input.resume && mode.resume) extra.push(mode.resume, input.resume);
   extra.push(...presetOptionArgs(config, name)); // model, effort: the user's choice from agents.local.json
   // A trailing "-" in the base arguments means "prompt from stdin" (Codex); flags are inserted before it.
@@ -381,9 +385,11 @@ export function runAgent(config: Config, input: RunInput, opts: { ctl?: Ctl; onE
       if (ctl.stopped) return finish(fail('stopped', '', args));
       if (mode.output === 'json') { const m = parseJsonText(stdout); if (m && handler.whole) handler.whole(m, ctx); }
       else onLine(buf);
+      // A finished answer stays an answer: a warning on stderr (a retried 429, a failing MCP helper) does not turn it into an error.
+      const finished = code === 0 && !ctx.error && ctx.gotResult; // the CLI's own result event, not a streamed part
       const errText = `${stderr}\n${ctx.error}`;
-      if (looksLikeLimit(errText)) return finish(fail('limit', errText.trim(), args));
-      if (looksLikeAuth(errText) || (preset.format === 'gemini' && code === 41)) return finish(fail('auth', errText.trim(), args));
+      if (!finished && looksLikeLimit(errText)) return finish(fail('limit', errText.trim(), args));
+      if (!finished && (looksLikeAuth(errText) || (preset.format === 'gemini' && code === 41))) return finish(fail('auth', errText.trim(), args));
       if (ctx.error) return finish(fail('exit_code', ctx.error, args));
       if (code !== 0 && !ctx.gotResult && !ctx.text) return finish(fail('exit_code', `exit ${code}: ${stderr.trim()}`, args));
       if (!ctx.gotResult && !ctx.text) return finish(fail('bad_output', stderr.trim() || 'no result', args));

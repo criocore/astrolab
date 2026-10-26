@@ -61,6 +61,37 @@ test('check: non-zero exit without JSON is exit_code, limit text is limit', asyn
   assert.ok(looksLikeLimit('Rate limit exceeded') && !looksLikeLimit('all good'));
 });
 
+// #23: the limit and sign-in patterns are for failed calls; a CLI that logs its own retries or a failing helper still answered.
+test('check: a finished answer with a warning on stderr is still an answer; a failed call with it is limit or auth', async () => {
+  const ok = JSON.stringify({ type: 'result', result: '{"a":1}', structured_output: { a: 1 } });
+  for (const stderr of ['Attempt 1 failed with status 429. Retrying with backoff...', 'MCP server "x": 401 Unauthorized']) {
+    fakeSpawn({ stdout: ok, stderr });
+    const r = await callAgent(config, checkReq);
+    assert.equal(r.ok, true, stderr);
+  }
+  fakeSpawn({ stdout: '', stderr: 'Error: 429 rate limit exceeded', code: 1 });
+  const r1 = await callAgent(config, checkReq);
+  assert.equal(r1.ok, false); if (!r1.ok) assert.equal(r1.error, 'limit');
+  fakeSpawn({ stdout: '', stderr: '401 Unauthorized: please log in', code: 1 });
+  const r2 = await callAgent(config, checkReq);
+  assert.equal(r2.ok, false); if (!r2.ok) assert.equal(r2.error, 'auth');
+});
+
+// A session id comes back from the client and goes into argv: one that looks like a flag never reaches the CLI.
+test('resume: an id that is not a plain session id is refused before the CLI starts', async () => {
+  const ok = JSON.stringify({ type: 'result', result: 'ok', session_id: 's1' });
+  const chat = { mode: 'chat' as const, step: 'chat-free', user: 'u', prompt_version: 'chat@1', workspace: dir };
+  for (const bad of ['--dangerously-bypass-approvals-and-sandbox', '-x', 'a b', '$(touch x)', 'a"b']) {
+    const calls = fakeSpawn({ stdout: ok });
+    const r = await callAgent(config, { ...chat, resume: bad });
+    assert.equal(r.ok, false, bad); if (!r.ok) assert.equal(r.error, 'bad_request');
+    assert.equal(calls.length, 0, 'no CLI started');
+  }
+  const calls = fakeSpawn({ stdout: ok });
+  assert.equal((await callAgent(config, { ...chat, resume: '0199a1b2-c3d4-7e8f-9a0b-1c2d3e4f5a6b' })).ok, true);
+  assert.ok(calls[0].args.includes('0199a1b2-c3d4-7e8f-9a0b-1c2d3e4f5a6b'));
+});
+
 test('check: timeout kills the process', async () => {
   fakeSpawn({ hang: true });
   const r = await callAgent(config, { ...checkReq, timeout_ms: 30 });

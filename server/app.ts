@@ -10,7 +10,7 @@ import { findPack, loadPack } from './pack.ts';
 import { askInPanel, openInTerminal, type ChatRequest } from './chat.ts';
 import { createAttempt, createCheck, noteAgentAnswered } from './mentor.ts';
 import { startExam, stopExam, subscribe } from './exam.ts';
-import { agentHealth, agentsStatus, type Ctl, killTree, setDefaultPreset, setPresetOptions } from './adapter.ts';
+import { agentHealth, agentsStatus, type Ctl, isSessionId, killTree, setDefaultPreset, setPresetOptions } from './adapter.ts';
 import { checkAgentCall, runProbes } from './probes.ts';
 
 export function createApp(config: Config) {
@@ -136,6 +136,7 @@ export function createApp(config: Config) {
   });
   app.post('/api/agent/ask', async (c) => {
     const req = (await c.req.json()) as ChatRequest & { key?: string; chatId?: string };
+    if (req.sessionId !== undefined && !isSessionId(req.sessionId)) return c.json({ error: 'bad_request' }, 400); // it goes into argv
     req.lang = requestLang(req.lang, config);
     const key = typeof req.key === 'string' ? req.key : '';
     let chatId = typeof req.chatId === 'string' ? req.chatId : '';
@@ -192,7 +193,7 @@ export function createApp(config: Config) {
       });
     });
   });
-  app.post('/api/agent/terminal', async (c) => { const req = (await c.req.json()) as ChatRequest; req.lang = requestLang(req.lang, config); return c.json(openInTerminal(config, req)); });
+  app.post('/api/agent/terminal', async (c) => { const req = (await c.req.json()) as ChatRequest; if (req.sessionId !== undefined && !isSessionId(req.sessionId)) return c.json({ error: 'bad_request' }, 400); req.lang = requestLang(req.lang, config); return c.json(openInTerminal(config, req)); });
 
   // Era I probes: rerun on request (after installing git or an agent), without a model call.
   app.get('/api/probes', async (c) => { probes = runProbes(config, lp, db, await health); return c.json({ probes: await probes, agentCall: getMeta(db, 'agent_call') }); });

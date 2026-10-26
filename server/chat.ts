@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Config } from './config.ts';
-import { type Ctl, resolveCmd, resolvePreset, presetOptionArgs } from './adapter.ts';
+import { type Ctl, isSessionId, resolveCmd, resolvePreset, presetOptionArgs } from './adapter.ts';
 import { esc, mentorCall } from './recordings.ts';
 
 export type Lang = 'ru' | 'en';
@@ -105,7 +105,7 @@ export function openInTerminal(config: Config, r: ChatRequest) {
   if (!preset) return { dir, error: 'no_preset' };
   const term = preset.terminal ?? {};
   const args: string[] = presetOptionArgs(config, name); // model, effort: the same choice as in the panel
-  if (r.sessionId && term.resume) {
+  if (r.sessionId && term.resume && isSessionId(r.sessionId)) {
     args.push(term.resume, r.sessionId);
   } else {
     const file = `prompt-${Date.now()}.md`;
