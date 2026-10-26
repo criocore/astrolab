@@ -1,5 +1,5 @@
 // Codex CLI and Gemini CLI through the same requests as Claude Code. Flags and output shapes were checked against vendor docs
-// and the installed Gemini bundle on 22.10.2026; no live run of Codex or Gemini was done (no accounts).
+// and the installed Gemini bundle on 22.10.2026; Codex CLI 0.162.1 was run live on 24.10.2026, Gemini was not.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
@@ -61,6 +61,50 @@ test('codex check: exec --json, read-only sandbox, prompt from stdin after "-", 
   assert.deepEqual(JSON.parse(readFileSync(file, 'utf8')), { type: 'object' });
   assert.ok(c.stdin.startsWith('sys\n\n---\n\nhello'), 'system prompt goes inline before the user prompt');
   assert.ok(!a.includes('hello'), 'prompt never goes through argv');
+});
+
+// MCP servers from ~/.codex/config.toml and ChatGPT apps run outside the read-only sandbox (one can run any JavaScript).
+test('codex: every mode skips the user config and the apps, so only the sandboxed built-in tools are offered', async () => {
+  const chatReq = { mode: 'chat' as const, step: 'chat-explain', user: 'u', prompt_version: 'chat@1', workspace: dir };
+  for (const req of [checkReq, sessionReq, chatReq]) {
+    const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+    await callAgent(config, req, { preset: 'codex' });
+    const a = argline(calls[0]);
+    assert.match(a, /\s--ignore-user-config\s/, `${req.mode}: user config skipped`);
+    assert.match(a, /\s--ignore-rules\s/, `${req.mode}: saved "allow" rules skipped`);
+    assert.match(a, /\s--disable apps\s/, `${req.mode}: apps disabled`);
+  }
+});
+
+// `codex exec [flags] resume <thread> -`: a panel follow-up continues the thread instead of arriving without the topic.
+test('codex chat: a follow-up resumes the thread, "resume <id>" goes before the stdin "-"', async () => {
+  const calls = fakeSpawn({ stdout: jsonl([{ type: 'thread.started', thread_id: 'th-9' }, { type: 'item.completed', item: { id: 'm', type: 'agent_message', text: 'ok' } }]) });
+  const r = await callAgent(config, { mode: 'chat', step: 'chat-free', user: 'and then?', prompt_version: 'chat@1', workspace: dir, resume: 'th-9' }, { preset: 'codex' });
+  assert.equal(r.ok, true);
+  assert.match(argline(calls[0]), /\sresume th-9 -"?$/);
+  assert.equal(calls[0].stdin, 'and then?');
+});
+
+// Codex often says what it is about to do before the answer: the panel shows both messages, so they must not run together.
+test('codex: messages of one turn stream apart; the result text is the last message', async () => {
+  fakeSpawn({ stdout: jsonl([
+    { type: 'item.completed', item: { id: 'm1', type: 'agent_message', text: 'I will read the notes.' } },
+    { type: 'item.completed', item: { id: 'm2', type: 'agent_message', text: '{"a":1}' } },
+  ]) });
+  let streamed = '';
+  const r = await callAgent(config, checkReq, { preset: 'codex', onDelta: (t) => { streamed += t; } });
+  assert.equal(streamed, 'I will read the notes.\n\n{"a":1}');
+  assert.equal(r.ok, true); if (r.ok) { assert.equal(r.text, '{"a":1}'); assert.deepEqual(r.json, { a: 1 }); }
+});
+
+// Codex has no file tools: in the exam it reads with shell commands inside its read-only sandbox, which the prompt's "Run nothing" forbids.
+test('codex session: the preset adds its own note to the system part, after the prompt', async () => {
+  const calls = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+  await callAgent(config, sessionReq, { preset: 'codex' });
+  assert.match(calls[0].stdin, /^sys\n\n[^\n]*read-only shell commands[^\n]*\n\n---\n\nu/, 'the note follows the system text');
+  const check = fakeSpawn({ stdout: jsonl([{ type: 'item.completed', item: { id: 'm', type: 'agent_message', text: '{}' } }]) });
+  await callAgent(config, checkReq, { preset: 'codex' });
+  assert.ok(check[0].stdin.startsWith('sys\n\n---\n\nhello'), 'modes without a note are unchanged');
 });
 
 test('codex session: shell commands become tool events once per item; turn.failed is an error', async () => {

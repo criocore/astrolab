@@ -3,6 +3,10 @@
 ## Unreleased
 
 - Fixed: importing progress deleted the answers to the checks of every pack in the data folder, not only of the imported one.
+- Codex: every call runs without `~/.codex/config.toml`, saved execpolicy rules and ChatGPT apps (`--ignore-user-config --ignore-rules --disable apps`). Their MCP servers ran outside the read-only sandbox, and a saved "allow" rule can let a command out of it; one of the servers, added by the ChatGPT desktop app, runs any JavaScript and was used by the examiner to read the folder.
+- Codex exam: Codex has no file tools, so its preset tells it to read the folder with read-only shell commands inside the sandbox (new preset field `system_extra`). Codex CLI 0.162.1 was run live: topic check, exam on `fixtures/exam-g0-demo`, mentor panel.
+- Codex in the mentor panel: a follow-up continues the conversation (`codex exec … resume <thread>`). Before, it reached Codex as a bare question, without the topic or the previous answer.
+- Codex in the mentor panel: a preamble ("I will read the file…") and the answer after it stream as separate paragraphs instead of one run-on line.
 
 ## 0.1.1 (2026-10-24)
 
