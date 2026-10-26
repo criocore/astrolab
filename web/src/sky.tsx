@@ -2,7 +2,7 @@
 // One tile map (a background of random stars + seven constellations per era shaped like real constellations) is wrapped into a torus
 // and drifts right-down, one full loop in 10 minutes. Stars = topics: brightness grows with progress, a gap = variable star.
 import { useEffect, useRef } from 'react';
-import { gradeTopics, useStore } from './store';
+import { gradeTopics, isUnlocked, useStore } from './store';
 import type { Grade, Pack, State, Topic } from './types';
 
 type Fig = { stars: [number, number][]; segs: [number, number][] };
@@ -27,11 +27,9 @@ function mulberry32(a: number) { return () => { a |= 0; a = (a + 0x6D2B79F5) | 0
 function hash(str: string) { let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967295; }
 
 type StarStatus = 'locked' | 'open' | 'progress' | 'gap' | 'done';
-function statusOf(t: Topic, g: Grade, grades: Grade[], state: State | null): StarStatus {
+function statusOf(t: Topic, unlocked: boolean, state: State | null): StarStatus {
   const s = state?.topics[t.key]?.status;
   if (s === 'learned') return 'done';
-  const i = grades.findIndex((x) => x.id === g.id);
-  const unlocked = i === 0 || grades[i - 1].gate === 'none' || !!state?.exams[grades[i - 1].id]?.passed;
   if (!unlocked) return 'locked';
   return s === 'gap' ? 'gap' : s === 'in_progress' ? 'progress' : 'open';
 }
@@ -111,9 +109,9 @@ export function Sky() {
       if (consPack !== pack) { cons = buildConstellations(pack); consPack = pack; }
       if (time >= nextFlash) spawnFlash(time);
       for (const [k, t0] of flashes) if (time - t0 > FLASH) flashes.delete(k);
-      const grades = [...pack.grades].sort((a, b) => a.order - b.order);
       for (const c of cons) {
-        const st = c.pts.map((p) => statusOf(p.topic, c.grade, grades, state));
+        const unlocked = isUnlocked(pack, c.grade.id, state); // the server's lock rule, once per era and frame
+        const st = c.pts.map((p) => statusOf(p.topic, unlocked, state));
         const X = (p: Pt) => ox + p.x * scale, Y = (p: Pt) => oy + p.y * scale;
         // lines: dim, bright between two studied stars
         for (const [a, b] of c.segs) {

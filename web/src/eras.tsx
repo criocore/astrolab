@@ -7,6 +7,7 @@ import { Emblem, LANES, LaneEmblem, LaneIcon, laneOfArea, type LaneId } from './
 import { areaLabel } from './i18n';
 import { epochOf, gradeDone, gradeTopics, isUnlocked, levelKey, progress, uiZoom, useStore } from './store';
 import type { AdjacentLevel, Grade, Pack, State, Topic } from './types';
+import { gateBefore } from '../../shared/pack';
 import './eras.css';
 
 type NodeStatus = 'locked' | 'open' | 'progress' | 'gap' | 'done';
@@ -26,14 +27,14 @@ function topicStatus(t: Topic, g: Grade, pack: Pack, state: State | null): NodeS
 // Prerequisites match the server lock: everything in a grade (topics, levels, level check, evolution) waits for the previous grade's exam.
 function buildPrereq(pack: Pack) {
   const pre = new Map<string, string[]>();
-  const grades = [...pack.grades].sort((a, b) => a.order - b.order);
-  grades.forEach((g, i) => {
-    if (!i || grades[i - 1].gate === 'none') return; // an era without an evolution locks nothing
-    const gate = [`exam:${grades[i - 1].id}`];
+  for (const g of pack.grades) {
+    const before = gateBefore(pack, g.id);
+    if (!before) continue; // the first era and the one after an era without an evolution are open
+    const gate = [`exam:${before}`];
     for (const t of gradeTopics(g)) pre.set(t.key, gate);
     for (const lv of g.adjacent) pre.set(`level:${levelKey(lv)}`, gate);
     pre.set(`exam:${g.id}`, gate);
-  });
+  }
   return pre;
 }
 
