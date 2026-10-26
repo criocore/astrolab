@@ -1,7 +1,15 @@
 # Changelog
 
-## Unreleased
+## 0.1.2 (2026-10-27)
 
+Second community release: [@geibos](https://github.com/geibos) ran the Codex preset live on macOS and sent 7 issues and 5 pull requests (#24–#28, closing #13, #14, #19, #20, #21); the maintainer fixed #22, #23 and #29 from their reports. Reviewed and merged on Windows.
+
+- Security: a conversation id sent back by the client goes into the CLI's arguments (and into a shell line when "Continue in terminal" opens a macOS Terminal tab), so the hub accepts only plain ids (letters, digits, `. _ : / -`, never starting with `-`) and refuses others before any CLI starts. With Codex's `resume <id>`, an id that looks like a flag would have been read as one.
+- Fixed (#23): a finished agent answer was turned into a "limit" or "sign-in" error when the CLI printed a warning on stderr (a retried 429, a failing MCP helper). The limit and sign-in patterns now apply only to calls that did not finish.
+- Fixed (#22): a new check on a learned topic dimmed its star as soon as the questions came. A learned topic now stays learned during a review until an answer shows a gap; a gap clears the learned date.
+- Demo (#29): the Russian gap verdict for "How an LLM works" was recorded when the topic had 3 materials and no longer replayed; it is recorded again. A new test drives the demo the way the interface does (questions, every recorded answer, both exams, the panel, the call check) and fails when a pack or prompt change leaves a recording unreachable.
+- One copy of the pack types and the era lock rule, in `shared/pack.ts`, used by the server, the interface and the tools (#13).
+- One loop for agent calls with an explicit retry rule per caller (topic check and exam keep their rules); exam criterion ids are kept as data instead of being parsed back from the prompt (#14).
 - Fixed: importing progress deleted the answers to the checks of every pack in the data folder, not only of the imported one.
 - Codex: every call runs without `~/.codex/config.toml`, saved execpolicy rules and ChatGPT apps (`--ignore-user-config --ignore-rules --disable apps`). Their MCP servers ran outside the read-only sandbox, and a saved "allow" rule can let a command out of it; one of the servers, added by the ChatGPT desktop app, runs any JavaScript and was used by the examiner to read the folder.
 - Codex exam: Codex has no file tools, so its preset tells it to read the folder with read-only shell commands inside the sandbox (new preset field `system_extra`). Codex CLI 0.162.1 was run live: topic check, exam on `fixtures/exam-g0-demo`, mentor panel.

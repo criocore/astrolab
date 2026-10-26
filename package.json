@@ -1,6 +1,6 @@
 {
   "name": "astrolab",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "Astrolabe: a local-first study hub where your own coding agent (Claude Code, Codex CLI, Gemini CLI) is the mentor and the examiner",

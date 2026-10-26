@@ -18,7 +18,7 @@
 
 <p align="center">
   <a href="https://github.com/criocore/astrolab/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/criocore/astrolab/ci.yml?style=flat-square&label=CI"></a>
-  <img alt="release 0.1.1" src="https://img.shields.io/badge/release-v0.1.1-e2b955?style=flat-square">
+  <img alt="release 0.1.2" src="https://img.shields.io/badge/release-v0.1.2-e2b955?style=flat-square">
   <img alt="MIT" src="https://img.shields.io/badge/license-MIT-2fbf9a?style=flat-square">
   <img alt="Node 22.13+" src="https://img.shields.io/badge/node-%E2%89%A5%2022.13-121a33?style=flat-square&logo=nodedotjs&logoColor=white">
   <img alt="Claude Code проверен вживую" src="https://img.shields.io/badge/Claude%20Code-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%20%D0%B2%D0%B6%D0%B8%D0%B2%D1%83%D1%8E-e2b955?style=flat-square">
@@ -248,7 +248,15 @@ npm start            # http://127.0.0.1:4317
 
 ## Участники
 
-- [@geibos](https://github.com/geibos) — v0.1.1: панель наставника через общий конвейер вызова агента (лог, запись, воспроизведение в демо, честная остановка), остановка всего дерева процессов агента, единый язык по умолчанию с сохранением языка ответов, коды ошибок всегда фразами, записи уточняющих вопросов по темам. Тринадцать issue и пять pull request'ов в первый день проекта.
+Считано в штуках по GitHub: сколько issue прислано, сколько pull request'ов влито и сколько issue в этом релизе закрыли их же pull request'ы.
+
+| Участник | Релиз | Issue прислано | Pull request'ов влито | Issue закрыто их же PR | Отчётов о безопасности |
+|---|---|---:|---:|---:|---:|
+| [@geibos](https://github.com/geibos) | v0.1.1 | 13 | 5 | 11 | 0 |
+| [@geibos](https://github.com/geibos) | v0.1.2 | 7 | 5 | 5 | 1 |
+| **[@geibos](https://github.com/geibos)** | **всего** | **20** | **10** | **16** | **1** |
+
+- [@geibos](https://github.com/geibos) — v0.1.2: первый живой прогон пресета Codex (macOS), Codex отделён от пользовательского конфига, MCP-серверов и приложений; уточняющие вопросы в панели продолжают ветку Codex; импорт не трогает ответы других пакетов; одна копия типов пакета и правила замков; один цикл вызова агента с явными правилами повтора; отчёты, по которым исправлены stderr, повторная проверка темы и демо-записи. v0.1.1: панель наставника через общий конвейер вызова агента (лог, запись, воспроизведение в демо, честная остановка), остановка всего дерева процессов агента, единый язык по умолчанию с сохранением языка ответов, коды ошибок всегда фразами, записи уточняющих вопросов по темам.
 
 Список открыт, и хорошие отчёты ценятся не меньше кода: issue с воспроизведением, как те, что выше, — тоже вклад. Пакеты, адаптеры, правки и отчёты с macOS и Linux — всё принимается: см. [CONTRIBUTING.md](CONTRIBUTING.md).
 

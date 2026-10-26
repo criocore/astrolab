@@ -18,7 +18,7 @@ A map of eras, a check in your own words, an exam that reads your files. Free, o
 
 <p align="center">
   <a href="https://github.com/criocore/astrolab/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/criocore/astrolab/ci.yml?style=flat-square&label=CI"></a>
-  <img alt="release 0.1.1" src="https://img.shields.io/badge/release-v0.1.1-e2b955?style=flat-square">
+  <img alt="release 0.1.2" src="https://img.shields.io/badge/release-v0.1.2-e2b955?style=flat-square">
   <img alt="MIT" src="https://img.shields.io/badge/license-MIT-2fbf9a?style=flat-square">
   <img alt="Node 22.13+" src="https://img.shields.io/badge/node-%E2%89%A5%2022.13-121a33?style=flat-square&logo=nodedotjs&logoColor=white">
   <img alt="Claude Code tested live" src="https://img.shields.io/badge/Claude%20Code-tested%20live-e2b955?style=flat-square">
@@ -248,7 +248,15 @@ See [SECURITY.md](SECURITY.md) for reporting.
 
 ## Contributors
 
-- [@geibos](https://github.com/geibos) — v0.1.1: the mentor panel through the shared agent pipeline (logged, recorded, replayed in the demo, honestly stoppable), the whole process tree ended on Stop, one default language with saved answers keeping theirs, error codes always shown as phrases, follow-up recordings per topic. Thirteen issues and five pull requests on the project's first day.
+Counted in pieces from GitHub: issues reported, pull requests merged, and how many issues in that release their own pull requests closed.
+
+| Contributor | Release | Issues reported | Pull requests merged | Issues closed by their own PRs | Security reports |
+|---|---|---:|---:|---:|---:|
+| [@geibos](https://github.com/geibos) | v0.1.1 | 13 | 5 | 11 | 0 |
+| [@geibos](https://github.com/geibos) | v0.1.2 | 7 | 5 | 5 | 1 |
+| **[@geibos](https://github.com/geibos)** | **total** | **20** | **10** | **16** | **1** |
+
+- [@geibos](https://github.com/geibos) — v0.1.2: the first live run of the Codex preset (macOS), with Codex isolated from the user's config, MCP servers and apps; panel follow-ups that continue the Codex thread; import that keeps other packs' answers; one copy of the pack types and the lock rule; one agent call loop with explicit retry rules; the reports behind the stderr, review and demo-recording fixes. v0.1.1: the mentor panel through the shared agent pipeline (logged, recorded, replayed in the demo, honestly stoppable), the whole process tree ended on Stop, one default language with saved answers keeping theirs, error codes always shown as phrases, follow-up recordings per topic.
 
 This list is open, and good reports count as much as code: an issue with a reproduction like those above is a contribution too. Packs, adapters, fixes and reports from macOS and Linux are all welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
